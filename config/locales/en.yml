@@ -2,6 +2,40 @@ en:
   layouts:
     application:
       title: Money
+      register: Register
+      log_in: Log in
+      log_out: Log out
   pages:
     home:
       title: Home
+  users:
+    index:
+      title: Users
+    new:
+      title: Register
+      submit: Register
+    edit:
+      title: Edit profile
+      submit: Update profile
+    form:
+      name: Name
+      email: Email
+      password: Password
+    create:
+      notice: User created, you are now logged in
+    update:
+      notice: User updated
+    destroy:
+      notice: User deleted
+  sessions:
+    new:
+      title: Log in
+      email: Email
+      password: Password
+      submit: Log in
+    create:
+      notice: You are now logged in
+      wrong_password: Wrong password
+      wrong_email: Wrong email
+    destroy:
+      notice: You are now logged out

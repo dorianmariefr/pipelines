@@ -1,0 +1,10 @@
+= form_for :session, url: session_path do |f|
+  .p
+    = f.label :email, t(".email")
+    = f.email_field :email, autocomplete: :email
+
+  .p
+    = f.label :password, t(".password")
+    = f.password_field :password, autocomplete: "new-password"
+
+  p= f.submit t(".submit")

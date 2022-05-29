@@ -10,9 +10,23 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-  body.p-8.max-w-lg.mx-auto.prose
+  body.p-8.max-w-md.mx-auto.prose
     h1= t(".title")
 
+    .p
+      - if current_user
+        => link_to current_user.name, current_user
+        = button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
+      - else
+        => link_to t(".register"), new_user_path, class: "font-bold"
+        = link_to t(".log_in"), new_session_path
+
     h2= title
+
+    - if notice
+      p.text-green-600= notice
+
+    - if alert
+      p.text-red-600= alert
 
     = yield
