@@ -11,7 +11,7 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body.p-8.max-w-md.mx-auto.prose
-    h1= t(".title")
+    h1= link_to t(".title"), root_path, class: "font-bold"
 
     .p
       - if current_user
