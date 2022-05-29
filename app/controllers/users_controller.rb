@@ -11,6 +11,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.phone_numbers.build
+    @user.emails.build
     authorize @user
   end
 
@@ -52,6 +54,19 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(
+      :name,
+      :password,
+      emails_attributes: [
+        :id,
+        :email,
+        :_destroy
+      ],
+      phone_numbers_attributes: [
+        :id,
+        :phone_number,
+        :_destroy
+      ],
+    )
   end
 end

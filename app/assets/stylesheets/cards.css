@@ -1,0 +1,3 @@
+.card {
+  @apply border-l-2 border-black pl-4;
+}

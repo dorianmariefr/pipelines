@@ -4,6 +4,28 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  belongs_to :primary_email, optional: true, class_name: "Email"
+  belongs_to :primary_phone_number, optional: true, class_name: "PhoneNumber"
+
+  has_many :emails
+  has_many :phone_numbers
+
+  accepts_nested_attributes_for(
+    :emails,
+    allow_destroy: true,
+    reject_if: lambda { |attributes| attributes[:email].blank? }
+  )
+
+  accepts_nested_attributes_for(
+    :phone_numbers,
+    allow_destroy: true,
+    reject_if: lambda { |attributes| attributes[:phone_number].blank? }
+  )
+
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
+
+  before_validation do
+    self.primary_email = emails.first if primary_email.nil?
+    self.primary_phone_number = phone_numbers.first if primary_phone_number.nil?
+  end
 end

@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import EmailController from "./email_controller.js"
+application.register("email", EmailController)
+
+import NameController from "./name_controller.js"
+application.register("name", NameController)
+
+import PasswordController from "./password_controller.js"
+application.register("password", PasswordController)
+
+import PhoneController from "./phone_controller.js"
+application.register("phone", PhoneController)

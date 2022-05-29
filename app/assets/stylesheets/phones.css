@@ -1,0 +1,9 @@
+@import "intl-tel-input/build/css/intlTelInput.css";
+
+.iti {
+  @apply block;
+}
+
+.iti__country-list {
+  @apply max-w-sm;
+}

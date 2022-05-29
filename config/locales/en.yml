@@ -1,13 +1,19 @@
 en:
+  application:
+    fake:
+      eg: "e.g. %{string}"
   layouts:
     application:
       title: Money
       register: Register
       log_in: Log in
       log_out: Log out
+      switch: Français
   pages:
     home:
       title: Home
+      register: Register
+      log_in: Log in
   users:
     index:
       title: Users
@@ -20,7 +26,10 @@ en:
     form:
       name: Name
       email: Email
+      phone_number: Phone Number
       password: Password
+      show_password: Show password
+      hide_password: Hide password
     create:
       notice: User created, you are now logged in
     update:
@@ -47,3 +56,18 @@ en:
       wrong_email: Wrong email
     destroy:
       notice: You are now logged out
+  js:
+    name:
+      must_be_present: Must be present
+    email:
+      must_be_present: Must be present
+      must_be_valid: Must be a valid email address
+    phone:
+      is_possible: Is possible
+      invalid_country_code: Invalid country code
+      too_short: Too short
+      too_long: Too long
+      is_possible_local_only: Is possible local only
+      invalid_length: Invalid length
+      invalid_phone_number: Invalid phone number
+      must_be_present: Must be present

@@ -10,7 +10,7 @@
       - if @user.email_verified?
         span.text-green-600= t(".verified")
       - else
-        span.text-red-600= t(".not_verified")
+        = link_to t(".not_verified"), [@user, :email]
 
     p= link_to t(".edit"), [:edit, @user]
 

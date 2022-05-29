@@ -1,0 +1,5 @@
+- emails
+- phone numbers
+- prettier
+- standard
+- brakeman

@@ -2,16 +2,34 @@
 - submit = local_assigns.fetch(:submit)
 
 = form_for user do |f|
-  .p
+  .p(data-controller="name")
     = f.label :name, t(".name")
-    = f.text_field :name, autocomplete: :name
+    = f.text_field :name, autocomplete: :name, required: true, data: { name_target: "input" }
+    .text-red-600(data-name-target="error")
+    = fake_name
 
-  .p
-    = f.label :email, t(".email")
-    = f.email_field :email, autocomplete: :email
+  = f.fields_for :emails do |email_f|
+    .p(data-controller="email")
+      = email_f.label :email, t(".email")
+      = email_f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }
+      .text-red-600(data-email-target="error")
+      = fake_email
 
-  .p
+  = f.fields_for :phone_numbers do |phone_number_f|
+    .p(data-controller="phone")
+      = phone_number_f.label :phone_number, t(".phone_number")
+      div
+        = phone_number_f.telephone_field :phone_number, required: true, autocomplete: :tel, data: { phone_target: "input" }
+      .text-red-600(data-phone-target="error")
+      = fake_phone_number
+
+  .p(data-controller="password")
     = f.label :password, t(".password")
-    = f.password_field :password, autocomplete: "new-password"
+    .flex.gap-2.items-center
+      = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }
+      = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
+      = icon_link t(".hide_password"), "eye-off", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+    .text-red-600(data-password-target="error")
+    = fake_password
 
   p= f.submit submit

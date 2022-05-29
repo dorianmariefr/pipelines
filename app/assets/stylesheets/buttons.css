@@ -1,0 +1,16 @@
+[type="submit"],
+button,
+.button {
+  @apply px-4 py-2 border border-black rounded cursor-pointer;
+  @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-300;
+}
+
+.button--primary {
+  @apply font-bold border-2;
+}
+
+.button--link {
+  @apply inline-block p-0 border-0 rounded-none text-black;
+  @apply bg-transparent hover:bg-transparent focus:bg-transparent;
+  @apply underline;
+}

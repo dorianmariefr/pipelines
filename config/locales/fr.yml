@@ -1,0 +1,59 @@
+fr:
+  application:
+    fake:
+      eg: "e.g. %{string}"
+  layouts:
+    application:
+      title: Money
+      register: S'inscrire
+      log_in: Se connecter
+      log_out: Se déconnecter
+      switch: English
+  pages:
+    home:
+      title: Accueil
+      register: S'inscrire
+      log_in: Se connecter
+  users:
+    index:
+      title: Utilisateurs
+    new:
+      title: Inscription
+      submit: S'inscrire
+    edit:
+      title: Modifier le profil
+      submit: Mettre à jour le profil
+    form:
+      name: Nom
+      email: Email
+      phone_number: Numéro de téléphone
+      password: Mot de passe
+    create:
+      notice: Utilisateur créé, tu es maintenant connecté(e)
+    update:
+      notice: Utilisateur mis à jour
+    destroy:
+      notice: Utilisateur supprimé
+    show:
+      private: Privé
+      email: Email
+      verified: "(vérifié)"
+      not_verified: "(pas vérifié)"
+      edit: Modifier le profil
+      delete: Supprimer le compte
+      confirm: Es-tu sûr de vouloir supprimer ce compte ?
+  sessions:
+    new:
+      title: Connexion
+      email: Email
+      password: Mot de passe
+      submit: Se connecter
+    create:
+      notice: Tu es maintenant connecté(e)
+      wrong_password: Mauvais mot de passe
+      wrong_email: Mauvais email
+    destroy:
+      notice: Tu es maintenant déconnecté(e)
+  js:
+    name:
+      must_be_present: Doit être présent
