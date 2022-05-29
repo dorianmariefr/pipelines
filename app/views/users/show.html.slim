@@ -1,0 +1,17 @@
+- content_for(:title, @user.name)
+
+- if can? :update, @user
+  .card
+    p.italic.text-gray-600= t(".private")
+
+    p
+      span.font-bold=> @user.email
+
+      - if @user.email_verified?
+        span.text-green-600= t(".verified")
+      - else
+        span.text-red-600= t(".not_verified")
+
+    p= link_to t(".edit"), [:edit, @user]
+
+    .p= button_to t(".delete"), @user, method: :delete, class: "button--link text-red-600", form: { data: { turbo_confirm: t(".confirm") } }

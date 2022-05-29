@@ -27,6 +27,14 @@ en:
       notice: User updated
     destroy:
       notice: User deleted
+    show:
+      private: Private
+      email: Email
+      verified: "(verified)"
+      not_verified: "(not verified)"
+      edit: Edit profile
+      delete: Delete account
+      confirm: Are you sure you want to delete this account?
   sessions:
     new:
       title: Log in

@@ -1,6 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 .p {
   @apply my-5;
@@ -28,3 +26,10 @@ button,
   @apply bg-transparent hover:bg-transparent focus:bg-transparent;
   @apply underline;
 }
+
+.card {
+  @apply border-l-2 border-black pl-4
+}
+
+@tailwind components;
+@tailwind utilities;

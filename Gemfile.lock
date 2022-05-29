@@ -76,6 +76,8 @@ GEM
       railties (>= 6.0.0)
     digest (3.1.0)
     erubi (1.10.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -182,6 +184,7 @@ DEPENDENCIES
   bcrypt
   bootsnap
   cssbundling-rails
+  friendly_id
   jsbundling-rails
   pg
   propshaft
