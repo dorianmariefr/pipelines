@@ -7,3 +7,13 @@
 .iti__country-list {
   @apply max-w-sm;
 }
+
+.iti__flag {
+  background-image: url("img/flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("img/flags@2x.png");
+  }
+}

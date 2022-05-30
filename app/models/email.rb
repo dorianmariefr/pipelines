@@ -3,9 +3,10 @@ class Email < ApplicationRecord
 
   belongs_to :user
 
-  validates :email, presence: true, uniqueness: true, format: { with: REGEXP }
+  validates :email, presence: true
+  validates :normalized_email, presence: true, uniqueness: true, format: { with: REGEXP }
 
   before_validation do
-    self.email = EmailNormalizer.format(email)
+    self.normalized_email = EmailNormalizer.normalize(email)
   end
 end
