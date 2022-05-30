@@ -11,9 +11,10 @@
     "autoprefixer": "*",
     "esbuild": "*",
     "eslint": "*",
-    "husky": "^8.0.1",
+    "husky": "*",
     "i18n-js": "*",
     "intl-tel-input": "*",
+    "lint-staged": "*",
     "postcss": "*",
     "postcss-cli": "*",
     "postcss-import": "*",
@@ -26,9 +27,14 @@
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "postcss ./app/assets/stylesheets/application.postcss.css -o ./app/assets/builds/application.css",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,md,rb}\"",
+    "format": "prettier . --loglevel warn --write --ignore-unknown",
     "lint": "eslint . --cache --fix",
-    "lint:css": "stylelint '**/*.css'",
+    "lint:css": "stylelint '**/*.css' --fix",
     "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*": "prettier --loglevel warn --ignore-unknown --write",
+    "*.css": "stylelint --fix"
   }
 }
