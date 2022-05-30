@@ -16,7 +16,7 @@ h3= t(".log_in_with_email")
     .text-red-600(data-password-target="error")
     = fake_password
 
-  p= f.submit t(".submit")
+  p= f.submit t(".submit"), class: "button--primary"
 
 h3= t(".log_in_with_phone_number")
 
@@ -38,4 +38,4 @@ h3= t(".log_in_with_phone_number")
     .text-red-600(data-password-target="error")
     = fake_password
 
-  p= f.submit t(".submit")
+  p= f.submit t(".submit"), class: "button--primary"
