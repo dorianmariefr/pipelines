@@ -2,7 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@babel/core": "^7.18.2",
+    "@babel/core": "*",
     "@babel/eslint-parser": "*",
     "@hotwired/stimulus": "*",
     "@hotwired/turbo-rails": "*",
@@ -11,6 +11,7 @@
     "autoprefixer": "*",
     "esbuild": "*",
     "eslint": "*",
+    "husky": "^8.0.1",
     "i18n-js": "*",
     "intl-tel-input": "*",
     "postcss": "*",
@@ -27,6 +28,7 @@
     "build:css": "postcss ./app/assets/stylesheets/application.postcss.css -o ./app/assets/builds/application.css",
     "format": "prettier --loglevel warn --write \"**/*.{js,css,md,rb}\"",
     "lint": "eslint . --cache --fix",
-    "lint:css": "stylelint '**/*.css'"
+    "lint:css": "stylelint '**/*.css'",
+    "prepare": "husky install"
   }
 }
