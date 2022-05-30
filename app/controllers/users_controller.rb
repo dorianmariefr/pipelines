@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: t(".notice")
+      redirect_to user_path(@user), notice: t(".notice")
     else
       flash.now.alert = @user.alert
       render :new, status: :unprocessable_entity
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: t(".notice")
+      redirect_to user_path(@user), notice: t(".notice")
     else
       flash.now.alert = @user.alert
       render :edit, status: :unprocessable_entity

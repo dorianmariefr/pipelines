@@ -70,6 +70,7 @@ GEM
     bcrypt (3.1.18)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
+    brakeman (5.2.3)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -238,6 +239,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootsnap
+  brakeman
   cssbundling-rails
   faker
   friendly_id
