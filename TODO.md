@@ -1,5 +1,5 @@
-- emails
-- phone numbers
 - prettier
 - standard
 - brakeman
+- email verification
+- phone number verification

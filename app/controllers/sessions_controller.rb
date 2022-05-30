@@ -60,7 +60,8 @@ class SessionsController < ApplicationController
   end
 
   def load_phone_number
-    @phone_number = PhoneNumber.find_by_normalized_phone_number(phone_number_param)
+    @phone_number =
+      PhoneNumber.find_by_normalized_phone_number(phone_number_param)
   end
 
   def load_user

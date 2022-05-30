@@ -24,7 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_142843) do
     t.string "normalized_email"
     t.index ["email"], name: "index_emails_on_email", unique: true
     t.index ["user_id"], name: "index_emails_on_user_id"
-    t.index ["verification_code"], name: "index_emails_on_verification_code", unique: true
+    t.index ["verification_code"],
+            name: "index_emails_on_verification_code",
+            unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -33,9 +35,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_142843) do
     t.string "sluggable_type", limit: 50
     t.string "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+    t.index %w[slug sluggable_type scope],
+            name:
+              "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope",
+            unique: true
+    t.index %w[slug sluggable_type],
+            name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index %w[sluggable_type sluggable_id],
+            name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "phone_numbers", force: :cascade do |t|
@@ -46,9 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_142843) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "normalized_phone_number"
-    t.index ["phone_number"], name: "index_phone_numbers_on_phone_number", unique: true
+    t.index ["phone_number"],
+            name: "index_phone_numbers_on_phone_number",
+            unique: true
     t.index ["user_id"], name: "index_phone_numbers_on_user_id"
-    t.index ["verification_code"], name: "index_phone_numbers_on_verification_code", unique: true
+    t.index ["verification_code"],
+            name: "index_phone_numbers_on_verification_code",
+            unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,9 +73,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_142843) do
     t.string "slug"
     t.bigint "primary_email_id"
     t.bigint "primary_phone_number_id"
-    t.index ["email_verification_token"], name: "index_users_on_email_verification_token", unique: true
-    t.index ["primary_email_id"], name: "index_users_on_primary_email_id", unique: true
-    t.index ["primary_phone_number_id"], name: "index_users_on_primary_phone_number_id", unique: true
+    t.index ["email_verification_token"],
+            name: "index_users_on_email_verification_token",
+            unique: true
+    t.index ["primary_email_id"],
+            name: "index_users_on_primary_email_id",
+            unique: true
+    t.index ["primary_phone_number_id"],
+            name: "index_users_on_primary_phone_number_id",
+            unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

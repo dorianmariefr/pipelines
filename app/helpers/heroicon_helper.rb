@@ -10,10 +10,7 @@ module HeroiconHelper
     options[:class] = "#{options[:class]} #{ICON_LINK_CLASSES}".strip
 
     link_to path, **options do
-      safe_join([
-        content_tag(:div, sr_only, class: "sr-only"),
-        heroicon(icon)
-      ])
+      safe_join([content_tag(:div, sr_only, class: "sr-only"), heroicon(icon)])
     end
   end
 end

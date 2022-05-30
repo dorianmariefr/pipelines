@@ -2,16 +2,16 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application";
 
-import EmailController from "./email_controller.js"
-application.register("email", EmailController)
+import EmailController from "./email_controller.js";
+application.register("email", EmailController);
 
-import NameController from "./name_controller.js"
-application.register("name", NameController)
+import NameController from "./name_controller.js";
+application.register("name", NameController);
 
-import PasswordController from "./password_controller.js"
-application.register("password", PasswordController)
+import PasswordController from "./password_controller.js";
+application.register("password", PasswordController);
 
-import PhoneController from "./phone_controller.js"
-application.register("phone", PhoneController)
+import PhoneController from "./phone_controller.js";
+application.register("phone", PhoneController);

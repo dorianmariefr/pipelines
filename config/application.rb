@@ -9,6 +9,6 @@ module Money
     config.load_defaults 7.0
     config.generators.test_framework nil
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [:en, :fr]
+    config.i18n.available_locales = %i[en fr]
   end
 end

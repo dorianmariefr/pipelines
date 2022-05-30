@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: [:show, :edit, :update, :destroy]
+  before_action :load_user, only: %i[show edit update destroy]
 
   def index
     authorize :user
@@ -57,16 +57,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :name,
       :password,
-      emails_attributes: [
-        :id,
-        :email,
-        :_destroy
-      ],
-      phone_numbers_attributes: [
-        :id,
-        :phone_number,
-        :_destroy
-      ],
+      emails_attributes: %i[id email _destroy],
+      phone_numbers_attributes: %i[id phone_number _destroy]
     )
   end
 end

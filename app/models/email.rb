@@ -6,13 +6,9 @@ class Email < ApplicationRecord
   validates :email, presence: true, format: { with: REGEXP }
   validates :normalized_email, uniqueness: true
 
-  before_validation do
-    self.normalized_email = EmailNormalizer.normalize(email)
-  end
+  before_validation { self.normalized_email = EmailNormalizer.normalize(email) }
 
-  before_destroy do
-    user.update_columns(primary_email_id: nil) if primary?
-  end
+  before_destroy { user.update_columns(primary_email_id: nil) if primary? }
 
   def self.find_by_normalized_email(email_param)
     return unless email_param.present?
