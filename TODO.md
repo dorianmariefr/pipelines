@@ -1,4 +1,3 @@
-- prettier
 - standard
 - brakeman
 - email verification

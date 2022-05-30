@@ -35,6 +35,7 @@
   "lint-staged": {
     "*.js": "eslint --fix",
     "*": "prettier --loglevel warn --ignore-unknown --write",
-    "*.css": "stylelint --fix"
+    "*.css": "stylelint --fix",
+    "*.rb": "bundle exec standardrb --fix"
   }
 }
