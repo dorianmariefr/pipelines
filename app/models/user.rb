@@ -7,8 +7,8 @@ class User < ApplicationRecord
   belongs_to :primary_email, optional: true, class_name: "Email"
   belongs_to :primary_phone_number, optional: true, class_name: "PhoneNumber"
 
-  has_many :emails
-  has_many :phone_numbers
+  has_many :emails, dependent: :destroy
+  has_many :phone_numbers, dependent: :destroy
 
   accepts_nested_attributes_for(
     :emails,

@@ -18,7 +18,7 @@ const VALID_CLASSES = ["border-green-600", "focus:outline-green-600"]
 const INVALID_CLASSES = ["border-red-600", "focus:outline-red-600"]
 
 export default class extends Controller {
-  static targets = ["input", "error"]
+  static targets = ["input", "error", "hidden"]
 
   static values = {
     validation: Object,
@@ -44,12 +44,15 @@ export default class extends Controller {
     if (this.inputTarget.value.trim()) {
       if (this.iti.isValidNumber()) {
         this.validationValue = { valid: true, message: "" }
+        this.hiddenTarget.value = this.iti.getNumber()
       } else {
         const message = ERRORS[this.iti.getValidationError()]
         this.validationValue = { valid: false, message: message }
+        this.hiddenTarget.value = ""
       }
     } else {
       this.validationValue = { valid: false, message: t("must_be_present") }
+      this.hiddenTarget.value = ""
     }
   }
 

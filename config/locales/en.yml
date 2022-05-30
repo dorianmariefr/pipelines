@@ -50,10 +50,17 @@ en:
       email: Email
       password: Password
       submit: Log in
+      log_in_with_email: Log in with email
+      log_in_with_phone_number: Log in with phone number
+      phone_number: Phone Number
+      show_password: Show password
+      hide_password: Hide password
     create:
       notice: You are now logged in
       wrong_password: Wrong password
       wrong_email: Wrong email
+      wrong_phone_number: Wrong phone number
+      must_be_present: Email or phone number must be present
     destroy:
       notice: You are now logged out
   js:
@@ -61,7 +68,7 @@ en:
       must_be_present: Must be present
     email:
       must_be_present: Must be present
-      must_be_valid: Must be a valid email address
+      must_be_valid: Must be valid
     phone:
       is_possible: Is possible
       invalid_country_code: Invalid country code

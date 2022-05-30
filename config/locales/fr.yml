@@ -28,6 +28,8 @@ fr:
       email: Email
       phone_number: Numéro de téléphone
       password: Mot de passe
+      show_password: Montrer le mot de passe
+      hide_password: Cacher le mot de passe
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)
     update:
@@ -48,12 +50,31 @@ fr:
       email: Email
       password: Mot de passe
       submit: Se connecter
+      log_in_with_email: Se connecter avec une adresse email
+      log_in_with_phone_number: Se connecter avec un numéro de téléphone
+      phone_number: Numéro de téléphone
+      show_password: Montrer le mot de passe
+      hide_password: Cacher le mot de passe
     create:
       notice: Tu es maintenant connecté(e)
       wrong_password: Mauvais mot de passe
       wrong_email: Mauvais email
+      wrong_phone_number: Mauvais numéro de téléphone
+      must_be_present: Email ou numéro de téléphone doît être présent
     destroy:
       notice: Tu es maintenant déconnecté(e)
   js:
     name:
       must_be_present: Doit être présent
+    email:
+      must_be_present: Doît être présente
+      must_be_valid: Doît être valide
+    phone:
+      is_possible: Est possible
+      invalid_country_code: Code de pays invalide
+      too_short: Trop court
+      too_long: Trop long
+      is_possible_local_only: Est possible localement seulement
+      invalid_length: Longeur invalide
+      invalid_phone_number: Numéro de téléphone invalide
+      must_be_present: Doît être présent

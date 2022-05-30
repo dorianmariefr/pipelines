@@ -17,9 +17,10 @@
 
   = f.fields_for :phone_numbers do |phone_number_f|
     .p(data-controller="phone")
-      = phone_number_f.label :phone_number, t(".phone_number")
+      = phone_number_f.hidden_field :phone_number, data: { phone_target: "hidden" }
+      = label_tag :phone_number_national, t(".phone_number")
       div
-        = phone_number_f.telephone_field :phone_number, required: true, autocomplete: :tel, data: { phone_target: "input" }
+        = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
       .text-red-600(data-phone-target="error")
       = fake_phone_number
 
@@ -27,8 +28,8 @@
     = f.label :password, t(".password")
     .flex.gap-2.items-center
       = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }
-      = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
-      = icon_link t(".hide_password"), "eye-off", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+      = icon_link t(".show_password"), "eye-off", "#", data: { password_target: "show", action: "password#show" }
+      = icon_link t(".hide_password"), "eye", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
     .text-red-600(data-password-target="error")
     = fake_password
 
