@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.phone_numbers.build
-    @user.emails.build
+    build_user
     authorize @user
   end
 
@@ -24,18 +23,21 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user), notice: t(".notice")
     else
+      build_user
       flash.now.alert = @user.alert
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    build_user
   end
 
   def update
     if @user.update(user_params)
       redirect_to user_path(@user), notice: t(".notice")
     else
+      build_user
       flash.now.alert = @user.alert
       render :edit, status: :unprocessable_entity
     end
@@ -60,5 +62,10 @@ class UsersController < ApplicationController
       emails_attributes: %i[id email _destroy],
       phone_numbers_attributes: %i[id phone_number _destroy]
     )
+  end
+
+  def build_user
+    @user.emails.build if @user.emails.none?
+    @user.phone_numbers.build if @user.phone_numbers.none?
   end
 end
