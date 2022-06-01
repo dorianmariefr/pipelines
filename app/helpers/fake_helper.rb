@@ -15,6 +15,10 @@ module FakeHelper
     gray(eg(Faker::Internet.password))
   end
 
+  def fake_code
+    gray(eg(Email.generate_verification_code))
+  end
+
   def eg(string)
     t("application.fake.eg", string: string)
   end

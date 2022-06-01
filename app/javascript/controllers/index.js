@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CodeController from "./code_controller.js"
+application.register("code", CodeController)
+
 import EmailController from "./email_controller.js"
 application.register("email", EmailController)
 

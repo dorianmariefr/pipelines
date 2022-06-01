@@ -22,4 +22,8 @@ class PhoneNumber < ApplicationRecord
   def primary?
     user.primary_phone_number_id == id
   end
+
+  def not_verified?
+    !verified?
+  end
 end

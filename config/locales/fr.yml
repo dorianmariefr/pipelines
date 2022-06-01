@@ -1,4 +1,8 @@
 fr:
+  activerecord:
+    attributes:
+      email:
+        normalized_email: Email
   application:
     fake:
       eg: "e.g. %{string}"
@@ -37,6 +41,7 @@ fr:
     destroy:
       notice: Utilisateur supprimé
     show:
+      emails: Emails
       private: Privé
       email: Email
       verified: "(vérifié)"
@@ -69,6 +74,9 @@ fr:
     email:
       must_be_present: Doît être présente
       must_be_valid: Doît être valide
+    code:
+      must_be_present: Doît être présent
+      must_be_valid: Doît être valide
     phone:
       is_possible: Est possible
       invalid_country_code: Code de pays invalide
@@ -78,3 +86,33 @@ fr:
       invalid_length: Longeur invalide
       invalid_phone_number: Numéro de téléphone invalide
       must_be_present: Doît être présent
+  emails:
+    update:
+      notice: Email vérifiée
+      alert: Mauvais code de vérification
+    email:
+      add: Ajouter
+      verified: Vérifiée
+      not_verified: Non vérifiée
+      send_verification_code: Envoyer le code de vérification
+      resend_verification_code: Renvoyer le code de vérification
+      verification_code_sent: Code de vérification envoyé
+      verification_code: Code de vérification
+      submit: Vérifier
+    create:
+      notice: Email créée
+    send_verification:
+      notice: Code de vérification envoyé
+    edit:
+      title: Verifie ton email
+    show:
+      title: Verifie ton email
+      verification_code: Code de vérification
+      submit: Vérifier
+      verified: Vérifiée
+      not_verified: Non vérifiée
+  email_mailer:
+    verification_email:
+      subject: Vérifie ton email (%{verification_code})
+      hi: Bonjour %{name},
+      intro: "Ton code de vérification est:"

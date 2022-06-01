@@ -22,6 +22,10 @@ module ApplicationHelper
     json_regexp(Email::REGEXP)
   end
 
+  def code_regexp
+    json_regexp(Email::CODE_REGEXP)
+  end
+
   def initial_country
     en? ? "US" : "FR"
   end

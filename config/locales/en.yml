@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      email:
+        normalized_email: Email
   application:
     fake:
       eg: "e.g. %{string}"
@@ -37,6 +41,7 @@ en:
     destroy:
       notice: User deleted
     show:
+      emails: Emails
       private: Private
       email: Email
       verified: "(verified)"
@@ -69,6 +74,9 @@ en:
     email:
       must_be_present: Must be present
       must_be_valid: Must be valid
+    code:
+      must_be_present: Must be present
+      must_be_valid: Must be valid
     phone:
       is_possible: Is possible
       invalid_country_code: Invalid country code
@@ -78,3 +86,33 @@ en:
       invalid_length: Invalid length
       invalid_phone_number: Invalid phone number
       must_be_present: Must be present
+  emails:
+    update:
+      notice: Email verified
+      alert: Wrong verification code
+    email:
+      add: Add
+      verified: Verified
+      not_verified: Not verified
+      send_verification_code: Send verification code
+      resend_verification_code: Resend verification code
+      verification_code_sent: Verification code sent
+      verification_code: Verification code
+      submit: Verify
+    create:
+      notice: Email created
+    send_verification:
+      notice: Verification code sent
+    edit:
+      title: Verify your email
+    show:
+      title: Verify your email
+      verification_code: Verification code
+      submit: Verify
+      verified: Verified
+      not_verified: Not verified
+  email_mailer:
+    verification_email:
+      subject: Verify your email (%{verification_code})
+      hi: Hi %{name},
+      intro: "Your verification code is:"

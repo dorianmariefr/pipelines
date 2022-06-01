@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @emails = @user.emails.order(created_at: :asc).to_a
+    @emails << @user.emails.build
+    @phone_numbers = @user.phone_numbers.order(created_at: :asc).to_a
+    @phone_numbers << @user.phone_numbers.build
   end
 
   def new

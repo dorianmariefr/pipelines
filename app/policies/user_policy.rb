@@ -29,18 +29,6 @@ class UserPolicy < ApplicationPolicy
         scope.none
       end
     end
-
-    private
-
-    attr_reader :current_user, :scope
-
-    def current_user?
-      !!current_user
-    end
-
-    def admin?
-      current_user? && current_user.admin?
-    end
   end
 
   private

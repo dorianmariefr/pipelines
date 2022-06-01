@@ -1,0 +1,32 @@
+.card
+  - if email.email.present?
+    p
+      span.font-bold=> email.email
+      - if email.verified?
+        span.text-green-600= t(".verified")
+      - else
+        span.text-red-600= t(".not_verified")
+
+    - if email.not_verified?
+      - if email.verification_code.present?
+        .p= t(".verification_code_sent")
+
+        = form_for email do |f|
+          .p(data-controller="code")
+            .flex.gap-2
+              = f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
+              = f.submit t(".submit")
+            .text-red-600(data-code-target="error")
+            = fake_code
+
+        .p= button_to t(".resend_verification_code"), [email, :send_verification]
+      - else
+        .p= button_to t(".send_verification_code"), [email, :send_verification]
+  - else
+    = form_for [email.user, email] do |f|
+      .p(data-controller="email")
+        .flex.gap-2
+          = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }
+          = f.submit t(".add")
+        .text-red-600(data-email-target="error")
+        = fake_email

@@ -15,6 +15,7 @@ html
       window.money = {};
       window.money.constants = {}
       window.money.constants.EMAIL_REGEXP = #{raw email_regexp.to_json};
+      window.money.constants.CODE_REGEXP = #{raw code_regexp.to_json};
       window.money.constants.INITIAL_COUNTRY = #{raw initial_country.to_json};
       window.money.locale = #{raw I18n.locale.to_json};
       window.money.translations = #{raw t("js").to_json};

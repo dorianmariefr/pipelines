@@ -10,5 +10,6 @@ module Money
     config.generators.test_framework nil
     config.i18n.default_locale = :en
     config.i18n.available_locales = %i[en fr]
+    config.action_mailer.default_url_options = { host: ENV.fetch("HOST") }
   end
 end
