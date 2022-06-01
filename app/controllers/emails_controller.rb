@@ -1,5 +1,5 @@
 class EmailsController < ApplicationController
-  before_action :load_email, only: %i[show update send_verification]
+  before_action :load_email, only: %i[show update destroy send_verification]
   before_action :load_user
 
   def show
@@ -30,6 +30,12 @@ class EmailsController < ApplicationController
       flash.now.alert = t(".alert")
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @email.destroy!
+
+    redirect_to user_path(@user), notice: t(".notice")
   end
 
   private

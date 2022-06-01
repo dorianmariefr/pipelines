@@ -1,5 +1,6 @@
 class PhoneNumbersController < ApplicationController
-  before_action :load_phone_number, only: %i[show update send_verification]
+  before_action :load_phone_number,
+    only: %i[show update destroy send_verification]
   before_action :load_user
 
   def show
@@ -30,6 +31,12 @@ class PhoneNumbersController < ApplicationController
       flash.now.alert = t(".alert")
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @phone_number.destroy!
+
+    redirect_to user_path(@user), notice: t(".notice")
   end
 
   private

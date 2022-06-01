@@ -3,6 +3,8 @@ fr:
     attributes:
       email:
         normalized_email: Email
+      phone_number:
+        normalized_phone_number: Numéro de téléphone
   application:
     fake:
       eg: "e.g. %{string}"

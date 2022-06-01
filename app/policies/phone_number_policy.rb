@@ -1,4 +1,8 @@
 class PhoneNumberPolicy < ApplicationPolicy
+  def send_verification?
+    owner? || admin?
+  end
+
   def create?
     owner? || admin?
   end
@@ -7,7 +11,7 @@ class PhoneNumberPolicy < ApplicationPolicy
     owner? || admin?
   end
 
-  def send_verification?
+  def destroy?
     owner? || admin?
   end
 

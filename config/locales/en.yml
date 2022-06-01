@@ -3,6 +3,8 @@ en:
     attributes:
       email:
         normalized_email: Email
+      phone_number:
+        normalized_phone_number: Phone number
   application:
     fake:
       eg: "e.g. %{string}"
@@ -88,6 +90,8 @@ en:
       invalid_phone_number: Invalid phone number
       must_be_present: Must be present
   emails:
+    destroy:
+      notice: Email deleted
     update:
       notice: Email verified
       alert: Wrong verification code
@@ -100,6 +104,7 @@ en:
       verification_code_sent: Verification code sent
       verification_code: Verification code
       submit: Verify
+      delete: Delete
     create:
       notice: Email created
     send_verification:
@@ -118,6 +123,8 @@ en:
       hi: Hi %{name},
       intro: "Your verification code is:"
   phone_numbers:
+    destroy:
+      notice: Phone number deleted
     update:
       notice: Phone number verified
       alert: Wrong verification code
@@ -130,6 +137,7 @@ en:
       verification_code_sent: Verification code sent
       verification_code: Verification code
       submit: Verify
+      delete: Delete
     create:
       notice: Phone number created
     send_verification:

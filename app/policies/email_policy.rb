@@ -1,4 +1,8 @@
 class EmailPolicy < ApplicationPolicy
+  def send_verification?
+    owner? || admin?
+  end
+
   def create?
     owner? || admin?
   end
@@ -7,7 +11,7 @@ class EmailPolicy < ApplicationPolicy
     owner? || admin?
   end
 
-  def send_verification?
+  def destroy?
     owner? || admin?
   end
 
