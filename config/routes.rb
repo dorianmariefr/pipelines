@@ -6,7 +6,9 @@ Rails.application.routes.draw do
       post :send_verification
     end
 
-    resources :phone_numbers, shallow: true
+    resources :phone_numbers, shallow: true do
+      post :send_verification
+    end
   end
 
   root "pages#home"

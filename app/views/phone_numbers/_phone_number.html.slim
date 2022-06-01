@@ -1,0 +1,34 @@
+.card
+  - if phone_number.phone_number.present?
+    p
+      span.font-bold=> phone_number.formatted_phone_number
+      - if phone_number.verified?
+        span.text-green-600= t(".verified")
+      - else
+        span.text-red-600= t(".not_verified")
+
+    - if phone_number.not_verified?
+      - if phone_number.verification_code.present?
+        .p= t(".verification_code_sent")
+
+        = form_for phone_number do |f|
+          .p(data-controller="code")
+            .flex.gap-2
+              = f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
+              = f.submit t(".submit")
+            .text-red-600(data-code-target="error")
+            = fake_code
+
+        .p= button_to t(".resend_verification_code"), [phone_number, :send_verification]
+      - else
+        .p= button_to t(".send_verification_code"), [phone_number, :send_verification]
+  - else
+    = form_for [phone_number.user, phone_number] do |f|
+      = f.hidden_field :phone_number, data: { phone_target: "hidden" }
+      .p(data-controller="phone")
+        .flex.gap-2
+          div
+            = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
+          = f.submit t(".add")
+        .text-red-600(data-phone-target="error")
+        = fake_phone_number
