@@ -29,11 +29,19 @@ class PhoneNumber < ApplicationRecord
 
   def send_verification!
     update!(verification_code: self.class.generate_verification_code)
-    # SEND TWILIO SMS JOB
+    PhoneNumber::SendVerificationJob.perform_later(phone_number: self)
+  end
+
+  def phonelib
+    Phonelib.parse(phone_number)
+  end
+
+  def e164
+    phonelib.e164
   end
 
   def formatted_phone_number
-    Phonelib.parse(phone_number).international
+    phonelib.international
   end
 
   def primary?

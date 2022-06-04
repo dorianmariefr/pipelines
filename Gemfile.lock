@@ -104,12 +104,15 @@ GEM
       concurrent-ruby (~> 1.0)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
+    jwt (2.3.0)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    messagebird-rest (4.0.0)
+      jwt (~> 2.3.0)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
@@ -275,6 +278,7 @@ DEPENDENCIES
   heroicon
   http_accept_language
   jsbundling-rails
+  messagebird-rest
   normailize
   pg
   phonelib
