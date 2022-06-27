@@ -23,13 +23,9 @@ class PhoneNumber < ApplicationRecord
     find_by(normalized_phone_number: phone_number_param)
   end
 
-  def self.generate_verification_code
-    "%0#{VERIFICATION_CODE_LENGTH}d" % rand(10**VERIFICATION_CODE_LENGTH)
-  end
-
   def send_verification!
-    update!(verification_code: self.class.generate_verification_code)
-    PhoneNumber::SendVerificationJob.perform_later(phone_number: self)
+    result = sms.send_code
+    update!(external_token: result.id)
   end
 
   def phonelib
@@ -52,32 +48,24 @@ class PhoneNumber < ApplicationRecord
     !verified?
   end
 
-  def verification_code_left
-    verification_code[0...(VERIFICATION_CODE_LENGTH / 2)]
+  def sms
+    Sms.new(self)
   end
 
-  def verification_code_right
-    verification_code[(VERIFICATION_CODE_LENGTH / 2)..]
-  end
-
-  def verification_code_formatted
-    "#{verification_code_left} #{verification_code_right}"
-  end
-
-  def verification_signed_id
-    signed_id(
-      expires_in: Email::SIGNED_ID_EXPIRES_IN,
-      purpose: Email::SIGNED_ID_PURPOSE
-    )
+  def sent?
+    external_token.present?
   end
 
   def verify(code)
     code = code.gsub(/\s/, "")
 
-    if verification_code.present? && code.present? && code == verification_code
-      update!(verified: true, verification_code: nil)
+    if external_token.present? && code.present?
+      sms.verify_code(code)
+      update!(verified: true, external_token: nil)
     else
       false
     end
+  rescue MessageBird::ErrorException
+    false
   end
 end

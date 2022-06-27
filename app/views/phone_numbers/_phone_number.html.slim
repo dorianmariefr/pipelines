@@ -1,7 +1,7 @@
 .card
   - if phone_number.phone_number.present?
     .p
-      span.font-bold=> phone_number.formatted_phone_number
+      span.font-bold=> link_to phone_number.formatted_phone_number, phone_number
       - if phone_number.verified?
         span.text-green-600=> t(".verified")
       - else
@@ -9,7 +9,7 @@
       = button_to t(".delete"), phone_number, method: :delete, class: "button--link text-red-600", form_class: "inline-block"
 
     - if phone_number.not_verified?
-      - if phone_number.verification_code.present?
+      - if phone_number.sent?
         .p= t(".verification_code_sent")
 
         = form_for phone_number do |f|

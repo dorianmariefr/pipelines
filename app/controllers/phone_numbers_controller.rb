@@ -4,13 +4,12 @@ class PhoneNumbersController < ApplicationController
   before_action :load_user
 
   def show
-    @verification_code = params[:verification_code]
   end
 
   def send_verification
     @phone_number.send_verification!
 
-    redirect_to user_path(@user), notice: t(".notice")
+    redirect_back_or_to user_path(@user), notice: t(".notice")
   end
 
   def create
@@ -26,7 +25,7 @@ class PhoneNumbersController < ApplicationController
 
   def update
     if @phone_number.verify(verification_code_param)
-      redirect_back fallback_location: root_path, notice: t(".notice")
+      redirect_back_or_to root_path, notice: t(".notice")
     else
       flash.now.alert = t(".alert")
       render :show, status: :unprocessable_entity
@@ -42,13 +41,6 @@ class PhoneNumbersController < ApplicationController
   private
 
   def load_phone_number
-    @phone_number =
-      PhoneNumber.find_signed!(
-        params[:id],
-        purpose: PhoneNumber::SIGNED_ID_PURPOSE
-      )
-    skip_authorization
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
     @phone_number =
       authorize(
         policy_scope(PhoneNumber).find(params[:id] || params[:phone_number_id])
@@ -69,6 +61,6 @@ class PhoneNumbersController < ApplicationController
   end
 
   def verification_code_param
-    params.require(:phone_number)[:verification_code]
+    params[:verification_code]
   end
 end

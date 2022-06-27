@@ -145,13 +145,11 @@ en:
     edit:
       title: Verify your phone number
     show:
+      delete: Delete
       title: Verify your phone number
       verification_code: Verification code
       submit: Verify
       verified: Verified
       not_verified: Not verified
-  phone_number_mailer:
-    verification_phone number:
-      subject: Verify your phone number (%{verification_code})
-      hi: Hi %{name},
-      intro: "Your verification code is:"
+      send_verification_code: Send verification code
+      resend_verification_code: Resend verification code

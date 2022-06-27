@@ -3,6 +3,10 @@ class PhoneNumberPolicy < ApplicationPolicy
     owner? || admin?
   end
 
+  def show?
+    owner? || admin?
+  end
+
   def create?
     owner? || admin?
   end

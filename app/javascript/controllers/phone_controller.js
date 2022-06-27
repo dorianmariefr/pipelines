@@ -33,11 +33,21 @@ export default class extends Controller {
     })
 
     this.inputTarget.addEventListener("input", this.input.bind(this))
+
+    this.observer = new MutationObserver(this.mutate.bind(this))
+    this.observer.observe(this.inputTarget, { attributes: true })
   }
 
   disconnect() {
     this.iti = null
     this.inputTarget.removeEventListener("input", this.input.bind(this))
+    this.observer.disconnect()
+  }
+
+  mutate() {
+    if (this.inputTarget.value.trim()) {
+      this.input()
+    }
   }
 
   input() {
