@@ -18,3 +18,6 @@ application.register("password", PasswordController)
 
 import PhoneController from "./phone_controller.js"
 application.register("phone", PhoneController)
+
+import ShowController from "./show_controller.js"
+application.register("show", ShowController)

@@ -1,5 +1,5 @@
-.card
-  - if phone_number.phone_number.present?
+- if phone_number.persisted?
+  .card
     .p
       span.font-bold=> link_to phone_number.formatted_phone_number, phone_number
       - if phone_number.verified?
@@ -23,13 +23,17 @@
         .p= button_to t(".resend_verification_code"), [phone_number, :send_verification]
       - else
         .p= button_to t(".send_verification_code"), [phone_number, :send_verification]
-  - else
-    = form_for [phone_number.user, phone_number] do |f|
-      .p(data-controller="phone")
-        = f.hidden_field :phone_number, data: { phone_target: "hidden" }
-        .flex.gap-2
-          div
-            = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
-          = f.submit t(".add")
-        .text-red-600(data-phone-target="error")
-        = fake_phone_number
+- else
+  div(data-controller="show")
+    p(data-show-target="summary")
+      = link_to t(".add_phone_number"), "#", data: { action: "show#show" }
+    .hidden(data-show-target="details")
+      = form_for [phone_number.user, phone_number] do |f|
+        .p(data-controller="phone")
+          = f.hidden_field :phone_number, data: { phone_target: "hidden" }
+          .flex.gap-2
+            div
+              = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
+            = f.submit t(".add")
+          .text-red-600(data-phone-target="error")
+          = fake_phone_number

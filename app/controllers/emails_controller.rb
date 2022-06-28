@@ -9,7 +9,7 @@ class EmailsController < ApplicationController
   def send_verification
     @email.send_verification!
 
-    redirect_to user_path(@user), notice: t(".notice")
+    redirect_back_or_to user_path(@user), notice: t(".notice")
   end
 
   def create

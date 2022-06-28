@@ -38,6 +38,10 @@ class Email < ApplicationRecord
     !verified?
   end
 
+  def sent?
+    verification_code.present?
+  end
+
   def verification_code_left
     verification_code[0...(VERIFICATION_CODE_LENGTH / 2)]
   end

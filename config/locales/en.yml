@@ -97,6 +97,7 @@ en:
       alert: Wrong verification code
     email:
       add: Add
+      add_email: Add email
       verified: Verified
       not_verified: Not verified
       send_verification_code: Send verification code
@@ -117,6 +118,9 @@ en:
       submit: Verify
       verified: Verified
       not_verified: Not verified
+      send_verification_code: Send verification code
+      resend_verification_code: Resend verification code
+      delete: Delete
   email_mailer:
     verification_email:
       subject: Verify your email (%{verification_code})
@@ -130,6 +134,7 @@ en:
       alert: Wrong verification code
     phone_number:
       add: Add
+      add_phone_number: Add phone number
       verified: Verified
       not_verified: Not verified
       send_verification_code: Send verification code
