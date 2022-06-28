@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "yaml"
+
+if ARGV.size != 4
+  puts "USAGE: translate SOURCE_FILE DESTINATION_FILE SOURCE_LOCALE DESTINATION_LOCALE"
+  abort
+end
+
+SOURCE_FILE = ARGV[0]
+DESTINATION_FILE = ARGV[1]
+SOURCE_LOCALE = ARGV[2]
+DESTINATION_LOCALE = ARGV[3]
+
+SOURCE = YAML.safe_load(File.read(SOURCE_FILE)).fetch(SOURCE_LOCALE)
+DESTINATION =
+  YAML.safe_load(File.read(DESTINATION_FILE)).fetch(DESTINATION_LOCALE)
+
+def translate(source, destination, key: "")
+  if source.is_a?(Array)
+    source.map.with_index do |_, i|
+      translate(source[i], destination[i], key: "#{key}[#{i}]").compact
+    end
+  elsif source.is_a?(Hash)
+    source
+      .map do |source_key, _|
+        destination_value = destination ? destination[source_key] : nil
+        [
+          source_key,
+          translate(
+            source[source_key],
+            destination_value,
+            key: "#{key}.#{source_key}"
+          )
+        ]
+      end
+      .compact
+      .sort_by(&:first)
+      .to_h
+      .compact
+  elsif source.is_a?(String)
+    if destination.is_a?(String)
+      destination
+    else
+      puts "Translation for #{key} \"#{source}\": "
+      $stdout.flush
+      $stdin.gets.strip
+    end
+  end
+end
+
+File.write(
+  DESTINATION_FILE,
+  { DESTINATION_LOCALE => translate(SOURCE, DESTINATION) }.to_yaml
+)

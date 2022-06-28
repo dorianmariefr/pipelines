@@ -1,3 +1,4 @@
+---
 fr:
   activerecord:
     attributes:
@@ -7,114 +8,154 @@ fr:
         normalized_phone_number: Numéro de téléphone
   application:
     fake:
-      eg: "e.g. %{string}"
-  layouts:
-    application:
-      title: Money
-      register: S'inscrire
-      log_in: Se connecter
-      log_out: Se déconnecter
-      switch: English
-  pages:
-    home:
-      title: Accueil
-      register: S'inscrire
-      log_in: Se connecter
-  users:
-    index:
-      title: Utilisateurs
-    new:
-      title: Inscription
-      submit: S'inscrire
+      eg: e.g. %{string}
+  email_mailer:
+    verification_email:
+      hi: Bonjour %{name},
+      intro: "Ton code de vérification est:"
+      subject: Vérifie ton email (%{verification_code})
+  emails:
+    create:
+      notice: Email créée
+    destroy:
+      notice: Email supprimé
     edit:
-      title: Modifier le profil
-      submit: Mettre à jour le profil
-    form:
-      name: Nom
-      email: Email
-      phone_number: Numéro de téléphone
-      password: Mot de passe
-      show_password: Montrer le mot de passe
-      hide_password: Cacher le mot de passe
-    create:
-      notice: Utilisateur créé, tu es maintenant connecté(e)
-    update:
-      notice: Utilisateur mis à jour
-    destroy:
-      notice: Utilisateur supprimé
-    show:
-      emails: Emails
-      private: Privé
-      email: Email
-      verified: "(vérifié)"
-      not_verified: "(pas vérifié)"
-      edit: Modifier le profil
-      delete: Supprimer le compte
-      confirm: Es-tu sûr de vouloir supprimer ce compte ?
-  sessions:
-    new:
-      title: Connexion
-      email: Email
-      password: Mot de passe
-      submit: Se connecter
-      log_in_with_email: Se connecter avec une adresse email
-      log_in_with_phone_number: Se connecter avec un numéro de téléphone
-      phone_number: Numéro de téléphone
-      show_password: Montrer le mot de passe
-      hide_password: Cacher le mot de passe
-    create:
-      notice: Tu es maintenant connecté(e)
-      wrong_password: Mauvais mot de passe
-      wrong_email: Mauvais email
-      wrong_phone_number: Mauvais numéro de téléphone
-      must_be_present: Email ou numéro de téléphone doît être présent
-    destroy:
-      notice: Tu es maintenant déconnecté(e)
-  js:
-    name:
-      must_be_present: Doit être présent
+      title: Verifie ton email
     email:
-      must_be_present: Doît être présente
-      must_be_valid: Doît être valide
+      add: Ajouter
+      add_email: Ajouter un email
+      delete: Supprimer
+      not_verified: Non vérifiée
+      resend_verification_code: Renvoyer le code de vérification
+      send_verification_code: Envoyer le code de vérification
+      submit: Vérifier
+      verification_code: Code de vérification
+      verification_code_sent: Code de vérification envoyé
+      verified: Vérifiée
+    send_verification:
+      notice: Code de vérification envoyé
+    show:
+      delete: Supprimer
+      not_verified: Non vérifiée
+      resend_verification_code: Renvoyer le code de vérification
+      send_verification_code: Envoyer le code de vérification
+      submit: Vérifier
+      title: Verifie ton email
+      verification_code: Code de vérification
+      verified: Vérifiée
+    update:
+      alert: Mauvais code de vérification
+      notice: Email vérifiée
+  js:
     code:
       must_be_present: Doît être présent
       must_be_valid: Doît être valide
+    email:
+      must_be_present: Doît être présente
+      must_be_valid: Doît être valide
+    name:
+      must_be_present: Doit être présent
     phone:
-      is_possible: Est possible
       invalid_country_code: Code de pays invalide
-      too_short: Trop court
-      too_long: Trop long
-      is_possible_local_only: Est possible localement seulement
       invalid_length: Longeur invalide
       invalid_phone_number: Numéro de téléphone invalide
+      is_possible: Est possible
+      is_possible_local_only: Est possible localement seulement
       must_be_present: Doît être présent
-  emails:
-    update:
-      notice: Email vérifiée
-      alert: Mauvais code de vérification
-    email:
-      add: Ajouter
-      verified: Vérifiée
-      not_verified: Non vérifiée
-      send_verification_code: Envoyer le code de vérification
-      resend_verification_code: Renvoyer le code de vérification
-      verification_code_sent: Code de vérification envoyé
-      verification_code: Code de vérification
-      submit: Vérifier
+      too_long: Trop long
+      too_short: Trop court
+  layouts:
+    application:
+      log_in: Se connecter
+      log_out: Se déconnecter
+      register: S'inscrire
+      switch: English
+      title: Pipelines
+  pages:
+    home:
+      log_in: Se connecter
+      register: S'inscrire
+      title: Accueil
+  phone_numbers:
     create:
-      notice: Email créée
+      notice: Numéro de téléphone créé
+    destroy:
+      notice: Numéro de téléphone supprimé
+    edit:
+      title: Vérifier ton numéro de téléphone
+    phone_number:
+      add: Ajouter
+      add_phone_number: Ajouter un numéro de téléphone
+      delete: Supprimer
+      not_verified: Non vérifié
+      resend_verification_code: Renvoyer un code de vérification
+      send_verification_code: Envoyer un code de vérification
+      submit: Vérifier
+      verification_code: Code de vérification
+      verification_code_sent: Code de vérification envoyé
+      verified: Verifié
     send_verification:
       notice: Code de vérification envoyé
-    edit:
-      title: Verifie ton email
     show:
-      title: Verifie ton email
-      verification_code: Code de vérification
+      delete: Supprimer
+      not_verified: Non vérifié
+      resend_verification_code: Renvoyer le code de vérification
+      send_verification_code: Envoyer le code de vérification
       submit: Vérifier
-      verified: Vérifiée
-      not_verified: Non vérifiée
-  email_mailer:
-    verification_email:
-      subject: Vérifie ton email (%{verification_code})
-      hi: Bonjour %{name},
-      intro: "Ton code de vérification est:"
+      title: Verifier ton numéro de téléphone
+      verification_code: Code de vérification
+      verified: Vérifié
+    update:
+      alert: Mauvais code de vérification
+      notice: Numéro de téléphone vérifié
+  sessions:
+    create:
+      must_be_present: Email ou numéro de téléphone doît être présent
+      notice: Tu es maintenant connecté(e)
+      wrong_email: Mauvais email
+      wrong_password: Mauvais mot de passe
+      wrong_phone_number: Mauvais numéro de téléphone
+    destroy:
+      notice: Tu es maintenant déconnecté(e)
+    new:
+      email: Email
+      hide_password: Cacher le mot de passe
+      log_in_with_email: Se connecter avec une adresse email
+      log_in_with_phone_number: Se connecter avec un numéro de téléphone
+      password: Mot de passe
+      phone_number: Numéro de téléphone
+      show_password: Montrer le mot de passe
+      submit: Se connecter
+      title: Connexion
+  users:
+    create:
+      notice: Utilisateur créé, tu es maintenant connecté(e)
+    destroy:
+      notice: Utilisateur supprimé
+    edit:
+      submit: Mettre à jour le profil
+      title: Modifier le profil
+    form:
+      email: Email
+      hide_password: Cacher le mot de passe
+      name: Nom
+      password: Mot de passe
+      phone_number: Numéro de téléphone
+      show_password: Montrer le mot de passe
+    index:
+      title: Utilisateurs
+    new:
+      submit: S'inscrire
+      title: Inscription
+    show:
+      confirm: Es-tu sûr de vouloir supprimer ce compte ?
+      delete: Supprimer le compte
+      edit: Modifier le profil
+      email: Email
+      emails: Emails
+      not_verified: "(pas vérifié)"
+      phone_numbers: Numéros de téléphone
+      private: Privé
+      verified: "(vérifié)"
+    update:
+      notice: Utilisateur mis à jour
