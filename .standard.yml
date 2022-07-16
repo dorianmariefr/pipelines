@@ -1,0 +1,4 @@
+fix: true
+parallel: true
+ignore:
+  - "db/schema.rb"
