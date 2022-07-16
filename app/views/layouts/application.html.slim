@@ -10,7 +10,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-  body.p-8.max-w-md.mx-auto.prose(data-locale="#{I18n.locale}")
+  body.p-8.max-w-xl.mx-auto.prose(data-locale="#{I18n.locale}")
     javascript:
       window.money = {};
       window.money.constants = {}
@@ -26,10 +26,15 @@ html
       .p
         - if current_user
           => link_to current_user.name, current_user
-          = button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
+          => link_to t(".my_pipelines"), [current_user, :pipelines]
+          => link_to t(".published_pipelines"), pipelines_path
+          => link_to t(".users"), users_path
+          => button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
         - else
           => link_to t(".register"), new_user_path, class: "font-bold"
-          = link_to t(".log_in"), new_session_path
+          => link_to t(".log_in"), new_session_path
+          => link_to t(".pipelines"), pipelines_path
+          => link_to t(".users"), users_path
       .p
         = link_to t(".switch"), locale: (en? ? :fr : :en)
 

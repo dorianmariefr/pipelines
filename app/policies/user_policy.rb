@@ -1,10 +1,10 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    admin?
+    true
   end
 
   def show?
-    self? || admin?
+    true
   end
 
   def create?
@@ -21,13 +21,7 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if admin?
-        scope.all
-      elsif current_user?
-        scope.where(id: current_user.id)
-      else
-        scope.none
-      end
+      scope.all
     end
   end
 

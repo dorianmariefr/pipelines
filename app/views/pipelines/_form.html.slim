@@ -1,0 +1,15 @@
+= form_for pipeline do |f|
+  .p
+    = f.label :name, t(".name")
+    = f.text_field :name, autocomplete: :off, data: { lpignore: "true", form_type: "other" }
+
+  .p
+    => f.label :published, t(".published")
+    br
+    => f.label :published, t(".yes"), value: true
+    => f.radio_button :published, true
+    => f.label :published, t(".no"), value: false
+    => f.radio_button :published, false
+
+  .p
+    = f.submit submit

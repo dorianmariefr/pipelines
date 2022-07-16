@@ -1,0 +1,5 @@
+- if @users.any?
+  - @users.each do |user|
+    = render "users/user", user: user
+- else
+  p.text-gray-600.italic= t(".none")

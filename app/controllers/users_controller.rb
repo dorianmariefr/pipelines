@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     authorize :user
-    @users = policy_scope(User)
+    @users = policy_scope(User).order(created_at: :asc)
   end
 
   def show
@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     @emails << @user.emails.build
     @phone_numbers = @user.phone_numbers.order(created_at: :asc).to_a
     @phone_numbers << @user.phone_numbers.build
+    @pipelines =
+      policy_scope(Pipeline).where(user: @user).order(created_at: :asc)
   end
 
   def new

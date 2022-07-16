@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     resources :phone_numbers, shallow: true do
       post :send_verification
     end
+
+    resources :pipelines, only: :index
   end
+
+  resources :pipelines
 
   root "pages#home"
 end

@@ -1,19 +1,27 @@
 - content_for(:title, @user.name)
 
 - if can? :update, @user
-  p.italic.text-gray-600= t(".private")
+  .card
+    p.italic.text-gray-600= t(".private")
 
-  p.font-bold= t(".emails")
+    p.font-bold= t(".emails")
 
-  - @emails.each do |email|
-    = render "emails/email", email: email
+    - @emails.each do |email|
+      = render "emails/email", email: email
 
-  p.font-bold= t(".phone_numbers")
+    p.font-bold= t(".phone_numbers")
 
-  - @phone_numbers.each do |phone_number|
-    = render "phone_numbers/phone_number", phone_number: phone_number
+    - @phone_numbers.each do |phone_number|
+      = render "phone_numbers/phone_number", phone_number: phone_number
 
-  p= link_to t(".edit"), [:edit, @user]
+    p= link_to t(".edit"), [:edit, @user]
 
-  .p= button_to t(".delete"), @user, method: :delete, class: "button--link text-red-600", form: { data: { turbo_confirm: t(".confirm") } }
+    .p= button_to t(".delete"), @user, method: :delete, class: "button--link text-red-600", form: { data: { turbo_confirm: t(".confirm") } }
 
+h3= t(".pipelines")
+
+- if @pipelines.any?
+  - @pipelines.each do |pipeline|
+    = render "pipelines/pipeline", pipeline: pipeline
+- else
+  p.text-gray-600.italic= t(".none")

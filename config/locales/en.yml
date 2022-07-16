@@ -71,6 +71,10 @@ en:
       register: Register
       switch: Français
       title: Pipelines
+      users: Users
+      my_pipelines: My pipelines
+      published_pipelines: Published pipelines
+      pipelines: Pipelines
   pages:
     home:
       log_in: Log in
@@ -157,5 +161,36 @@ en:
       phone_numbers: Phone numbers
       private: Private
       verified: "(verified)"
+      pipelines: Pipelines
+      none: None
     update:
       notice: User updated
+  pipelines:
+    index:
+      title:
+        pipelines: Pipelines
+        published_pipelines: Published pipelines
+        my_pipelines: My pipelines
+        user_pipelines: "%{name}'s pipelines"
+      none: None
+      new: New pipeline
+    new:
+      title: New pipeline
+      submit: Create pipeline
+    edit:
+      title: Edit pipeline
+      submit: Update pipeline
+    form:
+      name: Name
+      published: Published?
+      "yes": "Yes"
+      "no": "No"
+    create:
+      notice: Pipeline created
+    update:
+      notice: Pipeline updated
+    destroy:
+      notice: Pipeline deleted
+    show:
+      edit: Edit pipeline
+      delete: Delete pipeline

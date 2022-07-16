@@ -2,5 +2,5 @@
 [type="email"],
 [type="tel"],
 [type="password"] {
-  @apply block w-full p-2 border border-black rounded;
+  @apply block w-full p-2 border border-black rounded max-w-sm;
 }

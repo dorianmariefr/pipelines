@@ -1,0 +1,7 @@
+- content_for(:title, @pipeline.to_s)
+
+- if can? :update, @pipeline
+  p= link_to t(".edit"), [:edit, @pipeline]
+
+- if can? :destroy, @pipeline
+  .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--link text-red-600"
