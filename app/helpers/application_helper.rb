@@ -45,4 +45,12 @@ module ApplicationHelper
 
     Regexp.new(str).source
   end
+
+  def source_kinds_options(source)
+    options_for_select(Source.kinds_options, source.kind)
+  end
+
+  def destination_kinds_options(destination)
+    options_for_select(Destination.kinds_options, destination.kind)
+  end
 end

@@ -16,6 +16,8 @@ class PipelinesController < ApplicationController
 
   def new
     @pipeline = authorize Pipeline.new
+    build_source
+    build_destination
   end
 
   def create
@@ -26,18 +28,24 @@ class PipelinesController < ApplicationController
     if @pipeline.save
       redirect_to pipeline_path(@pipeline), notice: t(".notice")
     else
+      build_source
+      build_destination
       flash.now.alert = @pipeline.alert
       render :new
     end
   end
 
   def edit
+    build_source
+    build_destination
   end
 
   def update
     if @pipeline.update(pipeline_params)
       redirect_to pipeline_path(@pipeline), notice: t(".notice")
     else
+      build_source
+      build_destination
       flash.now.alert = @pipeline.alert
       render :edit
     end
@@ -69,5 +77,13 @@ class PipelinesController < ApplicationController
       sources_attributes: %i[id kind _destroy],
       destination_attributes: %i[id kind _destroy]
     )
+  end
+
+  def build_source
+    @pipeline.sources.build if @pipeline.sources.none?
+  end
+
+  def build_destination
+    @pipeline.destinations.build if @pipeline.destinations.none?
   end
 end

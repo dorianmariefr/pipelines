@@ -3,7 +3,7 @@
 
   .p
     = f.label :kind, t(".kind")
-    = f.text_field :kind
+    = f.select :kind, source_kinds_options(f.object)
 
-  .p
+  .p(data-sources-target="remove")
     = button_to t(".remove"), "#", method: :get, class: "button--link text-red-600", data: { action: "sources#remove" }

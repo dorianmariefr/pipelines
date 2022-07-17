@@ -3,7 +3,7 @@
 
   .p
     = f.label :kind, t(".kind")
-    = f.text_field :kind
+    = f.select :kind, destination_kinds_options(f.object)
 
-  .p
+  .p(data-destinations-target="remove")
     = button_to t(".remove"), "#", method: :get, class: "button--link text-red-600", data: { action: "destinations#remove" }

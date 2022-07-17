@@ -1,6 +1,7 @@
 [type="text"],
 [type="email"],
 [type="tel"],
-[type="password"] {
+[type="password"],
+select {
   @apply block w-full p-2 border border-black rounded max-w-sm;
 }
