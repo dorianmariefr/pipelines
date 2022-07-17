@@ -185,6 +185,10 @@ en:
       published: Published?
       "yes": "Yes"
       "no": "No"
+      sources: Sources
+      destinations: Destinations
+      add_source: Add source
+      add_destination: Add destination
     create:
       notice: Pipeline created
     update:
@@ -194,3 +198,11 @@ en:
     show:
       edit: Edit pipeline
       delete: Delete pipeline
+  sources:
+    form:
+      kind: Kind
+      remove: Remove
+  destinations:
+    form:
+      kind: Kind
+      remove: Remove

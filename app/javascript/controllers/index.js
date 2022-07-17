@@ -7,6 +7,9 @@ import { application } from "./application"
 import CodeController from "./code_controller.js"
 application.register("code", CodeController)
 
+import DestinationsController from "./destinations_controller.js"
+application.register("destinations", DestinationsController)
+
 import EmailController from "./email_controller.js"
 application.register("email", EmailController)
 
@@ -21,3 +24,6 @@ application.register("phone", PhoneController)
 
 import ShowController from "./show_controller.js"
 application.register("show", ShowController)
+
+import SourcesController from "./sources_controller.js"
+application.register("sources", SourcesController)

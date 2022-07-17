@@ -5,6 +5,12 @@ class Pipeline < ApplicationRecord
 
   belongs_to :user
 
+  has_many :sources
+  has_many :destinations
+
+  accepts_nested_attributes_for :sources, allow_destroy: true
+  accepts_nested_attributes_for :destinations, allow_destroy: true
+
   scope :published, -> { where(published: true) }
 
   def self.find_by_id_or_slug!(id_or_slug)

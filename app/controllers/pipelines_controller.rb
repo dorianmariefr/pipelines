@@ -7,11 +7,8 @@ class PipelinesController < ApplicationController
 
     @pipelines = policy_scope(Pipeline).order(created_at: :asc)
 
-    @pipelines = if @user
-      @pipelines.where(user: current_user)
-    else
-      @pipelines.published
-    end
+    @pipelines =
+      (@user ? @pipelines.where(user: current_user) : @pipelines.published)
   end
 
   def show
@@ -66,6 +63,11 @@ class PipelinesController < ApplicationController
   end
 
   def pipeline_params
-    params.require(:pipeline).permit(:name, :published)
+    params.require(:pipeline).permit(
+      :name,
+      :published,
+      sources_attributes: %i[id kind _destroy],
+      destination_attributes: %i[id kind _destroy]
+    )
   end
 end

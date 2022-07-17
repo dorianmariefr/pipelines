@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_194136) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_204910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "destinations", force: :cascade do |t|
+    t.bigint "pipeline_id", null: false
+    t.string "kind", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pipeline_id"], name: "index_destinations_on_pipeline_id"
+  end
 
   create_table "emails", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -45,6 +53,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_194136) do
             name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "parameters", force: :cascade do |t|
+    t.string "parameterable_type", null: false
+    t.bigint "parameterable_id", null: false
+    t.string "key", null: false
+    t.string "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index %w[parameterable_type parameterable_id],
+            name: "index_parameters_on_parameterable"
+  end
+
   create_table "phone_numbers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "phone_number", null: false
@@ -70,6 +89,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_194136) do
     t.index ["user_id"], name: "index_pipelines_on_user_id"
   end
 
+  create_table "sources", force: :cascade do |t|
+    t.bigint "pipeline_id", null: false
+    t.string "kind", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pipeline_id"], name: "index_sources_on_pipeline_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -93,9 +120,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_194136) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "destinations", "pipelines"
   add_foreign_key "emails", "users"
   add_foreign_key "phone_numbers", "users"
   add_foreign_key "pipelines", "users"
+  add_foreign_key "sources", "pipelines"
   add_foreign_key "users", "emails", column: "primary_email_id"
   add_foreign_key "users", "phone_numbers", column: "primary_phone_number_id"
 end

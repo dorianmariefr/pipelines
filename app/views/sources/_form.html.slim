@@ -1,0 +1,9 @@
+.source-js.card
+  = f.hidden_field :_destroy
+
+  .p
+    = f.label :kind, t(".kind")
+    = f.text_field :kind
+
+  .p
+    = button_to t(".remove"), "#", method: :get, class: "button--link text-red-600", data: { action: "sources#remove" }

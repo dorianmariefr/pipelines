@@ -11,5 +11,31 @@
     => f.label :published, t(".no"), value: false
     => f.radio_button :published, false
 
+  h3= t(".sources")
+
+  div(data-controller="sources")
+    template(data-sources-target="template")
+      = f.fields_for :sources, Source.new, child_index: 'TEMPLATE_RECORD' do |source_f|
+        = render "sources/form", f: source_f
+
+    = f.fields_for :sources do |source_f|
+      = render "sources/form", f: source_f
+
+    div(data-sources-target="add")
+      = button_to t(".add_source"), "#", method: :get, data: { action: "sources#add" }, class: "button--link"
+
+  h3= t(".destinations")
+
+  div(data-controller="destinations")
+    template(data-destinations-target="template")
+      = f.fields_for :destinations, Destination.new, child_index: 'TEMPLATE_RECORD' do |destination_f|
+        = render "destinations/form", f: destination_f
+
+    = f.fields_for :destinations do |destination_f|
+      = render "destinations/form", f: destination_f
+
+    div(data-destinations-target="add")
+      = button_to t(".add_destination"), "#", method: :get, data: { action: "destinations#add" }, class: "button--link"
+
   .p
     = f.submit submit
