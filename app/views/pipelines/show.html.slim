@@ -1,5 +1,21 @@
 - content_for(:title, @pipeline.to_s)
 
+h3= t(".sources")
+
+- if @sources.any?
+  - @sources.each do |source|
+    = render "sources/source", source: source
+- else
+  p.text-gray-600.italic= t(".no_sources")
+
+h3= t(".destinations")
+
+- if @destinations.any?
+  - @destinations.each do |destination|
+    = render "destinations/destination", destination: destination
+- else
+  p.text-gray-600.italic= t(".no_destinations")
+
 - if can? :update, @pipeline
   p= link_to t(".edit"), [:edit, @pipeline]
 

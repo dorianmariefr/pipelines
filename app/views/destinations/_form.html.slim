@@ -6,4 +6,4 @@
     = f.select :kind, destination_kinds_options(f.object)
 
   .p(data-destinations-target="remove")
-    = button_to t(".remove"), "#", method: :get, class: "button--link text-red-600", data: { action: "destinations#remove" }
+    = link_to t(".remove"), "#", class: "text-red-600", data: { action: "destinations#remove" }

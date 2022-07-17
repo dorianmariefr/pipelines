@@ -6,4 +6,4 @@
     = f.select :kind, source_kinds_options(f.object)
 
   .p(data-sources-target="remove")
-    = button_to t(".remove"), "#", method: :get, class: "button--link text-red-600", data: { action: "sources#remove" }
+    = link_to t(".remove"), "#", class: "text-red-600", data: { action: "sources#remove" }

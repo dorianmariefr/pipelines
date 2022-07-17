@@ -22,7 +22,7 @@
       = render "sources/form", f: source_f
 
     div(data-sources-target="add")
-      = button_to t(".add_source"), "#", method: :get, data: { action: "sources#add" }, class: "button--link"
+      = link_to t(".add_source"), "#", data: { action: "sources#add" }
 
   h3= t(".destinations")
 
@@ -35,7 +35,6 @@
       = render "destinations/form", f: destination_f
 
     div(data-destinations-target="add")
-      = button_to t(".add_destination"), "#", method: :get, data: { action: "destinations#add" }, class: "button--link"
+      = link_to t(".add_destination"), "#", data: { action: "destinations#add" }
 
-  .p
-    = f.submit submit
+  p= f.submit submit, class: "button--primary"

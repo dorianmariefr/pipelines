@@ -21,4 +21,8 @@ class Destination < ApplicationRecord
   def self.kinds_options
     KINDS.map { |key, value| [value.fetch(:name), key] }
   end
+
+  def name
+    KINDS.dig(kind.to_sym, :name)
+  end
 end

@@ -12,6 +12,8 @@ class PipelinesController < ApplicationController
   end
 
   def show
+    @sources = @pipeline.sources
+    @destinations = @pipeline.destinations
   end
 
   def new
@@ -75,7 +77,7 @@ class PipelinesController < ApplicationController
       :name,
       :published,
       sources_attributes: %i[id kind _destroy],
-      destination_attributes: %i[id kind _destroy]
+      destinations_attributes: %i[id kind _destroy]
     )
   end
 

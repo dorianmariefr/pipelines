@@ -198,6 +198,10 @@ en:
     show:
       edit: Edit pipeline
       delete: Delete pipeline
+      sources: Sources
+      destinations: Destinations
+      no_sources: No sources
+      no_destinations: No destinations
   sources:
     form:
       kind: Kind
