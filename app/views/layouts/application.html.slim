@@ -20,23 +20,26 @@ html
       window.money.locale = #{raw I18n.locale.to_json};
       window.money.translations = #{raw t("js").to_json};
 
-    h1= link_to t(".title"), root_path, class: "font-bold"
+    .flex.justify-between.items-end.mb-5
+      = link_to t(".title"), root_path, class: "text-4xl font-bold"
 
-    .flex.justify-between
-      .p
+      div
         - if current_user
           => link_to current_user.name, current_user
-          => link_to t(".my_pipelines"), [current_user, :pipelines]
-          => link_to t(".published_pipelines"), pipelines_path
-          => link_to t(".users"), users_path
           => button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
         - else
           => link_to t(".register"), new_user_path, class: "font-bold"
           => link_to t(".log_in"), new_session_path
-          => link_to t(".pipelines"), pipelines_path
-          => link_to t(".users"), users_path
-      .p
         = link_to t(".switch"), locale: (en? ? :fr : :en)
+
+    div
+      - if current_user
+        => link_to t(".my_pipelines"), [current_user, :pipelines]
+        => link_to t(".published_pipelines"), pipelines_path
+        => link_to t(".users"), users_path
+      - else
+        => link_to t(".pipelines"), pipelines_path
+        => link_to t(".users"), users_path
 
     h2= title
 

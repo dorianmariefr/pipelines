@@ -9,6 +9,10 @@ fr:
   application:
     fake:
       eg: e.g. %{string}
+  destinations:
+    form:
+      kind: Genre
+      remove: Supprimer
   email_mailer:
     verification_email:
       hi: Bonjour %{name},
@@ -68,9 +72,13 @@ fr:
     application:
       log_in: Se connecter
       log_out: Se déconnecter
+      my_pipelines: Mes pipelines
+      pipelines: Pipelines
+      published_pipelines: Pipelines publiées
       register: S'inscrire
       switch: English
       title: Pipelines
+      users: Utilisateurs
   pages:
     home:
       log_in: Se connecter
@@ -108,6 +116,43 @@ fr:
     update:
       alert: Mauvais code de vérification
       notice: Numéro de téléphone vérifié
+  pipelines:
+    create:
+      notice: Pipeline créée
+    destroy:
+      notice: Pipeline supprimée
+    edit:
+      submit: Mettre à jour la pipeline
+      title: Modifier la pipeline
+    form:
+      add_destination: Ajouter une destination
+      add_source: Ajouter une source
+      destinations: Destinations
+      name: Nom
+      "no": Non
+      published: Publiée ?
+      sources: Sources
+      "yes": Oui
+    index:
+      new: Nouvelle pipeline
+      none: Aucunes
+      title:
+        my_pipelines: Mes pipelines
+        pipelines: Pipelines
+        published_pipelines: Pipelines publiées
+        user_pipelines: Pipelines de %{name}
+    new:
+      submit: Créer une pipeline
+      title: Nouvelle pipeline
+    show:
+      delete: Supprimer la pipeline
+      destinations: Destinations
+      edit: Modifier la pipeline
+      no_destinations: Aucunes destinations
+      no_sources: Aucunes sources
+      sources: Sources
+    update:
+      notice: Pipeline mise à jour
   sessions:
     create:
       must_be_present: Email ou numéro de téléphone doît être présent
@@ -127,6 +172,11 @@ fr:
       show_password: Montrer le mot de passe
       submit: Se connecter
       title: Connexion
+  sources:
+    form:
+      filter: Filtre
+      kind: Genre
+      remove: Supprimer
   users:
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)
@@ -153,8 +203,10 @@ fr:
       edit: Modifier le profil
       email: Email
       emails: Emails
+      none: Aucuns
       not_verified: "(pas vérifié)"
       phone_numbers: Numéros de téléphone
+      pipelines: Pipelines
       private: Privé
       verified: "(vérifié)"
     update:
