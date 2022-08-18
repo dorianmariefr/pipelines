@@ -3,5 +3,5 @@
 [type="tel"],
 [type="password"],
 select {
-  @apply block w-full p-2 border border-black rounded max-w-sm;
+  @apply block w-full p-2 border border-black rounded max-w-sm min-h-[46px];
 }

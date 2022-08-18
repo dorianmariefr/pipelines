@@ -5,6 +5,8 @@ class PhoneNumber < ApplicationRecord
 
   belongs_to :user
 
+  scope :verified, -> { where(verified: true) }
+
   validates :phone_number, presence: true, phone: true
   validates :normalized_phone_number, uniqueness: true
 

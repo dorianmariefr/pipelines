@@ -206,6 +206,7 @@ en:
     form:
       kind: Kind
       remove: Remove
+      filter: Filter
   destinations:
     form:
       kind: Kind

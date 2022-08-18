@@ -7,6 +7,8 @@ class Email < ApplicationRecord
 
   belongs_to :user
 
+  scope :verified, -> { where(verified: true) }
+
   validates :email, presence: true, format: {with: REGEXP}
   validates :normalized_email, uniqueness: true
 

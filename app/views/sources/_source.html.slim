@@ -1,1 +1,5 @@
-p= source.name
+.card
+  p
+    => source.name
+    - if source.filter.present?
+      = "(#{source.filter})"

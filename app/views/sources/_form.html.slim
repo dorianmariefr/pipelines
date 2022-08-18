@@ -5,5 +5,9 @@
     = f.label :kind, t(".kind")
     = f.select :kind, source_kinds_options(f.object)
 
+  .p
+    = f.label :filter, t(".filter")
+    = f.text_field :filter
+
   .p(data-sources-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "sources#remove" }

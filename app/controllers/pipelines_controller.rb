@@ -76,7 +76,7 @@ class PipelinesController < ApplicationController
     params.require(:pipeline).permit(
       :name,
       :published,
-      sources_attributes: %i[id kind _destroy],
+      sources_attributes: %i[id kind filter _destroy],
       destinations_attributes: %i[id kind _destroy]
     )
   end
