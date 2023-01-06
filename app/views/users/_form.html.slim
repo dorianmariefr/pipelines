@@ -19,15 +19,15 @@
     .p(data-controller="phone")
       = phone_number_f.hidden_field :phone_number, data: { phone_target: "hidden" }
       = label_tag :phone_number_national, t(".phone_number")
-      div
-        = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
+      div.not-prose
+        = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }, value: phone_number_f.object.phone_number
       .text-red-600(data-phone-target="error")
       = fake_phone_number
 
   .p(data-controller="password")
     = f.label :password, t(".password")
     .flex.gap-2.items-center
-      = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }
+      = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }, value: password_param
       = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
       = icon_link t(".hide_password"), "eye-off", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
     .text-red-600(data-password-target="error")

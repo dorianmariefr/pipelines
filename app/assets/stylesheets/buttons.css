@@ -1,16 +1,17 @@
 [type="submit"],
 button,
 .button {
-  @apply px-4 py-2 border border-black rounded cursor-pointer;
-  @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-300;
+  @apply px-4 py-2 rounded cursor-pointer;
+  @apply bg-green-600 hover:bg-green-700 focus:bg-green-800;
+  @apply text-white;
 }
 
 .button--primary {
-  @apply font-bold border-2;
+  @apply font-bold;
 }
 
 .button--link {
-  @apply inline-block p-0 border-0 rounded-none text-black;
+  @apply inline-block p-0 rounded-none text-black;
   @apply bg-transparent hover:bg-transparent focus:bg-transparent;
   @apply underline font-medium;
 }

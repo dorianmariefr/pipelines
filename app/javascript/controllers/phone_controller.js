@@ -3,6 +3,8 @@ import intlTelInput from "intl-tel-input"
 import i18n from "../i18n"
 
 const t = i18n.scope("phone")
+const IP_INFO_TOKEN = "15e3c482e1332b"
+const DEFAULT_COUNTRY_CODE = "us"
 
 const ERRORS = {
   0: t("is_possible"),
@@ -25,11 +27,26 @@ export default class extends Controller {
   }
 
   connect() {
-    const INITIAL_COUNTRY = window.money.constants.INITIAL_COUNTRY
-
     this.iti = intlTelInput(this.inputTarget, {
-      initialCountry: INITIAL_COUNTRY,
       utilsScript: require("intl-tel-input/build/js/utils"),
+      initialCountry: "auto",
+      geoIpLookup: async function (success) {
+        try {
+          const response = await fetch(
+            `https://ipinfo.io?token=${IP_INFO_TOKEN}`,
+            {
+              headers: {
+                Accept: "application/json",
+              },
+            }
+          )
+          const json = await response.json()
+          const countryCode = (json && json.country) || DEFAULT_COUNTRY_CODE
+          success(countryCode)
+        } catch {
+          success(DEFAULT_COUNTRY_CODE)
+        }
+      },
     })
 
     this.inputTarget.addEventListener("input", this.input.bind(this))

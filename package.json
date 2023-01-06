@@ -15,10 +15,6 @@
     "i18n-js": "*",
     "intl-tel-input": "*",
     "lint-staged": "*",
-    "postcss": "*",
-    "postcss-cli": "*",
-    "postcss-import": "*",
-    "postcss-nested": "*",
     "prettier": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",
@@ -26,7 +22,6 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "postcss ./app/assets/stylesheets/application.postcss.css -o ./app/assets/builds/application.css",
     "format": "prettier . --loglevel warn --write --ignore-unknown",
     "lint": "eslint . --cache --fix",
     "lint:css": "stylelint '**/*.css' --fix",

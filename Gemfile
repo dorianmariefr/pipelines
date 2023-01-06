@@ -7,7 +7,7 @@ ruby "3.1.3"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "brakeman"
-gem "cssbundling-rails"
+gem "tailwindcss-rails"
 gem "dotenv-rails"
 gem "factory_bot_rails"
 gem "faker"

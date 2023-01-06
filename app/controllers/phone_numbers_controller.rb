@@ -61,6 +61,6 @@ class PhoneNumbersController < ApplicationController
   end
 
   def verification_code_param
-    params[:verification_code]
+    params.require(:phone_number).fetch(:verification_code, "")
   end
 end

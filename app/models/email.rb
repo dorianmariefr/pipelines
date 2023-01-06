@@ -72,4 +72,8 @@ class Email < ApplicationRecord
       false
     end
   end
+
+  def to_s
+    email
+  end
 end

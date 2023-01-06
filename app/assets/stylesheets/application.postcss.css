@@ -1,9 +1,0 @@
-@import "tailwindcss/base";
-@import "./base";
-@import "./helpers";
-@import "./inputs";
-@import "./buttons";
-@import "./cards";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "./phones";

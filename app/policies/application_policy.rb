@@ -1,5 +1,6 @@
 class ApplicationPolicy
   include Pundit::Authorization
+  include CanConcern
 
   def initialize(current_user, record)
     @current_user = current_user
@@ -16,6 +17,7 @@ class ApplicationPolicy
 
   class Scope
     include Pundit::Authorization
+    include CanConcern
 
     def initialize(current_user, scope)
       @current_user = current_user

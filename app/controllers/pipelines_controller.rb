@@ -33,7 +33,7 @@ class PipelinesController < ApplicationController
       build_source
       build_destination
       flash.now.alert = @pipeline.alert
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -49,7 +49,7 @@ class PipelinesController < ApplicationController
       build_source
       build_destination
       flash.now.alert = @pipeline.alert
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -77,7 +77,13 @@ class PipelinesController < ApplicationController
       :name,
       :published,
       sources_attributes: %i[id kind filter _destroy],
-      destinations_attributes: %i[id kind _destroy]
+      destinations_attributes: %i[
+        id
+        kind
+        destinable_type
+        destinable_id
+        _destroy
+      ]
     )
   end
 

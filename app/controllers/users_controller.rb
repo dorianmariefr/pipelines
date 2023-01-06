@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :load_user, only: %i[show edit update destroy]
 
+  helper_method :password_param
+
   def index
     authorize :user
     @users = policy_scope(User).order(created_at: :asc)
@@ -68,6 +70,10 @@ class UsersController < ApplicationController
       emails_attributes: %i[id email _destroy],
       phone_numbers_attributes: %i[id phone_number _destroy]
     )
+  end
+
+  def password_param
+    params.dig(:user, :password)
   end
 
   def build_user

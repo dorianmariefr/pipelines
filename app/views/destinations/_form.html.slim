@@ -5,5 +5,11 @@
     = f.label :kind, t(".kind")
     = f.select :kind, destination_kinds_options(f.object)
 
+  = f.hidden_field :destinable_type, value: "Email"
+
+  .p
+    = f.label :destinable_id, t(".email")
+    = f.select :destinable_id, options_from_collection_for_select(current_user.emails.verified, :id, :email)
+
   .p(data-destinations-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "destinations#remove" }

@@ -1,5 +1,10 @@
 - content_for(:title, @pipeline.to_s)
 
+- if @pipeline.published?
+  p= t(".published")
+- else
+  p= t(".not_published")
+
 h3= t(".sources")
 
 - if @sources.any?

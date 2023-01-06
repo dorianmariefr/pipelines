@@ -1,4 +1,4 @@
-const translations = window.money.translations
+const translations = window.translations
 const i18n = {}
 
 const format = (string, { locals }) => {

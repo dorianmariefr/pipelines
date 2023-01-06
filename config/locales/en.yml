@@ -1,11 +1,10 @@
 ---
 en:
-  activerecord:
-    attributes:
-      email:
-        normalized_email: Email
-      phone_number:
-        normalized_phone_number: Phone number
+  errors:
+    not_verified: Not verified
+  attributes:
+    normalized_email: Email
+    normalized_phone_number: Phone number
   application:
     fake:
       eg: e.g. %{string}
@@ -202,6 +201,8 @@ en:
       destinations: Destinations
       no_sources: No sources
       no_destinations: No destinations
+      published: Published
+      not_published: Not published
   sources:
     form:
       kind: Kind
@@ -211,3 +212,6 @@ en:
     form:
       kind: Kind
       remove: Remove
+      email: Email
+    destination:
+      private: "private:"

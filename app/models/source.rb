@@ -1,32 +1,11 @@
 class Source < ApplicationRecord
   KINDS = {
     hacker_news: {
-      stories: {
-        name: "Hacker News - Stories"
+      front: {
+        name: "Hacker News - Frontpage Stories"
       },
-      comments: {
-        name: "Hacker News - Comments"
-      }
-    },
-    reddit: {
-      posts: {
-        name: "Reddit - Posts"
-      },
-      comments: {
-        name: "Reddit - Comments"
-      }
-    },
-    twitter: {
-      tweets: {
-        name: "Twitter - Tweets"
-      }
-    },
-    lobsters: {
-      stories: {
-        name: "Lobsters - Stories"
-      },
-      comments: {
-        name: "Lobsters - Comments"
+      new: {
+        name: "Hacker News - New Stories"
       }
     }
   }

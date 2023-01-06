@@ -1,2 +1,7 @@
 .card
-  p= destination.name
+  p
+    => destination.name
+    - if can?(:update, destination)
+      ' (#{t(".private")}
+      = destination.destinable
+      ' )

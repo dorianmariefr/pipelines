@@ -5,7 +5,7 @@ const t = i18n.scope("email")
 
 const VALID_CLASSES = ["border-green-600", "focus:outline-green-600"]
 const INVALID_CLASSES = ["border-red-600", "focus:outline-red-600"]
-const REGEXP = RegExp(window.money.constants.EMAIL_REGEXP)
+const REGEXP = RegExp(window.constants.EMAIL_REGEXP)
 
 export default class extends Controller {
   static targets = ["input", "error"]
