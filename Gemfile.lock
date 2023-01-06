@@ -73,6 +73,7 @@ GEM
     brakeman (5.2.3)
     builder (3.2.4)
     concurrent-ruby (1.1.10)
+    connection_pool (2.2.5)
     crass (1.0.6)
     cssbundling-rails (1.1.0)
       railties (>= 6.0.0)
@@ -190,6 +191,7 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     rbs (2.5.0)
+    redis (4.7.1)
     regexp_parser (2.5.0)
     rexml (3.2.5)
     rspec-core (3.11.0)
@@ -224,6 +226,10 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
+    sidekiq (6.5.4)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.5.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -265,6 +271,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-22
 
 DEPENDENCIES
   bcrypt
@@ -289,13 +296,14 @@ DEPENDENCIES
   rails
   rails-i18n
   rspec-rails
+  sidekiq
   slim-rails
   standard
   stimulus-rails
   turbo-rails
 
 RUBY VERSION
-   ruby 3.1.2p20
+   ruby 3.1.3p185
 
 BUNDLED WITH
-   2.3.13
+   2.4.2
