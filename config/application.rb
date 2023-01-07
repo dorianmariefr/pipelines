@@ -11,5 +11,6 @@ module Pipelines
     config.i18n.default_locale = :en
     config.i18n.available_locales = %i[en fr]
     config.action_mailer.default_url_options = {host: ENV.fetch("HOST")}
+    config.assets.css_compressor = nil
   end
 end

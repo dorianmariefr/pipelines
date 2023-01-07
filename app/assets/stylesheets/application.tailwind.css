@@ -1,7 +1,7 @@
 @import url("tailwindcss/base");
 @import url("tailwindcss/components");
 @import url("tailwindcss/utilities");
-@import url("intl-tel-input/build/css/intlTelInput.css");
+@import url("intl-tel-input/build/css/intlTelInput");
 @import url("./base");
 @import url("./helpers");
 @import url("./inputs");
