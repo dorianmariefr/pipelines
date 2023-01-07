@@ -282,6 +282,9 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
+    sprockets (4.2.0)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
     standard (1.21.1)
       language_server-protocol (~> 3.17.0.2)
       rubocop (= 1.42.0)
@@ -354,6 +357,7 @@ DEPENDENCIES
   sentry-ruby
   sidekiq
   slim-rails
+  sprockets
   standard
   stimulus-rails
   tailwindcss-rails
