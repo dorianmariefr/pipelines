@@ -213,6 +213,11 @@ GEM
     rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -260,6 +265,9 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
+    sentry-rails (5.7.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.7.0)
     sentry-ruby (5.7.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sidekiq (7.0.2)
@@ -340,7 +348,9 @@ DEPENDENCIES
   pundit
   rails
   rails-i18n
+  rails_12factor
   rspec-rails
+  sentry-rails
   sentry-ruby
   sidekiq
   slim-rails
