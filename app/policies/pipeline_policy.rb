@@ -11,6 +11,10 @@ class PipelinePolicy < ApplicationPolicy
     current_user?
   end
 
+  def process_now?
+    owner? || admin?
+  end
+
   def update?
     owner? || admin?
   end

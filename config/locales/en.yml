@@ -203,6 +203,7 @@ en:
       no_destinations: No destinations
       published: Published
       not_published: Not published
+      process: Process
   sources:
     form:
       kind: Kind

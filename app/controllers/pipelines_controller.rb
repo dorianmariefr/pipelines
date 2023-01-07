@@ -1,6 +1,6 @@
 class PipelinesController < ApplicationController
   before_action :load_user, only: :index
-  before_action :load_pipeline, only: %i[show edit update destroy]
+  before_action :load_pipeline, only: %i[show edit update destroy process_now]
 
   def index
     authorize Pipeline
@@ -14,6 +14,10 @@ class PipelinesController < ApplicationController
   def show
     @sources = @pipeline.sources
     @destinations = @pipeline.destinations
+  end
+
+  def process_now
+    @pipeline.process_now
   end
 
   def new
@@ -69,7 +73,11 @@ class PipelinesController < ApplicationController
 
   def load_pipeline
     @pipeline =
-      authorize policy_scope(Pipeline).find_by_id_or_slug!(params[:id])
+      authorize(
+        policy_scope(Pipeline).find_by_id_or_slug!(
+          params[:id].presence || params[:pipeline_id]
+        )
+      )
   end
 
   def pipeline_params

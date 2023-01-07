@@ -1,3 +1,3 @@
 class Parameter < ApplicationRecord
-  belongs_to :parameterable, polymorphic: true
+  belongs_to :parameterizable, polymorphic: true
 end

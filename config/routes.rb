@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :pipelines, only: :index
   end
 
-  resources :pipelines
+  resources :pipelines do
+    post :process_now
+  end
 
   root "pages#home"
 end

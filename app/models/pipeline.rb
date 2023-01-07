@@ -17,6 +17,17 @@ class Pipeline < ApplicationRecord
     where(id: id_or_slug).or(where(slug: id_or_slug)).first!
   end
 
+  def process_now
+    items = sources.map(&:fetch).flatten
+
+    destinations.each do |destination|
+      items.each do |item|
+        destination.send_now(item)
+        item.save!
+      end
+    end
+  end
+
   def to_s
     name.presence || id
   end

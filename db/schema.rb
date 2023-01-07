@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_132157) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_06_153013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_132157) do
             name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index %w[sluggable_type sluggable_id],
             name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "source_id", null: false
+    t.string "subject"
+    t.text "body"
+    t.string "external_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index %w[source_id external_id],
+            name: "index_items_on_source_id_and_external_id",
+            unique: true
+    t.index ["source_id"], name: "index_items_on_source_id"
   end
 
   create_table "parameters", force: :cascade do |t|
@@ -127,6 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_132157) do
 
   add_foreign_key "destinations", "pipelines"
   add_foreign_key "emails", "users"
+  add_foreign_key "items", "sources"
   add_foreign_key "phone_numbers", "users"
   add_foreign_key "pipelines", "users"
   add_foreign_key "sources", "pipelines"

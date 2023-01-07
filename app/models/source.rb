@@ -1,18 +1,21 @@
 class Source < ApplicationRecord
   KINDS = {
     hacker_news: {
-      front: {
-        name: "Hacker News - Frontpage Stories"
+      news: {
+        name: "Hacker News - Stories",
+        subclass: "Source::HackerNews::News"
       },
       new: {
-        name: "Hacker News - New Stories"
+        name: "Hacker News - New Stories",
+        subclass: "Source::HackerNews::New"
       }
     }
   }
 
   belongs_to :pipeline
 
-  has_many :parameters, as: :parameterable
+  has_many :parameters, as: :parameterizable
+  has_many :items
 
   def self.kinds_options
     KINDS.flat_map do |parent_key, parent_value|
@@ -32,5 +35,27 @@ class Source < ApplicationRecord
 
   def name
     KINDS.dig(first_kind, second_kind, :name)
+  end
+
+  def subclass
+    KINDS.dig(first_kind, second_kind, :subclass).constantize
+  end
+
+  def fetch
+    new_items = subclass.fetch
+    existing_items = items.where(id: new_items.map(&:external_id))
+    new_items -=
+      new_items.select do |item|
+        item.external_id.in?(existing_items.map(&:existing_id))
+      end
+    new_items =
+      new_items.map do |item|
+        items.build(
+          subject: item.subject,
+          body: item.body,
+          external_id: item.external_id
+        )
+      end
+    new_items.select { |item| item.match(filter) }
   end
 end
