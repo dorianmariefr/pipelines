@@ -7,11 +7,16 @@ class Item < ApplicationRecord
 
   def payload
     {
+      title: title,
       subject: subject,
       body: body,
       keywords: keywords,
       external_id: external_id
     }
+  end
+
+  def title
+    subject
   end
 
   def keywords

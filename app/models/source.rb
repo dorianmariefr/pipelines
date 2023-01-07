@@ -43,11 +43,11 @@ class Source < ApplicationRecord
 
   def fetch
     new_items = subclass.fetch
-    existing_items = items.where(id: new_items.map(&:external_id))
-    new_items -=
-      new_items.select do |item|
-        item.external_id.in?(existing_items.map(&:existing_id))
-      end
+
+    new_items.delete_if do |item|
+      items.where(external_id: item.external_id).any?
+    end
+
     new_items =
       new_items.map do |item|
         items.build(
@@ -56,6 +56,7 @@ class Source < ApplicationRecord
           external_id: item.external_id
         )
       end
+
     new_items.select { |item| item.match(filter) }
   end
 end

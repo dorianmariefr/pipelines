@@ -165,6 +165,8 @@ en:
     update:
       notice: User updated
   pipelines:
+    process_now:
+      notice: "Your pipeline has been processed"
     index:
       title:
         pipelines: Pipelines

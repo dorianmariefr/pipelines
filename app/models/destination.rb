@@ -1,5 +1,5 @@
 class Destination < ApplicationRecord
-  KINDS = {email: {name: "Email", model: :email}}
+  KINDS = {email: {name: "Email", subclass: "Destination::Email"}}
 
   belongs_to :pipeline
   belongs_to :destinable, polymorphic: true
@@ -17,8 +17,12 @@ class Destination < ApplicationRecord
     KINDS.dig(kind.to_sym, :name)
   end
 
-  def model
-    KINDS.dig(kind.to_sym, :model)
+  def subclass
+    KINDS.dig(kind.to_sym, :subclass).constantize.new(self)
+  end
+
+  def send_now(item)
+    subclass.send_now(item)
   end
 
   private

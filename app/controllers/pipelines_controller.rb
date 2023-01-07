@@ -18,6 +18,7 @@ class PipelinesController < ApplicationController
 
   def process_now
     @pipeline.process_now
+    redirect_back(fallback_location: @pipeline, notice: t(".notice"))
   end
 
   def new

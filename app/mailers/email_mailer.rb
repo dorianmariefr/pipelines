@@ -1,4 +1,8 @@
 class EmailMailer < ApplicationMailer
+  def email
+    mail(to: params[:to], subject: params[:subject], body: params[:body])
+  end
+
   def verification_email
     @email = params[:email]
     @user = @email.user
