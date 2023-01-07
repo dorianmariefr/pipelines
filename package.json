@@ -24,8 +24,7 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "format": "prettier . --loglevel warn --write --ignore-unknown",
     "lint": "eslint . --cache --fix",
-    "lint:css": "stylelint '**/*.css' --fix",
-    "prepare": "husky install"
+    "lint:css": "stylelint '**/*.css' --fix"
   },
   "lint-staged": {
     "*": "prettier --loglevel warn --ignore-unknown --write",
