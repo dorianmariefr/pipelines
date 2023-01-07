@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Dorian Marié <dorian@dorianmarie.fr>"
+  default from: "Dorian Marié <dorian@pipelines.plumbing>"
   layout "mailer"
 
   def to(email)
