@@ -28,6 +28,17 @@ class Pipeline < ApplicationRecord
     end
   end
 
+  def process_later
+    items = sources.map(&:fetch).flatten
+
+    destinations.each do |destination|
+      items.each do |item|
+        destination.send_later(item)
+        item.save!
+      end
+    end
+  end
+
   def to_s
     name.presence || id
   end

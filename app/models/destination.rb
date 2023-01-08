@@ -25,6 +25,10 @@ class Destination < ApplicationRecord
     subclass.send_now(item)
   end
 
+  def send_later(item)
+    SendToDestinationJob.perform_later(destination: self, item: item)
+  end
+
   private
 
   def verified_destinable
