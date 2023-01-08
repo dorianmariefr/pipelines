@@ -2,12 +2,12 @@ class Source < ApplicationRecord
   KINDS = {
     hacker_news: {
       news: {
-        name: "Hacker News - Stories",
+        name: "Hacker News - Frontpage Stories",
         subclass: "Source::HackerNews::News"
       },
       new: {
         name: "Hacker News - New Stories",
-        subclass: "Source::HackerNews::New"
+        subclass: "Source::HackerNews::Newest"
       }
     }
   }
