@@ -14,6 +14,9 @@ en:
       intro: "Your verification code is:"
       subject: Verify your email (%{verification_code})
   emails:
+    form:
+      email: Email
+      remove: Remove
     create:
       notice: Email created
     destroy:
@@ -80,6 +83,9 @@ en:
       register: Register
       title: Home
   phone_numbers:
+    form:
+      phone_number: Phone Number
+      remove: Remove
     create:
       notice: Phone number created
     destroy:
@@ -139,12 +145,12 @@ en:
       submit: Update profile
       title: Edit profile
     form:
-      email: Email
       hide_password: Hide password
       name: Name
       password: Password
-      phone_number: Phone Number
       show_password: Show password
+      add_email: Add email
+      add_phone_number: Add phone number
     index:
       title: Users
     new:

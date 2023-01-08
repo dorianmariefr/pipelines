@@ -8,28 +8,34 @@
     .text-red-600(data-name-target="error")
     = fake_name
 
-  = f.fields_for :emails do |email_f|
-    .p(data-controller="email")
-      = email_f.label :email, t(".email")
-      = email_f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }
-      .text-red-600(data-email-target="error")
-      = fake_email
+  div(data-controller="emails")
+    template(data-emails-target="template")
+      = f.fields_for :emails, Email.new, child_index: 'TEMPLATE_RECORD' do |email_f|
+        = render "emails/form", f: email_f
 
-  = f.fields_for :phone_numbers do |phone_number_f|
-    .p(data-controller="phone")
-      = phone_number_f.hidden_field :phone_number, data: { phone_target: "hidden" }
-      = label_tag :phone_number_national, t(".phone_number")
-      div.not-prose
-        = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }, value: phone_number_f.object.phone_number
-      .text-red-600(data-phone-target="error")
-      = fake_phone_number
+    = f.fields_for :emails do |email_f|
+      = render "emails/form", f: email_f
+
+    div(data-emails-target="add")
+      = link_to t(".add_email"), "#", data: { action: "emails#add" }
+
+  div(data-controller="phone-numbers")
+    template(data-phone-numbers-target="template")
+      = f.fields_for :phone_numbers, PhoneNumber.new, child_index: 'TEMPLATE_RECORD' do |phone_number_f|
+        = render "phone_numbers/form", f: phone_number_f
+
+    = f.fields_for :phone_numbers do |phone_number_f|
+      = render "phone_numbers/form", f: phone_number_f
+
+    div(data-phone-numbers-target="add")
+      = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }
 
   .p(data-controller="password")
     = f.label :password, t(".password")
     .flex.gap-2.items-center
       = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }, value: password_param
       = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
-      = icon_link t(".hide_password"), "eye-off", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+      = icon_link t(".hide_password"), "eye-slash", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
     .text-red-600(data-password-target="error")
     = fake_password
 

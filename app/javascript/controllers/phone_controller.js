@@ -3,7 +3,7 @@ import intlTelInput from "intl-tel-input"
 import i18n from "../i18n"
 
 const t = i18n.scope("phone")
-const IP_INFO_TOKEN = "15e3c482e1332b"
+const IPINFO_TOKEN = window.constants.IPINFO_TOKEN
 const DEFAULT_COUNTRY_CODE = "us"
 
 const ERRORS = {
@@ -33,7 +33,7 @@ export default class extends Controller {
       geoIpLookup: async function (success) {
         try {
           const response = await fetch(
-            `https://ipinfo.io?token=${IP_INFO_TOKEN}`,
+            `https://ipinfo.io?token=${IPINFO_TOKEN}`,
             {
               headers: {
                 Accept: "application/json",

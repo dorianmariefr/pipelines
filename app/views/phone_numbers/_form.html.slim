@@ -1,0 +1,13 @@
+.phone-number-js.card
+  = f.hidden_field :_destroy
+
+  .p(data-controller="phone")
+    = f.hidden_field :phone_number, data: { phone_target: "hidden" }
+    = label_tag :phone_number_national, t(".phone_number")
+    div.not-prose
+      = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }, value: f.object.phone_number
+    .text-red-600(data-phone-target="error")
+    = fake_phone_number
+
+  .p(data-phone-numbers-target="remove")
+    = link_to t(".remove"), "#", class: "text-red-600", data: { action: "phone-numbers#remove" }

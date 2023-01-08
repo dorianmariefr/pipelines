@@ -4,26 +4,32 @@
 
 import { application } from "./application"
 
-import CodeController from "./code_controller.js"
+import CodeController from "./code_controller"
 application.register("code", CodeController)
 
-import DestinationsController from "./destinations_controller.js"
+import DestinationsController from "./destinations_controller"
 application.register("destinations", DestinationsController)
 
-import EmailController from "./email_controller.js"
+import EmailController from "./email_controller"
 application.register("email", EmailController)
 
-import NameController from "./name_controller.js"
+import EmailsController from "./emails_controller"
+application.register("emails", EmailsController)
+
+import NameController from "./name_controller"
 application.register("name", NameController)
 
-import PasswordController from "./password_controller.js"
+import PasswordController from "./password_controller"
 application.register("password", PasswordController)
 
-import PhoneController from "./phone_controller.js"
+import PhoneController from "./phone_controller"
 application.register("phone", PhoneController)
 
-import ShowController from "./show_controller.js"
+import PhoneNumbersController from "./phone_numbers_controller"
+application.register("phone-numbers", PhoneNumbersController)
+
+import ShowController from "./show_controller"
 application.register("show", ShowController)
 
-import SourcesController from "./sources_controller.js"
+import SourcesController from "./sources_controller"
 application.register("sources", SourcesController)
