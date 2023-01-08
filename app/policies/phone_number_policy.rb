@@ -16,7 +16,7 @@ class PhoneNumberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    owner? || admin?
+    (owner? && (phone_numbers.many? || emails.any?)) || admin?
   end
 
   class Scope < Scope
@@ -37,5 +37,13 @@ class PhoneNumberPolicy < ApplicationPolicy
 
   def owner?
     user? && current_user? && user == current_user
+  end
+
+  def phone_numbers
+    user.phone_numbers
+  end
+
+  def emails
+    user.emails
   end
 end
