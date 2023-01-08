@@ -14,8 +14,8 @@ class Source < ApplicationRecord
 
   belongs_to :pipeline
 
-  has_many :parameters, as: :parameterizable
-  has_many :items
+  has_many :parameters, as: :parameterizable, dependent: :destroy
+  has_many :items, dependent: :destroy
 
   def self.kinds_options
     KINDS.flat_map do |parent_key, parent_value|
