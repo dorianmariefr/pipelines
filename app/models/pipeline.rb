@@ -33,8 +33,8 @@ class Pipeline < ApplicationRecord
 
     destinations.each do |destination|
       items.each do |item|
-        destination.send_later(item)
         item.save!
+        destination.send_later(item)
       end
     end
   end
