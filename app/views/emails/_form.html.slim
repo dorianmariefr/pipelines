@@ -3,7 +3,7 @@
 
   .p(data-controller="email")
     = f.label :email, t(".email")
-    = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }
+    = f.email_field :email, autocomplete: :email, data: { email_target: "input" }
     .text-red-600(data-email-target="error")
     = fake_email
 

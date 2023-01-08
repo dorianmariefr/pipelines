@@ -7,6 +7,7 @@ class Pipeline < ApplicationRecord
 
   has_many :sources, dependent: :destroy
   has_many :destinations, dependent: :destroy
+  has_many :items, through: :sources
 
   accepts_nested_attributes_for :sources, allow_destroy: true
   accepts_nested_attributes_for :destinations, allow_destroy: true
@@ -21,10 +22,7 @@ class Pipeline < ApplicationRecord
     items = sources.map(&:fetch).flatten
 
     destinations.each do |destination|
-      items.each do |item|
-        destination.send_now(item)
-        item.save!
-      end
+      items.each { |item| destination.send_now(item) }
     end
   end
 
@@ -32,10 +30,7 @@ class Pipeline < ApplicationRecord
     items = sources.map(&:fetch).flatten
 
     destinations.each do |destination|
-      items.each do |item|
-        item.save!
-        destination.send_later(item)
-      end
+      items.each { |item| destination.send_later(item) }
     end
   end
 

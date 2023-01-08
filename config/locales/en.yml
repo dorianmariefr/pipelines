@@ -212,6 +212,8 @@ en:
       published: Published
       not_published: Not published
       process: Process
+      items: Items
+      no_items: No items
   sources:
     form:
       kind: Kind

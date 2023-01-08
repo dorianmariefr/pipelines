@@ -57,6 +57,6 @@ class Source < ApplicationRecord
         )
       end
 
-    new_items.select { |item| item.match(filter) }
+    new_items.select { |item| item.match(filter) }.each(&:save!)
   end
 end

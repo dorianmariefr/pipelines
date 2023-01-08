@@ -14,6 +14,7 @@ class PipelinesController < ApplicationController
   def show
     @sources = @pipeline.sources
     @destinations = @pipeline.destinations
+    @items = @pipeline.items
   end
 
   def process_now

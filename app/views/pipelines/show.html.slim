@@ -29,3 +29,11 @@ h3= t(".destinations")
 
 - if can? :destroy, @pipeline
   .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--link text-red-600"
+
+h3= t(".items")
+
+- if @items.any?
+  - @items.each do |item|
+    = render "items/item", item: item
+- else
+  p.text-gray-600.italic= t(".no_items")
