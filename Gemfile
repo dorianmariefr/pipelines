@@ -9,6 +9,7 @@ gem "aws-sdk-ses"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "brakeman"
+gem "delayed_cron_job"
 gem "delayed_job_active_record"
 gem "dotenv-rails"
 gem "factory_bot_rails"

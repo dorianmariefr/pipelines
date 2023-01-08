@@ -106,6 +106,8 @@ GEM
     connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
+    delayed_cron_job (0.9.0)
+      fugit (>= 1.5)
     delayed_job (4.1.11)
       activesupport (>= 3.0, < 8.0)
     delayed_job_active_record (4.1.7)
@@ -117,6 +119,8 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -126,6 +130,9 @@ GEM
       i18n (>= 1.8.11, < 2)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
+    fugit (1.8.0)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     haml (6.1.1)
@@ -192,6 +199,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
+    raabro (1.4.0)
     racc (1.6.2)
     rack (2.2.5)
     rack-test (2.0.2)
@@ -339,6 +347,7 @@ DEPENDENCIES
   bcrypt
   bootsnap
   brakeman
+  delayed_cron_job
   delayed_job_active_record
   dotenv-rails
   factory_bot_rails
