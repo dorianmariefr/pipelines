@@ -1,6 +1,7 @@
 - content_for(:title, @pipeline.to_s)
 
-= button_to t(".process"), [@pipeline, :process_now]
+- if can?(:process_now, @pipeline)
+  = button_to t(".process"), [@pipeline, :process_now]
 
 - if @pipeline.published?
   p= t(".published")

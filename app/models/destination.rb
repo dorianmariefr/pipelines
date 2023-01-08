@@ -4,7 +4,7 @@ class Destination < ApplicationRecord
   belongs_to :pipeline
   belongs_to :destinable, polymorphic: true
 
-  has_many :parameters, as: :parameterable, dependent: :destroy
+  has_many :parameters, as: :parameterizable, dependent: :destroy
 
   validates :destinable_type, inclusion: {in: ["Email"]}
   validate :verified_destinable
