@@ -314,7 +314,7 @@ GEM
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.21-x86_64-linux)
       railties (>= 6.0.0)
-    template-ruby (0.5.3)
+    template-ruby (0.5.4)
       zeitwerk (~> 2)
     temple (0.8.2)
     thor (1.2.1)
