@@ -17,6 +17,14 @@ class Item < ApplicationRecord
     subclass.url
   end
 
+  def email_subject
+    subclass.email_subject
+  end
+
+  def email_body
+    subclass.email_body
+  end
+
   def to_s
     subclass.to_s
   end

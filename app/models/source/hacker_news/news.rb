@@ -166,6 +166,14 @@ class Source
         ].compact
       end
 
+      def email_subject
+        title
+      end
+
+      def email_body
+        "#{url}\n\n#{comments_url}"
+      end
+
       def to_s
         title
       end

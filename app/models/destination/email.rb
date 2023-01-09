@@ -6,7 +6,7 @@ class Destination
 
     def send_now(item)
       EmailMailer
-        .with(to: to, subject: item.subject, body: item.body)
+        .with(to: to, subject: item.email_subject, body: item.email_body)
         .email
         .deliver_now
     end
