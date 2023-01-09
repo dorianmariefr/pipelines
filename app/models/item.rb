@@ -17,6 +17,10 @@ class Item < ApplicationRecord
     subclass.urls
   end
 
+  def url
+    subclass.url
+  end
+
   def to_s
     subclass.to_s
   end

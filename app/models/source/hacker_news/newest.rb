@@ -140,18 +140,16 @@ class Source
           end
       end
 
-      def to_s
-        title
+      def url
+        extras.url
       end
 
       def urls
         [
-          Url.new(
-            text: I18n.t("sources.hacker_news.newest.url", score: score),
-            href: url
-          ),
           Url.new(text: domain, href: "#{protocol}://#{domain}"),
-          Url.new(text: host, href: "#{protocol}://#{host}"),
+          if domain != host
+            Url.new(text: host, href: "#{protocol}://#{host}")
+          end,
           Url.new(text: user_id, href: user_url),
           Url.new(
             text:
@@ -164,6 +162,10 @@ class Source
         ]
       end
 
+      def to_s
+        title
+      end
+
       private
 
       attr_reader :item
@@ -174,10 +176,6 @@ class Source
 
       def title
         extras.title
-      end
-
-      def url
-        extras.url
       end
 
       def domain
