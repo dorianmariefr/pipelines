@@ -2,7 +2,6 @@
 - Reset password cc: krishna
 - Single sign in cc: Flavio
 - About cc: Ahmed
-- Open source: cc: Emmanuel
 - Email digest per day cc: Flavio
 - Style emails cc: allancoder
 - SMS verification, cc: tyro
