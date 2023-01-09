@@ -215,6 +215,19 @@ en:
       items: Items
       no_items: No items
   sources:
+    hacker_news:
+      news:
+        url: url
+        comments:
+          zero: 0 comments
+          one: 1 comment
+          other: "%{count} comments"
+      newest:
+        url: url
+        comments:
+          zero: 0 comments
+          one: 1 comment
+          other: "%{count} comments"
     form:
       kind: Kind
       remove: Remove

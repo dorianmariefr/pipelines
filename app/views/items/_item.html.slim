@@ -1,1 +1,7 @@
-p= item.subject
+p
+  => item.to_s
+
+  | (
+  = safe_join(item.urls.map { |url| link_to url.text, url.href }, ", ")
+  ' )
+

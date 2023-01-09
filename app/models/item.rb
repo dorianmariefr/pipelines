@@ -6,20 +6,18 @@ class Item < ApplicationRecord
   end
 
   def payload
-    {
-      title: title,
-      subject: subject,
-      body: body,
-      keywords: keywords,
-      external_id: external_id
-    }
+    {external_id: external_id}
   end
 
-  def title
-    subject
+  def subclass
+    source.subclass.new(self)
   end
 
-  def keywords
-    subject.split(/[^[[:word:]]]+/)
+  def urls
+    subclass.urls
+  end
+
+  def to_s
+    subclass.to_s
   end
 end

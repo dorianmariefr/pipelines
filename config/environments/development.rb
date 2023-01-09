@@ -18,4 +18,6 @@ Rails.application.configure do
   config.assets.quiet = true
   config.i18n.raise_on_missing_translations = true
   config.action_view.annotate_rendered_view_with_filenames = true
+  config.i18n.exception_handler =
+    proc { |exception| raise exception.to_exception }
 end

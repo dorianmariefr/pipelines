@@ -195,6 +195,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
+    public_suffix (5.0.1)
     puma (6.0.2)
       nio4r (~> 2.0)
     pundit (2.3.0)
@@ -357,6 +358,7 @@ DEPENDENCIES
   phonelib
   prettier
   propshaft
+  public_suffix
   puma
   pundit
   rails

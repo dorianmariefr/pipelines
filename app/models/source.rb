@@ -50,11 +50,7 @@ class Source < ApplicationRecord
 
     new_items =
       new_items.map do |item|
-        items.build(
-          subject: item.subject,
-          body: item.body,
-          external_id: item.external_id
-        )
+        items.build(external_id: item.external_id, extras: item.extras)
       end
 
     new_items.select { |item| item.match(filter) }.each(&:save!)
