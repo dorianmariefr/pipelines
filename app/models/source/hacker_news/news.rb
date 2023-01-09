@@ -150,14 +150,18 @@ class Source
           (
             Url.new(text: host, href: "#{protocol}://#{host}") if domain != host
           ),
-          Url.new(text: user_id, href: user_url),
-          Url.new(
-            text:
-              I18n.t(
-                "sources.hacker_news.news.comments",
-                count: comments_count
-              ),
-            href: comments_url
+          (Url.new(text: user_id, href: user_url) if user_id && user_url),
+          (
+            if comments_count && comments_url
+              Url.new(
+                text:
+                  I18n.t(
+                    "sources.hacker_news.news.comments",
+                    count: comments_count
+                  ),
+                href: comments_url
+              )
+            end
           )
         ].compact
       end
