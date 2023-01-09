@@ -2,11 +2,7 @@ class Item < ApplicationRecord
   belongs_to :source
 
   def match(filter)
-    Code.evaluate(filter, ruby: payload).truthy?
-  end
-
-  def payload
-    {external_id: external_id}
+    Code.evaluate(filter, ruby: extras).truthy?
   end
 
   def subclass
