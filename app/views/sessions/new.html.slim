@@ -39,3 +39,14 @@ h3= t(".log_in_with_phone_number")
     = fake_password
 
   p= f.submit t(".submit"), class: "button--primary"
+
+h3= t(".forgot_your_password")
+
+= form_for :session, url: reset_session_path do |f|
+  .p(data-controller="email")
+    = f.label :email, t(".email")
+    = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }, value: email_param
+    .text-red-600(data-email-target="error")
+    = fake_email
+
+  p= f.submit t(".send_password_reset")

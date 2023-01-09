@@ -1,5 +1,12 @@
 ---
 en:
+  passwords:
+    edit:
+      title: Reset your password
+      password: Password
+      submit: Reset password
+      show_password: Show password
+      hide_password: Hide password
   errors:
     not_verified: Not verified
   attributes:
@@ -9,9 +16,9 @@ en:
     fake:
       eg: e.g. %{string}
   email_mailer:
+    password_reset_email:
+      subject: Reset your password
     verification_email:
-      hi: Hi %{name},
-      intro: "Your verification code is:"
       subject: Verify your email (%{verification_code})
   emails:
     form:
@@ -118,6 +125,9 @@ en:
       alert: Wrong verification code
       notice: Phone number verified
   sessions:
+    reset:
+      notice: Password reset email sent
+      alert: Email not found
     create:
       must_be_present: Email or phone number must be present
       notice: You are now logged in
@@ -136,6 +146,8 @@ en:
       show_password: Show password
       submit: Log in
       title: Log in
+      forgot_your_password: Forgot your password?
+      send_password_reset: Send password reset
   users:
     create:
       notice: User created, you are now logged in

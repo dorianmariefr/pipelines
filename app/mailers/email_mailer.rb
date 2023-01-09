@@ -22,4 +22,15 @@ class EmailMailer < ApplicationMailer
         )
     )
   end
+
+  def password_reset_email
+    @email = params[:email]
+    @user = @email.user
+
+    mail(
+      to: to(@email),
+      subject: t("email_mailer.password_reset_email.subject"),
+      body: @user.reset_password_url
+    )
+  end
 end

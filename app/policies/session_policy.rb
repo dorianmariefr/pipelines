@@ -6,4 +6,8 @@ class SessionPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def reset?
+    true
+  end
 end

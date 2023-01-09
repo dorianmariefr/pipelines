@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
+  RESET_PASSWORD_PURPOSE = :reset_password
+  RESET_PASSWORD_EXPIRES_IN = 30.minutes
 
   has_secure_password
 
@@ -28,5 +30,14 @@ class User < ApplicationRecord
   before_validation do
     self.primary_email = emails.first if primary_email.nil?
     self.primary_phone_number = phone_numbers.first if primary_phone_number.nil?
+  end
+
+  def reset_password_url
+    Rails.application.routes.url_helpers.edit_user_password_url(
+      signed_id(
+        expires_in: RESET_PASSWORD_EXPIRES_IN,
+        purpose: RESET_PASSWORD_PURPOSE
+      )
+    )
   end
 end

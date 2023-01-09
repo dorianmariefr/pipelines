@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resource :session
+  resource :session do
+    post "reset"
+  end
 
   resources :users do
+    resource :password, only: %i[edit update] do
+    end
+
     resources :emails, shallow: true do
       post :send_verification
     end

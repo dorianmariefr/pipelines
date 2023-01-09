@@ -30,6 +30,16 @@ class SessionsController < ApplicationController
     end
   end
 
+  def reset
+    email = Email.find_by_normalized_email(email_param)
+    if email
+      EmailMailer.with(email: email).password_reset_email.deliver_now
+      redirect_to root_path, notice: t(".notice")
+    else
+      redirect_to new_session_path, alert: t(".alert")
+    end
+  end
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path, notice: t(".notice")
