@@ -1,4 +1,3 @@
-- Sentry errors cc: Flavio
 - Reset password cc: krishna
 - Single sign in cc: Flavio
 - About cc: Ahmed
