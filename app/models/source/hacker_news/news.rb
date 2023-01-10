@@ -95,7 +95,7 @@ class Source
         end
 
         def score
-          subtext.at_css(".score")&.text&.to_i
+          subtext.at_css(".score")&.text.to_i
         end
 
         def comments_count

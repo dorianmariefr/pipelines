@@ -1,5 +1,6 @@
-- About cc: Ahmed
-- Email digest per day cc: Flavio
+- remove users list cc: jonan
+- Email digest per day cc: Flavio, Jonan
+- About cc: Ahmed, jonan
 - Style emails cc: allancoder
 - SMS verification, cc: tyro
 - Filtering documentation cc: tyro, benjamin
@@ -10,3 +11,10 @@
 - Mettre les choix grisés pour les destinations, cc: benjamin
 - Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
 - Contacter Louis, cc: benjamin
+- Example filters cc: jonan
+- Interface for conditions cc: jonan
+- RSS feeds, cc: jonan
+- check once a month with jonan
+- referrals, cc: jonan
+- duplicate pipeline to own account cc: jonan
+- we found 0/30 items cc: jonan (when processed)
