@@ -1,3 +1,6 @@
+= form_tag "/auth/google", method: :post, data: {turbo: false} do
+  button(type="submit")= t(".login_with_google")
+
 h3= t(".log_in_with_email")
 
 = form_for :session, url: session_path do |f|

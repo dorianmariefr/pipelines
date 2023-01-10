@@ -49,3 +49,9 @@ html
       p.text-red-600= alert
 
     = yield
+
+    hr
+
+    p
+      => link_to t(".privacy"), privacy_path
+      => link_to t(".terms"), terms_path

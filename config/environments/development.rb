@@ -20,4 +20,6 @@ Rails.application.configure do
   config.action_view.annotate_rendered_view_with_filenames = true
   config.i18n.exception_handler =
     proc { |exception| raise exception.to_exception }
+
+  config.hosts << "dev.pipelines.plumbing"
 end

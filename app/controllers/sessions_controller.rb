@@ -12,7 +12,23 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @user&.authenticate(password_param)
+    if auth
+      email_param = auth.dig("info", "email")
+      email = Email.find_by_normalized_email(email_param)
+
+      if email
+        user = email.user
+      else
+        user = User.create!(
+          name: auth.dig("info", "name"),
+          password: SecureRandom.hex
+        )
+
+        user.emails.create!(email: email_param, verified: true)
+      end
+      session[:user_id] = user.id
+      redirect_to root_path, notice: t(".notice")
+    elsif @user&.authenticate(password_param)
       session[:user_id] = @user.id
       redirect_to root_path, notice: t(".notice")
     elsif @user
@@ -76,5 +92,9 @@ class SessionsController < ApplicationController
 
   def load_user
     @user = @email&.user || @phone_number&.user
+  end
+
+  def auth
+    request.env["omniauth.auth"]
   end
 end

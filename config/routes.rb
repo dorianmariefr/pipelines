@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     post "reset"
   end
 
+  get "auth/:provider/callback", to: "sessions#create"
+
   resources :users do
     resource :password, only: %i[edit update] do
     end
@@ -21,6 +23,9 @@ Rails.application.routes.draw do
   resources :pipelines do
     post :process_now
   end
+
+  get "privacy" => "pages#privacy"
+  get "terms" => "pages#terms"
 
   root "pages#home"
 end

@@ -1,6 +1,12 @@
 class PagesController < ApplicationController
-  skip_after_action :verify_authorized, only: :home
+  before_action { authorize :page }
 
   def home
+  end
+
+  def privacy
+  end
+
+  def terms
   end
 end

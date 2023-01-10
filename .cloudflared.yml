@@ -1,0 +1,3 @@
+url: http://localhost:3000
+tunnel: e9dde026-47f5-40eb-9a54-11db2f18e9a8
+credentials-file: /Users/dorianmariefr/.cloudflared/e9dde026-47f5-40eb-9a54-11db2f18e9a8.json

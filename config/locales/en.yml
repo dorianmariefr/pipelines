@@ -84,7 +84,13 @@ en:
       my_pipelines: My pipelines
       published_pipelines: Published pipelines
       pipelines: Pipelines
+      privacy: Privacy Policy
+      terms: Terms and Conditions
   pages:
+    terms:
+      title: Terms and Conditions
+    privacy:
+      title: Privacy Policy
     home:
       log_in: Log in
       register: Register
@@ -148,6 +154,7 @@ en:
       title: Log in
       forgot_your_password: Forgot your password?
       send_password_reset: Send password reset
+      login_with_google: Log in with Google
   users:
     create:
       notice: User created, you are now logged in
