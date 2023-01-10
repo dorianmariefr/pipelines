@@ -2,4 +2,11 @@
 - Email digest per day cc: Flavio
 - Style emails cc: allancoder
 - SMS verification, cc: tyro
-- Filtering documentation cc: tyro
+- Filtering documentation cc: tyro, benjamin
+- Mettre à la fin le public true/false cc: benjamin
+- Mettre des exemples de noms de pipelines cc: benjamin
+- Mettre des choix grisés pour les sources cc: benjamin
+- Prévisualisation des filtres, cc: benjamin
+- Mettre les choix grisés pour les destinations, cc: benjamin
+- Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
+- Contacter Louis, cc: benjamin
