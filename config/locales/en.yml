@@ -80,7 +80,6 @@ en:
       register: Register
       switch: Français
       title: Pipelines
-      users: Users
       my_pipelines: My pipelines
       published_pipelines: Published pipelines
       pipelines: Pipelines

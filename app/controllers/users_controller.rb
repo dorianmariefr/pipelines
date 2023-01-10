@@ -3,11 +3,6 @@ class UsersController < ApplicationController
 
   helper_method :password_param
 
-  def index
-    authorize :user
-    @users = policy_scope(User).order(created_at: :asc)
-  end
-
   def show
     @emails = @user.emails.order(created_at: :asc).to_a
     @emails << @user.emails.build

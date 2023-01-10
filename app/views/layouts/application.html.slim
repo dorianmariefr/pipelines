@@ -35,10 +35,8 @@ html
       - if current_user
         => link_to t(".my_pipelines"), [current_user, :pipelines]
         => link_to t(".published_pipelines"), pipelines_path
-        => link_to t(".users"), users_path
       - else
         => link_to t(".pipelines"), pipelines_path
-        => link_to t(".users"), users_path
 
     h2= title
 
