@@ -155,6 +155,7 @@ en:
       forgot_your_password: Forgot your password?
       send_password_reset: Send password reset
       login_with_google: Log in with Google
+      login_with_facebook: Log in with Facebook
   users:
     create:
       notice: User created, you are now logged in
@@ -173,6 +174,8 @@ en:
     index:
       title: Users
     new:
+      register_with_google: Register with Google
+      register_with_facebook: Register with Facebook
       submit: Register
       title: Register
     show:

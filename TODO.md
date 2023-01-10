@@ -1,4 +1,3 @@
-- Single sign in cc: Flavio
 - About cc: Ahmed
 - Email digest per day cc: Flavio
 - Style emails cc: allancoder

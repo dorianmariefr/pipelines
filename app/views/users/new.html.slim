@@ -1,1 +1,9 @@
+= form_tag "/auth/google", method: :post, data: {turbo: false} do
+  p
+    button(type="submit")= t(".register_with_google")
+
+= form_tag "/auth/facebook", method: :post, data: {turbo: false} do
+  p
+    button(type="submit")= t(".register_with_facebook")
+
 = render "form", user: @user, submit: t(".submit")

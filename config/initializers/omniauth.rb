@@ -5,4 +5,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     Rails.application.credentials.google[:client_secret],
     name: :google
   )
+
+  provider(
+    :facebook,
+    Rails.application.credentials.facebook[:app_id],
+    Rails.application.credentials.facebook[:app_secret]
+  )
 end

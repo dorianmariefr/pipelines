@@ -1,3 +1,7 @@
 label {
   @apply text-black;
 }
+
+hr {
+  @apply !border-black;
+}

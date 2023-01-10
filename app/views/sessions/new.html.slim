@@ -1,5 +1,10 @@
 = form_tag "/auth/google", method: :post, data: {turbo: false} do
-  button(type="submit")= t(".login_with_google")
+  p
+    button(type="submit")= t(".login_with_google")
+
+= form_tag "/auth/facebook", method: :post, data: {turbo: false} do
+  p
+    button(type="submit")= t(".login_with_facebook")
 
 h3= t(".log_in_with_email")
 
