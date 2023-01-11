@@ -27,6 +27,11 @@ class Source < ApplicationRecord
     end
   end
 
+  def parameters_attributes=(*args)
+    self.parameters = []
+    super(*args)
+  end
+
   def first_kind
     kind.split("/").first.to_sym
   end

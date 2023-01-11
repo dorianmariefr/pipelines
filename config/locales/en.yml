@@ -5,7 +5,7 @@ en:
     day_of_week: Day of Week
     day_of_month: Day of Month
     monday: Monday
-    tueday: Tuesday
+    tuesday: Tuesday
     wednesday: Wednesday
     thursday: Thursday
     friday: Friday
@@ -73,13 +73,6 @@ en:
       hour: Hour
       day_of_week: Day of week
       day_of_month: Day of month
-      monday: Monday
-      tuesday: Tuesday
-      wednesday: Wednesday
-      thursday: Thursday
-      friday: Friday
-      saturday: Saturday
-      sunday: Sunday
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid

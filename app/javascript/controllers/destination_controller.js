@@ -16,15 +16,14 @@ export default class extends Controller {
   static values = {
     emails: Array,
     kinds: Object,
+    parameters: Object,
   }
 
   connect() {
-    console.log("CONNECT")
     this.update()
   }
 
   choose() {
-    console.log("CHOOSE")
     this.update()
   }
 
@@ -70,13 +69,13 @@ export default class extends Controller {
 
           parameter.options.forEach((option) => {
             const optionElement = document.createElement("option")
-            optionElement.value = option
-            if (parameter.translate) {
-              optionElement.innerText = t(option)
+            optionElement.value = option[0]
+            optionElement.innerText = option[1]
+            if (this.parametersValue[key]) {
+              optionElement.selected = option[0] == this.parametersValue[key]
             } else {
-              optionElement.innerText = option
+              optionElement.selected = option[0] == parameter.default
             }
-            optionElement.selected = option == parameter.default
             selectElement.appendChild(optionElement)
           })
 

@@ -16,7 +16,7 @@ class Destination < ApplicationRecord
           default: "18",
           translate: false,
           kind: :select,
-          options: (0..23).map(&:to_s)
+          options: Parameter::HOURS
         }
       }
     },
@@ -30,7 +30,7 @@ class Destination < ApplicationRecord
           default: "18",
           translate: false,
           kind: :select,
-          options: (0..23).map(&:to_s)
+          options: Parameter::HOURS
         }
       }
     },
@@ -44,13 +44,13 @@ class Destination < ApplicationRecord
           default: "18",
           translate: false,
           kind: :select,
-          options: (0..23).map(&:to_s)
+          options: Parameter::HOURS
         },
         day_of_week: {
           default: :thursday,
           translate: true,
           kind: :select,
-          options: [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
+          options: Parameter::DAYS_OF_WEEK
         }
       }
     },
@@ -64,13 +64,13 @@ class Destination < ApplicationRecord
           default: "18",
           translate: false,
           kind: :select,
-          options: (0..23).map(&:to_s)
+          options: Parameter::HOURS
         },
         day_of_month: {
           default: "1",
           translate: false,
           kind: :select,
-          options: (1..31).map(&:to_s)
+          options: Parameter::DAYS_OF_MONTH
         }
       }
     }
@@ -78,13 +78,13 @@ class Destination < ApplicationRecord
 
   belongs_to :pipeline
   belongs_to :destinable, polymorphic: true
-  has_one :user, through: :pipeline
 
   has_many :parameters, as: :parameterizable, dependent: :destroy
 
   accepts_nested_attributes_for :parameters
 
   validates :destinable_type, inclusion: {in: ["Email"]}
+  validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
 
@@ -94,6 +94,11 @@ class Destination < ApplicationRecord
 
   def self.kind_parameters
     KINDS.map { |key, value| [value.fetch(:parameters), key] }
+  end
+
+  def parameters_attributes=(*args)
+    self.parameters = []
+    super(*args)
   end
 
   def name
@@ -112,16 +117,20 @@ class Destination < ApplicationRecord
     SendToDestinationJob.perform_later(destination: self, item: item)
   end
 
+  def parameters_hash
+    parameters.map { |parameter| [parameter.key, parameter.value] }.to_h
+  end
+
   private
 
   def own_destinable
-    if (!destinable || destinable.user == user) && !user.admin?
+    if destinable && destinable.user != pipeline.user
       errors.add(:destinable, I18n.t("errors.not_own"))
     end
   end
 
   def verified_destinable
-    if !destinable || !destinable.verified?
+    if destinable && !destinable.verified?
       errors.add(:destinable, I18n.t("errors.not_verified"))
     end
   end
