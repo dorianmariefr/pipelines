@@ -3,26 +3,21 @@ class Destination < ApplicationRecord
     email: {
       name: "Email",
       subclass: "Destination::Email",
+      instant: true,
       destinable_type: :Email,
       destinable_label: :email
     },
     hourly_email_digest: {
       name: "Hourly Email Digest",
       subclass: "Destination::HourlyEmailDigest",
+      instant: false,
       destinable_type: :Email,
-      destinable_label: :email,
-      parameters: {
-        hour: {
-          default: "18",
-          translate: false,
-          kind: :select,
-          options: Parameter::HOURS
-        }
-      }
+      destinable_label: :email
     },
     daily_email_digest: {
       name: "Daily Email Digest",
       subclass: "Destination::DailyEmailDigest",
+      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -37,6 +32,7 @@ class Destination < ApplicationRecord
     weekly_email_digest: {
       name: "Weekly Email Digest",
       subclass: "Destination::WeeklyEmailDigest",
+      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -57,6 +53,7 @@ class Destination < ApplicationRecord
     monthly_email_digest: {
       name: "Monthly Email Digest",
       subclass: "Destination::MonthlyEmailDigest",
+      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -78,12 +75,21 @@ class Destination < ApplicationRecord
 
   belongs_to :pipeline
   belongs_to :destinable, polymorphic: true
+  has_one :user, through: :pipeline
+  has_many :sources, through: :pipeline
+  has_many :items, through: :sources
 
   has_many :parameters, as: :parameterizable, dependent: :destroy
 
   accepts_nested_attributes_for :parameters
 
-  validates :destinable_type, inclusion: {in: ["Email"]}
+  scope :email, -> { where(kind: :email) }
+  scope :hourly_email_digest, -> { where(kind: :hourly_email_digest) }
+  scope :daily_email_digest, -> { where(kind: :daily_email_digest) }
+  scope :weekly_email_digest, -> { where(kind: :weekly_email_digest) }
+  scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
+
+  validates :destinable_type, inclusion: { in: ["Email"] }
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
@@ -105,20 +111,31 @@ class Destination < ApplicationRecord
     KINDS.dig(kind.to_sym, :name)
   end
 
+  def instant?
+    KINDS.dig(kind.to_sym, :instant)
+  end
+
   def subclass
     KINDS.dig(kind.to_sym, :subclass).constantize.new(self)
   end
 
-  def send_now(item)
-    subclass.send_now(item)
+  def send_now(items = nil)
+    subclass.send_now(items)
   end
 
-  def send_later(item)
-    SendToDestinationJob.perform_later(destination: self, item: item)
+  def send_later(items = nil)
+    SendToDestinationJob.perform_later(destination: self, items: items)
   end
 
-  def parameters_hash
-    parameters.map { |parameter| [parameter.key, parameter.value] }.to_h
+  def to
+    destinable.email
+  end
+
+  def params
+    parameters
+      .map { |parameter| [parameter.key, parameter.value] }
+      .to_h
+      .with_indifferent_access
   end
 
   private

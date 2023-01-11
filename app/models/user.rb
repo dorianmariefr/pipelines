@@ -32,6 +32,36 @@ class User < ApplicationRecord
     self.primary_phone_number = phone_numbers.first if primary_phone_number.nil?
   end
 
+  def time
+    Time.now.in_time_zone(time_zone)
+  end
+
+  def hour
+    time.hour
+  end
+
+  def day_of_week
+    if time.monday?
+      :monday
+    elsif time.tuesday?
+      :tuesday
+    elsif time.wednesday?
+      :wednesday
+    elsif time.thursday?
+      :thursday
+    elsif time.friday?
+      :friday
+    elsif time.saturday?
+      :saturday
+    else
+      :sunday
+    end
+  end
+
+  def day_of_month
+    time.day
+  end
+
   def reset_password_url
     Rails.application.routes.url_helpers.edit_user_password_url(
       signed_id(

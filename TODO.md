@@ -17,3 +17,6 @@
 - referrals, cc: jonan
 - duplicate pipeline to own account cc: jonan
 - we found 0/30 items cc: jonan (when processed)
+- use caching
+- Issues and Pull requests from GitHub, prabin
+- Twitter integration, willing to pay: tyro

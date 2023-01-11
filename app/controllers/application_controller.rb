@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include CanConcern
 
   before_action :set_locale
+  before_action :update_locale
 
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
@@ -28,6 +29,12 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale =
         http_accept_language.compatible_language_from(I18n.available_locales)
+    end
+  end
+
+  def update_locale
+    if current_user && current_user.locale != I18n.locale.to_s
+      current_user.update!(locale: I18n.locale)
     end
   end
 end

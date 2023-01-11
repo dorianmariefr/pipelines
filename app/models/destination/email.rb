@@ -4,11 +4,13 @@ class Destination
       @destination = destination
     end
 
-    def send_now(item)
-      EmailMailer
-        .with(to: to, subject: item.email_subject, body: item.email_body)
-        .email
-        .deliver_now
+    def send_now(items)
+      items.each do |item|
+        EmailMailer
+          .with(to: to, subject: item.email_subject, body: item.email_body)
+          .email
+          .deliver_later
+      end
     end
 
     private

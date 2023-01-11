@@ -1,4 +1,5 @@
-web: bin/rails server -p 3000
+web: rails server -p 3000
+jobs: rake jobs:work
 js: yarn build --watch
-css: bin/rails tailwindcss:watch
+css: rails tailwindcss:watch
 cloudflare: cloudflared tunnel --config .cloudflared.yml run

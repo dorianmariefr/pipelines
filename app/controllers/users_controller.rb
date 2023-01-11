@@ -38,11 +38,21 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: t(".notice")
+      respond_to do |format|
+        format.html { redirect_to user_path(@user), notice: t(".notice") }
+        format.json { head :no_content }
+      end
     else
-      build_user
-      flash.now.alert = @user.alert
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do
+          build_user
+          flash.now.alert = @user.alert
+          render :edit, status: :unprocessable_entity
+        end
+        format.json do
+          render json: {error: @user.alert}, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -61,6 +71,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :name,
+      :locale,
+      :time_zone,
       :password,
       emails_attributes: %i[id email _destroy],
       phone_numbers_attributes: %i[id phone_number _destroy]
