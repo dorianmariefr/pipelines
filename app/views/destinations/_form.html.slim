@@ -1,15 +1,16 @@
-.destination-js.card
+.destination-js.card(data-controller="destination" data-destination-kinds-value="#{Destination::KINDS.to_json}" data-destination-emails-value="#{current_user.verified_emails_hashes.to_json}")
   = f.hidden_field :_destroy
+  = f.hidden_field :destinable_type, data: { destination_target: "destinableType" }
 
   .p
     = f.label :kind, t(".kind")
-    = f.select :kind, destination_kinds_options(f.object)
+    = f.select :kind, destination_kinds_options(f.object), {}, data: { destination_target: "kind", action: "destination#choose" }
 
-  = f.hidden_field :destinable_type, value: "Email"
+  div(data-destination-target="parameters")
 
   .p
-    = f.label :destinable_id, t(".email")
-    = f.select :destinable_id, options_from_collection_for_select(current_user.emails.verified, :id, :email)
+    = f.label :destinable_id, "&nbsp;".html_safe, data: { destination_target: "destinableLabel" }
+    = f.select :destinable_id, [], {}, data: { destination_target: "destinableId" }
 
   .p(data-destinations-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "destinations#remove" }

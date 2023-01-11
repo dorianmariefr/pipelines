@@ -40,4 +40,8 @@ class User < ApplicationRecord
       )
     )
   end
+
+  def verified_emails_hashes
+    emails.verified.map { |email| { id: email.id, email: email.email } }
+  end
 end

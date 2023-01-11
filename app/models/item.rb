@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :source
 
   def match(filter)
+    return true if filter.blank?
     Code.evaluate(filter, ruby: extras).truthy?
   end
 

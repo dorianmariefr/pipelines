@@ -1,5 +1,16 @@
 ---
 en:
+  parameters:
+    hour: Hour
+    day_of_week: Day of Week
+    day_of_month: Day of Month
+    monday: Monday
+    tueday: Tuesday
+    wednesday: Wednesday
+    thursday: Thursday
+    friday: Friday
+    saturday: Saturday
+    sunday: Sunday
   passwords:
     edit:
       title: Reset your password
@@ -9,6 +20,7 @@ en:
       hide_password: Hide password
   errors:
     not_verified: Not verified
+    not_own: Not your own
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
@@ -56,6 +68,18 @@ en:
       alert: Wrong verification code
       notice: Email verified
   js:
+    destination:
+      email: Email
+      hour: Hour
+      day_of_week: Day of week
+      day_of_month: Day of month
+      monday: Monday
+      tuesday: Tuesday
+      wednesday: Wednesday
+      thursday: Thursday
+      friday: Friday
+      saturday: Saturday
+      sunday: Sunday
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid

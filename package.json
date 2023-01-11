@@ -15,6 +15,7 @@
     "i18n-js": "*",
     "intl-tel-input": "*",
     "lint-staged": "*",
+    "lodash": "*",
     "prettier": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",

@@ -1,7 +1,12 @@
 .card
   p
     => destination.name
+    - if destination.parameters.any?
+      | (
+      = safe_join(destination.parameters.map(&:to_s), ", ")
+      ' )
     - if can?(:update, destination)
-      ' (#{t(".private")}
+      | (
+      b=> t(".private")
       = destination.destinable
       ' )

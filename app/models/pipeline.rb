@@ -19,18 +19,22 @@ class Pipeline < ApplicationRecord
   end
 
   def process_now
-    items = sources.map(&:fetch).flatten
+    ApplicationRecord.transaction do
+      items = sources.map(&:fetch).flatten
 
-    destinations.each do |destination|
-      items.each { |item| destination.send_now(item) }
+      destinations.each do |destination|
+        items.each { |item| destination.send_now(item) }
+      end
     end
   end
 
   def process_later
-    items = sources.map(&:fetch).flatten
+    ApplicationRecord.transaction do
+      items = sources.map(&:fetch).flatten
 
-    destinations.each do |destination|
-      items.each { |item| destination.send_later(item) }
+      destinations.each do |destination|
+        items.each { |item| destination.send_later(item) }
+      end
     end
   end
 

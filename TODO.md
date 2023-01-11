@@ -1,5 +1,4 @@
-- remove users list cc: jonan
-- Email digest per day cc: Flavio, Jonan
+- Email digest per day cc: Flavio, Jonan, David
 - About cc: Ahmed, jonan
 - Style emails cc: allancoder
 - SMS verification, cc: tyro
@@ -12,7 +11,7 @@
 - Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
 - Contacter Louis, cc: benjamin
 - Example filters cc: jonan
-- Interface for conditions cc: jonan
+- Interface for conditions cc: jonan, david
 - RSS feeds, cc: jonan
 - check once a month with jonan
 - referrals, cc: jonan

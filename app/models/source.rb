@@ -17,6 +17,8 @@ class Source < ApplicationRecord
   has_many :parameters, as: :parameterizable, dependent: :destroy
   has_many :items, dependent: :destroy
 
+  accepts_nested_attributes_for :parameters
+
   def self.kinds_options
     KINDS.flat_map do |parent_key, parent_value|
       parent_value.map do |key, value|
