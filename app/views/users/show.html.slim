@@ -18,7 +18,7 @@
 
     .p= button_to t(".delete"), @user, method: :delete, class: "button--link text-red-600", form: { data: { turbo_confirm: t(".confirm") } }
 
-h3= t(".pipelines")
+h3= link_to t(".pipelines"), [@user, :pipelines]
 
 - if @pipelines.any?
   - @pipelines.each do |pipeline|

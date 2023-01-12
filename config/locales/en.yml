@@ -83,15 +83,19 @@ en:
     application:
       log_in: Log in
       log_out: Log out
-      my_pipelines: My pipelines
+      your_pipelines: Your pipelines
       privacy: Privacy Policy
-      published_pipelines: Published pipelines
+      published_pipelines: Public pipelines
       register: Register
       switch: Français
       terms: Terms and Conditions
       title: Pipelines
   pages:
     home:
+      new_pipeline: New pipeline
+      published_users: Public users
+      your_pipelines: Your pipelines
+      published_pipelines: Public pipelines
       log_in: Log in
       register: Register
       title: Home
@@ -166,16 +170,15 @@ en:
       destinations: Destinations
       name: Name
       "no": "No"
-      published: Published?
+      published: Public?
       sources: Sources
       "yes": "Yes"
     index:
       new: New pipeline
       none: None
       title:
-        my_pipelines: My pipelines
-        pipelines: Pipelines
-        published_pipelines: Published pipelines
+        your_pipelines: Your pipelines
+        published_pipelines: Public pipelines
         user_pipelines: "%{name}'s pipelines"
     new:
       submit: Create pipeline
@@ -183,6 +186,7 @@ en:
     process_now:
       notice: Your pipeline has been processed
     show:
+      by: By
       delete: Delete pipeline
       destinations: Destinations
       edit: Edit pipeline
@@ -190,9 +194,9 @@ en:
       no_destinations: No destinations
       no_items: No items
       no_sources: No sources
-      not_published: Not published
+      not_published: Not public
       process: Process
-      published: Published
+      published: Public
       sources: Sources
     update:
       notice: Pipeline updated

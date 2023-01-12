@@ -83,18 +83,22 @@ fr:
     application:
       log_in: Se connecter
       log_out: Se déconnecter
-      my_pipelines: Mes pipelines
       privacy: Politique de confidentialité
-      published_pipelines: Pipelines publiées
+      published_pipelines: Pipelines publiques
       register: S'inscrire
       switch: English
       terms: Termes et Conditions
       title: Pipelines
+      your_pipelines: Tes pipelines
   pages:
     home:
       log_in: Se connecter
+      new_pipeline: Nouvelle pipeline
+      published_pipelines: Pipelines publiques
+      published_users: Utilisateurs publiques
       register: S'inscrire
       title: Accueil
+      your_pipelines: Tes pipelines
     privacy:
       title: Politique de confidentialité
     terms:
@@ -166,23 +170,23 @@ fr:
       destinations: Destinations
       name: Nom
       "no": Non
-      published: Publiée ?
+      published: Publique ?
       sources: Sources
       "yes": Oui
     index:
       new: Nouvelle pipeline
       none: Aucunes
       title:
-        my_pipelines: Mes pipelines
-        pipelines: Pipelines
-        published_pipelines: Pipelines publiées
+        published_pipelines: Pipelines publiques
         user_pipelines: Pipelines de %{name}
+        your_pipelines: Tes pipelines
     new:
       submit: Créer une pipeline
       title: Nouvelle pipeline
     process_now:
       notice: Ta pipeline a été traitée
     show:
+      by: Par
       delete: Supprimer la pipeline
       destinations: Destinations
       edit: Modifier la pipeline
@@ -190,9 +194,9 @@ fr:
       no_destinations: Aucunes destinations
       no_items: Aucun item
       no_sources: Aucunes sources
-      not_published: Non publiée
+      not_published: Non publique
       process: Traiter
-      published: Publiée
+      published: Publique
       sources: Sources
     update:
       notice: Pipeline mise à jour

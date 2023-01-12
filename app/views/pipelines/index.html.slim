@@ -1,12 +1,10 @@
 - content_for(:title) do
   - if @user && @user == current_user
-      = t(".title.my_pipelines")
+      = t(".title.your_pipelines")
   - elsif @user
       = t(".title.user_pipelines", name: @user.name)
-  - elsif current_user
-    = t(".title.published_pipelines")
   - else
-    = t(".title.pipelines")
+    = t(".title.published_pipelines")
 
 - if can? :create, Pipeline
   .p= button_to t(".new"), new_pipeline_path, method: :get

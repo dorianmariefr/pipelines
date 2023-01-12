@@ -25,6 +25,9 @@ class User < ApplicationRecord
     reject_if: lambda { |attributes| attributes[:phone_number].blank? }
   )
 
+  scope :published,
+    -> { left_joins(:pipelines).merge(Pipeline.published).distinct }
+
   validates :name, presence: true
 
   before_validation do
@@ -72,6 +75,6 @@ class User < ApplicationRecord
   end
 
   def verified_emails_hashes
-    emails.verified.map { |email| { id: email.id, email: email.email } }
+    emails.verified.map { |email| {id: email.id, email: email.email} }
   end
 end

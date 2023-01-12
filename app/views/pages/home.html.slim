@@ -1,4 +1,25 @@
-- unless current_user
+- if !current_user
   .flex.gap-4
     .p= button_to t(".register"), new_user_path, method: :get, class: "button--primary"
     .p= button_to t(".log_in"), new_session_path, method: :get
+
+- if can? :create, Pipeline
+  .p= button_to t(".new_pipeline"), new_pipeline_path, method: :get
+
+- if @pipelines.any?
+  h3= t(".your_pipelines")
+
+  - @pipelines.each do |pipeline|
+    = render "pipelines/pipeline", pipeline: pipeline
+
+- if @published_pipelines.any?
+  h3= t(".published_pipelines")
+
+  - @published_pipelines.each do |pipeline|
+    = render "pipelines/pipeline", pipeline: pipeline
+
+- if @published_users.any?
+  h3= t(".published_users")
+
+  - @published_users.each do |user|
+    = render "users/user", user: user

@@ -7,14 +7,13 @@ class PipelinesController < ApplicationController
 
     @pipelines = policy_scope(Pipeline).order(created_at: :asc)
 
-    @pipelines =
-      (@user ? @pipelines.where(user: current_user) : @pipelines.published)
+    @pipelines = (@user ? @pipelines.where(user: @user) : @pipelines.published)
   end
 
   def show
     @sources = @pipeline.sources
     @destinations = @pipeline.destinations
-    @items = @pipeline.items
+    @items = @pipeline.items.order(created_at: :desc)
   end
 
   def process_now
