@@ -22,9 +22,7 @@ class Pipeline < ApplicationRecord
     ApplicationRecord.transaction do
       items = sources.map(&:fetch).flatten
 
-      destinations.each do |destination|
-        destination.send_now(items) if destination.instant?
-      end
+      destinations.each { |destination| destination.send_now(items) }
     end
   end
 
@@ -32,9 +30,7 @@ class Pipeline < ApplicationRecord
     ApplicationRecord.transaction do
       items = sources.map(&:fetch).flatten
 
-      destinations.each do |destination|
-        destination.send_later(items) if destination.instant?
-      end
+      destinations.instant.each { |destination| destination.send_later(items) }
     end
   end
 

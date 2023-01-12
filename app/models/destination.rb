@@ -3,21 +3,18 @@ class Destination < ApplicationRecord
     email: {
       name: "Email",
       subclass: "Destination::Email",
-      instant: true,
       destinable_type: :Email,
       destinable_label: :email
     },
     hourly_email_digest: {
       name: "Hourly Email Digest",
       subclass: "Destination::HourlyEmailDigest",
-      instant: false,
       destinable_type: :Email,
       destinable_label: :email
     },
     daily_email_digest: {
       name: "Daily Email Digest",
       subclass: "Destination::DailyEmailDigest",
-      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -32,7 +29,6 @@ class Destination < ApplicationRecord
     weekly_email_digest: {
       name: "Weekly Email Digest",
       subclass: "Destination::WeeklyEmailDigest",
-      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -53,7 +49,6 @@ class Destination < ApplicationRecord
     monthly_email_digest: {
       name: "Monthly Email Digest",
       subclass: "Destination::MonthlyEmailDigest",
-      instant: false,
       destinable_type: :Email,
       destinable_label: :email,
       parameters: {
@@ -88,8 +83,9 @@ class Destination < ApplicationRecord
   scope :daily_email_digest, -> { where(kind: :daily_email_digest) }
   scope :weekly_email_digest, -> { where(kind: :weekly_email_digest) }
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
+  scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: { in: ["Email"] }
+  validates :destinable_type, inclusion: {in: ["Email"]}
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
@@ -109,10 +105,6 @@ class Destination < ApplicationRecord
 
   def name
     KINDS.dig(kind.to_sym, :name)
-  end
-
-  def instant?
-    KINDS.dig(kind.to_sym, :instant)
   end
 
   def subclass
