@@ -84,12 +84,10 @@ fr:
       log_in: Se connecter
       log_out: Se déconnecter
       privacy: Politique de confidentialité
-      published_pipelines: Pipelines publiques
       register: S'inscrire
       switch: English
       terms: Termes et Conditions
       title: Pipelines
-      your_pipelines: Tes pipelines
   pages:
     home:
       log_in: Se connecter
