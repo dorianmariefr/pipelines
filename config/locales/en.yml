@@ -1,41 +1,24 @@
 ---
 en:
-  parameters:
-    hour: Hour
-    day_of_week: Day of Week
-    day_of_month: Day of Month
-    monday: Monday
-    tuesday: Tuesday
-    wednesday: Wednesday
-    thursday: Thursday
-    friday: Friday
-    saturday: Saturday
-    sunday: Sunday
-  passwords:
-    edit:
-      title: Reset your password
-      password: Password
-      submit: Reset password
-      show_password: Show password
-      hide_password: Hide password
-  errors:
-    not_verified: Not verified
-    not_own: Not your own
-  attributes:
-    normalized_email: Email
-    normalized_phone_number: Phone number
   application:
     fake:
       eg: e.g. %{string}
+  attributes:
+    normalized_email: Email
+    normalized_phone_number: Phone number
+  destinations:
+    destination:
+      private: "private:"
+    form:
+      email: Email
+      kind: Kind
+      remove: Remove
   email_mailer:
     password_reset_email:
       subject: Reset your password
     verification_email:
       subject: Verify your email (%{verification_code})
   emails:
-    form:
-      email: Email
-      remove: Remove
     create:
       notice: Email created
     destroy:
@@ -53,6 +36,9 @@ en:
       verification_code: Verification code
       verification_code_sent: Verification code sent
       verified: Verified
+    form:
+      email: Email
+      remove: Remove
     send_verification:
       notice: Verification code sent
     show:
@@ -67,15 +53,18 @@ en:
     update:
       alert: Wrong verification code
       notice: Email verified
+  errors:
+    not_own: Not your own
+    not_verified: Not verified
   js:
-    destination:
-      email: Email
-      hour: Hour
-      day_of_week: Day of week
-      day_of_month: Day of month
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
+    destination:
+      day_of_month: Day of month
+      day_of_week: Day of week
+      email: Email
+      hour: Hour
     email:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -94,32 +83,50 @@ en:
     application:
       log_in: Log in
       log_out: Log out
+      my_pipelines: My pipelines
+      privacy: Privacy Policy
+      published_pipelines: Published pipelines
       register: Register
       switch: Français
-      title: Pipelines
-      my_pipelines: My pipelines
-      published_pipelines: Published pipelines
-      privacy: Privacy Policy
       terms: Terms and Conditions
+      title: Pipelines
   pages:
-    terms:
-      title: Terms and Conditions
-    privacy:
-      title: Privacy Policy
     home:
       log_in: Log in
       register: Register
       title: Home
+    privacy:
+      title: Privacy Policy
+    terms:
+      title: Terms and Conditions
+  parameters:
+    day_of_month: Day of Month
+    day_of_week: Day of Week
+    friday: Friday
+    hour: Hour
+    monday: Monday
+    saturday: Saturday
+    sunday: Sunday
+    thursday: Thursday
+    tuesday: Tuesday
+    wednesday: Wednesday
+  passwords:
+    edit:
+      hide_password: Hide password
+      password: Password
+      show_password: Show password
+      submit: Reset password
+      title: Reset your password
   phone_numbers:
-    form:
-      phone_number: Phone Number
-      remove: Remove
     create:
       notice: Phone number created
     destroy:
       notice: Phone number deleted
     edit:
       title: Verify your phone number
+    form:
+      phone_number: Phone Number
+      remove: Remove
     phone_number:
       add: Add
       add_phone_number: Add phone number
@@ -145,10 +152,51 @@ en:
     update:
       alert: Wrong verification code
       notice: Phone number verified
+  pipelines:
+    create:
+      notice: Pipeline created
+    destroy:
+      notice: Pipeline deleted
+    edit:
+      submit: Update pipeline
+      title: Edit pipeline
+    form:
+      add_destination: Add destination
+      add_source: Add source
+      destinations: Destinations
+      name: Name
+      "no": "No"
+      published: Published?
+      sources: Sources
+      "yes": "Yes"
+    index:
+      new: New pipeline
+      none: None
+      title:
+        my_pipelines: My pipelines
+        pipelines: Pipelines
+        published_pipelines: Published pipelines
+        user_pipelines: "%{name}'s pipelines"
+    new:
+      submit: Create pipeline
+      title: New pipeline
+    process_now:
+      notice: Your pipeline has been processed
+    show:
+      delete: Delete pipeline
+      destinations: Destinations
+      edit: Edit pipeline
+      items: Items
+      no_destinations: No destinations
+      no_items: No items
+      no_sources: No sources
+      not_published: Not published
+      process: Process
+      published: Published
+      sources: Sources
+    update:
+      notice: Pipeline updated
   sessions:
-    reset:
-      notice: Password reset email sent
-      alert: Email not found
     create:
       must_be_present: Email or phone number must be present
       notice: You are now logged in
@@ -159,18 +207,37 @@ en:
       notice: You are now logged out
     new:
       email: Email
+      forgot_your_password: Forgot your password?
       hide_password: Hide password
       log_in_with_email: Log in with email
       log_in_with_phone_number: Log in with phone number
+      login_with_facebook: Log in with Facebook
+      login_with_google: Log in with Google
       password: Password
       phone_number: Phone Number
+      send_password_reset: Send password reset
       show_password: Show password
       submit: Log in
       title: Log in
-      forgot_your_password: Forgot your password?
-      send_password_reset: Send password reset
-      login_with_google: Log in with Google
-      login_with_facebook: Log in with Facebook
+    reset:
+      alert: Email not found
+      notice: Password reset email sent
+  sources:
+    form:
+      filter: Filter
+      kind: Kind
+      remove: Remove
+    hacker_news:
+      newest:
+        comments:
+          one: 1 comment
+          other: "%{count} comments"
+          zero: 0 comments
+      news:
+        comments:
+          one: 1 comment
+          other: "%{count} comments"
+          zero: 0 comments
   users:
     create:
       notice: User created, you are now logged in
@@ -180,17 +247,17 @@ en:
       submit: Update profile
       title: Edit profile
     form:
+      add_email: Add email
+      add_phone_number: Add phone number
       hide_password: Hide password
       name: Name
       password: Password
       show_password: Show password
-      add_email: Add email
-      add_phone_number: Add phone number
     index:
       title: Users
     new:
-      register_with_google: Register with Google
       register_with_facebook: Register with Facebook
+      register_with_google: Register with Google
       submit: Register
       title: Register
     show:
@@ -199,78 +266,11 @@ en:
       edit: Edit profile
       email: Email
       emails: Emails
+      none: None
       not_verified: "(not verified)"
       phone_numbers: Phone numbers
+      pipelines: Pipelines
       private: Private
       verified: "(verified)"
-      pipelines: Pipelines
-      none: None
     update:
       notice: User updated
-  pipelines:
-    process_now:
-      notice: "Your pipeline has been processed"
-    index:
-      title:
-        pipelines: Pipelines
-        published_pipelines: Published pipelines
-        my_pipelines: My pipelines
-        user_pipelines: "%{name}'s pipelines"
-      none: None
-      new: New pipeline
-    new:
-      title: New pipeline
-      submit: Create pipeline
-    edit:
-      title: Edit pipeline
-      submit: Update pipeline
-    form:
-      name: Name
-      published: Published?
-      "yes": "Yes"
-      "no": "No"
-      sources: Sources
-      destinations: Destinations
-      add_source: Add source
-      add_destination: Add destination
-    create:
-      notice: Pipeline created
-    update:
-      notice: Pipeline updated
-    destroy:
-      notice: Pipeline deleted
-    show:
-      edit: Edit pipeline
-      delete: Delete pipeline
-      sources: Sources
-      destinations: Destinations
-      no_sources: No sources
-      no_destinations: No destinations
-      published: Published
-      not_published: Not published
-      process: Process
-      items: Items
-      no_items: No items
-  sources:
-    hacker_news:
-      news:
-        comments:
-          zero: 0 comments
-          one: 1 comment
-          other: "%{count} comments"
-      newest:
-        comments:
-          zero: 0 comments
-          one: 1 comment
-          other: "%{count} comments"
-    form:
-      kind: Kind
-      remove: Remove
-      filter: Filter
-  destinations:
-    form:
-      kind: Kind
-      remove: Remove
-      email: Email
-    destination:
-      private: "private:"
