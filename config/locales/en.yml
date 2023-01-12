@@ -90,6 +90,15 @@ en:
       title: Pipelines
   pages:
     home:
+      overview: Overview
+      step_1: First you will need to login or register.
+      step_2: You can register with Google, Facebook, email or phone number.
+      step_3: If you used email or phone number you will need to verify those, otherwise you can create a new pipeline.
+      step_4: A pipeline has a name, is it public?, sources and destinations.
+      step_5: 'You can include Code in your filter like "score > 100", "keywords.include?("Ruby")" or "title.include?("Show HN")".'
+      step_6: A pipeline is processed every minute and you can decide when you will receive the emails (now, hourly, daily, weekly, monthly) at a specific hour in your time zone to the email address of your choice.
+      step_7: Now that your pipeline is created you can go ahead and process it.
+      step_8: You can now see it has been processed and will continue to be processed automatically from now on. If any items matched, you will see them at the bottom.
       new_pipeline: New pipeline
       published_users: Public users
       your_pipelines: Your pipelines

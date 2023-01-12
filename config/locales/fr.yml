@@ -92,9 +92,27 @@ fr:
     home:
       log_in: Se connecter
       new_pipeline: Nouvelle pipeline
+      overview: Aperçu
       published_pipelines: Pipelines publiques
       published_users: Utilisateurs publiques
       register: S'inscrire
+      step_1: Tu dois d'abord te connecter ou t'inscrire.
+      step_2: Tu peux t'inscrire avec Google, Facebook, email, ou numéro de téléphone.
+      step_3:
+        Si tu as utilisé un e-mail ou un numéro de téléphone, tu dois les vérifier,
+        sinon tu peux pouvez créer une nouvelle pipeline.
+      step_4: Une pipeline a un nom, est-elle publique ?, des sources et des destinations.
+      step_5: 'Tu peux inclure du Code dans ton filtre comme "score > 100", "keywords.include?("Ruby")" ou "title.include?("Show HN")'
+      step_6:
+        Une pipeline est traitée toutes les minutes et tu peux décider quand
+        tu reçois les e-mails (maintenant, toutes les heures, tous les jours, toutes
+        les semaines, tous les mois) à une heure précise de ton fuseau horaire à l'adresse
+        e-mail de ton choix.
+      step_7: Maintenant que ta pipeline est créée, tu peux continuer et la traiter.
+      step_8:
+        Tu peux maintenant voir qu'elle a été traitée et continuera à être traitée
+        automatiquement à partir de maintenant. Si des éléments correspondent, tu
+        les verras en bas.
       title: Accueil
       your_pipelines: Tes pipelines
     privacy:
@@ -188,9 +206,9 @@ fr:
       delete: Supprimer la pipeline
       destinations: Destinations
       edit: Modifier la pipeline
-      items: Items
+      items: Éléments
       no_destinations: Aucunes destinations
-      no_items: Aucun item
+      no_items: Aucun élément
       no_sources: Aucunes sources
       not_published: Non publique
       process: Traiter

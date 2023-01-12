@@ -24,11 +24,9 @@
   - @published_users.each do |user|
     = render "users/user", user: user
 
-= image_tag "step-1.jpg"
-= image_tag "step-2.jpg"
-= image_tag "step-3.jpg"
-= image_tag "step-4.jpg"
-= image_tag "step-5.jpg"
-= image_tag "step-6.jpg"
-= image_tag "step-7.jpg"
-= image_tag "step-8.jpg"
+h3= t(".overview")
+
+- (1..8).each do |i|
+  p
+    = t(".step_#{i}")
+    = image_tag "step-#{i}.jpg", class: "border border-black max-h-[40rem] rounded mx-auto"
