@@ -1,21 +1,35 @@
-- Style emails cc: allancoder
+### Current
+
+- RSS feeds, cc: jonan
+
+### High urgency
+
+- Twitter integration, cc: tyro, benjamin
+- Reddit integration
+- Facebook integration
+- Instagram integration
+- Frimake integration
+- GitHub integration cc: prabin
+
+### Medium urgency
+
+- duplicate pipeline to own account cc: jonan
+- Mail merge
 - SMS verification, cc: tyro
 - Filtering documentation cc: tyro, benjamin
-- Mettre à la fin le public true/false cc: benjamin
-- Mettre des exemples de noms de pipelines cc: benjamin
-- Mettre des choix grisés pour les sources cc: benjamin
 - Prévisualisation des filtres, cc: benjamin
-- Mettre les choix grisés pour les destinations, cc: benjamin
-- Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
-- Contacter Louis, cc: benjamin
 - Example filters cc: jonan
 - Interface for conditions cc: jonan, david
-- RSS feeds, cc: jonan
-- check once a month with jonan
 - referrals, cc: jonan
-- duplicate pipeline to own account cc: jonan
 - we found 0/30 items cc: jonan (when processed)
+
+### Low urgency
+
 - use caching
-- Issues and Pull requests from GitHub, prabin
-- Twitter integration, willing to pay: tyro
-- Mail merge
+- Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
+- Mettre les choix grisés pour les destinations, cc: benjamin
+- Mettre des choix grisés pour les sources cc: benjamin
+- Mettre des exemples de noms de pipelines cc: benjamin
+- Mettre à la fin le public true/false cc: benjamin
+- Style emails cc: allancoder
+- check once a month with jonan
