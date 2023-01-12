@@ -1,4 +1,3 @@
-- Email digest per day cc: Flavio, Jonan, David
 - About cc: Ahmed, jonan
 - Style emails cc: allancoder
 - SMS verification, cc: tyro
@@ -20,3 +19,4 @@
 - use caching
 - Issues and Pull requests from GitHub, prabin
 - Twitter integration, willing to pay: tyro
+- Mail merge

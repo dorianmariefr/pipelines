@@ -1,22 +1,22 @@
 ---
 fr:
-  activerecord:
-    attributes:
-      email:
-        normalized_email: Email
-      phone_number:
-        normalized_phone_number: Numéro de téléphone
   application:
     fake:
       eg: e.g. %{string}
+  attributes:
+    normalized_email: Email
+    normalized_phone_number: Numéro de téléphone
   destinations:
+    destination:
+      private: "privé:"
     form:
+      email: Email
       kind: Genre
-      remove: Supprimer
+      remove: Enlever
   email_mailer:
+    password_reset_email:
+      subject: Réinitialiser ton mot de passe
     verification_email:
-      hi: Bonjour %{name},
-      intro: "Ton code de vérification est:"
       subject: Vérifie ton email (%{verification_code})
   emails:
     create:
@@ -36,6 +36,9 @@ fr:
       verification_code: Code de vérification
       verification_code_sent: Code de vérification envoyé
       verified: Vérifiée
+    form:
+      email: Email
+      remove: Enlever
     send_verification:
       notice: Code de vérification envoyé
     show:
@@ -50,10 +53,18 @@ fr:
     update:
       alert: Mauvais code de vérification
       notice: Email vérifiée
+  errors:
+    not_own: Pas le tien
+    not_verified: Non vérifié
   js:
     code:
       must_be_present: Doît être présent
       must_be_valid: Doît être valide
+    destination:
+      day_of_month: Jour du mois
+      day_of_week: Jour de la semaine
+      email: Email
+      hour: Heure
     email:
       must_be_present: Doît être présente
       must_be_valid: Doît être valide
@@ -73,17 +84,39 @@ fr:
       log_in: Se connecter
       log_out: Se déconnecter
       my_pipelines: Mes pipelines
-      pipelines: Pipelines
+      privacy: Politique de confidentialité
       published_pipelines: Pipelines publiées
       register: S'inscrire
       switch: English
+      terms: Termes et Conditions
       title: Pipelines
-      users: Utilisateurs
   pages:
     home:
       log_in: Se connecter
       register: S'inscrire
       title: Accueil
+    privacy:
+      title: Politique de confidentialité
+    terms:
+      title: Termes et Conditions
+  parameters:
+    day_of_month: Jour du mois
+    day_of_week: Jour de la semaine
+    friday: Vendredi
+    hour: Heure
+    monday: Lundi
+    saturday: Samedi
+    sunday: Dimanche
+    thursday: Jeudi
+    tuesday: Mardi
+    wednesday: Mercredi
+  passwords:
+    edit:
+      hide_password: Cacher le mot de passe
+      password: Mot de passe
+      show_password: Montrer le mot de passe
+      submit: Réinitialiser ton mot de passe
+      title: Réinitialiser ton mot de passe
   phone_numbers:
     create:
       notice: Numéro de téléphone créé
@@ -91,6 +124,9 @@ fr:
       notice: Numéro de téléphone supprimé
     edit:
       title: Vérifier ton numéro de téléphone
+    form:
+      phone_number: Numéro de téléphone
+      remove: Enlever
     phone_number:
       add: Ajouter
       add_phone_number: Ajouter un numéro de téléphone
@@ -144,12 +180,19 @@ fr:
     new:
       submit: Créer une pipeline
       title: Nouvelle pipeline
+    process_now:
+      notice: Ta pipeline a été traitée
     show:
       delete: Supprimer la pipeline
       destinations: Destinations
       edit: Modifier la pipeline
+      items: Items
       no_destinations: Aucunes destinations
+      no_items: Aucun item
       no_sources: Aucunes sources
+      not_published: Non publiée
+      process: Traiter
+      published: Publiée
       sources: Sources
     update:
       notice: Pipeline mise à jour
@@ -164,19 +207,37 @@ fr:
       notice: Tu es maintenant déconnecté(e)
     new:
       email: Email
+      forgot_your_password: Oublié ton mot passe ?
       hide_password: Cacher le mot de passe
       log_in_with_email: Se connecter avec une adresse email
       log_in_with_phone_number: Se connecter avec un numéro de téléphone
+      login_with_facebook: Se connecter avec Facebook
+      login_with_google: Se connecter avec Google
       password: Mot de passe
       phone_number: Numéro de téléphone
+      send_password_reset: Envoyer la réinitialisation de mot de passe
       show_password: Montrer le mot de passe
       submit: Se connecter
       title: Connexion
+    reset:
+      alert: Email non trouvé
+      notice: Email de réinitialisation de mot de passe envoyé
   sources:
     form:
       filter: Filtre
       kind: Genre
-      remove: Supprimer
+      remove: Enlever
+    hacker_news:
+      newest:
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
+      news:
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
   users:
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)
@@ -186,15 +247,17 @@ fr:
       submit: Mettre à jour le profil
       title: Modifier le profil
     form:
-      email: Email
+      add_email: Ajouter un email
+      add_phone_number: Ajouter un numéro de téléphone
       hide_password: Cacher le mot de passe
       name: Nom
       password: Mot de passe
-      phone_number: Numéro de téléphone
       show_password: Montrer le mot de passe
     index:
       title: Utilisateurs
     new:
+      register_with_facebook: S'inscrire avec Facebook
+      register_with_google: S'inscrire avec Google
       submit: S'inscrire
       title: Inscription
     show:
