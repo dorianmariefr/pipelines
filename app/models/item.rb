@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :source
 
-  validates :external_id, uniquness: {scope: :source_id}
+  validates :external_id, uniqueness: { scope: :source_id }
 
   def match(filter)
     return true if filter.blank?
