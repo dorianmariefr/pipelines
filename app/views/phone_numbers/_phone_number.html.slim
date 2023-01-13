@@ -29,7 +29,7 @@
     p(data-show-target="summary")
       = link_to t(".add_phone_number"), "#", data: { action: "show#show" }
     .hidden(data-show-target="details")
-      = form_for [phone_number.user, phone_number] do |f|
+      = form_for phone_number do |f|
         .p(data-controller="phone")
           = f.hidden_field :phone_number, data: { phone_target: "hidden" }
           .flex.gap-2

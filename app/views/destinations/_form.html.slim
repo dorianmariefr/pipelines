@@ -1,4 +1,4 @@
-.destination-js.card(data-controller="destination" data-destination-kinds-value="#{Destination::KINDS.to_json}" data-destination-emails-value="#{current_user.verified_emails_hashes.to_json}" data-destination-parameters-value="#{f.object.params.to_json}")
+.destination-js.card(data-controller="destination" data-destination-kinds-value="#{Destination::KINDS.to_json}" data-destination-emails-value="#{current_user.emails_json}" data-destination-parameters-value="#{f.object.params.to_json}")
   = f.hidden_field :_destroy
   = f.hidden_field :destinable_type, data: { destination_target: "destinableType" }
 

@@ -1,7 +1,5 @@
 ### Current
 
-- form hints
-
 ### High urgency
 
 - Twitter integration, cc: tyro, benjamin
@@ -26,10 +24,8 @@
 ### Low urgency
 
 - use caching
-- Mettre les emails grisés pour ceux qui sont pas vérifiés, cc: benjamin
 - Mettre les choix grisés pour les destinations, cc: benjamin
 - Mettre des choix grisés pour les sources cc: benjamin
 - Mettre des exemples de noms de pipelines cc: benjamin
 - Mettre à la fin le public true/false cc: benjamin
 - Style emails cc: allancoder
-- check once a month with jonan

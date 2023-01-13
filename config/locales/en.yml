@@ -85,6 +85,7 @@ en:
       day_of_week: Day of week
       email: Email
       hour: Hour
+      not_verified: " (not verified)"
     email:
       must_be_present: Must be present
       must_be_valid: Must be valid

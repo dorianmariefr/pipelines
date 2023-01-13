@@ -40,6 +40,10 @@ export default class extends Controller {
         const optionElement = document.createElement("option")
         optionElement.value = email.id
         optionElement.innerText = email.email
+        if (!email.verified) {
+          optionElement.disabled = true
+          optionElement.innerText += t("not_verified")
+        }
         this.destinableIdTarget.appendChild(optionElement)
       })
     } else {

@@ -1,6 +1,5 @@
 class EmailsController < ApplicationController
   before_action :load_email, only: %i[show update destroy send_verification]
-  before_action :load_user
 
   def show
     @verification_code = params[:verification_code]
@@ -9,17 +8,18 @@ class EmailsController < ApplicationController
   def send_verification
     @email.send_verification!
 
-    redirect_back_or_to user_path(@user), notice: t(".notice")
+    redirect_back_or_to user_path(@email.user), notice: t(".notice")
   end
 
   def create
-    @email = @user.emails.build(email_params)
+    @email = Email.new(email_params)
+    @email.user = current_user
     authorize @email
 
     if @email.save
-      redirect_to user_path(@user), notice: t(".notice")
+      redirect_to user_path(@email.user), notice: t(".notice")
     else
-      redirect_to user_path(@user), alert: @email.alert
+      redirect_to user_path(@email.user), alert: @email.alert
     end
   end
 
@@ -35,7 +35,7 @@ class EmailsController < ApplicationController
   def destroy
     @email.destroy!
 
-    redirect_to user_path(@user), notice: t(".notice")
+    redirect_to user_path(@email.user), notice: t(".notice")
   end
 
   private
@@ -46,15 +46,6 @@ class EmailsController < ApplicationController
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     @email =
       authorize policy_scope(Email).find(params[:id] || params[:email_id])
-  end
-
-  def load_user
-    @user =
-      if @email
-        @email.user
-      else
-        policy_scope(User).friendly.find(params[:user_id])
-      end
   end
 
   def email_params
