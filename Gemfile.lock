@@ -289,9 +289,6 @@ GEM
     redis (4.8.0)
     redis-client (0.11.2)
       connection_pool
-    redis-session-store (0.11.5)
-      actionpack (>= 6, < 8)
-      redis (>= 3, < 6)
     regexp_parser (2.6.1)
     rexml (3.2.5)
     rspec-core (3.12.0)
@@ -432,7 +429,6 @@ DEPENDENCIES
   rails
   rails-i18n
   redis
-  redis-session-store
   rspec-rails
   sentry-rails
   sentry-ruby
