@@ -11,7 +11,7 @@ class Email < ApplicationRecord
 
   scope :verified, -> { where(verified: true) }
 
-  validates :email, presence: true, format: {with: REGEXP}
+  validates :email, presence: true, format: { with: REGEXP }
   validates :normalized_email, uniqueness: true
 
   before_validation { self.normalized_email = EmailNormalizer.normalize(email) }

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :pipelines do
     post :process_now
+
+    resources :items
   end
 
   get "privacy" => "pages#privacy"

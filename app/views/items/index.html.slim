@@ -1,0 +1,7 @@
+- content_for(:title) { t(".title", name: @pipeline.name) }
+
+- if @items.any?
+  - @items.each do |item|
+    = render "items/item", item: item
+- else
+  p.italic.text-gray-600= t(".no_items")

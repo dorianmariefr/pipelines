@@ -50,7 +50,7 @@ class UsersController < ApplicationController
           render :edit, status: :unprocessable_entity
         end
         format.json do
-          render json: {error: @user.alert}, status: :unprocessable_entity
+          render json: { error: @user.alert }, status: :unprocessable_entity
         end
       end
     end

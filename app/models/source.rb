@@ -45,14 +45,16 @@ class Source < ApplicationRecord
   end
 
   def subclass
-    KINDS.dig(first_kind, second_kind, :subclass).constantize
+    KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
   end
 
   def fetch
-    new_items =
-      subclass.fetch.map do |item|
+    subclass
+      .fetch
+      .map do |item|
         items.build(external_id: item.external_id, extras: item.extras)
       end
-    new_items.select { |item| item.match(filter) }.select(&:save)
+      .select { |item| item.match(filter) }
+      .select(&:save)
   end
 end

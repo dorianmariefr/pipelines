@@ -34,7 +34,9 @@ h3= t(".destinations")
 - if can? :destroy, @pipeline
   .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--link text-red-600"
 
-h3= t(".items")
+h3= link_to t(".items"), [@pipeline, :items]
+
+p= link_to t(".rss_feed"), pipeline_items_path(@pipeline, format: :rss)
 
 - if @items.any?
   - @items.each do |item|

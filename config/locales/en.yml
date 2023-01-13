@@ -1,5 +1,9 @@
 ---
 en:
+  items:
+    index:
+      title: "%{name}'s items"
+      no_items: No items
   application:
     fake:
       eg: e.g. %{string}
@@ -205,6 +209,7 @@ en:
       process: Process
       published: Public
       sources: Sources
+      rss_feed: RSS feed
     update:
       notice: Pipeline updated
   sessions:

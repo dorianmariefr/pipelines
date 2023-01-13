@@ -85,7 +85,7 @@ class Destination < ApplicationRecord
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
   scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: {in: ["Email"]}
+  validates :destinable_type, inclusion: { in: ["Email"] }
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable

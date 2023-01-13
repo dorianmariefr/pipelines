@@ -26,7 +26,7 @@ class User < ApplicationRecord
   )
 
   scope :published,
-    -> { left_joins(:pipelines).merge(Pipeline.published).distinct }
+        -> { left_joins(:pipelines).merge(Pipeline.published).distinct }
 
   validates :name, presence: true
 
@@ -75,6 +75,6 @@ class User < ApplicationRecord
   end
 
   def verified_emails_hashes
-    emails.verified.map { |email| {id: email.id, email: email.email} }
+    emails.verified.map { |email| { id: email.id, email: email.email } }
   end
 end

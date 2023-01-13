@@ -19,10 +19,11 @@ class SessionsController < ApplicationController
       if email
         user = email.user
       else
-        user = User.create!(
-          name: auth.dig("info", "name"),
-          password: SecureRandom.hex
-        )
+        user =
+          User.create!(
+            name: auth.dig("info", "name"),
+            password: SecureRandom.hex
+          )
 
         user.emails.create!(email: email_param, verified: true)
       end
