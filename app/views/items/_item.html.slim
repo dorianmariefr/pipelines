@@ -5,5 +5,5 @@
   = safe_join(item.urls.map { |url| link_to url.text, url.href }, ", ")
   ' )
 
-  - if can? :destroy, item
+  - if can?(:destroy, item)
     = button_to t(".delete"), item, method: :delete, class: "text-red-600 button--link", form_class: "inline-block"
