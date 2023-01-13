@@ -1,4 +1,16 @@
+require "sidekiq/web"
+require "sidekiq/cron/web"
+
+class AdminOnlyConstraint
+  def matches?(request)
+    return false unless request.session[:user_id]
+    User.find_by(id: request.session[:user_id])&.admin?
+  end
+end
+
 Rails.application.routes.draw do
+  constraints(AdminOnlyConstraint.new) { mount Sidekiq::Web => "/sidekiq" }
+
   resource :session do
     post "reset"
   end
