@@ -1,5 +1,31 @@
 ---
 en:
+  posts:
+    send_later:
+      notice: Post sent
+    show:
+      title: Post
+      edit: Edit post
+      delete: Delete post
+      send: Send
+    index:
+      new: New post
+      title: Posts
+    form:
+      title: Title
+      description: Description
+    new:
+      title: New post
+      submit: Create post
+    edit:
+      title: Edit post
+      submit: Update post
+    create:
+      notice: Post created and sent
+    update:
+      notice: Post updated
+    destroy:
+      notice: Post deleted
   items:
     destroy_all:
       notice: All items of this pipeline have been deleted
@@ -111,6 +137,8 @@ en:
       title: Pipelines
   pages:
     home:
+      posts: Posts
+      new_post: New post
       overview: Overview
       step_1: First you will need to login or register.
       step_2: You can register with Google, Facebook, email or phone number.

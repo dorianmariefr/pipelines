@@ -6,6 +6,9 @@
 - if can? :create, Pipeline
   .p= button_to t(".new_pipeline"), new_pipeline_path, method: :get
 
+- if can? :create, Post
+  .p= button_to t(".new_post"), new_post_path, method: :get
+
 - if @pipelines.any?
   h3= t(".your_pipelines")
 
@@ -23,6 +26,12 @@
 
   - @published_users.each do |user|
     = render "users/user", user: user
+
+- if @posts.any?
+  h3= t(".posts")
+
+  - @posts.each do |post|
+    = render "posts/post", post: post
 
 h3= t(".overview")
 

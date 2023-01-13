@@ -41,6 +41,10 @@ Rails.application.routes.draw do
 
   resources :items
 
+  resources :posts do
+    post :send_later
+  end
+
   get "privacy" => "pages#privacy"
   get "terms" => "pages#terms"
 

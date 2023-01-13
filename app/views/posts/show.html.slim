@@ -1,0 +1,12 @@
+- content_for(:title, @post.title)
+
+= sanitize @post.description.to_s
+
+- if can?(:send_later, @post)
+  p= button_to t(".send"), [@post, :send_later]
+
+- if can?(:update, @post)
+  p= link_to t(".edit"), [:edit, @post]
+
+- if can?(:destroy, @post)
+  .p= button_to t(".delete"), @post, method: :delete, class: "text-red-600 button--link"

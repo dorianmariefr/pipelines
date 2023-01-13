@@ -1,4 +1,4 @@
-web: bundle exec rails server -p 3000
+web: OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES bundle exec rails server -p 3000
 jobs: bundle exec sidekiq
 js: yarn build --watch
 css: bundle exec rails tailwindcss:watch

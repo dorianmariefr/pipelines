@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 
 gem "aws-sdk-rails"
+gem "aws-sdk-s3", require: false
 gem "aws-sdk-ses"
 gem "bcrypt"
 gem "bootsnap", require: false
@@ -15,6 +16,7 @@ gem "faker"
 gem "friendly_id"
 gem "heroicon"
 gem "http_accept_language"
+gem "image_processing"
 gem "jsbundling-rails"
 gem "kaminari"
 gem "messagebird-rest", require: "messagebird"

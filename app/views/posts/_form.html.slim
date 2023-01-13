@@ -1,0 +1,10 @@
+= form_for post do |f|
+  .p
+    = f.label :title, t(".title")
+    = f.text_field :title
+
+  .p
+    = f.label :description, t(".description")
+    = f.rich_text_area :description
+
+  p= f.submit submit

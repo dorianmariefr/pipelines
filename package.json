@@ -7,6 +7,7 @@
     "@hotwired/stimulus": "*",
     "@hotwired/turbo-rails": "*",
     "@prettier/plugin-ruby": "*",
+    "@rails/actiontext": "*",
     "@tailwindcss/typography": "*",
     "autoprefixer": "*",
     "esbuild": "*",
@@ -19,7 +20,8 @@
     "prettier": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",
-    "tailwindcss": "*"
+    "tailwindcss": "*",
+    "trix": "*"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",

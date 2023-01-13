@@ -3,6 +3,11 @@ class EmailMailer < ApplicationMailer
     mail(to: params[:to], subject: params[:subject], body: params[:body])
   end
 
+  def rich_email
+    @body = params[:body]
+    mail(to: params[:to], subject: params[:subject])
+  end
+
   def verification_email
     @email = params[:email]
     @user = @email.user

@@ -22,4 +22,5 @@ Rails.application.configure do
     proc { |exception| raise exception.to_exception }
 
   config.hosts << "dev.pipelines.plumbing"
+  config.active_storage.service = :amazon
 end

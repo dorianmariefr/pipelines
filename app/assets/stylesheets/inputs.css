@@ -2,6 +2,7 @@
 [type="email"],
 [type="tel"],
 [type="password"],
+textarea,
 select {
   @apply block w-full p-2 border border-black rounded max-w-sm min-h-[46px];
 }
