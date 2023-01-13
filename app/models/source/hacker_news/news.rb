@@ -3,6 +3,7 @@ class Source
     class News
       BASE_URL = "https://news.ycombinator.com"
       TARGET_URL = BASE_URL
+      EXPIRES_IN = 1.minute
 
       def initialize(source)
         @source = source
@@ -12,7 +13,7 @@ class Source
         response =
           Rails
             .cache
-            .fetch(TARGET_URL, expires_in: 1.minute) do
+            .fetch([self.class.name, TARGET_URL], expires_in: EXPIRES_IN) do
               Net::HTTP.get(URI(TARGET_URL))
             end
         page = Nokogiri.HTML(response)

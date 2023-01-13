@@ -1,16 +1,15 @@
-### Current
-
 - Twitter integration, cc: tyro, benjamin
 - Reddit integration
+- Frimake integration
+- Pro plan, cc: benjamin, tyro, lucian
+- mastodon
+- telegram
+- GitHub integration cc: prabin
 - Facebook integration
 - Instagram integration
-- Frimake integration
-- GitHub integration cc: prabin
 - referrals, cc: jonan
-- Pro plan, cc: benjamin, tyro
 - Product Hunt integration
 - Lobsters integration
-- trending tweets by topic, cc: lucian
 - zapier
 - if this then that
 - SMS verification, cc: tyro
@@ -20,5 +19,3 @@
 - Interface for conditions cc: jonan, david
 - we found 0/30 items cc: jonan (when processed)
 - Style emails cc: allancoder
-- mastodon
-- telegram

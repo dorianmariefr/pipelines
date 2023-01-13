@@ -17,6 +17,9 @@ class Parameter < ApplicationRecord
   DAYS_OF_MONTH =
     (1..31).map { |day_of_month| [day_of_month.to_s, day_of_month.to_s] }
 
+  RESULT_TYPES =
+    %w[mixed recent popular].map { |result_type| [result_type, result_type] }
+
   belongs_to :parameterizable, polymorphic: true
 
   def translated_key

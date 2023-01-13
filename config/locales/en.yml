@@ -103,6 +103,9 @@ en:
     not_own: Not your own
     not_verified: Not verified
   js:
+    source:
+      result_type: Result type
+      query: Query
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -298,6 +301,8 @@ en:
         hacker_news:
           news: Hacker News - Frontpage Stories
           newest: Hacker News - New Stories
+        twitter:
+          search: Twitter - Search
     form:
       filter: Filter
       kind: Kind

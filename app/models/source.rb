@@ -7,6 +7,23 @@ class Source < ApplicationRecord
       newest: {
         subclass: "Source::HackerNews::Newest"
       }
+    },
+    twitter: {
+      search: {
+        subclass: "Source::Twitter::Search",
+        parameters: {
+          result_type: {
+            default: "recent",
+            translate: false,
+            kind: :select,
+            options: Parameter::RESULT_TYPES
+          },
+          query: {
+            default: "",
+            kind: :string
+          }
+        }
+      }
     }
   }
 
@@ -53,6 +70,13 @@ class Source < ApplicationRecord
 
   def subclass
     KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
+  end
+
+  def params
+    parameters
+      .map { |parameter| [parameter.key, parameter.value] }
+      .to_h
+      .with_indifferent_access
   end
 
   def fetch

@@ -1,10 +1,12 @@
-.source-js.card
+.source-js.card(data-controller="source" data-source-kinds-value="#{Source::KINDS.to_json}" data-source-parameters-value="#{f.object.params.to_json}")
   = f.hidden_field :_destroy
 
   .p
     = f.label :kind, t(".kind")
-    = f.select :kind, source_kinds_options(f.object)
+    = f.select :kind, source_kinds_options(f.object), {}, data: { source_target: "kind", action: "source#choose" }
     .text-gray-600= t(".kind_hint")
+
+  div(data-source-target="parameters")
 
   .p
     = f.label :filter, t(".filter")

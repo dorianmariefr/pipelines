@@ -4,12 +4,10 @@ class Item
       include ActionView::Helpers::UrlHelper
       include ActionView::Helpers::OutputSafetyHelper
 
+      delegate :url, to: :extras
+
       def initialize(item)
         @item = item
-      end
-
-      def url
-        extras.url
       end
 
       def urls
@@ -84,15 +82,15 @@ class Item
       end
 
       delegate :title,
-               :domain,
-               :host,
-               :protocol,
-               :comments_url,
-               :comments_count,
-               :score,
-               :user_id,
-               :user_url,
-               to: :extras
+        :domain,
+        :host,
+        :protocol,
+        :comments_url,
+        :comments_count,
+        :score,
+        :user_id,
+        :user_url,
+        to: :extras
     end
   end
 end
