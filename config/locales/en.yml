@@ -13,16 +13,26 @@ en:
   application:
     fake:
       eg: e.g. %{string}
+      or: " or "
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
   destinations:
+    model:
+      kinds:
+        email: Email
+        hourly_email_digest: Hourly email digest
+        daily_email_digest: Daily email digest
+        weekly_email_digest: Weekly email digest
+        monthly_email_digest: Monthly email digest
     destination:
       private: "private:"
     form:
       email: Email
       kind: Kind
+      kind_hint: In what kind of way you want to receive your items?
       remove: Remove
+      destinable_hint: On which verified email address do you want to receive the items?
   email_mailer:
     password_reset_email:
       subject: Reset your password
@@ -188,6 +198,7 @@ en:
       name: Name
       "no": "No"
       published: Public?
+      published_hint: This will make the pipeline visible publicly as well as your public account information
       sources: Sources
       "yes": "Yes"
     index:
@@ -246,10 +257,17 @@ en:
       alert: Email not found
       notice: Password reset email sent
   sources:
+    model:
+      kinds:
+        hacker_news:
+          news: Hacker News - Frontpage Stories
+          newest: Hacker News - New Stories
     form:
       filter: Filter
       kind: Kind
       remove: Remove
+      kind_hint: Where does the items come from?
+      filter_hint: You can use Code to filter your items
     hacker_news:
       newest:
         comments:

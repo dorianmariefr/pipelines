@@ -2,11 +2,9 @@ class Source < ApplicationRecord
   KINDS = {
     hacker_news: {
       news: {
-        name: "Hacker News - Frontpage Stories",
         subclass: "Source::HackerNews::News"
       },
-      new: {
-        name: "Hacker News - New Stories",
+      newest: {
         subclass: "Source::HackerNews::Newest"
       }
     }
@@ -20,9 +18,12 @@ class Source < ApplicationRecord
   accepts_nested_attributes_for :parameters
 
   def self.kinds_options
-    KINDS.flat_map do |parent_key, parent_value|
-      parent_value.map do |key, value|
-        [value.fetch(:name), "#{parent_key}/#{key}"]
+    KINDS.flat_map do |first_kind, first_kind_value|
+      first_kind_value.map do |second_kind, _|
+        [
+          I18n.t("sources.model.kinds.#{first_kind}.#{second_kind}"),
+          "#{first_kind}/#{second_kind}"
+        ]
       end
     end
   end
@@ -41,7 +42,7 @@ class Source < ApplicationRecord
   end
 
   def name
-    KINDS.dig(first_kind, second_kind, :name)
+    I18n.t("sources.model.kinds.#{first_kind}.#{second_kind}")
   end
 
   def subclass

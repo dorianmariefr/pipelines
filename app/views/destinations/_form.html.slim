@@ -5,12 +5,14 @@
   .p
     = f.label :kind, t(".kind")
     = f.select :kind, destination_kinds_options(f.object), {}, data: { destination_target: "kind", action: "destination#choose" }
+    .text-gray-600= t(".kind_hint")
 
   div(data-destination-target="parameters")
 
   .p
     = f.label :destinable_id, "&nbsp;".html_safe, data: { destination_target: "destinableLabel" }
     = f.select :destinable_id, [], {}, data: { destination_target: "destinableId" }
+    .text-gray-600= t(".destinable_hint")
 
   .p(data-destinations-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "destinations#remove" }

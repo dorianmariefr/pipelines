@@ -3,6 +3,7 @@ fr:
   application:
     fake:
       eg: e.g. %{string}
+      or: ou
   attributes:
     normalized_email: Email
     normalized_phone_number: Numéro de téléphone
@@ -10,9 +11,20 @@ fr:
     destination:
       private: "privé:"
     form:
+      destinable_hint:
+        Sur quelle adresse email vérifiée veux-tu reçevoir les éléments
+        ?
       email: Email
       kind: Genre
+      kind_hint: De quelle manière veux-tu reçevoir les éléments ?
       remove: Enlever
+    model:
+      kinds:
+        daily_email_digest: Résumé quotidien des e-mails
+        email: Email
+        hourly_email_digest: Résumé horaire des e-mails
+        monthly_email_digest: Résumé mensuel des e-mails
+        weekly_email_digest: Résumé hebdomadaire des e-mails
   email_mailer:
     password_reset_email:
       subject: Réinitialiser ton mot de passe
@@ -56,6 +68,16 @@ fr:
   errors:
     not_own: Pas le tien
     not_verified: Non vérifié
+  items:
+    destroy:
+      notice: Élément supprimé
+    destroy_all:
+      notice: Tous les éléments de cette pipeline ont été supprimés
+    index:
+      no_items: Aucun élément
+      title: Éléments de %{name}
+    item:
+      delete: Supprimer
   js:
     code:
       must_be_present: Doît être présent
@@ -102,7 +124,9 @@ fr:
         Si tu as utilisé un e-mail ou un numéro de téléphone, tu dois les vérifier,
         sinon tu peux pouvez créer une nouvelle pipeline.
       step_4: Une pipeline a un nom, est-elle publique ?, des sources et des destinations.
-      step_5: 'Tu peux inclure du Code dans ton filtre comme "score > 100", "keywords.include?("Ruby")" ou "title.include?("Show HN")'
+      step_5:
+        Tu peux inclure du Code dans ton filtre comme "score > 100", "keywords.include?("Ruby")"
+        ou "title.include?("Show HN")
       step_6:
         Une pipeline est traitée toutes les minutes et tu peux décider quand
         tu reçois les e-mails (maintenant, toutes les heures, tous les jours, toutes
@@ -187,6 +211,9 @@ fr:
       name: Nom
       "no": Non
       published: Publique ?
+      published_hint:
+        Cela rendra la pipeline visible publiquement ainsi que les informations
+        de ton compte public
       sources: Sources
       "yes": Oui
     index:
@@ -204,6 +231,7 @@ fr:
     show:
       by: Par
       delete: Supprimer la pipeline
+      delete_all_items: Supprimer tous les éléments
       destinations: Destinations
       edit: Modifier la pipeline
       items: Éléments
@@ -213,6 +241,7 @@ fr:
       not_published: Non publique
       process: Traiter
       published: Publique
+      rss_feed: Flux RSS
       sources: Sources
     update:
       notice: Pipeline mise à jour
@@ -245,7 +274,9 @@ fr:
   sources:
     form:
       filter: Filtre
+      filter_hint: Tu peux utiliser du Code pour filtrer les éléments
       kind: Genre
+      kind_hint: D'où viennent les éléments ?
       remove: Enlever
     hacker_news:
       newest:
@@ -258,6 +289,11 @@ fr:
           one: 1 commentaire
           other: "%{count} commentaires"
           zero: 0 commentaires
+    model:
+      kinds:
+        hacker_news:
+          newest: Hacker News - Nouvelles histoires
+          news: Hacker News - Histoires de la première page
   users:
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)

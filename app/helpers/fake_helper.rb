@@ -19,11 +19,35 @@ module FakeHelper
     gray(eg(Email.generate_verification_code))
   end
 
+  def fake_pipeline_name
+    gray(
+      eg(
+        [
+          Faker::Hobby.activity,
+          Faker::Hobby.activity,
+          Faker::Hobby.activity
+        ].to_sentence(last_word_connector: t("application.fake.or"))
+      )
+    )
+  end
+
+  def fake_filter
+    gray(
+      eg(
+        [
+          'title.include?("Show HN")',
+          'keywords.include?("Ruby")',
+          "score >= 100"
+        ].to_sentence(last_word_connector: t("application.fake.or"))
+      )
+    )
+  end
+
   def eg(string)
     t("application.fake.eg", string: string)
   end
 
   def gray(string)
-    content_tag(:div, string, class: "text-gray-500")
+    content_tag(:div, string, class: "text-gray-600")
   end
 end

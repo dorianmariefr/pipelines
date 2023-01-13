@@ -2,6 +2,7 @@
   .p
     = f.label :name, t(".name")
     = f.text_field :name, autocomplete: :off, data: { lpignore: "true", form_type: "other" }
+    = fake_pipeline_name
 
   .p
     => f.label :published, t(".published")
@@ -10,6 +11,8 @@
     => f.radio_button :published, true
     => f.label :published, t(".no"), value: false
     => f.radio_button :published, false
+    br
+    .text-gray-600= t(".published_hint")
 
   h3= t(".sources")
 

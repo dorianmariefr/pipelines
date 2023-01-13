@@ -1,19 +1,16 @@
 class Destination < ApplicationRecord
   KINDS = {
     email: {
-      name: "Email",
       subclass: "Destination::Email",
       destinable_type: :Email,
       destinable_label: :email
     },
     hourly_email_digest: {
-      name: "Hourly Email Digest",
       subclass: "Destination::HourlyEmailDigest",
       destinable_type: :Email,
       destinable_label: :email
     },
     daily_email_digest: {
-      name: "Daily Email Digest",
       subclass: "Destination::DailyEmailDigest",
       destinable_type: :Email,
       destinable_label: :email,
@@ -27,7 +24,6 @@ class Destination < ApplicationRecord
       }
     },
     weekly_email_digest: {
-      name: "Weekly Email Digest",
       subclass: "Destination::WeeklyEmailDigest",
       destinable_type: :Email,
       destinable_label: :email,
@@ -47,7 +43,6 @@ class Destination < ApplicationRecord
       }
     },
     monthly_email_digest: {
-      name: "Monthly Email Digest",
       subclass: "Destination::MonthlyEmailDigest",
       destinable_type: :Email,
       destinable_label: :email,
@@ -85,17 +80,13 @@ class Destination < ApplicationRecord
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
   scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: { in: ["Email"] }
+  validates :destinable_type, inclusion: {in: ["Email"]}
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
 
   def self.kinds_options
-    KINDS.map { |key, value| [value.fetch(:name), key] }
-  end
-
-  def self.kind_parameters
-    KINDS.map { |key, value| [value.fetch(:parameters), key] }
+    KINDS.map { |kind, _| [I18n.t("destinations.model.kinds.#{kind}"), kind] }
   end
 
   def parameters_attributes=(*args)
@@ -104,7 +95,7 @@ class Destination < ApplicationRecord
   end
 
   def name
-    KINDS.dig(kind.to_sym, :name)
+    I18n.t("destinations.model.kinds.#{kind}")
   end
 
   def subclass

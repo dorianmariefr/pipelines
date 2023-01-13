@@ -4,10 +4,13 @@
   .p
     = f.label :kind, t(".kind")
     = f.select :kind, source_kinds_options(f.object)
+    .text-gray-600= t(".kind_hint")
 
   .p
     = f.label :filter, t(".filter")
     = f.text_field :filter
+    .text-gray-600= t(".filter_hint")
+    = fake_filter
 
   .p(data-sources-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "sources#remove" }
