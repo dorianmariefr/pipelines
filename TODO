@@ -1,9 +1,5 @@
 ### Current
 
-- Upgrade template-ruby
-
-### High urgency
-
 - Twitter integration, cc: tyro, benjamin
 - Reddit integration
 - Facebook integration
@@ -14,10 +10,9 @@
 - Pro plan, cc: benjamin, tyro
 - Product Hunt integration
 - Lobsters integration
-
-### Medium urgency
-
-- duplicate pipeline to own account cc: jonan
+- trending tweets by topic, cc: lucian
+- zapier
+- if this then that
 - SMS verification, cc: tyro
 - Filtering documentation cc: tyro, benjamin
 - Prévisualisation des filtres, cc: benjamin
@@ -25,3 +20,5 @@
 - Interface for conditions cc: jonan, david
 - we found 0/30 items cc: jonan (when processed)
 - Style emails cc: allancoder
+- mastodon
+- telegram

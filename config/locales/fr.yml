@@ -87,6 +87,7 @@ fr:
       day_of_week: Jour de la semaine
       email: Email
       hour: Heure
+      not_verified: "(non vérifié)"
     email:
       must_be_present: Doît être présente
       must_be_valid: Doît être valide
@@ -114,7 +115,10 @@ fr:
     home:
       log_in: Se connecter
       new_pipeline: Nouvelle pipeline
+      new_post: Nouvel article
+      or: ou
       overview: Aperçu
+      posts: Articles
       published_pipelines: Pipelines publiques
       published_users: Utilisateurs publiques
       register: S'inscrire
@@ -201,6 +205,8 @@ fr:
       notice: Pipeline créée
     destroy:
       notice: Pipeline supprimée
+    duplicate:
+      notice: Tu as dupliqué cette pipeline avec succés
     edit:
       submit: Mettre à jour la pipeline
       title: Modifier la pipeline
@@ -233,18 +239,48 @@ fr:
       delete: Supprimer la pipeline
       delete_all_items: Supprimer tous les éléments
       destinations: Destinations
+      duplicate: Dupliquer
       edit: Modifier la pipeline
       items: Éléments
+      log_in_to_duplicate: Se connecter pour dupliquer
       no_destinations: Aucunes destinations
       no_items: Aucun élément
       no_sources: Aucunes sources
       not_published: Non publique
+      or: ou
       process: Traiter
       published: Publique
+      register_to_duplicate: S'inscrire pour dupliquer
       rss_feed: Flux RSS
       sources: Sources
     update:
       notice: Pipeline mise à jour
+  posts:
+    create:
+      notice: Article créé
+    destroy:
+      notice: Article supprimé
+    edit:
+      submit: Mettre à jour l'article
+      title: Modifier l'article
+    form:
+      description: Description
+      title: Titre
+    index:
+      new: Nouvel article
+      title: Articles
+    new:
+      submit: Créer l'article
+      title: Nouvel article
+    send_later:
+      notice: Article envoyé
+    show:
+      delete: Supprimer l'article
+      edit: Modifier l'article
+      send: Envoyer
+      title: Article
+    update:
+      notice: Article mis à jour
   sessions:
     create:
       must_be_present: Email ou numéro de téléphone doît être présent
@@ -259,9 +295,9 @@ fr:
       forgot_your_password: Oublié ton mot passe ?
       hide_password: Cacher le mot de passe
       log_in_with_email: Se connecter avec une adresse email
+      log_in_with_facebook: Se connecter avec Facebook
+      log_in_with_google: Se connecter avec Google
       log_in_with_phone_number: Se connecter avec un numéro de téléphone
-      login_with_facebook: Se connecter avec Facebook
-      login_with_google: Se connecter avec Google
       password: Mot de passe
       phone_number: Numéro de téléphone
       send_password_reset: Envoyer la réinitialisation de mot de passe

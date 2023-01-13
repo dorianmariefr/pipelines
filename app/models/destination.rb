@@ -121,6 +121,18 @@ class Destination < ApplicationRecord
       .with_indifferent_access
   end
 
+  def duplicate_for(user)
+    if destinable_type == "Email"
+      destinable = user.emails.verified.first
+      destination = Destination.new(destinable: destinable, kind: kind)
+      destination.parameters =
+        parameters.map { |parameter| parameter.duplicate_for(user) }
+      destination
+    else
+      raise NotImplementedError
+    end
+  end
+
   private
 
   def own_destinable

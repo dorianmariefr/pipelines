@@ -1,6 +1,7 @@
 class PipelinesController < ApplicationController
   before_action :load_user, only: :index
-  before_action :load_pipeline, only: %i[show edit update destroy process_now]
+  before_action :load_pipeline,
+    only: %i[show edit update destroy process_now duplicate]
 
   def index
     authorize Pipeline
@@ -26,6 +27,16 @@ class PipelinesController < ApplicationController
   def process_now
     @pipeline.process_now
     redirect_back(fallback_location: @pipeline, notice: t(".notice"))
+  end
+
+  def duplicate
+    @new_pipeline = @pipeline.duplicate_for(current_user)
+
+    if @new_pipeline.save
+      redirect_to @new_pipeline, notice: t(".notice")
+    else
+      redirect_back(fallback_location: @pipeline, alert: @new_pipeline.alert)
+    end
   end
 
   def new

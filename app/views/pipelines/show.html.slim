@@ -3,6 +3,14 @@
 - if can?(:process_now, @pipeline)
   = button_to t(".process"), [@pipeline, :process_now]
 
+- if current_user
+  .p= button_to t(".duplicate"), [@pipeline, :duplicate]
+- else
+  .flex.gap-4.items-center
+    .p= button_to t(".register_to_duplicate"), new_user_path, method: :get, class: "button--primary"
+    p= t(".or")
+    .p= button_to t(".log_in_to_duplicate"), new_session_path, method: :get
+
 - if @pipeline.published?
   p= t(".published")
 - else

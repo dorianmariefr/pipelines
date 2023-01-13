@@ -31,6 +31,10 @@ class Parameter < ApplicationRecord
     end
   end
 
+  def duplicate_for(user)
+    Parameter.new(key: key, value: value)
+  end
+
   def to_s
     "#{translated_key}: #{translated_value}"
   end

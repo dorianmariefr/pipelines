@@ -35,6 +35,10 @@ class Item < ApplicationRecord
     false
   end
 
+  def duplicate_for(user)
+    Item.new(external_id: external_id, extras: extras)
+  end
+
   def subclass
     KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
   end

@@ -41,6 +41,12 @@ class Source < ApplicationRecord
     kind.split("/").second.to_sym
   end
 
+  def duplicate_for(user)
+    source = Source.new(kind: kind, filter: filter)
+    source.items = items.map { |item| item.duplicate_for(user) }
+    source
+  end
+
   def name
     I18n.t("sources.model.kinds.#{first_kind}.#{second_kind}")
   end

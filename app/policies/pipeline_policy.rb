@@ -27,6 +27,10 @@ class PipelinePolicy < ApplicationPolicy
     owner? || admin?
   end
 
+  def duplicate?
+    (current_user? && published?) || owner? || admin?
+  end
+
   class Scope < Scope
     def resolve
       admin? ? scope.all : scope.published.or(scope.where(user: current_user))

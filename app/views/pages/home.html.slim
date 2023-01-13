@@ -1,6 +1,7 @@
 - if !current_user
-  .flex.gap-4
+  .flex.gap-4.items-center
     .p= button_to t(".register"), new_user_path, method: :get, class: "button--primary"
+    p= t(".or")
     .p= button_to t(".log_in"), new_session_path, method: :get
 
 - if can? :create, Pipeline

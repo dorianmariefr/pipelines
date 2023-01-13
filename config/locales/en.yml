@@ -137,10 +137,11 @@ en:
       title: Pipelines
   pages:
     home:
+      or: or
       posts: Posts
       new_post: New post
       overview: Overview
-      step_1: First you will need to login or register.
+      step_1: First you will need to log in or register.
       step_2: You can register with Google, Facebook, email or phone number.
       step_3: If you used email or phone number you will need to verify those, otherwise you can create a new pipeline.
       step_4: A pipeline has a name, is it public?, sources and destinations.
@@ -242,7 +243,13 @@ en:
       title: New pipeline
     process_now:
       notice: Your pipeline has been processed
+    duplicate:
+      notice: You have successfully duplicated this pipeline
     show:
+      duplicate: Duplicate
+      register_to_duplicate: Register to duplicate
+      or: or
+      log_in_to_duplicate: Log in to duplicate
       by: By
       delete: Delete pipeline
       destinations: Destinations
@@ -274,8 +281,8 @@ en:
       hide_password: Hide password
       log_in_with_email: Log in with email
       log_in_with_phone_number: Log in with phone number
-      login_with_facebook: Log in with Facebook
-      login_with_google: Log in with Google
+      log_in_with_facebook: Log in with Facebook
+      log_in_with_google: Log in with Google
       password: Password
       phone_number: Phone Number
       send_password_reset: Send password reset
