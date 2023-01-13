@@ -1,5 +1,7 @@
 - content_for(:title) { t(".title", name: @pipeline.name) }
 
+= render "pipelines/pipeline", pipeline: @pipeline
+
 - if @items.any?
   - @items.each do |item|
     = render "items/item", item: item

@@ -1,6 +1,12 @@
 ---
 en:
   items:
+    destroy_all:
+      notice: All items of this pipeline have been deleted
+    destroy:
+      notice: Item deleted
+    item:
+      delete: Delete
     index:
       title: "%{name}'s items"
       no_items: No items
@@ -210,6 +216,7 @@ en:
       published: Public
       sources: Sources
       rss_feed: RSS feed
+      delete_all_items: Delete all items
     update:
       notice: Pipeline updated
   sessions:

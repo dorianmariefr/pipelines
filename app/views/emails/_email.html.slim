@@ -29,7 +29,7 @@
     p(data-show-target="summary")
       = link_to t(".add_email"), "#", data: { action: "show#show" }
     .hidden(data-show-target="details")
-      = form_for [email.user, email] do |f|
+      = form_for email do |f|
         .p(data-controller="email")
           .flex.gap-2
             = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }
