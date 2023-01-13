@@ -23,6 +23,10 @@ class PipelinePolicy < ApplicationPolicy
     owner? || admin?
   end
 
+  def destroy_all?
+    owner? || admin?
+  end
+
   class Scope < Scope
     def resolve
       admin? ? scope.all : scope.published.or(scope.where(user: current_user))

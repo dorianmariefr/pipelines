@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy_all
-    authorize :item
+    authorize @pipeline
 
     policy_scope(Item).joins(:pipeline).where(pipelines: @pipeline).destroy_all
 
