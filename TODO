@@ -1,7 +1,5 @@
 ### Current
 
-- use caching
-
 ### High urgency
 
 - Twitter integration, cc: tyro, benjamin
@@ -22,7 +20,4 @@
 - Interface for conditions cc: jonan, david
 - referrals, cc: jonan
 - we found 0/30 items cc: jonan (when processed)
-
-### Low urgency
-
 - Style emails cc: allancoder

@@ -106,13 +106,6 @@ GEM
     connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
-    delayed_cron_job (0.9.0)
-      fugit (>= 1.5)
-    delayed_job (4.1.11)
-      activesupport (>= 3.0, < 8.0)
-    delayed_job_active_record (4.1.7)
-      activerecord (>= 3.0, < 8.0)
-      delayed_job (>= 3.0, < 5)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -333,6 +326,9 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.11.0)
+    sidekiq-cron (1.9.1)
+      fugit (~> 1.8)
+      sidekiq (>= 4.2.1)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -396,8 +392,6 @@ DEPENDENCIES
   bcrypt
   bootsnap
   brakeman
-  delayed_cron_job
-  delayed_job_active_record
   dotenv-rails
   factory_bot_rails
   faker
@@ -427,6 +421,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sidekiq
+  sidekiq-cron
   slim-rails
   sprockets
   standard

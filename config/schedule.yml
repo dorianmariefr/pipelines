@@ -1,0 +1,24 @@
+ProcessPipelinesJob:
+  cron: "* * * * *"
+  class: ProcessPipelinesJob
+  queue: low
+
+SendHourlyEmailDigestsJob:
+  cron: "0 * * * *"
+  class: "SendHourlyEmailDigestsJob"
+  queue: high
+
+SendDailyEmailDigestsJob:
+  cron: "0 * * * *"
+  class: "SendDailyEmailDigestsJob"
+  queue: high
+
+SendWeeklyEmailDigestsJob:
+  cron: "0 * * * *"
+  class: "SendWeeklyEmailDigestsJob"
+  queue: high
+
+SendMonthlyEmailDigestsJob:
+  cron: "0 * * * *"
+  class: "SendMonthlyEmailDigestsJob"
+  queue: high

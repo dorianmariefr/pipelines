@@ -1,5 +1,5 @@
-web: rails server -p 3000
-# jobs: rake jobs:work
+web: bundle exec rails server -p 3000
+jobs: bundle exec sidekiq
 js: yarn build --watch
-css: rails tailwindcss:watch
-cloudflare: cloudflared tunnel --config .cloudflared.yml run
+css: bundle exec rails tailwindcss:watch
+dev: cloudflared tunnel --config .cloudflared.yml run

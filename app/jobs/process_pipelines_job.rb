@@ -1,6 +1,4 @@
-class ProcessPipelinesJob < CronJob
-  self.cron_expression = "* * * * *"
-
+class ProcessPipelinesJob < ApplicationJob
   queue_as :default
 
   def perform

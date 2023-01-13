@@ -1,6 +1,4 @@
-class SendHourlyEmailDigestsJob < CronJob
-  self.cron_expression = "0 * * * *"
-
+class SendHourlyEmailDigestsJob < ApplicationJob
   queue_as :default
 
   def perform

@@ -1,6 +1,4 @@
-class SendWeeklyEmailDigestsJob < CronJob
-  self.cron_expression = "0 * * * *"
-
+class SendWeeklyEmailDigestsJob < ApplicationJob
   queue_as :default
 
   def perform
