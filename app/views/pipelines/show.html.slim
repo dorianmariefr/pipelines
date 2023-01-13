@@ -41,7 +41,12 @@ p= link_to t(".rss_feed"), pipeline_items_path(@pipeline, format: :rss)
 - if @items.any?
   .p= button_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "text-red-600 button--link"
 
-  - @items.each do |item|
-    = render "items/item", item: item
+  - cache @items do
+    = paginate @items
+
+    - @items.each do |item|
+      = render "items/item", item: item, cached: true
+
+    = paginate @items
 - else
   p.text-gray-600.italic= t(".no_items")

@@ -18,5 +18,15 @@ module Pipelines
       app.routes.default_url_options =
         app.config.action_mailer.default_url_options
     end
+
+    if ENV["SESSION_REDIS_URL"]
+      config.session_store :redis_session_store,
+                           key: "_pipelines_session",
+                           redis: {
+                             url: ENV.fetch("SESSION_REDIS_URL"),
+                             key_prefix: "pipelines:session:",
+                             expire_after: 3.months
+                           }
+    end
   end
 end

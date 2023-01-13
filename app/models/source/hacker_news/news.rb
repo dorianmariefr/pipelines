@@ -9,7 +9,12 @@ class Source
       end
 
       def fetch
-        response = Net::HTTP.get(URI(TARGET_URL))
+        response =
+          Rails
+            .cache
+            .fetch(TARGET_URL, expires_in: 1.minute) do
+              Net::HTTP.get(URI(TARGET_URL))
+            end
         page = Nokogiri.HTML(response)
         page
           .css(".athing")

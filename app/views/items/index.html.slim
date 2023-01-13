@@ -3,7 +3,11 @@
 = render "pipelines/pipeline", pipeline: @pipeline
 
 - if @items.any?
+  = paginate @items
+
   - @items.each do |item|
     = render "items/item", item: item
+
+  = paginate @items
 - else
   p.italic.text-gray-600= t(".no_items")

@@ -5,9 +5,11 @@ class ItemsController < ApplicationController
   def index
     @items =
       policy_scope(Item)
-        .where(pipeline: @pipeline)
+        .joins(:pipeline)
+        .where(pipelines: @pipeline)
         .eager_load(:source)
         .order(created_at: :desc)
+        .page(params[:page])
 
     respond_to do |format|
       format.html

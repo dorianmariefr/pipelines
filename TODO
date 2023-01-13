@@ -1,5 +1,7 @@
 ### Current
 
+- use caching
+
 ### High urgency
 
 - Twitter integration, cc: tyro, benjamin
@@ -23,9 +25,4 @@
 
 ### Low urgency
 
-- use caching
-- Mettre les choix grisés pour les destinations, cc: benjamin
-- Mettre des choix grisés pour les sources cc: benjamin
-- Mettre des exemples de noms de pipelines cc: benjamin
-- Mettre à la fin le public true/false cc: benjamin
 - Style emails cc: allancoder

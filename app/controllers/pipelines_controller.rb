@@ -11,9 +11,16 @@ class PipelinesController < ApplicationController
   end
 
   def show
-    @sources = @pipeline.sources
-    @destinations = @pipeline.destinations
-    @items = @pipeline.items.order(created_at: :desc)
+    @sources = policy_scope(Source).joins(:pipeline).where(pipelines: @pipeline)
+    @destinations =
+      policy_scope(Destination).joins(:pipeline).where(pipelines: @pipeline)
+    @items =
+      policy_scope(Item)
+        .joins(:pipeline)
+        .where(pipelines: @pipeline)
+        .eager_load(:source)
+        .order(created_at: :desc)
+        .page(params[:page])
   end
 
   def process_now
