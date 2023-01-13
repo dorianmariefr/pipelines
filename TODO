@@ -1,5 +1,7 @@
 ### Current
 
+- Updates
+
 ### High urgency
 
 - Twitter integration, cc: tyro, benjamin
@@ -8,16 +10,16 @@
 - Instagram integration
 - Frimake integration
 - GitHub integration cc: prabin
+- referrals, cc: jonan
+- Pro plan, cc: benjamin, tyro
 
 ### Medium urgency
 
-- Mail merge
 - duplicate pipeline to own account cc: jonan
 - SMS verification, cc: tyro
 - Filtering documentation cc: tyro, benjamin
 - Prévisualisation des filtres, cc: benjamin
 - Example filters cc: jonan
 - Interface for conditions cc: jonan, david
-- referrals, cc: jonan
 - we found 0/30 items cc: jonan (when processed)
 - Style emails cc: allancoder
