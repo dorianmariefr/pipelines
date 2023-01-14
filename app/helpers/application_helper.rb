@@ -3,6 +3,7 @@ module ApplicationHelper
     action = action_name.to_sym
     action = :new if action == :create
     action = :edit if action == :update
+
     if content_for?(:title)
       content_for(:title)
     else
@@ -44,6 +45,10 @@ module ApplicationHelper
         .gsub(/\s/, "")
 
     Regexp.new(str).source
+  end
+
+  def pro_price
+    fr? ? User::PRO_PRICE_EUR : User::PRO_PRICE_USD
   end
 
   def source_kinds_options(source)

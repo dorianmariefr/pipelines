@@ -34,6 +34,28 @@
   - @posts.each do |post|
     = render "posts/post", post: post
 
+h3= t(".pricing")
+
+.p
+  = button_to t(".book_a_call"), ENV["CALENDLY_URL"], method: :get
+
+h4= t(".free")
+
+ul
+  li= t(".free_1")
+  li= t(".free_2")
+  li= t(".free_3")
+
+h4= t(".pro", price: number_to_currency(pro_price.to_d, precision: 0, unit: pro_price.currency.symbol))
+
+ul
+  li= t(".pro_1")
+  li= t(".pro_2")
+  li= t(".pro_3")
+
+p
+  = button_to t(".become_pro"), ENV["STRIPE_PRODUCT_URL"], method: :get
+
 h3= t(".overview")
 
 - (1..8).each do |i|

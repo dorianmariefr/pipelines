@@ -10,4 +10,8 @@ class PagePolicy < ApplicationPolicy
   def terms?
     true
   end
+
+  def pro?
+    true
+  end
 end

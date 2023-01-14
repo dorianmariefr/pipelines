@@ -208,6 +208,15 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
+    monetize (1.12.0)
+      money (~> 6.12)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
+    money-rails (1.15.0)
+      activesupport (>= 3.0)
+      monetize (~> 1.9)
+      money (~> 6.13)
+      railties (>= 3.0)
     msgpack (1.6.0)
     multi_xml (0.6.0)
     multipart-post (2.2.3)
@@ -385,6 +394,7 @@ GEM
       rubocop-performance (= 1.15.2)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stripe (8.1.0)
     syntax_tree (5.2.0)
       prettier_print (>= 1.2.0)
     syntax_tree-haml (3.0.0)
@@ -455,6 +465,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari
   messagebird-rest
+  money-rails
   normailize
   omniauth
   omniauth-facebook
@@ -479,6 +490,7 @@ DEPENDENCIES
   sprockets
   standard
   stimulus-rails
+  stripe
   tailwindcss-rails
   template-ruby
   turbo-rails

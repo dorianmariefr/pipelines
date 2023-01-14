@@ -4,6 +4,9 @@ class User < ApplicationRecord
   RESET_PASSWORD_PURPOSE = :reset_password
   RESET_PASSWORD_EXPIRES_IN = 30.minutes
 
+  PRO_PRICE_USD = Money.from_cents(1000, "USD")
+  PRO_PRICE_EUR = Money.from_cents(1000, "EUR")
+
   has_secure_password
 
   belongs_to :primary_email, optional: true, class_name: "Email"

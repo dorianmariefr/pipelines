@@ -102,6 +102,9 @@ fr:
       must_be_present: Doît être présent
       too_long: Trop long
       too_short: Trop court
+    source:
+      query: Requête
+      result_type: Type de résulat
   layouts:
     application:
       log_in: Se connecter
@@ -113,6 +116,7 @@ fr:
       title: Pipelines
   pages:
     home:
+      become_pro: Devenir Pro
       log_in: Se connecter
       new_pipeline: Nouvelle pipeline
       new_post: Nouvel article
@@ -143,8 +147,20 @@ fr:
         les verras en bas.
       title: Accueil
       your_pipelines: Tes pipelines
+      book_a_call: Réserver un appel
+      free: Gratuit
+      free_1: Email illimités
+      free_2: Hacker News
+      free_3: Essai de Twitter pour un mois
+      pricing: Tarification
+      pro: Pro (%{price} / mois)
+      pro_1: Emails illimités
+      pro_2: Hacker News
+      pro_3: Twitter
     privacy:
       title: Politique de confidentialité
+    pro:
+      title: Devenir Pro
     terms:
       title: Termes et Conditions
   parameters:
@@ -330,6 +346,8 @@ fr:
         hacker_news:
           newest: Hacker News - Nouvelles histoires
           news: Hacker News - Histoires de la première page
+        twitter:
+          search: Twitter - Recherche
   users:
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)

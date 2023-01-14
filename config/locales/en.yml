@@ -140,6 +140,17 @@ en:
       title: Pipelines
   pages:
     home:
+      pricing: Pricing
+      free: Free
+      free_1: Unlimited emails
+      free_2: Hacker News
+      free_3: Trial of Twitter for one month
+      pro: Pro (%{price} / month)
+      pro_1: Unlimited emails
+      pro_2: Hacker News
+      pro_3: Twitter
+      book_a_call: Book a call
+      become_pro: Become Pro
       or: or
       posts: Posts
       new_post: New post
