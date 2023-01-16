@@ -1,7 +1,7 @@
 class Source
   class Twitter
     class Search
-      LIMIT = 100
+      LIMIT = 5
       EXPIRES_IN = 1.minute
 
       def initialize(source)
