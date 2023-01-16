@@ -1,41 +1,5 @@
 ---
 en:
-  posts:
-    send_later:
-      notice: Post sent
-    show:
-      title: Post
-      edit: Edit post
-      delete: Delete post
-      send: Send
-    index:
-      new: New post
-      title: Posts
-    form:
-      title: Title
-      description: Description
-    new:
-      title: New post
-      submit: Create post
-    edit:
-      title: Edit post
-      submit: Update post
-    create:
-      notice: Post created and sent
-    update:
-      notice: Post updated
-    destroy:
-      notice: Post deleted
-  items:
-    destroy_all:
-      notice: All items of this pipeline have been deleted
-    destroy:
-      notice: Item deleted
-    item:
-      delete: Delete
-    index:
-      title: "%{name}'s items"
-      no_items: No items
   application:
     fake:
       eg: e.g. %{string}
@@ -44,21 +8,23 @@ en:
     normalized_email: Email
     normalized_phone_number: Phone number
   destinations:
-    model:
-      kinds:
-        email: Email
-        hourly_email_digest: Hourly email digest
-        daily_email_digest: Daily email digest
-        weekly_email_digest: Weekly email digest
-        monthly_email_digest: Monthly email digest
     destination:
       private: "private:"
     form:
+      destinable_hint:
+        On which verified email address do you want to receive the
+        items?
       email: Email
       kind: Kind
       kind_hint: In what kind of way you want to receive your items?
       remove: Remove
-      destinable_hint: On which verified email address do you want to receive the items?
+    model:
+      kinds:
+        daily_email_digest: Daily email digest
+        email: Email
+        hourly_email_digest: Hourly email digest
+        monthly_email_digest: Monthly email digest
+        weekly_email_digest: Weekly email digest
   email_mailer:
     password_reset_email:
       subject: Reset your password
@@ -102,10 +68,17 @@ en:
   errors:
     not_own: Not your own
     not_verified: Not verified
+  items:
+    destroy:
+      notice: Item deleted
+    destroy_all:
+      notice: All items of this pipeline have been deleted
+    index:
+      no_items: No items
+      title: "%{name}'s items"
+    item:
+      delete: Delete
   js:
-    source:
-      result_type: Result type
-      query: Query
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -129,6 +102,9 @@ en:
       must_be_present: Must be present
       too_long: Too long
       too_short: Too short
+    source:
+      query: Query
+      result_type: Result type
   layouts:
     application:
       log_in: Log in
@@ -140,36 +116,50 @@ en:
       title: Pipelines
   pages:
     home:
-      pricing: Pricing
+      become_pro: Become Pro
+      book_a_call: Book a call
       free: Free
       free_1: Unlimited emails
       free_2: Hacker News
       free_3: Trial of Twitter for one month
+      log_in: Log in
+      new_pipeline: New pipeline
+      new_post: New post
+      or: or
+      overview: Overview
+      posts: Posts
+      pricing: Pricing
       pro: Pro (%{price} / month)
       pro_1: Unlimited emails
       pro_2: Hacker News
       pro_3: Twitter
-      book_a_call: Book a call
-      become_pro: Become Pro
-      or: or
-      posts: Posts
-      new_post: New post
-      overview: Overview
+      published_pipelines: Public pipelines
+      published_users: Public users
+      referral:
+        For any referral you make (someone who subscribe to Pro thanks to
+        you), you get one month of Pro.
+      referrals: Referrals
+      register: Register
       step_1: First you will need to log in or register.
       step_2: You can register with Google, Facebook, email or phone number.
-      step_3: If you used email or phone number you will need to verify those, otherwise you can create a new pipeline.
+      step_3:
+        If you used email or phone number you will need to verify those, otherwise
+        you can create a new pipeline.
       step_4: A pipeline has a name, is it public?, sources and destinations.
-      step_5: 'You can include Code in your filter like "score > 100", "keywords.include?("Ruby")" or "title.include?("Show HN")".'
-      step_6: A pipeline is processed every minute and you can decide when you will receive the emails (now, hourly, daily, weekly, monthly) at a specific hour in your time zone to the email address of your choice.
+      step_5:
+        You can include Code in your filter like "score > 100", "keywords.include?("Ruby")"
+        or "title.include?("Show HN")".
+      step_6:
+        A pipeline is processed every minute and you can decide when you will
+        receive the emails (now, hourly, daily, weekly, monthly) at a specific hour
+        in your time zone to the email address of your choice.
       step_7: Now that your pipeline is created you can go ahead and process it.
-      step_8: You can now see it has been processed and will continue to be processed automatically from now on. If any items matched, you will see them at the bottom.
-      new_pipeline: New pipeline
-      published_users: Public users
-      your_pipelines: Your pipelines
-      published_pipelines: Public pipelines
-      log_in: Log in
-      register: Register
+      step_8:
+        You can now see it has been processed and will continue to be processed
+        automatically from now on. If any items matched, you will see them at the
+        bottom.
       title: Home
+      your_pipelines: Your pipelines
     privacy:
       title: Privacy Policy
     terms:
@@ -232,6 +222,8 @@ en:
       notice: Pipeline created
     destroy:
       notice: Pipeline deleted
+    duplicate:
+      notice: You have successfully duplicated this pipeline
     edit:
       submit: Update pipeline
       title: Edit pipeline
@@ -242,44 +234,70 @@ en:
       name: Name
       "no": "No"
       published: Public?
-      published_hint: This will make the pipeline visible publicly as well as your public account information
+      published_hint:
+        This will make the pipeline visible publicly as well as your
+        public account information
       sources: Sources
       "yes": "Yes"
     index:
       new: New pipeline
       none: None
       title:
-        your_pipelines: Your pipelines
         published_pipelines: Public pipelines
         user_pipelines: "%{name}'s pipelines"
+        your_pipelines: Your pipelines
     new:
       submit: Create pipeline
       title: New pipeline
     process_now:
       notice: Your pipeline has been processed
-    duplicate:
-      notice: You have successfully duplicated this pipeline
     show:
-      duplicate: Duplicate
-      register_to_duplicate: Register to duplicate
-      or: or
-      log_in_to_duplicate: Log in to duplicate
       by: By
       delete: Delete pipeline
+      delete_all_items: Delete all items
       destinations: Destinations
+      duplicate: Duplicate
       edit: Edit pipeline
       items: Items
+      log_in_to_duplicate: Log in to duplicate
       no_destinations: No destinations
       no_items: No items
       no_sources: No sources
       not_published: Not public
+      or: or
       process: Process
       published: Public
-      sources: Sources
+      register_to_duplicate: Register to duplicate
       rss_feed: RSS feed
-      delete_all_items: Delete all items
+      sources: Sources
     update:
       notice: Pipeline updated
+  posts:
+    create:
+      notice: Post created and sent
+    destroy:
+      notice: Post deleted
+    edit:
+      submit: Update post
+      title: Edit post
+    form:
+      description: Description
+      title: Title
+    index:
+      new: New post
+      title: Posts
+    new:
+      submit: Create post
+      title: New post
+    send_later:
+      notice: Post sent
+    show:
+      delete: Delete post
+      edit: Edit post
+      send: Send
+      title: Post
+    update:
+      notice: Post updated
   sessions:
     create:
       must_be_present: Email or phone number must be present
@@ -294,9 +312,9 @@ en:
       forgot_your_password: Forgot your password?
       hide_password: Hide password
       log_in_with_email: Log in with email
-      log_in_with_phone_number: Log in with phone number
       log_in_with_facebook: Log in with Facebook
       log_in_with_google: Log in with Google
+      log_in_with_phone_number: Log in with phone number
       password: Password
       phone_number: Phone Number
       send_password_reset: Send password reset
@@ -307,19 +325,12 @@ en:
       alert: Email not found
       notice: Password reset email sent
   sources:
-    model:
-      kinds:
-        hacker_news:
-          news: Hacker News - Frontpage Stories
-          newest: Hacker News - New Stories
-        twitter:
-          search: Twitter - Search
     form:
       filter: Filter
-      kind: Kind
-      remove: Remove
-      kind_hint: Where does the items come from?
       filter_hint: You can use Code to filter your items
+      kind: Kind
+      kind_hint: Where does the items come from?
+      remove: Remove
     hacker_news:
       newest:
         comments:
@@ -331,6 +342,13 @@ en:
           one: 1 comment
           other: "%{count} comments"
           zero: 0 comments
+    model:
+      kinds:
+        hacker_news:
+          newest: Hacker News - New Stories
+          news: Hacker News - Frontpage Stories
+        twitter:
+          search: Twitter - Search
   users:
     create:
       notice: User created, you are now logged in

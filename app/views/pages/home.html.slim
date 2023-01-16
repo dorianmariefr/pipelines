@@ -56,6 +56,10 @@ ul
 p
   = button_to t(".become_pro"), ENV["STRIPE_PRODUCT_URL"], method: :get
 
+h3= t(".referrals")
+
+p= t(".referral")
+
 h3= t(".overview")
 
 - (1..8).each do |i|

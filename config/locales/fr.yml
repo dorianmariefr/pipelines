@@ -117,14 +117,28 @@ fr:
   pages:
     home:
       become_pro: Devenir Pro
+      book_a_call: Réserver un appel
+      free: Gratuit
+      free_1: Email illimités
+      free_2: Hacker News
+      free_3: Essai de Twitter pour un mois
       log_in: Se connecter
       new_pipeline: Nouvelle pipeline
       new_post: Nouvel article
       or: ou
       overview: Aperçu
       posts: Articles
+      pricing: Tarification
+      pro: Pro (%{price} / mois)
+      pro_1: Emails illimités
+      pro_2: Hacker News
+      pro_3: Twitter
       published_pipelines: Pipelines publiques
       published_users: Utilisateurs publiques
+      referral:
+        Pour tout parrainage que tu fais (quelqu'un qui s'abonne à Pro grâce
+        à toi), tu bénéficies d'un mois de Pro.
+      referrals: Parrainages
       register: S'inscrire
       step_1: Tu dois d'abord te connecter ou t'inscrire.
       step_2: Tu peux t'inscrire avec Google, Facebook, email, ou numéro de téléphone.
@@ -147,20 +161,8 @@ fr:
         les verras en bas.
       title: Accueil
       your_pipelines: Tes pipelines
-      book_a_call: Réserver un appel
-      free: Gratuit
-      free_1: Email illimités
-      free_2: Hacker News
-      free_3: Essai de Twitter pour un mois
-      pricing: Tarification
-      pro: Pro (%{price} / mois)
-      pro_1: Emails illimités
-      pro_2: Hacker News
-      pro_3: Twitter
     privacy:
       title: Politique de confidentialité
-    pro:
-      title: Devenir Pro
     terms:
       title: Termes et Conditions
   parameters:
