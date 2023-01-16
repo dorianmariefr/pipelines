@@ -80,12 +80,13 @@ class Source < ApplicationRecord
   end
 
   def fetch
-    subclass
-      .fetch
-      .map do |item|
+    result = Source::Result.new
+    result.new_items =
+      subclass.fetch.map do |item|
         items.build(external_id: item.external_id, extras: item.extras)
       end
-      .select { |item| item.match(filter) }
-      .select(&:save)
+    result.matched_items = result.new_items.select { |item| item.match(filter) }
+    result.saved_items = result.matched_items.select(&:save)
+    result
   end
 end

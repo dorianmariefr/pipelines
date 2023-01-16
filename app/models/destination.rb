@@ -104,10 +104,12 @@ class Destination < ApplicationRecord
 
   def send_now(items = nil)
     subclass.send_now(items)
+    Destination::Result.new(sent_items: items || subclass.items)
   end
 
   def send_later(items = nil)
     SendToDestinationJob.perform_later(destination: self, items: items)
+    Destination::Result.new(sent_items: items || subclass.items)
   end
 
   def to

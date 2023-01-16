@@ -8,13 +8,13 @@ class Destination::DailyEmailDigest
     EmailMailer.with(to: to, subject: subject, body: body).email.deliver_later
   end
 
-  private
-
-  attr_reader :destination
-
   def items
     destination.items.where(created_at: 1.day.ago..)
   end
+
+  private
+
+  attr_reader :destination
 
   def subject
     items.first.email_subject

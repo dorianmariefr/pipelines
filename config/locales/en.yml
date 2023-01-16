@@ -218,6 +218,23 @@ en:
       alert: Wrong verification code
       notice: Phone number verified
   pipelines:
+    result:
+      new_items:
+        zero: "0 new items"
+        one: "1 new item"
+        other: "%{count} new items"
+      matched_items:
+        zero: "0 matched items"
+        one: "1 matched item"
+        other: "%{count} matched items"
+      saved_items:
+        zero: "0 saved items"
+        one: "1 saved item"
+        other: "%{count} saved items"
+      sent_items:
+        zero: "0 sent items"
+        one: "1 sent item"
+        other: "%{count} sent items"
     create:
       notice: Pipeline created
     destroy:
@@ -250,7 +267,7 @@ en:
       submit: Create pipeline
       title: New pipeline
     process_now:
-      notice: Your pipeline has been processed
+      notice: Your pipeline has been processed (%{result})
     show:
       by: By
       delete: Delete pipeline

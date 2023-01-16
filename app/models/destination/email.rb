@@ -13,6 +13,10 @@ class Destination
       end
     end
 
+    def items
+      []
+    end
+
     private
 
     attr_reader :destination
