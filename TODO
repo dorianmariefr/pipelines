@@ -1,20 +1,26 @@
-- Pro plan, cc: benjamin, tyro, lucian
-- Reddit integration
-- Frimake integration
-- mastodon
-- telegram
-- GitHub integration cc: prabin
-- Facebook integration
-- Instagram integration
-- referrals, cc: jonan
-- Product Hunt integration
-- Lobsters integration
-- zapier
-- if this then that
-- SMS verification, cc: tyro
+### Current
+
+- referrals cc: jonan
+
+### Later
+
 - Filtering documentation cc: tyro, benjamin
 - Prévisualisation des filtres, cc: benjamin
-- Example filters cc: jonan
 - Interface for conditions cc: jonan, david
 - we found 0/30 items cc: jonan (when processed)
 - Style emails cc: allancoder
+- Pro plan, cc: benjamin, tyro, lucian
+
+### Integrations
+
+- GitHub cc: prabin
+- Product Hunt
+- Frimake
+- Reddit cc: benjamin
+- Mastodon
+- Telegram
+- Facebook
+- Instagram
+- Lobsters
+- Zapier
+- IFTT
