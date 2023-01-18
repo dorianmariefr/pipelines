@@ -5,9 +5,12 @@ import each from "lodash/each"
 const t = i18n.scope("source")
 
 export default class extends Controller {
+  static outlets = ["destination"]
+
   static targets = ["parameters", "kind"]
 
   static values = {
+    kind: String,
     kinds: Object,
     parameters: Object,
   }
@@ -20,10 +23,18 @@ export default class extends Controller {
     this.update()
   }
 
+  value(key, parameter) {
+    return this.parametersValue[key] || parameter.default
+  }
+
   update() {
-    const firstKind = this.kindTarget.value.split("/")[0]
-    const secondKind = this.kindTarget.value.split("/")[1]
-    const kind = this.kindsValue[firstKind][secondKind]
+    this.kindValue = this.kindTarget.value
+    const kind = this.kindsValue[this.kindValue]
+    window.dispatchEvent(
+      new CustomEvent("source-update", {
+        detail: { kind: this.kindValue },
+      })
+    )
 
     this.parametersTarget.innerText = ""
 
@@ -53,6 +64,9 @@ export default class extends Controller {
             const optionElement = document.createElement("option")
             optionElement.value = option[0]
             optionElement.innerText = option[1]
+            if (option.length > 2) {
+              optionElement.disabled = option[2]
+            }
             if (this.parametersValue[key]) {
               optionElement.selected = option[0] == this.parametersValue[key]
             } else {
@@ -68,6 +82,12 @@ export default class extends Controller {
           inputElement.name = `${beginning}[value]`
           inputElement.value = this.parametersValue[key] || parameter.default
           inputElement.type = "text"
+          pElement.appendChild(inputElement)
+        } else if (parameter.kind == "text") {
+          const inputElement = document.createElement("textarea")
+          inputElement.id = `${beginning}[value]`
+          inputElement.name = `${beginning}[value]`
+          inputElement.value = this.value(key, parameter)
           pElement.appendChild(inputElement)
         } else {
           console.log({ parameter })

@@ -20,6 +20,30 @@ class Parameter < ApplicationRecord
   RESULT_TYPES =
     %w[mixed recent popular].map { |result_type| [result_type, result_type] }
 
+  LIMIT_FREE = 5
+  LIMITS = [1, 5, 10, 20]
+
+  LIMITS_FREE =
+    LIMITS.map do |limit|
+      [
+        limit.to_s,
+        (
+          if (limit > LIMIT_FREE)
+            I18n.t("parameters.limit_disabled", limit: limit)
+          else
+            limit.to_s
+          end
+        ),
+        limit > LIMIT_FREE
+      ]
+    end
+
+  LIMITS_PRO = LIMITS.map { |limit| [limit.to_s, limit.to_s] }
+
+  BODY_FORMATS = %w[text html].map { |body_format| [body_format, body_format] }
+
+  TRANSLATED_KEYS = %w[day_of_week body_format]
+
   belongs_to :parameterizable, polymorphic: true
 
   def translated_key
@@ -27,11 +51,7 @@ class Parameter < ApplicationRecord
   end
 
   def translated_value
-    if value.to_i.to_s == value
-      value
-    else
-      I18n.t("parameters.#{value}")
-    end
+    TRANSLATED_KEYS.include?(key) ? I18n.t("parameters.#{value}") : value
   end
 
   def duplicate_for(user)

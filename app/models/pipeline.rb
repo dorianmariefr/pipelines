@@ -18,32 +18,34 @@ class Pipeline < ApplicationRecord
     where(id: id_or_slug).or(where(slug: id_or_slug)).first!
   end
 
-  def process_now
-    ApplicationRecord.transaction do
-      source_results = sources.map(&:fetch)
-      destination_results = []
-
-      destinations.each do |destination|
-        source_results.each do |source_result|
-          destination_results << destination.send_now(source_result.saved_items)
-        end
-      end
-
-      Pipeline::Result.new(
-        source_results: source_results,
-        destination_results: destination_results
-      )
+  before_save do
+    sources.each do |source|
+      source.parameters = [] if source.as_json[:parameters].nil?
     end
   end
 
-  def process_later
-    ApplicationRecord.transaction do
-      source_results = sources.map(&:fetch)
+  def process_now
+    source_results = sources.map(&:fetch)
+    destination_results = []
 
-      destinations.instant.each do |destination|
-        source_results.each do |source_result|
-          destination.send_later(source_result.saved_items)
-        end
+    destinations.each do |destination|
+      source_results.each do |source_result|
+        destination_results << destination.send_now(source_result.saved_items)
+      end
+    end
+
+    Pipeline::Result.new(
+      source_results: source_results,
+      destination_results: destination_results
+    )
+  end
+
+  def process_later
+    source_results = sources.map(&:fetch)
+
+    destinations.instant.each do |destination|
+      source_results.each do |source_result|
+        destination.send_later(source_result.saved_items)
       end
     end
   end

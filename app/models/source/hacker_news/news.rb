@@ -9,6 +9,44 @@ class Source
         @source = source
       end
 
+      def self.as_json
+        {}
+      end
+
+      def self.email_subject_default
+        "{title}"
+      end
+
+      def self.email_body_default
+        <<~TEMPLATE
+          {url}
+
+          {comments_url}
+        TEMPLATE
+      end
+
+      def self.email_digest_subject_default
+        "{items.first.title}"
+      end
+
+      def self.email_digest_body_default
+        <<~TEMPLATE
+          {items.each do |item|
+            puts(item.title)
+            puts
+            puts(item.url)
+            puts
+            puts(item.comments_url)
+            puts
+          end
+          nothing}
+        TEMPLATE
+      end
+
+      def as_json
+        self.class.as_json
+      end
+
       def fetch
         response =
           Rails

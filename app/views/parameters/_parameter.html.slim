@@ -1,0 +1,10 @@
+p
+  span
+    = parameter.translated_key
+    ' :
+
+  - if parameter.value.lines.one?
+    code= parameter.translated_value
+
+- if parameter.value.lines.many?
+  pre= parameter.translated_value

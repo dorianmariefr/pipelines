@@ -19,6 +19,7 @@ gem "http_accept_language"
 gem "image_processing"
 gem "jsbundling-rails"
 gem "kaminari"
+gem "letter_opener", group: :development
 gem "messagebird-rest", require: "messagebird"
 gem "money-rails"
 gem "normailize"

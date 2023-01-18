@@ -83,6 +83,9 @@ en:
       must_be_present: Must be present
       must_be_valid: Must be valid
     destination:
+      subject: Subject
+      body: Body
+      body_format: Body format
       day_of_month: Day of month
       day_of_week: Day of week
       email: Email
@@ -103,6 +106,7 @@ en:
       too_long: Too long
       too_short: Too short
     source:
+      limit: Limit
       query: Query
       result_type: Result type
   layouts:
@@ -165,6 +169,15 @@ en:
     terms:
       title: Terms and Conditions
   parameters:
+    result_type: Result type
+    query: Query
+    limit: Limit
+    subject: Subject
+    body_format: Body format
+    text: Text
+    html: HTML
+    body: Body
+    limit_disabled: "%{limit} (Pro)"
     day_of_month: Day of Month
     day_of_week: Day of Week
     friday: Friday
@@ -219,6 +232,8 @@ en:
       notice: Phone number verified
   pipelines:
     result:
+      source_error: "Source error: %{error}"
+      destination_error: "Destination error: %{error}"
       new_items:
         zero: "0 new items"
         one: "1 new item"
@@ -267,6 +282,7 @@ en:
       submit: Create pipeline
       title: New pipeline
     process_now:
+      alert: There was an error processing your pipeline
       notice: Your pipeline has been processed (%{result})
     show:
       by: By

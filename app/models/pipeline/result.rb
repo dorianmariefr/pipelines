@@ -1,10 +1,11 @@
 class Pipeline
   class Result
-    attr_reader :source_results, :destination_results
+    attr_reader :source_results, :destination_results, :error
 
-    def initialize(source_results:, destination_results:)
+    def initialize(error: nil, source_results: [], destination_results: [])
       @source_results = source_results
       @destination_results = destination_results
+      @error = error
     end
 
     def new_items
@@ -39,13 +40,43 @@ class Pipeline
       I18n.t("pipelines.result.sent_items", count: sent_items.size)
     end
 
+    def errors?
+      errors.any?
+    end
+
+    def source_errors
+      source_results
+        .map(&:error)
+        .compact
+        .map do |source_error|
+          I18n.t("pipelines.result.source_error", error: source_error)
+        end
+    end
+
+    def destination_errors
+      destination_results
+        .map(&:error)
+        .compact
+        .map do |destination_error|
+          I18n.t("pipelines.result.destination_error", error: destination_error)
+        end
+    end
+
+    def errors
+      [error, source_errors, destination_errors].flatten.compact
+    end
+
     def to_s
-      [
-        new_items_to_s,
-        matched_items_to_s,
-        saved_items_to_s,
-        sent_items_to_s
-      ].to_sentence
+      if errors?
+        errors.to_sentence
+      else
+        [
+          new_items_to_s,
+          matched_items_to_s,
+          saved_items_to_s,
+          sent_items_to_s
+        ].to_sentence
+      end
     end
   end
 end

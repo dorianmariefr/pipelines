@@ -26,10 +26,15 @@ class PipelinesController < ApplicationController
 
   def process_now
     pipeline_result = @pipeline.process_now
-    redirect_back(
-      fallback_location: @pipeline,
-      notice: t(".notice", result: pipeline_result.to_s)
-    )
+
+    if pipeline_result.errors?
+      redirect_back(fallback_location: @pipeline, alert: t(".alert"))
+    else
+      redirect_back(
+        fallback_location: @pipeline,
+        notice: t(".notice", result: pipeline_result.to_s)
+      )
+    end
   end
 
   def duplicate

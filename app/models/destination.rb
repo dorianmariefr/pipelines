@@ -1,66 +1,10 @@
 class Destination < ApplicationRecord
   KINDS = {
-    email: {
-      subclass: "Destination::Email",
-      destinable_type: :Email,
-      destinable_label: :email
-    },
-    hourly_email_digest: {
-      subclass: "Destination::HourlyEmailDigest",
-      destinable_type: :Email,
-      destinable_label: :email
-    },
-    daily_email_digest: {
-      subclass: "Destination::DailyEmailDigest",
-      destinable_type: :Email,
-      destinable_label: :email,
-      parameters: {
-        hour: {
-          default: "18",
-          translate: false,
-          kind: :select,
-          options: Parameter::HOURS
-        }
-      }
-    },
-    weekly_email_digest: {
-      subclass: "Destination::WeeklyEmailDigest",
-      destinable_type: :Email,
-      destinable_label: :email,
-      parameters: {
-        hour: {
-          default: "18",
-          translate: false,
-          kind: :select,
-          options: Parameter::HOURS
-        },
-        day_of_week: {
-          default: :thursday,
-          translate: true,
-          kind: :select,
-          options: Parameter::DAYS_OF_WEEK
-        }
-      }
-    },
-    monthly_email_digest: {
-      subclass: "Destination::MonthlyEmailDigest",
-      destinable_type: :Email,
-      destinable_label: :email,
-      parameters: {
-        hour: {
-          default: "18",
-          translate: false,
-          kind: :select,
-          options: Parameter::HOURS
-        },
-        day_of_month: {
-          default: "1",
-          translate: false,
-          kind: :select,
-          options: Parameter::DAYS_OF_MONTH
-        }
-      }
-    }
+    email: "Destination::Email",
+    hourly_email_digest: "Destination::DailyEmailDigest",
+    daily_email_digest: "Destination::DailyEmailDigest",
+    weekly_email_digest: "Destination::WeeklyEmailDigest",
+    monthly_email_digest: "Destination::MonthlyEmailDigest"
   }
 
   belongs_to :pipeline
@@ -80,13 +24,17 @@ class Destination < ApplicationRecord
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
   scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: {in: ["Email"]}
+  validates :destinable_type, inclusion: { in: ["Email"] }
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
 
   def self.kinds_options
     KINDS.map { |kind, _| [I18n.t("destinations.model.kinds.#{kind}"), kind] }
+  end
+
+  def self.as_json(...)
+    KINDS.map { |kind, subclass| [kind, subclass.constantize.as_json] }.to_h
   end
 
   def parameters_attributes=(*args)
@@ -99,11 +47,19 @@ class Destination < ApplicationRecord
   end
 
   def subclass
-    KINDS.dig(kind.to_sym, :subclass).constantize.new(self)
+    KINDS.dig(kind.to_sym).constantize.new(self)
   end
 
   def send_now(items = nil)
     subclass.send_now(items)
+  rescue => e
+    update!(
+      error: "#{e.class}: #{e.message}",
+      backtrace: e.backtrace.grep(/#{Rails.root}/).join("\n")
+    )
+    Destination::Result.new(error: e.message)
+  else
+    update!(error: nil, backtrace: nil)
     Destination::Result.new(sent_items: items || subclass.items)
   end
 

@@ -1,6 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import i18n from "../i18n"
 import each from "lodash/each"
+import isObject from "lodash/isObject"
+import values from "lodash/values"
 
 const t = i18n.scope("destination")
 
@@ -17,6 +19,7 @@ export default class extends Controller {
     emails: Array,
     kinds: Object,
     parameters: Object,
+    sourceKind: String,
   }
 
   connect() {
@@ -25,6 +28,26 @@ export default class extends Controller {
 
   choose() {
     this.update()
+  }
+
+  sourceKindUpdate(event) {
+    this.sourceKindValue = event.detail.kind
+    this.parametersValue = {}
+    this.update()
+  }
+
+  value(key, parameter) {
+    if (isObject(parameter.default)) {
+      if (this.sourceKindValue) {
+        return (
+          this.parametersValue[key] || parameter.default[this.sourceKindValue]
+        )
+      } else {
+        return this.parametersValue[key] || values(parameter.default)[0]
+      }
+    } else {
+      return this.parametersValue[key] || parameter.default
+    }
   }
 
   update() {
@@ -61,12 +84,13 @@ export default class extends Controller {
         labelElement.htmlFor = `${beginning}[value]`
         labelElement.innerText = t(key)
         pElement.appendChild(labelElement)
+        const hiddenElement = document.createElement("input")
+        hiddenElement.type = "hidden"
+        hiddenElement.name = `${beginning}[key]`
+        hiddenElement.value = key
+        pElement.appendChild(hiddenElement)
 
         if (parameter.kind == "select") {
-          const hiddenElement = document.createElement("input")
-          hiddenElement.type = "hidden"
-          hiddenElement.name = `${beginning}[key]`
-          hiddenElement.value = key
           const selectElement = document.createElement("select")
           selectElement.id = `${beginning}[value]`
           selectElement.name = `${beginning}[value]`
@@ -75,16 +99,27 @@ export default class extends Controller {
             const optionElement = document.createElement("option")
             optionElement.value = option[0]
             optionElement.innerText = option[1]
-            if (this.parametersValue[key]) {
-              optionElement.selected = option[0] == this.parametersValue[key]
-            } else {
-              optionElement.selected = option[0] == parameter.default
+            if (option.length > 2) {
+              optionElement.disabled = option[2]
             }
+            optionElement.selected = option[0] == this.value(key, parameter)
             selectElement.appendChild(optionElement)
           })
 
-          pElement.appendChild(hiddenElement)
           pElement.appendChild(selectElement)
+        } else if (parameter.kind == "string") {
+          const inputElement = document.createElement("input")
+          inputElement.id = `${beginning}[value]`
+          inputElement.name = `${beginning}[value]`
+          inputElement.value = this.value(key, parameter)
+          inputElement.type = "text"
+          pElement.appendChild(inputElement)
+        } else if (parameter.kind == "text") {
+          const inputElement = document.createElement("textarea")
+          inputElement.id = `${beginning}[value]`
+          inputElement.name = `${beginning}[value]`
+          inputElement.value = this.value(key, parameter)
+          pElement.appendChild(inputElement)
         } else {
           console.log({ parameter })
         }

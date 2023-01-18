@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_082201) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_203518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_082201) do
     t.datetime "updated_at", null: false
     t.string "destinable_type", null: false
     t.bigint "destinable_id", null: false
+    t.text "error"
+    t.text "backtrace"
     t.index %w[destinable_type destinable_id],
             name: "index_destinations_on_destinable"
     t.index ["pipeline_id"], name: "index_destinations_on_pipeline_id"
@@ -133,7 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_082201) do
     t.string "parameterizable_type", null: false
     t.bigint "parameterizable_id", null: false
     t.string "key", null: false
-    t.string "value", null: false
+    t.text "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index %w[parameterizable_type parameterizable_id],
@@ -178,6 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_082201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "filter", default: "", null: false
+    t.text "error"
+    t.text "backtrace"
     t.index ["pipeline_id"], name: "index_sources_on_pipeline_id"
   end
 

@@ -1,12 +1,14 @@
 .card
-  p
-    => destination.name
-    - if destination.parameters.any?
-      | (
-      = safe_join(destination.parameters.map(&:to_s), ", ")
-      ' )
-    - if can?(:update, destination)
-      | (
+  h4= destination.name
+
+  = render destination.parameters
+
+  - if can?(:update, destination)
+    p
       b=> t(".private")
       = destination.destinable
-      ' )
+
+  - if can?(:update, destination) && destination.error?
+    p.text-red-600= destination.error
+    - if destination.backtrace.present?
+      pre= destination.backtrace

@@ -3,6 +3,11 @@ class EmailMailer < ApplicationMailer
     mail(to: params[:to], subject: params[:subject], body: params[:body])
   end
 
+  def html_email
+    @body = params[:body]
+    mail(to: params[:to], subject: params[:subject])
+  end
+
   def rich_email
     @body = params[:body]
     mail(to: params[:to], subject: params[:subject])

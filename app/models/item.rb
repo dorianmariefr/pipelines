@@ -23,8 +23,6 @@ class Item < ApplicationRecord
   delegate :first_kind, :second_kind, to: :source
   delegate :urls,
            :url,
-           :email_subject,
-           :email_body,
            :to_s,
            :rss_title,
            :rss_description,
@@ -35,7 +33,7 @@ class Item < ApplicationRecord
 
   def match(filter)
     return true if filter.blank?
-    Code.evaluate(filter, ruby: extras).truthy?
+    Code.evaluate(filter, ruby: as_json).truthy?
   rescue Code::Error
     false
   end
@@ -46,5 +44,9 @@ class Item < ApplicationRecord
 
   def subclass
     KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
+  end
+
+  def as_json
+    { external_id: external_id, **extras }
   end
 end

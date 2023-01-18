@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include CanConcern
 
   before_action :set_locale
+  before_action :set_current
   before_action :update_locale
 
   after_action :verify_authorized, except: :index
@@ -12,11 +13,6 @@ class ApplicationController < ActionController::Base
   helper_method :can?
 
   private
-
-  def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
 
   def set_locale
     if params[:locale] &&
@@ -30,6 +26,15 @@ class ApplicationController < ActionController::Base
       I18n.locale =
         http_accept_language.compatible_language_from(I18n.available_locales)
     end
+  end
+
+  def set_current
+    Current.user = current_user
+  end
+
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def update_locale

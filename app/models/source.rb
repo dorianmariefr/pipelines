@@ -1,29 +1,11 @@
 class Source < ApplicationRecord
   KINDS = {
-    hacker_news: {
-      news: {
-        subclass: "Source::HackerNews::News"
-      },
-      newest: {
-        subclass: "Source::HackerNews::Newest"
-      }
-    },
     twitter: {
-      search: {
-        subclass: "Source::Twitter::Search",
-        parameters: {
-          result_type: {
-            default: "recent",
-            translate: false,
-            kind: :select,
-            options: Parameter::RESULT_TYPES
-          },
-          query: {
-            default: "",
-            kind: :string
-          }
-        }
-      }
+      search: "Source::Twitter::Search"
+    },
+    hacker_news: {
+      news: "Source::HackerNews::News",
+      newest: "Source::HackerNews::Newest"
     }
   }
 
@@ -34,15 +16,50 @@ class Source < ApplicationRecord
 
   accepts_nested_attributes_for :parameters
 
-  def self.kinds_options
+  delegate :as_json, to: :subclass
+
+  def self.each_kind(&block)
     KINDS.flat_map do |first_kind, first_kind_value|
-      first_kind_value.map do |second_kind, _|
-        [
-          I18n.t("sources.model.kinds.#{first_kind}.#{second_kind}"),
-          "#{first_kind}/#{second_kind}"
-        ]
+      first_kind_value.map do |second_kind, second_kind_value|
+        block.call(first_kind, second_kind, second_kind_value)
       end
     end
+  end
+
+  def self.kinds_options
+    each_kind do |first, second|
+      [I18n.t("sources.model.kinds.#{first}.#{second}"), "#{first}/#{second}"]
+    end
+  end
+
+  def self.as_json(...)
+    each_kind do |first, second, subclass|
+      ["#{first}/#{second}", subclass.constantize.as_json]
+    end.to_h
+  end
+
+  def self.email_subject_defaults
+    each_kind do |first, second, subclass|
+      ["#{first}/#{second}", subclass.constantize.email_subject_default]
+    end.to_h
+  end
+
+  def self.email_body_defaults
+    each_kind do |first, second, subclass|
+      ["#{first}/#{second}", subclass.constantize.email_body_default]
+    end.to_h
+  end
+
+  def self.email_digest_subject_defaults
+    each_kind do |first, second, subclass|
+      ["#{first}/#{second}", subclass.constantize.email_digest_subject_default]
+    end.to_h
+  end
+
+  def self.email_digest_body_defaults
+    each_kind do |first, second, subclass|
+      ["#{first}/#{second}", subclass.constantize.email_digest_body_default]
+    end.to_h
   end
 
   def parameters_attributes=(*args)
@@ -69,7 +86,7 @@ class Source < ApplicationRecord
   end
 
   def subclass
-    KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
+    KINDS.dig(first_kind, second_kind).constantize.new(self)
   end
 
   def params
@@ -87,6 +104,14 @@ class Source < ApplicationRecord
       end
     result.matched_items = result.new_items.select { |item| item.match(filter) }
     result.saved_items = result.matched_items.select(&:save)
+  rescue => e
+    update!(
+      error: "#{e.class}: #{e.message}",
+      backtrace: e.backtrace.grep(/#{Rails.root}/).join("\n")
+    )
+    Source::Result.new(error: e.message)
+  else
+    update!(error: nil, backtrace: nil)
     result
   end
 end

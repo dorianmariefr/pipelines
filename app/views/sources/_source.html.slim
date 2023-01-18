@@ -1,5 +1,13 @@
 .card
-  p
-    => source.name
-    - if source.filter.present?
-      = "(#{source.filter})"
+  h4= source.name
+
+  = render source.parameters
+
+  - if source.filter.present?
+    p= source.filter
+
+  - if can?(:update, source) && source.error?
+    p.text-red-600= source.error
+
+    - if source.backtrace.present?
+      pre= source.backtrace
