@@ -26,6 +26,9 @@ html
     div
       - if current_user
         => link_to current_user.name, current_user
+        - if admin?
+          => link_to t(".users"), admin_users_path
+          => link_to t(".pipelines"), admin_pipelines_path
         => button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
       - else
         => link_to t(".register"), new_user_path, class: "font-bold"

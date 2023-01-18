@@ -1,5 +1,83 @@
 ---
 en:
+  admin:
+    emails:
+      create:
+        notice: Email created
+      update:
+        notice: Email updated
+      destroy:
+        notice: Email deleted
+      send_verification:
+        notice: Verification code sent
+      email:
+        add: Add
+        add_email: Add email
+        delete: Delete
+        not_verified: Not verified
+        resend_verification_code: Resend verification code
+        send_verification_code: Send verification code
+        submit: Verify
+        verification_code: Verification code
+        verification_code_sent: Verification code sent
+        verified: Verified
+        verified?: Verified?
+    phone_numbers:
+      create:
+        notice: Phone number created
+      update:
+        notice: Phone number updated
+      destroy:
+        notice: Phone number deleted
+      send_verification:
+        notice: Verification code sent
+      phone_number:
+        verified?: Verified?
+        add: Add
+        add_phone_number: Add phone number
+        delete: Delete
+        not_verified: Not verified
+        resend_verification_code: Resend verification code
+        send_verification_code: Send verification code
+        submit: Verify
+        verification_code: Verification code
+        verification_code_sent: Verification code sent
+        verified: Verified
+    users:
+      impersonate:
+        notice: You impersonated this user
+      form:
+        add_email: Add email
+        add_phone_number: Add phone number
+        hide_password: Hide password
+        name: Name
+        password: Password
+        show_password: Show password
+      new:
+        title: "[Admin] New user"
+        submit: Create user
+      edit:
+        title: "[Admin] Edit user"
+        submit: Update user
+      index:
+        title: "[Admin] Users"
+        new: New user
+      show:
+        impersonate: Impersonate
+        title: "[Admin] %{name}"
+        emails: Emails
+        phone_numbers: Phone numbers
+        edit: Edit profile
+        delete: Delete account
+        confirm: Are you sure you want to delete this account?
+        pipelines: Pipelines
+        none: None
+      create:
+        notice: User created
+      update:
+        notice: User updated
+      destroy:
+        notice: User deleted
   application:
     fake:
       eg: e.g. %{string}
@@ -111,6 +189,8 @@ en:
       result_type: Result type
   layouts:
     application:
+      users: Users
+      pipelines: Pipelines
       log_in: Log in
       log_out: Log out
       privacy: Privacy Policy

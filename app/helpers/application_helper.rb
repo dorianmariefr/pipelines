@@ -7,7 +7,7 @@ module ApplicationHelper
     if content_for?(:title)
       content_for(:title)
     else
-      t("#{controller_name}.#{action}.title")
+      t("#{controller_path.tr("/", ".")}.#{action}.title")
     end
   end
 
@@ -57,5 +57,9 @@ module ApplicationHelper
 
   def destination_kinds_options(destination)
     options_for_select(Destination.kinds_options, destination.kind)
+  end
+
+  def admin?
+    current_user&.admin?
   end
 end

@@ -4,18 +4,19 @@ class UsersController < ApplicationController
   helper_method :password_param
 
   def show
-    @emails = @user.emails.order(created_at: :asc).to_a
-    @emails << @user.emails.build
-    @phone_numbers = @user.phone_numbers.order(created_at: :asc).to_a
-    @phone_numbers << @user.phone_numbers.build
+    @emails =
+      policy_scope(Email).where(user: @user).order(created_at: :asc).to_a
+    @emails << Email.new(user: @user)
+    @phone_numbers =
+      policy_scope(PhoneNumber).where(user: @user).order(created_at: :asc).to_a
+    @phone_numbers << PhoneNumber.new(user: @user)
     @pipelines =
       policy_scope(Pipeline).where(user: @user).order(created_at: :asc)
   end
 
   def new
-    @user = User.new
+    @user = authorize User.new
     build_user
-    authorize @user
   end
 
   def create
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
           render :edit, status: :unprocessable_entity
         end
         format.json do
-          render json: { error: @user.alert }, status: :unprocessable_entity
+          render json: {error: @user.alert}, status: :unprocessable_entity
         end
       end
     end
