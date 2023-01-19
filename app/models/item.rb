@@ -45,6 +45,6 @@ class Item < ApplicationRecord
   end
 
   def as_json
-    {external_id: external_id, **extras}
+    {external_id: external_id, pipeline: pipeline.as_json, **extras}
   end
 end

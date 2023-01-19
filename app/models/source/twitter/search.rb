@@ -41,6 +41,8 @@ class Source
           {url}
 
           {user_url}
+
+          {pipeline.url}
         TEMPLATE
       end
 
@@ -57,6 +59,8 @@ class Source
             puts
           end
           nothing}
+
+          {pipeline.url}
         TEMPLATE
       end
 

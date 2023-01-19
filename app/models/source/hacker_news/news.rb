@@ -22,6 +22,8 @@ class Source
           {url}
 
           {comments_url}
+
+          {pipeline.url}
         TEMPLATE
       end
 
@@ -40,6 +42,8 @@ class Source
             puts
           end
           nothing}
+
+          {pipeline.url}
         TEMPLATE
       end
 

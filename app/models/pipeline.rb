@@ -58,6 +58,15 @@ class Pipeline < ApplicationRecord
     pipeline
   end
 
+  def as_json
+    {
+      id: id,
+      slug: slug,
+      name: name,
+      url: Rails.application.routes.url_helpers.pipeline_path(self)
+    }
+  end
+
   def to_s
     name.presence || id
   end
