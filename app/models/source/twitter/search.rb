@@ -100,6 +100,8 @@ class Source
       end
 
       def fetch
+        return [] if query.blank?
+
         Rails
           .cache
           .fetch(
@@ -120,9 +122,7 @@ class Source
       delegate :query, :result_type, :limit, to: :params
 
       def params
-        Struct.new(*source.params.deep_symbolize_keys.keys).new(
-          *source.params.values
-        )
+        OpenStruct.new(source.params)
       end
 
       def client
