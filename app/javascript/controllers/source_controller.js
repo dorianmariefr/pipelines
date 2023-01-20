@@ -34,7 +34,6 @@ export default class extends Controller {
   }
 
   update() {
-    this.preview()
     this.kindValue = this.kindTarget.value
     const kind = this.kindsValue[this.kindValue]
 
@@ -134,6 +133,7 @@ export default class extends Controller {
         this.parametersTarget.appendChild(pElement)
       })
     }
+    this.preview()
   }
 
   async preview() {
