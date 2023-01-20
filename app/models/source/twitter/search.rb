@@ -17,7 +17,7 @@ class Source
               options: Parameter::RESULT_TYPES
             },
             query: {
-              default: "",
+              default: "from:dorianmariefr",
               kind: :string
             },
             limit: {

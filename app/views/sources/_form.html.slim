@@ -13,9 +13,11 @@
 
   .p
     = f.label :filter, t(".filter")
-    = f.text_field :filter
+    = f.text_field :filter, data: { source_target: "filter", action: "filter#preview" }
     .text-gray-600= t(".filter_hint_html")
     = fake_filter
+
+  pre(data-source-target="preview")
 
   .p(data-sources-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600", data: { action: "sources#remove" }

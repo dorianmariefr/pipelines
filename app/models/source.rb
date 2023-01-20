@@ -96,6 +96,15 @@ class Source < ApplicationRecord
       .with_indifferent_access
   end
 
+  def preview
+    subclass
+      .fetch
+      .map do |item|
+        items.build(external_id: item.external_id, extras: item.extras)
+      end
+      .select { |item| item.match(filter) }
+  end
+
   def fetch
     result = Source::Result.new
     result.new_items =

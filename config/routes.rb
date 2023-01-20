@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post "sources/preview" => "sources#preview"
+
   resources :items
 
   resources :posts do

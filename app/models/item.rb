@@ -44,7 +44,9 @@ class Item < ApplicationRecord
     KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
   end
 
-  def as_json
-    {external_id: external_id, pipeline: pipeline.as_json, **extras}
+  def as_json(...)
+    {external_id: external_id, pipeline: pipeline.as_json, **extras}.as_json(
+      ...
+    )
   end
 end

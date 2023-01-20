@@ -7,7 +7,7 @@ const t = i18n.scope("source")
 export default class extends Controller {
   static outlets = ["destination"]
 
-  static targets = ["parameters", "kind"]
+  static targets = ["parameters", "kind", "preview", "filter", "parameter"]
 
   static values = {
     kind: String,
@@ -17,10 +17,44 @@ export default class extends Controller {
 
   connect() {
     this.update()
+    this.preview()
   }
 
   choose() {
     this.update()
+    this.preview()
+  }
+
+  async preview() {
+    const csrfToken = document.querySelector("[name='csrf-token']").content
+    const kind = this.kindTarget.value
+    const filter = this.filterTarget.value
+    const parameters = this.parameterTargets.map((parameterTarget) => {
+      return { key: parameterTarget.dataset.key, value: parameterTarget.value }
+    })
+
+    try {
+      const response = await fetch("/sources/preview", {
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source: {
+            kind: kind,
+            filter: filter,
+            parameters_attributes: parameters,
+          },
+        }),
+      })
+
+      const json = await response.json()
+
+      this.previewTarget.innerText = JSON.stringify(json, null, 2)
+    } catch (e) {
+      this.previewTarget.innerText = e.message
+    }
   }
 
   value(key, parameter) {
@@ -59,6 +93,9 @@ export default class extends Controller {
           const selectElement = document.createElement("select")
           selectElement.id = `${beginning}[value]`
           selectElement.name = `${beginning}[value]`
+          selectElement.dataset.action = "source#preview"
+          selectElement.dataset.sourceTarget = "parameter"
+          selectElement.dataset.key = key
 
           parameter.options.forEach((option) => {
             const optionElement = document.createElement("option")
@@ -82,12 +119,18 @@ export default class extends Controller {
           inputElement.name = `${beginning}[value]`
           inputElement.value = this.parametersValue[key] || parameter.default
           inputElement.type = "text"
+          inputElement.dataset.action = "source#preview"
+          inputElement.dataset.sourceTarget = "parameter"
+          inputElement.dataset.key = key
           pElement.appendChild(inputElement)
         } else if (parameter.kind == "text") {
           const inputElement = document.createElement("textarea")
           inputElement.id = `${beginning}[value]`
           inputElement.name = `${beginning}[value]`
           inputElement.value = this.value(key, parameter)
+          inputElement.dataset.action = "source#preview"
+          inputElement.dataset.sourceTarget = "parameter"
+          inputElement.dataset.key = key
           pElement.appendChild(inputElement)
         } else {
           console.log({ parameter })
