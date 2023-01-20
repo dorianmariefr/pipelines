@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   choose() {
+    this.parametersValue = {}
     this.update()
   }
 

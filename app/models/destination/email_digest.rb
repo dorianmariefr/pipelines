@@ -40,11 +40,15 @@ class Destination
     end
 
     def subject
-      Template.render(params[:subject], ruby: { items: items.as_json })
+      Template.render(params[:subject], ruby: as_json)
     end
 
     def body
-      Template.render(params[:body], ruby: { items: items.as_json })
+      Template.render(params[:body], ruby: as_json)
+    end
+
+    def as_json(...)
+      {items: items, pipeline: pipeline}.as_json(...)
     end
   end
 end
