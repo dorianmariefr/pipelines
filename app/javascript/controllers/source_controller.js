@@ -46,8 +46,11 @@ export default class extends Controller {
     if (this.filterTypeTarget.value === "simple") {
       this.simpleFilterTarget.hidden = false
       this.codeFilterTarget.hidden = true
-    } else {
+    } else if (this.filterTypeTarget.value === "code") {
       this.codeFilterTarget.hidden = false
+      this.simpleFilterTarget.hidden = true
+    } else {
+      this.codeFilterTarget.hidden = true
       this.simpleFilterTarget.hidden = true
     }
 

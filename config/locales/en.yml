@@ -196,6 +196,14 @@ en:
       query_hint_html: "The search query as you would enter on Twitter"
       result_type: Result type
       result_type_hint_html: "I recommend recent if you want to process all the tweets"
+      tagged: Tags
+      tagged_hint_html: "A list of tags separated by a semicolon (;) (maximum of 5 tags)"
+      sort: Sort
+      sort_hint_html: How the questions are going to be sorted?
+      order: Order
+      order_hint_html: Either descendant or ascendant from the sort criteria
+      site: Site
+      site_hint_html: Any of the Stack Exchanges sites including Stack Overflow
   layouts:
     application:
       users: Users
@@ -258,6 +266,10 @@ en:
     terms:
       title: Terms and Conditions
   parameters:
+    tagged: Tags
+    sort: Sort
+    order: Order
+    site: Site
     result_type: Result type
     query: Query
     limit: Limit
@@ -478,6 +490,7 @@ en:
         "<": is less than
         "<=": is less than or equal to
       filter_types:
+        none: None
         simple: Simple
         code: Code
       kinds:
@@ -486,6 +499,8 @@ en:
           news: Hacker News - Frontpage Stories
         twitter:
           search: Twitter - Search
+        stack_exchange:
+          questions: Stack Exchange - Questions
   users:
     create:
       notice: User created, you are now logged in

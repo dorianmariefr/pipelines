@@ -1,5 +1,8 @@
 class Source < ApplicationRecord
   KINDS = {
+    stack_exchange: {
+      questions: "Source::StackExchange::Questions"
+    },
     twitter: {
       search: "Source::Twitter::Search"
     },
@@ -9,6 +12,7 @@ class Source < ApplicationRecord
     }
   }
 
+  NONE = "none"
   SIMPLE = "simple"
   CODE = "code"
   INCLUDES = "include?"
@@ -18,7 +22,7 @@ class Source < ApplicationRecord
   LESS_THAN = "<"
   LESS_THAN_OR_EQUALS = "<="
 
-  FILTER_TYPES = [SIMPLE, CODE]
+  FILTER_TYPES = [NONE, SIMPLE, CODE]
   OPERATORS = [
     INCLUDES,
     EQUALS,
@@ -131,6 +135,10 @@ class Source < ApplicationRecord
     I18n.t("sources.model.operators.#{operator}")
   end
 
+  def none?
+    filter_type == NONE
+  end
+
   def simple?
     filter_type == SIMPLE
   end
@@ -170,7 +178,9 @@ class Source < ApplicationRecord
   end
 
   def match(item)
-    if code?
+    if none?
+      true
+    elsif code?
       filter.present? ? item.match(filter) : true
     elsif simple_filter.present?
       if includes?
