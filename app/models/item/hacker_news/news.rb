@@ -32,14 +32,6 @@ class Item
         ].compact
       end
 
-      def email_subject
-        title
-      end
-
-      def email_body
-        "#{url}\n\n#{comments_url}"
-      end
-
       def rss_title
         title
       end
@@ -72,9 +64,7 @@ class Item
       attr_reader :item
 
       def extras
-        Struct.new(*item.extras.deep_symbolize_keys.keys).new(
-          *item.extras.values
-        )
+        OpenStruct.new(item.extras)
       end
 
       def external_id

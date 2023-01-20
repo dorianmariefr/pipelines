@@ -18,7 +18,7 @@ class Source
           owner_user_type
           owner_profile_image
           owner_display_name
-          owner_link
+          owner_url
           answered?
           views
           answers

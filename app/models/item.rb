@@ -1,17 +1,14 @@
 class Item < ApplicationRecord
   KINDS = {
+    stack_exchange: {
+      questions: "Item::StackExchange::Questions"
+    },
     hacker_news: {
-      news: {
-        subclass: "Item::HackerNews::News"
-      },
-      newest: {
-        subclass: "Item::HackerNews::Newest"
-      }
+      news: "Item::HackerNews::News",
+      newest: "Item::HackerNews::Newest"
     },
     twitter: {
-      search: {
-        subclass: "Item::Twitter::Search"
-      }
+      search: "Item::Twitter::Search"
     }
   }
 
@@ -41,7 +38,7 @@ class Item < ApplicationRecord
   end
 
   def subclass
-    KINDS.dig(first_kind, second_kind, :subclass).constantize.new(self)
+    KINDS.dig(first_kind, second_kind).constantize.new(self)
   end
 
   def as_json(...)

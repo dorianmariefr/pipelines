@@ -1,6 +1,6 @@
 class Item
-  class Twitter
-    class Search
+  class StackExchange
+    class Questions
       include ActionView::Helpers::UrlHelper
       include ActionView::Helpers::OutputSafetyHelper
 
@@ -11,22 +11,15 @@ class Item
       delegate :url, to: :extras
 
       def urls
-        [
-          Url.new(text: user_handle, href: user_url),
-          (
-            if user_profile_url
-              Url.new(text: user_profile_url, href: user_profile_url)
-            end
-          )
-        ].compact
+        [Url.new(text: owner_display_name, href: owner_url)]
       end
 
       def rss_title
-        text
+        title
       end
 
       def rss_description
-        safe_join([link_to(url, url), link_to(user_url, user_url)], "<br><br>")
+        link_to(url, url)
       end
 
       def rss_pub_date
@@ -38,11 +31,11 @@ class Item
       end
 
       def rss_guid
-        id
+        question_id
       end
 
       def to_s
-        text
+        title
       end
 
       private
@@ -53,11 +46,11 @@ class Item
         OpenStruct.new(item.extras)
       end
 
-      delegate :id,
-        :text,
-        :user_url,
-        :user_profile_url,
-        :user_handle,
+      delegate :question_id,
+        :title,
+        :url,
+        :owner_display_name,
+        :owner_url,
         to: :extras
     end
   end
