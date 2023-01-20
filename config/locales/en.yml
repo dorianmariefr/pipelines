@@ -448,6 +448,11 @@ en:
       notice: Password reset email sent
   sources:
     form:
+      key: Key
+      operator: Operator
+      value: Value
+      filter_type: Filter type
+      filter_type_hint: Either a simple filter or a complex Code filter
       filter: Filter
       filter_hint_html: 'You can use Code to filter your items, see <a href="https://templatelang.com">templatelang.com</a>'
       kind: Kind
@@ -465,6 +470,16 @@ en:
           other: "%{count} comments"
           zero: 0 comments
     model:
+      operators:
+        "include?": includes
+        "==": equals
+        ">": is greater than
+        ">=": is greater than or equal to
+        "<": is less than
+        "<=": is less than or equal to
+      filter_types:
+        simple: Simple
+        code: Code
       kinds:
         hacker_news:
           newest: Hacker News - New Stories

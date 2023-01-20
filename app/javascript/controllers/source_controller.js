@@ -7,7 +7,17 @@ const t = i18n.scope("source")
 export default class extends Controller {
   static outlets = ["destination"]
 
-  static targets = ["parameters", "kind", "preview", "filter", "parameter"]
+  static targets = [
+    "parameters",
+    "kind",
+    "preview",
+    "filter",
+    "parameter",
+    "key",
+    "filterType",
+    "simpleFilter",
+    "codeFilter",
+  ]
 
   static values = {
     kind: String,
@@ -17,44 +27,6 @@ export default class extends Controller {
 
   connect() {
     this.update()
-    this.preview()
-  }
-
-  choose() {
-    this.update()
-    this.preview()
-  }
-
-  async preview() {
-    const csrfToken = document.querySelector("[name='csrf-token']").content
-    const kind = this.kindTarget.value
-    const filter = this.filterTarget.value
-    const parameters = this.parameterTargets.map((parameterTarget) => {
-      return { key: parameterTarget.dataset.key, value: parameterTarget.value }
-    })
-
-    try {
-      const response = await fetch("/sources/preview", {
-        method: "POST",
-        headers: {
-          "X-CSRF-Token": csrfToken,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          source: {
-            kind: kind,
-            filter: filter,
-            parameters_attributes: parameters,
-          },
-        }),
-      })
-
-      const json = await response.json()
-
-      this.previewTarget.innerText = JSON.stringify(json, null, 2)
-    } catch (e) {
-      this.previewTarget.innerText = e.message
-    }
   }
 
   value(key, parameter) {
@@ -62,15 +34,33 @@ export default class extends Controller {
   }
 
   update() {
+    this.preview()
     this.kindValue = this.kindTarget.value
     const kind = this.kindsValue[this.kindValue]
+
     window.dispatchEvent(
       new CustomEvent("source-update", {
         detail: { kind: this.kindValue },
       })
     )
 
+    if (this.filterTypeTarget.value === "simple") {
+      this.simpleFilterTarget.hidden = false
+      this.codeFilterTarget.hidden = true
+    } else {
+      this.codeFilterTarget.hidden = false
+      this.simpleFilterTarget.hidden = true
+    }
+
     this.parametersTarget.innerText = ""
+    this.keyTarget.innerText = ""
+
+    kind.keys.forEach((key) => {
+      const optionElement = document.createElement("option")
+      optionElement.value = key
+      optionElement.innerText = key
+      this.keyTarget.appendChild(optionElement)
+    })
 
     if (kind.parameters) {
       each(kind.parameters, (parameter, key) => {
@@ -143,6 +133,38 @@ export default class extends Controller {
 
         this.parametersTarget.appendChild(pElement)
       })
+    }
+  }
+
+  async preview() {
+    const csrfToken = document.querySelector("[name='csrf-token']").content
+    const kind = this.kindTarget.value
+    const filter = this.filterTarget.value
+    const parameters = this.parameterTargets.map((parameterTarget) => {
+      return { key: parameterTarget.dataset.key, value: parameterTarget.value }
+    })
+
+    try {
+      const response = await fetch("/sources/preview", {
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": csrfToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          source: {
+            kind: kind,
+            filter: filter,
+            parameters_attributes: parameters,
+          },
+        }),
+      })
+
+      const json = await response.json()
+
+      this.previewTarget.innerText = JSON.stringify(json, null, 2)
+    } catch (e) {
+      this.previewTarget.innerText = e.message
     }
   }
 }

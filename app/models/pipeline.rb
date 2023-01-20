@@ -63,7 +63,7 @@ class Pipeline < ApplicationRecord
       id: id,
       slug: slug,
       name: name,
-      url: Rails.application.routes.url_helpers.pipeline_path(self)
+      url: Rails.application.routes.url_helpers.pipeline_url(self)
     }
   end
 

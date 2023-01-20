@@ -114,6 +114,10 @@ class PipelinesController < ApplicationController
       sources_attributes: [
         :id,
         :kind,
+        :filter_type,
+        :key,
+        :operator,
+        :value,
         :filter,
         :_destroy,
         parameters_attributes: %i[key value]

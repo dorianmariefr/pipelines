@@ -7,8 +7,39 @@ class Source
         @source = source
       end
 
+      def self.keys
+        %w[
+          id
+          url
+          text
+          created_at
+          quote?
+          retweets
+          likes
+          lang
+          user_id
+          user_name
+          user_handle
+          user_location
+          user_description
+          user_url
+          user_profile_url
+          user_protected
+          user_followers
+          user_friends
+          user_listed
+          user_created_at
+          user_likes
+          user_verified
+          user_tweets
+          user_background_image_url
+          user_image_url
+        ]
+      end
+
       def self.as_json
         {
+          keys: keys,
           parameters: {
             result_type: {
               default: "recent",

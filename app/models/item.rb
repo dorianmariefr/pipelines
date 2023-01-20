@@ -47,6 +47,6 @@ class Item < ApplicationRecord
   def as_json(...)
     {external_id: external_id, pipeline: pipeline.as_json, **extras}.as_json(
       ...
-    )
+    ).with_indifferent_access
   end
 end

@@ -55,6 +55,14 @@ module ApplicationHelper
     options_for_select(Source.kinds_options, source.kind)
   end
 
+  def source_filter_types_options(source)
+    options_for_select(Source.filter_types_options, source.filter_type)
+  end
+
+  def source_operators_options(source)
+    options_for_select(Source.operators_options, source.operator)
+  end
+
   def destination_kinds_options(destination)
     options_for_select(Destination.kinds_options, destination.kind)
   end

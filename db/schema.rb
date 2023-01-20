@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_203518) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_20_083618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -182,6 +182,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_203518) do
     t.string "filter", default: "", null: false
     t.text "error"
     t.text "backtrace"
+    t.string "key"
+    t.string "operator"
+    t.string "value"
+    t.string "filter_type", default: "simple", null: false
     t.index ["pipeline_id"], name: "index_sources_on_pipeline_id"
   end
 

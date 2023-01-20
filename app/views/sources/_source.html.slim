@@ -3,7 +3,10 @@
 
   = render source.parameters
 
-  - if source.filter.present?
+  - if source.simple?
+    - if source.simple_filter.present?
+      p= source.simple_filter
+  - elsif source.filter.present?
     p= source.filter
 
   - if can?(:update, source) && source.error?

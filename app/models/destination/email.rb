@@ -13,15 +13,15 @@ class Destination
     end
 
     def self.subject_parameter
-      { default: Source.email_subject_defaults, kind: :string, template: true }
+      {default: Source.email_subject_defaults, kind: :string, template: true}
     end
 
     def self.body_format_parameter
-      { default: "text", kind: :select, options: Parameter::BODY_FORMATS }
+      {default: "text", kind: :select, options: Parameter::BODY_FORMATS}
     end
 
     def self.body_parameter
-      { default: Source.email_body_defaults, kind: :text, template: true }
+      {default: Source.email_body_defaults, kind: :text, template: true}
     end
 
     def self.as_json
@@ -63,11 +63,11 @@ class Destination
     delegate :destinable, :params, to: :destination
 
     def subject(item)
-      Template.render(params[:subject], ruby: item.extras)
+      Template.render(params[:subject], ruby: item.as_json)
     end
 
     def body(item)
-      Template.render(params[:body], ruby: item.extras)
+      Template.render(params[:body], ruby: item.as_json)
     end
 
     def to

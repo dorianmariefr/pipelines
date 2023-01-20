@@ -9,6 +9,25 @@ class Source < ApplicationRecord
     }
   }
 
+  SIMPLE = "simple"
+  CODE = "code"
+  INCLUDES = "include?"
+  EQUALS = "=="
+  GREATER_THAN = ">"
+  GREATER_THAN_OR_EQUALS = ">="
+  LESS_THAN = "<"
+  LESS_THAN_OR_EQUALS = "<="
+
+  FILTER_TYPES = [SIMPLE, CODE]
+  OPERATORS = [
+    INCLUDES,
+    EQUALS,
+    GREATER_THAN,
+    GREATER_THAN_OR_EQUALS,
+    LESS_THAN,
+    LESS_THAN_OR_EQUALS
+  ]
+
   belongs_to :pipeline
 
   has_many :parameters, as: :parameterizable, dependent: :destroy
@@ -29,6 +48,18 @@ class Source < ApplicationRecord
   def self.kinds_options
     each_kind do |first, second|
       [I18n.t("sources.model.kinds.#{first}.#{second}"), "#{first}/#{second}"]
+    end
+  end
+
+  def self.filter_types_options
+    FILTER_TYPES.map do |filter_type|
+      [I18n.t("sources.model.filter_types.#{filter_type}"), filter_type]
+    end
+  end
+
+  def self.operators_options
+    OPERATORS.map do |operator|
+      [I18n.t("sources.model.operators.#{operator}"), operator]
     end
   end
 
@@ -96,13 +127,79 @@ class Source < ApplicationRecord
       .with_indifferent_access
   end
 
+  def translated_operator
+    I18n.t("sources.model.operators.#{operator}")
+  end
+
+  def simple?
+    filter_type == SIMPLE
+  end
+
+  def code?
+    filter_type == CODE
+  end
+
+  def includes?
+    operator == INCLUDES
+  end
+
+  def equals?
+    operator == EQUALS
+  end
+
+  def greater_than?
+    operator == GREATER_THAN
+  end
+
+  def greater_than_or_equals?
+    operator == GREATER_THAN_OR_EQUALS
+  end
+
+  def less_than?
+    operator == LESS_THAN
+  end
+
+  def less_than_or_equals?
+    operator == LESS_THAN_OR_EQUALS
+  end
+
+  def simple_filter
+    return if key.blank? || operator.blank? || value.blank?
+
+    "#{key} #{translated_operator} #{value}"
+  end
+
+  def match(item)
+    if code?
+      filter.present? ? item.match(filter) : true
+    elsif simple_filter.present?
+      if includes?
+        item.as_json[key].to_s.include?(value.to_s)
+      elsif equals?
+        item.as_json[key].to_s == value.to_s
+      elsif greater_than?
+        item.as_json[key].to_f > value.to_f
+      elsif greater_than_or_equals?
+        item.as_json[key].to_f >= value.to_f
+      elsif less_than?
+        item.as_json[key].to_f < value.to_f
+      elsif less_than_or_equals?
+        item.as_json[key].to_f <= value.to_f
+      else
+        raise NotImplementedError
+      end
+    else
+      true
+    end
+  end
+
   def preview
     subclass
       .fetch
       .map do |item|
         items.build(external_id: item.external_id, extras: item.extras)
       end
-      .select { |item| item.match(filter) }
+      .select { |item| match(item) }
   end
 
   def fetch
@@ -111,7 +208,7 @@ class Source < ApplicationRecord
       subclass.fetch.map do |item|
         items.build(external_id: item.external_id, extras: item.extras)
       end
-    result.matched_items = result.new_items.select { |item| item.match(filter) }
+    result.matched_items = result.new_items.select { |item| match(item) }
     result.saved_items = result.matched_items.select(&:save)
   rescue => e
     update!(
