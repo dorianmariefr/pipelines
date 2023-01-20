@@ -162,12 +162,18 @@ en:
       must_be_valid: Must be valid
     destination:
       subject: Subject
+      subject_hint_html: 'The subject of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>'
       body: Body
+      body_hint_html: 'The body of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>'
       body_format: Body format
+      body_format_hint_html: "Either text pr HTML"
       day_of_month: Day of month
+      day_of_month_hint_html: "If you choose 29, 30, or 31 you will not receive it each month"
       day_of_week: Day of week
+      day_of_week_hint_html: "Which day do you prefer to receive your emails?"
       email: Email
       hour: Hour
+      hour_hint_html: "The hour you will receive your emails, in your timezone"
       not_verified: " (not verified)"
     email:
       must_be_present: Must be present
@@ -185,8 +191,11 @@ en:
       too_short: Too short
     source:
       limit: Limit
+      limit_hint_html: "How many tweets are going to be fetched each time the pipeline is processed"
       query: Query
+      query_hint_html: "The search query as you would enter on Twitter"
       result_type: Result type
+      result_type_hint_html: "I recommend recent if you want to process all the tweets"
   layouts:
     application:
       users: Users
@@ -440,7 +449,7 @@ en:
   sources:
     form:
       filter: Filter
-      filter_hint: You can use Code to filter your items
+      filter_hint_html: 'You can use Code to filter your items, see <a href="https://templatelang.com">templatelang.com</a>'
       kind: Kind
       kind_hint: Where does the items come from?
       remove: Remove

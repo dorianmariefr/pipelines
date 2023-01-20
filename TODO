@@ -1,11 +1,9 @@
 ### Current
 
-- Style emails cc: allancoder
+- Prévisualisation des filtres, cc: benjamin
 
 ### Later
 
-- Filtering documentation cc: tyro, benjamin
-- Prévisualisation des filtres, cc: benjamin
 - Interface for conditions cc: jonan, david
 
 ### Integrations
@@ -21,3 +19,4 @@
 - Lobsters
 - Zapier
 - IFTT
+- Stack Overflow cc: flavio

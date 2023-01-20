@@ -93,6 +93,11 @@ export default class extends Controller {
           console.log({ parameter })
         }
 
+        const hintElement = document.createElement("div")
+        hintElement.classList.add("text-gray-600")
+        hintElement.innerHTML = t(`${key}_hint_html`)
+        pElement.appendChild(hintElement)
+
         this.parametersTarget.appendChild(pElement)
       })
     }
