@@ -1,7 +1,20 @@
 class Destination
   class WeeklyEmailDigest < EmailDigest
+    DAYS_OF_WEEK =
+      %i[
+        monday
+        tuesday
+        wednesday
+        thursday
+        friday
+        saturday
+        sunday
+      ].map do |day_of_week|
+        [day_of_week.to_s, I18n.t("parameters.#{day_of_week}")]
+      end
+
     def self.day_of_week_parameter
-      { default: :thursday, kind: :select, options: Parameter::DAYS_OF_WEEK }
+      {default: :thursday, kind: :select, options: DAYS_OF_WEEK}
     end
 
     def self.as_json

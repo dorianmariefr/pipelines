@@ -1,5 +1,8 @@
 class Destination
   class Email
+    BODY_FORMATS =
+      %w[text html].map { |body_format| [body_format, body_format] }
+
     def initialize(destination)
       @destination = destination
     end
@@ -17,7 +20,7 @@ class Destination
     end
 
     def self.body_format_parameter
-      {default: "text", kind: :select, options: Parameter::BODY_FORMATS}
+      {default: "text", kind: :select, options: BODY_FORMATS}
     end
 
     def self.body_parameter

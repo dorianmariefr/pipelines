@@ -1,5 +1,7 @@
 class Destination
   class EmailDigest < Email
+    HOURS = (0..23).map { |hour| [hour.to_s, "#{hour}:00"] }
+
     def self.subject_parameter
       {
         default: Source.email_digest_subject_defaults,
@@ -17,12 +19,7 @@ class Destination
     end
 
     def self.hour_parameter
-      {
-        default: "18",
-        kind: :select,
-        translate: false,
-        options: Parameter::HOURS
-      }
+      {default: "18", kind: :select, translate: false, options: HOURS}
     end
 
     def send_now(items)

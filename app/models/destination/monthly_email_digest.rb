@@ -1,12 +1,10 @@
 class Destination
   class MonthlyEmailDigest < EmailDigest
+    DAYS_OF_MONTH =
+      (1..31).map { |day_of_month| [day_of_month.to_s, day_of_month.to_s] }
+
     def self.day_of_month_parameter
-      {
-        default: "1",
-        kind: :select,
-        translate: false,
-        options: Parameter::DAYS_OF_MONTH
-      }
+      {default: "1", kind: :select, translate: false, options: DAYS_OF_MONTH}
     end
 
     def self.as_json

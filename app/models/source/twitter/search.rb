@@ -3,6 +3,31 @@ class Source
     class Search
       EXPIRES_IN = 1.minute
 
+      RESULT_TYPES =
+        %w[mixed recent popular].map do |result_type|
+          [result_type, result_type]
+        end
+
+      LIMIT_FREE = 5
+      LIMITS = [1, 5, 10, 20]
+
+      LIMITS_FREE =
+        LIMITS.map do |limit|
+          [
+            limit.to_s,
+            (
+              if limit > LIMIT_FREE
+                I18n.t("parameters.limit_disabled", limit: limit)
+              else
+                limit.to_s
+              end
+            ),
+            limit > LIMIT_FREE
+          ]
+        end
+
+      LIMITS_PRO = LIMITS.map { |limit| [limit.to_s, limit.to_s] }
+
       def initialize(source)
         @source = source
       end
@@ -45,19 +70,17 @@ class Source
               default: "recent",
               translate: false,
               kind: :select,
-              options: Parameter::RESULT_TYPES
+              options: RESULT_TYPES
             },
             query: {
               default: "from:dorianmariefr",
               kind: :string
             },
             limit: {
-              default:
-                Current.pro? ? Parameter::LIMITS.last : Parameter::LIMITS.first,
+              default: Current.pro? ? LIMITS.last : LIMITS.first,
               translate: false,
               kind: :select,
-              options:
-                Current.pro? ? Parameter::LIMITS_PRO : Parameter::LIMITS_FREE
+              options: Current.pro? ? LIMITS_PRO : LIMITS_FREE
             }
           }
         }
