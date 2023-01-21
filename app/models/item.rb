@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
   KINDS = {
+    reddit: {
+      new: "Item::Reddit::New"
+    },
     stack_exchange: {
       questions: "Item::StackExchange::Questions"
     },

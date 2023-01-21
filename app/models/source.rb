@@ -1,5 +1,8 @@
 class Source < ApplicationRecord
   KINDS = {
+    reddit: {
+      new: "Source::Reddit::New"
+    },
     stack_exchange: {
       questions: "Source::StackExchange::Questions"
     },

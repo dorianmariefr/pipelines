@@ -190,6 +190,8 @@ en:
       too_long: Too long
       too_short: Too short
     source:
+      subreddit: Subreddit
+      subreddit_hint_html: e.g. ruby, rails, pics, etc.
       limit: Limit
       limit_hint_html: "How many tweets are going to be fetched each time the pipeline is processed"
       query: Query
@@ -266,6 +268,7 @@ en:
     terms:
       title: Terms and Conditions
   parameters:
+    subreddit: Subreddit
     tagged: Tags
     sort: Sort
     order: Order
@@ -501,6 +504,8 @@ en:
           search: Twitter - Search
         stack_exchange:
           questions: Stack Exchange - Questions
+        reddit:
+          new: Reddit - /new
   users:
     create:
       notice: User created, you are now logged in
