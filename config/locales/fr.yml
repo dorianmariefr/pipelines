@@ -1,5 +1,83 @@
 ---
 fr:
+  admin:
+    emails:
+      create:
+        notice: Email créé
+      destroy:
+        notice: Email supprimé
+      email:
+        add: Ajouter
+        add_email: Ajouter un email
+        delete: Supprimer
+        not_verified: Non vérifié
+        resend_verification_code: Renvoyer le code de vérification
+        send_verification_code: Envoyer le code de vérification
+        submit: Vérifier
+        verification_code: Code de vérification
+        verification_code_sent: Code de vérification envoyé
+        verified: Vérifié
+        verified?: Vérifié ?
+      send_verification:
+        notice: Code de vérification envoyé
+      update:
+        notice: Email mis à jour
+    phone_numbers:
+      create:
+        notice: Numéro de téléphone créé
+      destroy:
+        notice: Numéro de téléphone supprimé
+      phone_number:
+        add: Ajouter
+        add_phone_number: Ajouter un numéro de téléphone
+        delete: Supprimer
+        not_verified: Non vérifié
+        resend_verification_code: Renvoyer le code de vérification
+        send_verification_code: Envoyer le code de vérification
+        submit: Vérifier
+        verification_code: Code de vérification
+        verification_code_sent: Code de vérification envoyé
+        verified: Vérifié
+        verified?: Vérifié ?
+      send_verification:
+        notice: Code de vérification envoyé
+      update:
+        notice: Numéro de téléphone mis à jour
+    users:
+      create:
+        notice: Utilisateur créé
+      destroy:
+        notice: Utilisateur supprimé
+      edit:
+        submit: Mettre à jour l'utilisateur
+        title: "[Admin] Modifier l'utilisateur"
+      form:
+        add_email: Ajouter un email
+        add_phone_number: Ajouter un numéro de téléphone
+        hide_password: Cacher le mot de passe
+        name: Nom
+        password: Mot de passe
+        show_password: Montrer le mot de passe
+      impersonate:
+        notice: Tu as impersonné cet utilisateur
+      index:
+        new: Nouvel utilisateur
+        title: "[Admin] Utilisateurs"
+      new:
+        submit: Créer l'utilisateur
+        title: "[Admin] Nouveau utilisateur"
+      show:
+        confirm: Es-tu sûr de vouloir supprimer ce compte ?
+        delete: Supprimer ce compte
+        edit: Modifier le profil
+        emails: Emails
+        impersonate: Impersonner
+        none: Aucuns
+        phone_numbers: Numéros de téléphone
+        pipelines: Pipelines
+        title: "[Admin] %{name}"
+      update:
+        notice: Utilisateur mis à jour
   application:
     fake:
       eg: e.g. %{string}
@@ -83,11 +161,24 @@ fr:
       must_be_present: Doît être présent
       must_be_valid: Doît être valide
     destination:
+      body: Contenu
+      body_format: Format du contenu
+      body_format_hint_html: Soit du texte soit de l'HTML
+      body_hint_html: Le contenu de l'email, en utilisant Template, voir <a href="https://templatelang.com">templatelang.com</a>
       day_of_month: Jour du mois
+      day_of_month_hint_html:
+        Si tu choisis 29, 30, ou 31 tu ne le recevras pas chaque
+        mois
       day_of_week: Jour de la semaine
+      day_of_week_hint_html:
+        Quel jour est-ce que tu préféres reçevoir tes emails
+        ?
       email: Email
       hour: Heure
+      hour_hint_html: L'heure à laquelle tu reçevras tes emails, dans ton fuseau horaire
       not_verified: "(non vérifié)"
+      subject: Sujet
+      subject_hint_html: Le sujet de l'email, en utilisant Template, voir <a href="https://templatelang.com">templatelang.com</a>
     email:
       must_be_present: Doît être présente
       must_be_valid: Doît être valide
@@ -103,17 +194,37 @@ fr:
       too_long: Trop long
       too_short: Trop court
     source:
+      limit: Limite
+      limit_hint_html:
+        Combien de tweets vont être récupérés chaque fois que la pipeline
+        est traitée
+      order: Ordre
+      order_hint_html: Soit descandant, soit ascendant depuis le critère de tri
       query: Requête
+      query_hint_html: La requête de recherche telle que tu la saisirais sur Twitter
       result_type: Type de résulat
+      result_type_hint_html: Je recommande "recent" si tu veux traiter tous les tweets
+      site: Site
+      site_hint_html: N'importe quel site de Stack Exchange incluant Stack Overflow
+      sort: Tri
+      sort_hint_html: Comment les questions seront triées
+      subreddit: Subreddit
+      subreddit_hint_html: e.g. ruby, rails, pics, etc.
+      tagged: Tags
+      tagged_hint_html:
+        Une list de tags séparés par un point-virgule (maximum de
+        5 tags)
   layouts:
     application:
       log_in: Se connecter
       log_out: Se déconnecter
+      pipelines: Pipelines
       privacy: Politique de confidentialité
       register: S'inscrire
       switch: English
       terms: Termes et Conditions
       title: Pipelines
+      users: Utilisateurs
   pages:
     home:
       become_pro: Devenir Pro
@@ -166,13 +277,27 @@ fr:
     terms:
       title: Termes et Conditions
   parameters:
+    body: Contenu
+    body_format: Format du contenu
     day_of_month: Jour du mois
     day_of_week: Jour de la semaine
     friday: Vendredi
     hour: Heure
+    html: HTML
+    limit: Limite
+    limit_disabled: "%{limit} (Pro)"
     monday: Lundi
+    order: Ordre
+    query: Requête
+    result_type: Type de résultat
     saturday: Samedi
+    site: Site
+    sort: Tri
+    subject: Sujet
+    subreddit: Subreddit
     sunday: Dimanche
+    tagged: Tags
+    text: Texte
     thursday: Jeudi
     tuesday: Mardi
     wednesday: Mercredi
@@ -251,7 +376,27 @@ fr:
       submit: Créer une pipeline
       title: Nouvelle pipeline
     process_now:
+      alert: Il y a eu une erreur lors du traitement de ton pipeline
       notice: Ta pipeline a été traitée
+    result:
+      destination_error: "Error de destination: %{error}"
+      matched_items:
+        one: 1 article a correspondu
+        other: "%{count} articles ont correspondus"
+        zero: 0 articles ont correspondus
+      new_items:
+        one: 1 nouvel article
+        other: "%{count} nouveaux articles"
+        zero: 0 nouveaux articles
+      saved_items:
+        one: 1 article sauvegardé
+        other: "%{count} articles sauvegardés"
+        zero: 0 articles sauvegardés
+      sent_items:
+        one: 1 article envoyé
+        other: "%{count} articles envoyés"
+        zero: 0 articles envoyés
+      source_error: "Erreur de source: %{error}"
     show:
       by: Par
       delete: Supprimer la pipeline
@@ -328,10 +473,17 @@ fr:
   sources:
     form:
       filter: Filtre
-      filter_hint: Tu peux utiliser du Code pour filtrer les éléments
+      filter_hint_html: Tu peux utiliser Code pour filtrer les articles, voir <a href="https://templatelang.com">templatelang.com</a>
+      filter_type: Type de filtre
+      filter_type_hint:
+        Soit aucun (tous sera envoyé), un simple filtre, ou un filtre
+        complexe à base de Code
+      key: Clef
       kind: Genre
       kind_hint: D'où viennent les éléments ?
+      operator: Operateur
       remove: Enlever
+      value: Valeur
     hacker_news:
       newest:
         comments:
@@ -344,12 +496,27 @@ fr:
           other: "%{count} commentaires"
           zero: 0 commentaires
     model:
+      filter_types:
+        code: Code
+        none: Aucun
+        simple: Simple
       kinds:
         hacker_news:
           newest: Hacker News - Nouvelles histoires
           news: Hacker News - Histoires de la première page
+        reddit:
+          new: Reddit - /new
+        stack_exchange:
+          questions: Stack Exchanges - Questions
         twitter:
           search: Twitter - Recherche
+      operators:
+        "<": est moins que
+        "<=": est moins que ou égal à
+        "==": égal à
+        ">": est plus que
+        ">=": est plus que ou égal à
+        include?: inclus
   users:
     create:
       notice: Utilisateur créé, tu es maintenant connecté(e)

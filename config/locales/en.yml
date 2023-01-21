@@ -4,12 +4,8 @@ en:
     emails:
       create:
         notice: Email created
-      update:
-        notice: Email updated
       destroy:
         notice: Email deleted
-      send_verification:
-        notice: Verification code sent
       email:
         add: Add
         add_email: Add email
@@ -22,17 +18,16 @@ en:
         verification_code_sent: Verification code sent
         verified: Verified
         verified?: Verified?
+      send_verification:
+        notice: Verification code sent
+      update:
+        notice: Email updated
     phone_numbers:
       create:
         notice: Phone number created
-      update:
-        notice: Phone number updated
       destroy:
         notice: Phone number deleted
-      send_verification:
-        notice: Verification code sent
       phone_number:
-        verified?: Verified?
         add: Add
         add_phone_number: Add phone number
         delete: Delete
@@ -43,9 +38,19 @@ en:
         verification_code: Verification code
         verification_code_sent: Verification code sent
         verified: Verified
+        verified?: Verified?
+      send_verification:
+        notice: Verification code sent
+      update:
+        notice: Phone number updated
     users:
-      impersonate:
-        notice: You impersonated this user
+      create:
+        notice: User created
+      destroy:
+        notice: User deleted
+      edit:
+        submit: Update user
+        title: "[Admin] Edit user"
       form:
         add_email: Add email
         add_phone_number: Add phone number
@@ -53,31 +58,26 @@ en:
         name: Name
         password: Password
         show_password: Show password
-      new:
-        title: "[Admin] New user"
-        submit: Create user
-      edit:
-        title: "[Admin] Edit user"
-        submit: Update user
+      impersonate:
+        notice: You impersonated this user
       index:
-        title: "[Admin] Users"
         new: New user
+        title: "[Admin] Users"
+      new:
+        submit: Create user
+        title: "[Admin] New user"
       show:
-        impersonate: Impersonate
-        title: "[Admin] %{name}"
-        emails: Emails
-        phone_numbers: Phone numbers
-        edit: Edit profile
-        delete: Delete account
         confirm: Are you sure you want to delete this account?
-        pipelines: Pipelines
+        delete: Delete account
+        edit: Edit profile
+        emails: Emails
+        impersonate: Impersonate
         none: None
-      create:
-        notice: User created
+        phone_numbers: Phone numbers
+        pipelines: Pipelines
+        title: "[Admin] %{name}"
       update:
         notice: User updated
-      destroy:
-        notice: User deleted
   application:
     fake:
       eg: e.g. %{string}
@@ -161,20 +161,22 @@ en:
       must_be_present: Must be present
       must_be_valid: Must be valid
     destination:
-      subject: Subject
-      subject_hint_html: 'The subject of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>'
       body: Body
-      body_hint_html: 'The body of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>'
       body_format: Body format
-      body_format_hint_html: "Either text pr HTML"
+      body_format_hint_html: Either text or HTML
+      body_hint_html: The body of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>
       day_of_month: Day of month
-      day_of_month_hint_html: "If you choose 29, 30, or 31 you will not receive it each month"
+      day_of_month_hint_html:
+        If you choose 29, 30, or 31 you will not receive it
+        each month
       day_of_week: Day of week
-      day_of_week_hint_html: "Which day do you prefer to receive your emails?"
+      day_of_week_hint_html: Which day do you prefer to receive your emails?
       email: Email
       hour: Hour
-      hour_hint_html: "The hour you will receive your emails, in your timezone"
+      hour_hint_html: The hour you will receive your emails, in your timezone
       not_verified: " (not verified)"
+      subject: Subject
+      subject_hint_html: The subject of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>
     email:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -190,33 +192,37 @@ en:
       too_long: Too long
       too_short: Too short
     source:
-      subreddit: Subreddit
-      subreddit_hint_html: e.g. ruby, rails, pics, etc.
       limit: Limit
-      limit_hint_html: "How many tweets are going to be fetched each time the pipeline is processed"
-      query: Query
-      query_hint_html: "The search query as you would enter on Twitter"
-      result_type: Result type
-      result_type_hint_html: "I recommend recent if you want to process all the tweets"
-      tagged: Tags
-      tagged_hint_html: "A list of tags separated by a semicolon (;) (maximum of 5 tags)"
-      sort: Sort
-      sort_hint_html: How the questions are going to be sorted?
+      limit_hint_html:
+        How many tweets are going to be fetched each time the pipeline
+        is processed
       order: Order
       order_hint_html: Either descendant or ascendant from the sort criteria
+      query: Query
+      query_hint_html: The search query as you would enter on Twitter
+      result_type: Result type
+      result_type_hint_html: I recommend recent if you want to process all the tweets
       site: Site
       site_hint_html: Any of the Stack Exchanges sites including Stack Overflow
+      sort: Sort
+      sort_hint_html: How the questions are going to be sorted?
+      subreddit: Subreddit
+      subreddit_hint_html: e.g. ruby, rails, pics, etc.
+      tagged: Tags
+      tagged_hint_html:
+        A list of tags separated by a semicolon (;) (maximum of 5
+        tags)
   layouts:
     application:
-      users: Users
-      pipelines: Pipelines
       log_in: Log in
       log_out: Log out
+      pipelines: Pipelines
       privacy: Privacy Policy
       register: Register
       switch: Français
       terms: Terms and Conditions
       title: Pipelines
+      users: Users
   pages:
     home:
       become_pro: Become Pro
@@ -268,27 +274,27 @@ en:
     terms:
       title: Terms and Conditions
   parameters:
-    subreddit: Subreddit
-    tagged: Tags
-    sort: Sort
-    order: Order
-    site: Site
-    result_type: Result type
-    query: Query
-    limit: Limit
-    subject: Subject
-    body_format: Body format
-    text: Text
-    html: HTML
     body: Body
-    limit_disabled: "%{limit} (Pro)"
+    body_format: Body format
     day_of_month: Day of Month
     day_of_week: Day of Week
     friday: Friday
     hour: Hour
+    html: HTML
+    limit: Limit
+    limit_disabled: "%{limit} (Pro)"
     monday: Monday
+    order: Order
+    query: Query
+    result_type: Result type
     saturday: Saturday
+    site: Site
+    sort: Sort
+    subject: Subject
+    subreddit: Subreddit
     sunday: Sunday
+    tagged: Tags
+    text: Text
     thursday: Thursday
     tuesday: Tuesday
     wednesday: Wednesday
@@ -335,25 +341,6 @@ en:
       alert: Wrong verification code
       notice: Phone number verified
   pipelines:
-    result:
-      source_error: "Source error: %{error}"
-      destination_error: "Destination error: %{error}"
-      new_items:
-        zero: "0 new items"
-        one: "1 new item"
-        other: "%{count} new items"
-      matched_items:
-        zero: "0 matched items"
-        one: "1 matched item"
-        other: "%{count} matched items"
-      saved_items:
-        zero: "0 saved items"
-        one: "1 saved item"
-        other: "%{count} saved items"
-      sent_items:
-        zero: "0 sent items"
-        one: "1 sent item"
-        other: "%{count} sent items"
     create:
       notice: Pipeline created
     destroy:
@@ -388,6 +375,25 @@ en:
     process_now:
       alert: There was an error processing your pipeline
       notice: Your pipeline has been processed (%{result})
+    result:
+      destination_error: "Destination error: %{error}"
+      matched_items:
+        one: 1 matched item
+        other: "%{count} matched items"
+        zero: 0 matched items
+      new_items:
+        one: 1 new item
+        other: "%{count} new items"
+        zero: 0 new items
+      saved_items:
+        one: 1 saved item
+        other: "%{count} saved items"
+        zero: 0 saved items
+      sent_items:
+        one: 1 sent item
+        other: "%{count} sent items"
+        zero: 0 sent items
+      source_error: "Source error: %{error}"
     show:
       by: By
       delete: Delete pipeline
@@ -463,16 +469,16 @@ en:
       notice: Password reset email sent
   sources:
     form:
-      key: Key
-      operator: Operator
-      value: Value
+      filter: Filter
+      filter_hint_html: You can use Code to filter your items, see <a href="https://templatelang.com">templatelang.com</a>
       filter_type: Filter type
       filter_type_hint: Either a simple filter or a complex Code filter
-      filter: Filter
-      filter_hint_html: 'You can use Code to filter your items, see <a href="https://templatelang.com">templatelang.com</a>'
+      key: Key
       kind: Kind
       kind_hint: Where does the items come from?
+      operator: Operator
       remove: Remove
+      value: Value
     hacker_news:
       newest:
         comments:
@@ -485,27 +491,27 @@ en:
           other: "%{count} comments"
           zero: 0 comments
     model:
-      operators:
-        "include?": includes
-        "==": equals
-        ">": is greater than
-        ">=": is greater than or equal to
-        "<": is less than
-        "<=": is less than or equal to
       filter_types:
+        code: Code
         none: None
         simple: Simple
-        code: Code
       kinds:
         hacker_news:
           newest: Hacker News - New Stories
           news: Hacker News - Frontpage Stories
-        twitter:
-          search: Twitter - Search
-        stack_exchange:
-          questions: Stack Exchange - Questions
         reddit:
           new: Reddit - /new
+        stack_exchange:
+          questions: Stack Exchange - Questions
+        twitter:
+          search: Twitter - Search
+      operators:
+        "<": is less than
+        "<=": is less than or equal to
+        "==": equals
+        ">": is greater than
+        ">=": is greater than or equal to
+        include?: includes
   users:
     create:
       notice: User created, you are now logged in
