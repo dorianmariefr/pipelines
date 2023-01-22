@@ -214,15 +214,12 @@ en:
         tags)
   layouts:
     application:
+      title: pipelines.plumbing
+      title_mobile: pipelines
       log_in: Log in
-      log_out: Log out
-      pipelines: Pipelines
-      privacy: Privacy Policy
-      register: Register
-      switch: Français
-      terms: Terms and Conditions
-      title: Pipelines
-      users: Users
+      get_started: Get started
+      open_menu: Open menu
+      close_menu: Close menu
   pages:
     home:
       become_pro: Become Pro

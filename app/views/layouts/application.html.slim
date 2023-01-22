@@ -10,7 +10,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "data-turbo-track": "reload", as: :style
     = javascript_include_tag "application", defer: true
-  body.p-8.max-w-3xl.mx-auto.prose(data-locale="#{I18n.locale}" data-controller="time-zone")
+  body.flex.h-full.flex-col(data-controller="time-zone")
     javascript:
       window.constants = {}
       window.constants.EMAIL_REGEXP = #{raw email_regexp.to_json};
@@ -21,32 +21,38 @@ html
       window.locale = #{raw I18n.locale.to_json};
       window.translations = #{raw t("js").to_json};
 
-    h1= link_to t(".title"), root_path
+    header.py-10
+      .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8
+        nav.relative.z-50.flex.justify-between.items-center
+          = button_link_to root_path, class: "text-xl px-4 py-2" do
+            span.hidden.sm:inline-block
+              = heroicon "funnel"
+              = t(".title")
+            span.sm:hidden
+              =  t(".title_mobile")
 
-    div
-      - if current_user
-        => link_to current_user.name, current_user
-        - if admin?
-          => link_to t(".users"), admin_users_path
-          => link_to t(".pipelines"), admin_pipelines_path
-        => button_to t(".log_out"), session_path, method: :delete, class: "button--link", form_class: "inline-block"
-      - else
-        => link_to t(".register"), new_user_path, class: "font-bold"
-        => link_to t(".log_in"), new_session_path
-      = link_to t(".switch"), locale: (en? ? :fr : :en)
+          .flex.items-center.gap-2
+            .flex.items-center.gap-6
+              .hidden.sm:flex
+                = button_link_to new_session_path, class: "px-2 py-1" do
+                  = heroicon "arrow-left-on-rectangle"
+                  = t(".log_in")
 
-    h2= title
+              = primary_button_link_to new_user_path, class: "px-4 py-2" do
+                span.hidden.sm:inline-block= heroicon "play"
+                = t(".get_started")
 
-    - if notice
-      p.text-green-600= notice
+            div(data-controller="menu")
+              a.md:hidden.relative.z-10.flex.h-12.w-12.items-center.justify-center.-mr-2.p-2(href="#" data-action="menu#toggle")
+                span(data-menu-target="closed")
+                  = heroicon "bars-3", options: { class: "w-8 h-8" }
+                  .sr-only= t(".open_menu")
+                span(hidden data-menu-target="open")
+                  = heroicon "x-mark", options: { class: "w-8 h-8" }
+                  .sr-only= t(".close_menu")
 
-    - if alert
-      p.text-red-600= alert
-
-    = yield
-
-    hr
-
-    p
-      => link_to t(".privacy"), privacy_path
-      => link_to t(".terms"), terms_path
+              .md:hidden(hidden data-menu-target="menu")
+                a.fixed.inset-0.bg-gray-500/30(href="#" data-action="menu#toggle")
+                .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-lg.shadow
+                  = link_to t(".log_in"), new_session_path, class: "px-4 py-2 underline"
+                  = link_to t(".get_started"), new_user_path, class: "px-4 py-2 underline"

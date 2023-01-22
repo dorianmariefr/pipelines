@@ -19,6 +19,9 @@ application.register("email", EmailController)
 import EmailsController from "./emails_controller"
 application.register("emails", EmailsController)
 
+import MenuController from "./menu_controller"
+application.register("menu", MenuController)
+
 import NameController from "./name_controller"
 application.register("name", NameController)
 
