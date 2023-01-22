@@ -153,6 +153,8 @@ class Source
           config.consumer_key = api_key
           config.consumer_secret = api_key_secret
           config.bearer_token = bearer_token
+          config.access_token = access_token
+          config.access_token_secret = access_token_secret
         end
       end
 
@@ -162,6 +164,14 @@ class Source
 
       def api_key_secret
         Rails.application.credentials.twitter.api_key_secret
+      end
+
+      def access_token
+        Rails.application.credentials.twitter.access_token
+      end
+
+      def access_token_secret
+        Rails.application.credentials.twitter.access_token_secret
       end
 
       def bearer_token
