@@ -265,6 +265,7 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     parallel (1.22.1)
+    parity (3.5.0)
     parser (3.2.0.0)
       ast (~> 2.4.1)
     pg (1.4.5)
@@ -476,6 +477,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  parity
   pg
   phonelib
   prettier

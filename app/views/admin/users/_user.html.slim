@@ -1,1 +1,4 @@
-p= link_to user.name, [:admin, user]
+p.flex.gap-2.items-center
+  => link_to user.name, [:admin, user]
+  - if user.published?
+    = heroicon "globe-alt"

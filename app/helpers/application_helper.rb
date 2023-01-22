@@ -79,7 +79,7 @@ module ApplicationHelper
       text,
       href: href,
       class:
-        "inline-flex items-center gap-2 rounded-lg text-white " \
+        "inline-flex items-center gap-2 rounded-lg text-white h-fit no-underline " \
           "bg-green-600 hover:bg-green-700 focus:bg-green-800 #{options[:class]}"
     )
   end
@@ -92,7 +92,7 @@ module ApplicationHelper
       text,
       href: href,
       class:
-        "inline-flex items-center gap-2 rounded-lg h-fit " \
+        "inline-flex items-center gap-2 rounded-lg h-fit no-underline " \
           "bg-gray-100 hover:bg-gray-200 focus:bg-gray-300 #{options[:class]}"
     )
   end

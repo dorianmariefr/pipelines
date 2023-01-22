@@ -21,38 +21,6 @@ html
       window.locale = #{raw I18n.locale.to_json};
       window.translations = #{raw t("js").to_json};
 
-    header.py-10
-      .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8
-        nav.relative.z-50.flex.justify-between.items-center
-          = button_link_to root_path, class: "text-xl px-4 py-2" do
-            span.hidden.sm:inline-block
-              = heroicon "funnel"
-              = t(".title")
-            span.sm:hidden
-              =  t(".title_mobile")
+    = render "header"
 
-          .flex.items-center.gap-2
-            .flex.items-center.gap-6
-              .hidden.sm:flex
-                = button_link_to new_session_path, class: "px-2 py-1" do
-                  = heroicon "arrow-left-on-rectangle"
-                  = t(".log_in")
-
-              = primary_button_link_to new_user_path, class: "px-4 py-2" do
-                span.hidden.sm:inline-block= heroicon "play"
-                = t(".get_started")
-
-            div(data-controller="menu")
-              a.md:hidden.relative.z-10.flex.h-12.w-12.items-center.justify-center.-mr-2.p-2(href="#" data-action="menu#toggle")
-                span(data-menu-target="closed")
-                  = heroicon "bars-3", options: { class: "w-8 h-8" }
-                  .sr-only= t(".open_menu")
-                span(hidden data-menu-target="open")
-                  = heroicon "x-mark", options: { class: "w-8 h-8" }
-                  .sr-only= t(".close_menu")
-
-              .md:hidden(hidden data-menu-target="menu")
-                a.fixed.inset-0.bg-gray-500/30(href="#" data-action="menu#toggle")
-                .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-lg.shadow
-                  = link_to t(".log_in"), new_session_path, class: "px-4 py-2 underline"
-                  = link_to t(".get_started"), new_user_path, class: "px-4 py-2 underline"
+    = yield

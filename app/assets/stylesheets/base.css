@@ -1,7 +1,3 @@
-label {
-  @apply text-black;
-}
-
-hr {
-  @apply !border-black;
+a {
+  @apply underline;
 }

@@ -2,6 +2,10 @@
 - submit = local_assigns.fetch(:submit)
 
 = form_for user, url: [:admin, user] do |f|
+  .p
+    = f.label :avatar, t(".avatar")
+    = f.file_field :avatar
+
   .p(data-controller="name")
     = f.label :name, t(".name")
     = f.text_field :name, autocomplete: :name, required: true, data: { name_target: "input" }

@@ -6,7 +6,7 @@ class Admin
     helper_method :password_param
 
     def index
-      @users = policy_scope(User)
+      @users = policy_scope(User).order(created_at: :asc)
     end
 
     def show
@@ -82,6 +82,7 @@ class Admin
 
     def user_params
       params.require(:user).permit(
+        :avatar,
         :pro,
         :name,
         :locale,

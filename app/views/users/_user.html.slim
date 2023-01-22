@@ -1,1 +1,6 @@
-p= link_to user.name, user
+= link_to user, class: "inline-flex flex-col justify-center items-center m-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden" do
+  - if user.avatar.attached?
+    = image_tag user.avatar, class: "w-40 h-40 grayscale", width: 160, height: 160, alt: user.name
+
+  .text-gray-600.p-4= user.name
+

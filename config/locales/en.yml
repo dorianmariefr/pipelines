@@ -44,6 +44,8 @@ en:
       update:
         notice: Phone number updated
     users:
+      user:
+        published: "(public)"
       create:
         notice: User created
       destroy:
@@ -52,6 +54,7 @@ en:
         submit: Update user
         title: "[Admin] Edit user"
       form:
+        avatar: Avatar
         add_email: Add email
         add_phone_number: Add phone number
         hide_password: Hide password
@@ -78,10 +81,6 @@ en:
         title: "[Admin] %{name}"
       update:
         notice: User updated
-  application:
-    fake:
-      eg: e.g. %{string}
-      or: " or "
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
@@ -215,6 +214,12 @@ en:
   layouts:
     application:
       title: pipelines.plumbing
+  application:
+    fake:
+      eg: e.g. %{string}
+      or: " or "
+    header:
+      title: pipelines.plumbing
       title_mobile: pipelines
       log_in: Log in
       get_started: Get started
@@ -222,50 +227,17 @@ en:
       close_menu: Close menu
   pages:
     home:
-      become_pro: Become Pro
-      book_a_call: Book a call
-      free: Free
-      free_1: Unlimited emails
-      free_2: Hacker News
-      free_3: Trial of Twitter for one month
-      log_in: Log in
-      new_pipeline: New pipeline
-      new_post: New post
-      or: or
-      overview: Overview
-      posts: Posts
-      pricing: Pricing
-      pro: Pro (%{price} / month)
-      pro_1: Unlimited emails
-      pro_2: Hacker News
-      pro_3: Twitter
-      published_pipelines: Public pipelines
-      published_users: Public users
-      referral:
-        For any referral you make (someone who subscribe to Pro thanks to
-        you), you get one month of Pro.
-      referrals: Referrals
-      register: Register
-      step_1: First you will need to log in or register.
-      step_2: You can register with Google, Facebook, email or phone number.
-      step_3:
-        If you used email or phone number you will need to verify those, otherwise
-        you can create a new pipeline.
-      step_4: A pipeline has a name, is it public?, sources and destinations.
-      step_5:
-        You can include Code in your filter like "score > 100", "keywords.include?("Ruby")"
-        or "title.include?("Show HN")".
-      step_6:
-        A pipeline is processed every minute and you can decide when you will
-        receive the emails (now, hourly, daily, weekly, monthly) at a specific hour
-        in your time zone to the email address of your choice.
-      step_7: Now that your pipeline is created you can go ahead and process it.
-      step_8:
-        You can now see it has been processed and will continue to be processed
-        automatically from now on. If any items matched, you will see them at the
-        bottom.
-      title: Home
-      your_pipelines: Your pipelines
+      title: pipelines.plumbing
+      intro:
+        automation: Automation
+        made_simple: made simple
+        subtitle: Fetch information from the Internet, filter it, format it and send it
+        get_started: Get started
+        watch_video: Watch video
+        amazing_people: "Those amazing people use pipelines.plumbing and have a public profile:"
+      features:
+        title: Everything you need to automate
+        subtitle: Create your pipelines or duplicate existing ones
     privacy:
       title: Privacy Policy
     terms:

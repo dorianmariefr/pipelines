@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+
   RESET_PASSWORD_PURPOSE = :reset_password
   RESET_PASSWORD_EXPIRES_IN = 30.minutes
 
@@ -8,6 +8,8 @@ class User < ApplicationRecord
   PRO_PRICE_EUR = Money.from_cents(1000, "EUR")
 
   has_secure_password
+  friendly_id :name, use: :slugged
+  has_one_attached :avatar
 
   belongs_to :primary_email, optional: true, class_name: "Email"
   belongs_to :primary_phone_number, optional: true, class_name: "PhoneNumber"
@@ -83,5 +85,9 @@ class User < ApplicationRecord
         {id: email.id, email: email.email, verified: email.verified?}
       end
       .to_json
+  end
+
+  def published?
+    pipelines.any?(&:published?)
   end
 end
