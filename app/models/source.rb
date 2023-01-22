@@ -219,7 +219,11 @@ class Source < ApplicationRecord
     result = Source::Result.new
     result.new_items =
       subclass.fetch.map do |item|
-        items.build(external_id: item.external_id, extras: item.extras)
+        Item.new(
+          source: self,
+          external_id: item.external_id,
+          extras: item.extras
+        )
       end
     result.matched_items = result.new_items.select { |item| match(item) }
     result.saved_items = result.matched_items.select(&:save)
