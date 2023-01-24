@@ -246,6 +246,21 @@ en:
         subtitle_3: Subject of your email, body of the email, RSS feed title, etc. all can be formatted with Template, a programming language
         title_4: Send it
         subtitle_4: Send it through email, email digests (hourly, daily, weekly, monhtly), slack, RSS, JSON, webhooks, etc.
+      testimonials:
+        title: Loved by our users
+        subtitle: Let's see what our users think
+        quote_1: The integration Hacker News works great! I can now receive ruby relevant news directly in my inbox. And they're curated by the community instead of in a newsletter with ads. Simple and effective! ⚡
+        user_1: Flavio Wuensche
+        quote_2: Thank you for sharing it. That is an excellent product! I like the email I get for hacker news!
+        user_2: Lucian Ghinda
+        quote_3: I like the idea a lot
+        user_3: Celsio on Rails
+        quote_4: that's a cool thing that you built!
+        user_4: Collin
+        quote_5: The idea sounds great 😊
+        user_5: Stella Miranda
+        quote_6: Sounds interesting
+        user_6: Drew Bragg
     privacy:
       title: Privacy Policy
     terms:
