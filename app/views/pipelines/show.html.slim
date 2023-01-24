@@ -1,40 +1,22 @@
-- content_for(:title, @pipeline.to_s)
+- content_for(:title) do
+  .flex.items-center.gap-2
+    = @pipeline.to_s
+    - if @pipeline.published?
+      = link_to pipelines_path, title: t(".published") do
+        = heroicon "globe-alt"
 
 - if can?(:process_now, @pipeline)
   = button_to t(".process"), [@pipeline, :process_now]
 
 - if current_user
   .p= button_to t(".duplicate"), [@pipeline, :duplicate]
-- else
-  .flex.gap-4.items-center
-    .p= button_to t(".register_to_duplicate"), new_user_path, method: :get, class: "button--primary"
-    p= t(".or")
-    .p= button_to t(".log_in_to_duplicate"), new_session_path, method: :get
 
-- if @pipeline.published?
-  p= t(".published")
-- else
-  p= t(".not_published")
-
-p
-  => t(".by")
-  = link_to @pipeline.user.name, @pipeline.user
-
-h3= t(".sources")
-
-- if @sources.any?
+.flex.gap-4.flex-col
+  = render "users/user", user: @pipeline.user, size: :small
   - @sources.each do |source|
     = render "sources/source", source: source
-- else
-  p.text-gray-600.italic= t(".no_sources")
-
-h3= t(".destinations")
-
-- if @destinations.any?
   - @destinations.each do |destination|
     = render "destinations/destination", destination: destination
-- else
-  p.text-gray-600.italic= t(".no_destinations")
 
 - if can? :update, @pipeline
   p= link_to t(".edit"), [:edit, @pipeline]
@@ -42,19 +24,16 @@ h3= t(".destinations")
 - if can? :destroy, @pipeline
   .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--link text-red-600"
 
-h3= link_to t(".items"), [@pipeline, :items]
-
-p= link_to t(".rss_feed"), pipeline_items_path(@pipeline, format: :rss)
-
 - if @items.any?
   - if can? :destroy_all, @pipeline
     .p= button_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "text-red-600 button--link"
 
-  = paginate @items
+  .text-center
+    = paginate @items
 
-  - @items.each do |item|
-    = render "items/item", item: item
+  .grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
+    - @items.each do |item|
+      = render "items/item", item: item
 
-  = paginate @items
-- else
-  p.text-gray-600.italic= t(".no_items")
+  .text-center
+    = paginate @items

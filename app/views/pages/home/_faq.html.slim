@@ -1,21 +1,3 @@
-.relative.overflow-hidden.py-20.sm:py-32
-  .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8.relative
-    .mx-auto.max-w-2xl.lg:mx-0
-      .text-3xl.sm:text-4xl= t(".title")
-      .mt-4.text-lg= t(".subtitle_html")
-    ul.mx-auto.mt-16.grid.max-w-2xl.grid-cols-1.gap-8.lg:max-w-none.lg:grid-cols-3
-      li
-        ul.flex.flex-col.gap-y-8
-          = render "pages/home/faq/question", question: t(".question_1"), answer: t(".answer_1_html")
-          = render "pages/home/faq/question", question: t(".question_2"), answer: t(".answer_2_html")
-          = render "pages/home/faq/question", question: t(".question_3"), answer: t(".answer_3_html")
-      li
-        ul.flex.flex-col.gap-y-8
-          = render "pages/home/faq/question", question: t(".question_4"), answer: t(".answer_4_html")
-          = render "pages/home/faq/question", question: t(".question_5"), answer: t(".answer_5_html")
-          = render "pages/home/faq/question", question: t(".question_6"), answer: t(".answer_6_html")
-      li
-        ul.flex.flex-col.gap-y-8
-          = render "pages/home/faq/question", question: t(".question_7"), answer: t(".answer_7_html")
-          = render "pages/home/faq/question", question: t(".question_8"), answer: t(".answer_8_html")
-          = render "pages/home/faq/question", question: t(".question_9"), answer: t(".answer_9_html")
+.max-w-5xl.mx-auto.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4.py-8
+  - (1..9).each do |i|
+    = render "pages/home/faq/question", question: t(".question_#{i}"), answer: t(".answer_#{i}_html")

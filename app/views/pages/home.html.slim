@@ -1,5 +1,9 @@
-= render "pages/home/intro", users: @users
-= render "pages/home/features"
+= render "pages/home/intro"
+hr.my-8
+= render "pages/home/pipelines", pipelines: @pipelines
+hr.my-8
 = render "pages/home/testimonials"
+hr.my-8
 = render "pages/home/pricing"
+hr.my-8
 = render "pages/home/faq"

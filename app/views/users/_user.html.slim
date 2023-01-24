@@ -1,6 +1,13 @@
-= link_to user, class: "inline-flex flex-col justify-center items-center m-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden" do
-  - if user.avatar.attached?
-    = image_tag user.avatar, class: "w-32 h-32 sm:w-40 sm:h-40 grayscale", width: 160, height: 160, alt: user.name
+- size = local_assigns.fetch(:size, :normal)
+- image_class = size == :small ? "w-16 h-16 sm:w-20 sm:h-20 m-0" : "w-32 h-32 sm:w-40 sm:h-40 m-0"
+- width = size == :small ? 80 : 160
 
-  .text-gray-600.p-4= user.name
+= link_to user, class: "inline-flex text-center flex-col justify-center items-center m-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden grayscale hover:filter-none", style: "width: #{width}px" do
+  - if user.avatar.attached?
+    = image_tag user.avatar, class: image_class, width: width, height: width, alt: user.name
+
+  - if size == :small
+    .text-gray-600.p-2.text-sm= user.name
+  - else
+    .text-gray-600.p-4= user.name
 

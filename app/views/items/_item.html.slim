@@ -1,9 +1,5 @@
-.p
-  => link_to item.to_s, item.url
-
-  | (
-  = safe_join(item.urls.map { |url| link_to url.text, url.href }, ", ")
-  ' )
+= link_to item, class: "inline-flex flex-col m-4 p-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden grayscale hover:filter-none" do
+  = item.to_s
 
   - if can?(:destroy, item)
     = button_to t(".delete"), item, method: :delete, class: "text-red-600 button--link", form_class: "inline-block"

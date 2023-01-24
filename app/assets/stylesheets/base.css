@@ -23,3 +23,8 @@ p,
 .p {
   @apply mb-5;
 }
+
+code::before,
+code::after {
+  content: "" !important;
+}

@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action { authorize :page }
 
   def home
-    @users = policy_scope(User).published.order(created_at: :asc)
+    @pipelines = policy_scope(Pipeline).published.order(created_at: :asc)
     render layout: "home"
   end
 

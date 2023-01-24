@@ -1,0 +1,6 @@
+.p-4
+  .text-5xl.mb-2= t(".price", price: humanized_money_with_symbol(price))
+  .font-bold.mb-2= title
+  .mb-2= button_link_to text, url, class: "w-full py-2 justify-center"
+  - features.each do |feature|
+    .mb-2= feature

@@ -266,7 +266,7 @@ en:
         question_5: Is it a newsletter?
         question_6: I don't understand/I need help
         question_7: Why do I need that?
-        question_8: Can I have {feature}/{integration}/{source}/{destination}?
+        question_8: Can I have {feature} / {integration} / {source} / {destination}?
         question_9: Are you down to meet?
         subtitle_html:
           'If you can''t find what you are looking for, email <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>
@@ -305,6 +305,8 @@ en:
           it
         watch_video: Watch video
       pricing:
+        price:
+          price: "%{price}/month"
         custom: Custom
         custom_features:
           - Unlimited custom emails
@@ -313,9 +315,10 @@ en:
           - Custom Twitter
           - Custom Reddit
           - Custom Stack Exchange
-        custom_subtitle: Recommended for power users of pipelines.plumbing.
         get_started: Get started
         hobby: Hobby
+        custom_text: Contact me
+        hobby_text: Get started
         hobby_features:
           - Unlimited emails
           - Unlimited email digests
@@ -323,10 +326,6 @@ en:
           - Free trial of Twitter for one month
           - Free trial of Reddit for one month
           - Free trial of Stack Exchange for one month
-        hobby_subtitle:
-          Good for trying out pipelines.plumbing. Your pipelines will
-          be disabled every month.
-        price: "%{price}/month"
         pro: Pro
         pro_features:
           - Unlimited emails
@@ -335,11 +334,11 @@ en:
           - Twitter
           - Reddit
           - Stack Exchange
-        pro_subtitle: Recommended for regular usage of pipelines.plumbing.
         subtitle:
           It doesn’t matter if you are student or a large company, our software
           will work well for you
         title_html: Simple pricing <span class="text-green-600">for everyone</span>
+        pro_text: Subscribe
       testimonials:
         quote_1:
           The integration Hacker News works great! I can now receive ruby relevant

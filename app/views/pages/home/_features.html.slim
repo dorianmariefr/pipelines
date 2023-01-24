@@ -12,3 +12,6 @@ section.relative.overflow-hidden.bg-green-600.pt-20.pb-28.sm:py-32
           = render "pages/home/features/button", title: t(".title_2"), subtitle: t(".subtitle_2")
           = render "pages/home/features/button", title: t(".title_3"), subtitle: t(".subtitle_3")
           = render "pages/home/features/button", title: t(".title_4"), subtitle: t(".subtitle_4")
+      .lg:col-span-7
+        - (1..4).each do |i|
+          = render "pages/home/features/feature", hidden: i != 1, subtitle: t(".subtitle_#{i}"), image_path: "feature_#{i}.png"

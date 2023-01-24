@@ -1,14 +1,14 @@
-.card
-  h4= destination.name
+= link_to destination, class: "w-96 inline-flex flex-col m-4 p-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden grayscale hover:filter-none" do
+  .mb-2
+    ' →
+    => destination.name
 
   = render destination.parameters
 
   - if can?(:update, destination)
-    p
+    .text-sm.text-gray-600.mb-2
       b=> t(".private")
       = destination.destinable
 
   - if can?(:update, destination) && destination.error?
-    p.text-red-600= destination.error
-    - if destination.backtrace.present?
-      pre= destination.backtrace
+    .text-red-600.text-sm.mb-2= destination.error

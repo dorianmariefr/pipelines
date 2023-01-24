@@ -1,17 +1,3 @@
-section.bg-gray-50.py-20.sm:py-32
-  .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8
-    .mx-auto.max-w-2xl.md:text-center
-      h2.font-display.text-3xl.tracking-tight.text-slate-900.sm:text-4xl
-        = t(".title")
-      p.mt-4.text-lg.tracking-tight.text-slate-700
-        = t(".subtitle")
-    ul.mx-auto.mt-16.grid.max-w-2xl.grid-cols-1.gap-6.sm:gap-8.lg:mt-20.lg:max-w-none.lg:grid-cols-3
-      .flex.flex-col.gap-y-6.sm:gap-y-8
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_1"), user: t(".user_1")
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_3"), user: t(".user_3")
-      .flex.flex-col.gap-y-6.sm:gap-y-8
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_2"), user: t(".user_2")
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_4"), user: t(".user_4")
-      .flex.flex-col.gap-y-6.sm:gap-y-8
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_5"), user: t(".user_5")
-        = render "pages/home/testimonials/testimonial", quote: t(".quote_6"), user: t(".user_6")
+.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4.mx-auto.max-w-5xl.m-8
+  - (1..6).each do |i|
+    = render "pages/home/testimonials/testimonial", quote: t(".quote_#{i}"), user: t(".user_#{i}")
