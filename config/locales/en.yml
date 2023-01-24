@@ -238,6 +238,14 @@ en:
       features:
         title: Everything you need to automate
         subtitle: Create your pipelines or duplicate existing ones
+        title_1: Fetch it
+        subtitle_1: Fetch Twitter's tweets, Reddit's posts and comments, Stack Overflow's questions and answers, and Hacker News's posts and comments
+        title_2: Filter it
+        subtitle_2: Either no filter (everything goes), simple filter or complex filters with Code, a programming language
+        title_3: Format it
+        subtitle_3: Subject of your email, body of the email, RSS feed title, etc. all can be formatted with Template, a programming language
+        title_4: Send it
+        subtitle_4: Send it through email, email digests (hourly, daily, weekly, monhtly), slack, RSS, JSON, webhooks, etc.
     privacy:
       title: Privacy Policy
     terms:
