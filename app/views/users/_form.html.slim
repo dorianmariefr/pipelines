@@ -16,7 +16,7 @@
     = f.fields_for :emails do |email_f|
       = render "emails/form", f: email_f
 
-    div(data-emails-target="add")
+    p(data-emails-target="add")
       = link_to t(".add_email"), "#", data: { action: "emails#add" }
 
   div(data-controller="phone-numbers")
@@ -27,7 +27,7 @@
     = f.fields_for :phone_numbers do |phone_number_f|
       = render "phone_numbers/form", f: phone_number_f
 
-    div(data-phone-numbers-target="add")
+    p(data-phone-numbers-target="add")
       = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }
 
   .p(data-controller="password")

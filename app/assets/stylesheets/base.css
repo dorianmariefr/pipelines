@@ -1,3 +1,25 @@
 a {
   @apply underline;
 }
+
+label {
+  @apply block;
+}
+
+[type="text"],
+[type="password"],
+[type="email"],
+[type="tel"],
+textarea,
+select {
+  @apply min-w-[20rem] rounded;
+}
+
+.card {
+  @apply pl-4 border-l-2 border-black;
+}
+
+p,
+.p {
+  @apply mb-5;
+}

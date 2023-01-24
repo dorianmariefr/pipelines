@@ -1,5 +1,5 @@
 .group.relative.rounded-full.py-1.px-4.lg:rounded-r-none.lg:rounded-l-xl.lg:p-6.bg-white.lg:bg-white/10.lg:ring-1.lg:ring-inset.lg:ring-white/10.hover:cursor-pointer
   .text-lg.text-green-600.lg:text-white
     .absolute.inset-0.rounded-full.lg:rounded-r-none.lg:rounded-l-xl
-    = title
+    = title.gsub(" ", "&nbsp;").html_safe
   .mt-2.hidden.text-sm.lg:block.text-white= subtitle

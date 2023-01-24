@@ -54,6 +54,7 @@ fr:
       form:
         add_email: Ajouter un email
         add_phone_number: Ajouter un numéro de téléphone
+        avatar: Avatar
         hide_password: Cacher le mot de passe
         name: Nom
         password: Mot de passe
@@ -78,10 +79,19 @@ fr:
         title: "[Admin] %{name}"
       update:
         notice: Utilisateur mis à jour
+      user:
+        published: "(publique)"
   application:
     fake:
       eg: e.g. %{string}
       or: ou
+    header:
+      close_menu: Fermer le menu
+      get_started: Commencer
+      log_in: Se connecter
+      open_menu: Ouvrir le menu
+      title: pipelines.plumbing
+      title_mobile: pipelines
   attributes:
     normalized_email: Email
     normalized_phone_number: Numéro de téléphone
@@ -216,62 +226,137 @@ fr:
         5 tags)
   layouts:
     application:
-      log_in: Se connecter
-      log_out: Se déconnecter
-      pipelines: Pipelines
-      privacy: Politique de confidentialité
-      register: S'inscrire
-      switch: English
-      terms: Termes et Conditions
       title: Pipelines
-      users: Utilisateurs
   pages:
     home:
-      become_pro: Devenir Pro
-      book_a_call: Réserver un appel
-      free: Gratuit
-      free_1: Email illimités
-      free_2: Hacker News
-      free_3: Essai de Twitter pour un mois
-      log_in: Se connecter
-      new_pipeline: Nouvelle pipeline
-      new_post: Nouvel article
-      or: ou
-      overview: Aperçu
-      posts: Articles
-      pricing: Tarification
-      pro: Pro (%{price} / mois)
-      pro_1: Emails illimités
-      pro_2: Hacker News
-      pro_3: Twitter
-      published_pipelines: Pipelines publiques
-      published_users: Utilisateurs publiques
-      referral:
-        Pour tout parrainage que tu fais (quelqu'un qui s'abonne à Pro grâce
-        à toi), tu bénéficies d'un mois de Pro.
-      referrals: Parrainages
-      register: S'inscrire
-      step_1: Tu dois d'abord te connecter ou t'inscrire.
-      step_2: Tu peux t'inscrire avec Google, Facebook, email, ou numéro de téléphone.
-      step_3:
-        Si tu as utilisé un e-mail ou un numéro de téléphone, tu dois les vérifier,
-        sinon tu peux pouvez créer une nouvelle pipeline.
-      step_4: Une pipeline a un nom, est-elle publique ?, des sources et des destinations.
-      step_5:
-        Tu peux inclure du Code dans ton filtre comme "score > 100", "keywords.include?("Ruby")"
-        ou "title.include?("Show HN")
-      step_6:
-        Une pipeline est traitée toutes les minutes et tu peux décider quand
-        tu reçois les e-mails (maintenant, toutes les heures, tous les jours, toutes
-        les semaines, tous les mois) à une heure précise de ton fuseau horaire à l'adresse
-        e-mail de ton choix.
-      step_7: Maintenant que ta pipeline est créée, tu peux continuer et la traiter.
-      step_8:
-        Tu peux maintenant voir qu'elle a été traitée et continuera à être traitée
-        automatiquement à partir de maintenant. Si des éléments correspondent, tu
-        les verras en bas.
+      faq:
+        answer_1_html:
+          C'est beaucoup plus puissant à cause des langages de programmation
+          et des filtres.
+        answer_2_html:
+          C'est beaucoup plus puissant car tu peux personnaliser les
+          e-mails et obtenir exactement ce dont tu as besoin quand tu le souhaites.
+        answer_3_html: Oui, tout est sur GitHub sous la licence MIT à <a href="https://github.com/pipelines-plumbing">github.com/pipelines-plumbing</a>
+        answer_4_html:
+          Il a été créé avec Ruby, Ruby on Rails, JavaScript, Stimulus,
+          HTML, Slim, CSS, Tailwind, Sidekiq, SQL, Git, GitHub, Heroku, etc.
+        answer_5_html:
+          Tu peux en faire une newsletter, tu peux également en faire
+          un service d'alerte, ou avec des flux RSS, tu peux choisir de lire à ton
+          rythme
+        answer_6_html:
+          Pas de problème, tu peux réserver du temps sur mon calendly
+          <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
+          ou m'envoyer un mail à < a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>.
+        answer_7_html:
+          Pour rester au courant de ce qui se passe sur Internet, en
+          fonction de tes centres d'intérêt
+        answer_8_html:
+          Tu peux le demander et ça viendra, mais si tu peux la priorité
+          il vaut mieux souscrire à Pro ou Custom
+        answer_9_html: Oui bien sûr, j'aimerais te rencontrer et discuter <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
+        question_1: Alors c'est comme Zapier/IFTTT ?
+        question_2: Alors c'est comme Mailbrew/Briefcake ?
+        question_3: Est-ce open-source ?
+        question_4: Avec quoi le site a-t-il été créé ?
+        question_5: Est-ce une newsletter ?
+        question_6: Je ne comprends pas/J'ai besoin d'aide
+        question_7: Pourquoi ai-je besoin de ça ?
+        question_8: Puis-je avoir {fonctionnalitée}/{integration}/{source}/{destination} ?
+        question_9: Ês-tu prêt à se rencontrer?
+        subtitle_html:
+          Si tu ne trouves pas ce que tu cherches, envoie un e-mail à
+          <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>
+          et je te répondrai dans les plus brefs délais.
+        title: Questions fréquemment posées
+      features:
+        subtitle: Créez vos pipelines ou dupliquez ceux existants
+        subtitle_1:
+          Récupérez les tweets de Twitter, les publications et commentaires
+          de Reddit, les questions et réponses de Stack Overflow et les publications
+          et commentaires de Hacker News
+        subtitle_2:
+          Soit pas de filter (tout passe), filtre simple ou filtres complexes
+          avec Code, un langage de programmation
+        subtitle_3:
+          Objet de ton e-mail, corps de l'e-mail, titre du flux RSS, etc.
+          tout peut être formaté avec Template, un langage de programmation
+        subtitle_4:
+          Send it through email, email digests (hourly, daily, weekly, monthly),
+          slack, RSS, JSON, webhooks, etc.
+        title: Everything you need to automate
+        title_1: Cherche-le
+        title_2: Filtre-le
+        title_3: Mets-le en forme
+        title_4: Envoie-le
+      intro:
+        amazing_people:
+          "Ces personnes incroyables utilisent pipelines.plumbing et
+          ont un profil public :"
+        automation: Automatisation
+        get_started: Commencer
+        made_simple: devenue simple
+        subtitle:
+          Récupérer des informations sur Internet, les filtrer, les formater
+          et les envoyer
+        watch_video: Regarder la vidéo
+      pricing:
+        custom: Personnalisé
+        custom_features:
+          - E-mails personnalisés illimités
+          - Résumés d'e-mails personnalisés illimités
+          - Hacker News personalisé
+          - Twitter personalisé
+          - Reddit personalisé
+          - Stack Exchange personalisé
+        custom_subtitle: Recommandé pour les utilisateurs expérimentés de pipelines.plumbing.
+        get_started: Commencer
+        hobby: Loisir
+        hobby_features:
+          - E-mails illimités
+          - Résumés d'e-mails illimités
+          - Essai gratuit de Hacker News pendant un mois
+          - Essai gratuit de Twitter pendant un mois
+          - Essai gratuit de Reddit pendant un mois
+          - Essai gratuit de Stack Exchange pendant un mois
+        hobby_subtitle:
+          Bon pour essayer pipelines.plumbing. Vos pipelines seront
+          désactivés tous les mois.
+        price: "%{price} / mois"
+        pro: Pro
+        pro_features:
+          - E-mails illimités
+          - Résumés d'e-mails illimités
+          - Hacker News
+          - Twitter
+          - Reddit
+          - Stack Exchange
+        pro_subtitle: Recommandé pour une utilisation régulière de pipelines.plumbing.
+        subtitle:
+          Peu importe si tu es étudiant ou une grande entreprise, notre logiciel
+          fonctionnera bien pour toi
+        title_html: Tarification simple <span class="text-green-600">pour tous</span>
+      testimonials:
+        quote_1:
+          The integration Hacker News works great! I can now receive ruby relevant
+          news directly in my inbox. And they're curated by the community instead
+          of in a newsletter with ads. Simple and effective! ⚡
+        quote_2:
+          Thank you for sharing it. That is an excellent product! I like the
+          email I get for hacker news!
+        quote_3: I like the idea a lot
+        quote_4: that's a cool thing that you built!
+        quote_5: "The idea sounds great \U0001F60A"
+        quote_6: Sounds interesting
+        subtitle: Voyons ce qu'en pensent nos utilisateurs
+        title: Apprécié par nos utilisateurs
+        user_1: Flavio Wuensche
+        user_2: Lucian Ghinda
+        user_3: Celsio on Rails
+        user_4: Collin
+        user_5: Stella Miranda
+        user_6: Drew Bragg
       title: Accueil
-      your_pipelines: Tes pipelines
     privacy:
       title: Politique de confidentialité
     terms:

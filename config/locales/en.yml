@@ -44,8 +44,6 @@ en:
       update:
         notice: Phone number updated
     users:
-      user:
-        published: "(public)"
       create:
         notice: User created
       destroy:
@@ -54,9 +52,9 @@ en:
         submit: Update user
         title: "[Admin] Edit user"
       form:
-        avatar: Avatar
         add_email: Add email
         add_phone_number: Add phone number
+        avatar: Avatar
         hide_password: Hide password
         name: Name
         password: Password
@@ -81,6 +79,24 @@ en:
         title: "[Admin] %{name}"
       update:
         notice: User updated
+      user:
+        published: "(public)"
+  application:
+    fake:
+      eg: e.g. %{string}
+      or: " or "
+    footer:
+      title: pipelines.plumbing
+      copyright: © %{year} Dorian Marié. All rights reserved.
+      terms: Terms and conditions
+      privacy: Privacy prolicy
+    header:
+      close_menu: Close menu
+      get_started: Get started
+      log_in: Log in
+      open_menu: Open menu
+      title: pipelines.plumbing
+      title_mobile: pipelines
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
@@ -214,53 +230,137 @@ en:
   layouts:
     application:
       title: pipelines.plumbing
-  application:
-    fake:
-      eg: e.g. %{string}
-      or: " or "
-    header:
-      title: pipelines.plumbing
-      title_mobile: pipelines
-      log_in: Log in
-      get_started: Get started
-      open_menu: Open menu
-      close_menu: Close menu
   pages:
     home:
-      title: pipelines.plumbing
-      intro:
-        automation: Automation
-        made_simple: made simple
-        subtitle: Fetch information from the Internet, filter it, format it and send it
-        get_started: Get started
-        watch_video: Watch video
-        amazing_people: "Those amazing people use pipelines.plumbing and have a public profile:"
+      faq:
+        answer_1_html:
+          It's much more powerful because of the programming languages
+          and the filters.
+        answer_2_html:
+          It's much more powerful because you can personalize the emails
+          and get exactly what you need when you want.
+        answer_3_html:
+          'Yes, it''s all on GitHub under the MIT license at <a href="https://github.com/pipelines-plumbing">github.com/pipelines-plumbing</a>.
+
+          '
+        answer_4_html:
+          It was created with Ruby, Ruby on Rails, JavaScript, Stimulus,
+          HTML, Slim, CSS, Tailwind, Sidekiq, SQL, Git, GitHub, Heroku, etc.
+        answer_5_html:
+          You can make it into a newsletter, also you can make it into
+          an alert service, or with RSS feeds you can choose to read on your own time.
+        answer_6_html:
+          No problem, you can book time on my calendly <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
+          or send me an email at <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>.
+        answer_7_html:
+          To stay up to date with what's going on on the internet, based
+          on your interests.
+        answer_8_html:
+          You can request it and it will come, but if you want priority
+          it's better to subscribe to Pro or Custom.
+        answer_9_html: Yes of course, I would love to meet and discuss <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>.
+        question_1: So it's like Zapier/IFTT?
+        question_2: So it's like Mailbrew/Briefcake?
+        question_3: Is it open-source?
+        question_4: What was the site created with?
+        question_5: Is it a newsletter?
+        question_6: I don't understand/I need help
+        question_7: Why do I need that?
+        question_8: Can I have {feature}/{integration}/{source}/{destination}?
+        question_9: Are you down to meet?
+        subtitle_html:
+          'If you can''t find what you are looking for, email <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>
+          and I will get back to you as soon as possible.
+
+          '
+        title: Frequently asked questions
       features:
-        title: Everything you need to automate
         subtitle: Create your pipelines or duplicate existing ones
+        subtitle_1:
+          Fetch Twitter's tweets, Reddit's posts and comments, Stack Overflow's
+          questions and answers, and Hacker News's posts and comments
+        subtitle_2:
+          Either no filter (everything goes), simple filter or complex filters
+          with Code, a programming language
+        subtitle_3:
+          Subject of your email, body of the email, RSS feed title, etc.
+          all can be formatted with Template, a programming language
+        subtitle_4:
+          Send it through email, email digests (hourly, daily, weekly, monhtly),
+          slack, RSS, JSON, webhooks, etc.
+        title: Everything you need to automate
         title_1: Fetch it
-        subtitle_1: Fetch Twitter's tweets, Reddit's posts and comments, Stack Overflow's questions and answers, and Hacker News's posts and comments
         title_2: Filter it
-        subtitle_2: Either no filter (everything goes), simple filter or complex filters with Code, a programming language
         title_3: Format it
-        subtitle_3: Subject of your email, body of the email, RSS feed title, etc. all can be formatted with Template, a programming language
         title_4: Send it
-        subtitle_4: Send it through email, email digests (hourly, daily, weekly, monhtly), slack, RSS, JSON, webhooks, etc.
+      intro:
+        amazing_people:
+          "Those amazing people use pipelines.plumbing and have a public
+          profile:"
+        automation: Automation
+        get_started: Get started
+        made_simple: made simple
+        subtitle:
+          Fetch information from the Internet, filter it, format it and send
+          it
+        watch_video: Watch video
+      pricing:
+        custom: Custom
+        custom_features:
+          - Unlimited custom emails
+          - Unlimited custom email digests
+          - Custom Hacker News
+          - Custom Twitter
+          - Custom Reddit
+          - Custom Stack Exchange
+        custom_subtitle: Recommended for power users of pipelines.plumbing.
+        get_started: Get started
+        hobby: Hobby
+        hobby_features:
+          - Unlimited emails
+          - Unlimited email digests
+          - Free trial of Hacker News for one month
+          - Free trial of Twitter for one month
+          - Free trial of Reddit for one month
+          - Free trial of Stack Exchange for one month
+        hobby_subtitle:
+          Good for trying out pipelines.plumbing. Your pipelines will
+          be disabled every month.
+        price: "%{price}/month"
+        pro: Pro
+        pro_features:
+          - Unlimited emails
+          - Unlimited email digests
+          - Hacker News
+          - Twitter
+          - Reddit
+          - Stack Exchange
+        pro_subtitle: Recommended for regular usage of pipelines.plumbing.
+        subtitle:
+          It doesn’t matter if you are student or a large company, our software
+          will work well for you
+        title_html: Simple pricing <span class="text-green-600">for everyone</span>
       testimonials:
-        title: Loved by our users
-        subtitle: Let's see what our users think
-        quote_1: The integration Hacker News works great! I can now receive ruby relevant news directly in my inbox. And they're curated by the community instead of in a newsletter with ads. Simple and effective! ⚡
-        user_1: Flavio Wuensche
-        quote_2: Thank you for sharing it. That is an excellent product! I like the email I get for hacker news!
-        user_2: Lucian Ghinda
+        quote_1:
+          The integration Hacker News works great! I can now receive ruby relevant
+          news directly in my inbox. And they're curated by the community instead
+          of in a newsletter with ads. Simple and effective! ⚡
+        quote_2:
+          Thank you for sharing it. That is an excellent product! I like the
+          email I get for hacker news!
         quote_3: I like the idea a lot
-        user_3: Celsio on Rails
         quote_4: that's a cool thing that you built!
-        user_4: Collin
-        quote_5: The idea sounds great 😊
-        user_5: Stella Miranda
+        quote_5: "The idea sounds great \U0001F60A"
         quote_6: Sounds interesting
+        subtitle: Let's see what our users think
+        title: Loved by our users
+        user_1: Flavio Wuensche
+        user_2: Lucian Ghinda
+        user_3: Celsio on Rails
+        user_4: Collin
+        user_5: Stella Miranda
         user_6: Drew Bragg
+      title: pipelines.plumbing
     privacy:
       title: Privacy Policy
     terms:

@@ -47,8 +47,16 @@ module ApplicationHelper
     Regexp.new(str).source
   end
 
+  def hobby_price
+    fr? ? User::HOBBY_PRICE_EUR : User::HOBBY_PRICE_USD
+  end
+
   def pro_price
     fr? ? User::PRO_PRICE_EUR : User::PRO_PRICE_USD
+  end
+
+  def custom_price
+    fr? ? User::CUSTOM_PRICE_EUR : User::CUSTOM_PRICE_USD
   end
 
   def source_kinds_options(source)

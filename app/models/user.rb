@@ -4,8 +4,12 @@ class User < ApplicationRecord
   RESET_PASSWORD_PURPOSE = :reset_password
   RESET_PASSWORD_EXPIRES_IN = 30.minutes
 
+  HOBBY_PRICE_USD = Money.from_cents(0, "USD")
+  HOBBY_PRICE_EUR = Money.from_cents(0, "EUR")
   PRO_PRICE_USD = Money.from_cents(1000, "USD")
   PRO_PRICE_EUR = Money.from_cents(1000, "EUR")
+  CUSTOM_PRICE_USD = Money.from_cents(10_000, "USD")
+  CUSTOM_PRICE_EUR = Money.from_cents(10_000, "EUR")
 
   has_secure_password
   friendly_id :name, use: :slugged

@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @users = policy_scope(User).published.order(created_at: :asc)
+    render layout: "home"
   end
 
   def privacy

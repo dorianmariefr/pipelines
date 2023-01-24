@@ -3,4 +3,5 @@
 @import url("tailwindcss/utilities");
 @import url("intl-tel-input/build/css/intlTelInput");
 @import url("./base");
+@import url("./button");
 @import url("trix/dist/trix.css");

@@ -19,9 +19,16 @@ DESTINATION =
 
 def translate(source, destination, key: "")
   if source.is_a?(Array)
-    source.map.with_index do |_, i|
-      translate(source[i], destination[i], key: "#{key}[#{i}]").compact
-    end
+    source
+      .map
+      .with_index do |_, i|
+        translate(
+          source[i],
+          destination ? destination[i] : nil,
+          key: "#{key}[#{i}]"
+        )
+      end
+      .compact
   elsif source.is_a?(Hash)
     source
       .map do |source_key, _|
