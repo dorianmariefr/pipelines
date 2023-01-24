@@ -85,6 +85,11 @@ fr:
     fake:
       eg: e.g. %{string}
       or: ou
+    footer:
+      copyright: "© %{year} Dorian Marié. Tous droits réservés."
+      privacy: Politique de confidentialité
+      terms: Termes et conditions
+      title: pipelines.plumbing
     header:
       close_menu: Fermer le menu
       get_started: Commencer
@@ -272,19 +277,19 @@ fr:
       features:
         subtitle: Créez vos pipelines ou dupliquez ceux existants
         subtitle_1:
-          Récupérez les tweets de Twitter, les publications et commentaires
+          Récupére les tweets de Twitter, les publications et commentaires
           de Reddit, les questions et réponses de Stack Overflow et les publications
           et commentaires de Hacker News
         subtitle_2:
-          Soit pas de filter (tout passe), filtre simple ou filtres complexes
+          Soit pas de filtre (tout passe), filtre simple ou filtres complexes
           avec Code, un langage de programmation
         subtitle_3:
           Objet de ton e-mail, corps de l'e-mail, titre du flux RSS, etc.
           tout peut être formaté avec Template, un langage de programmation
         subtitle_4:
-          Send it through email, email digests (hourly, daily, weekly, monthly),
-          slack, RSS, JSON, webhooks, etc.
-        title: Everything you need to automate
+          Envoie-le par email, résumé d'email (par heure, par jour, par semaine, par mois),
+          Slack, RSS, JSON, webhooks, etc.
+        title: Tout ce dont tu as besoin pour automatiser
         title_1: Cherche-le
         title_2: Filtre-le
         title_3: Mets-le en forme
@@ -293,12 +298,12 @@ fr:
         amazing_people:
           "Ces personnes incroyables utilisent pipelines.plumbing et
           ont un profil public :"
-        automation: Automatisation
+        automation: L'automatisation
         get_started: Commencer
         made_simple: devenue simple
         subtitle:
-          Récupérer des informations sur Internet, les filtrer, les formater
-          et les envoyer
+          Récupére des informations sur Internet, filtre-les, mets-les en forme
+          et envoie-les
         watch_video: Regarder la vidéo
       pricing:
         custom: Personnalisé
