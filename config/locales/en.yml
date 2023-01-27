@@ -1,5 +1,11 @@
 ---
 en:
+  accounts:
+    show:
+      title: Account
+      confirm: Are you sure you want to delete this account?
+      delete: Delete account
+      edit: Edit profile
   admin:
     emails:
       create:
@@ -91,6 +97,7 @@ en:
       terms: Terms and conditions
       privacy: Privacy prolicy
     header:
+      account: Account
       your_pipelines: Your pipelines
       log_out: Log out
       new_pipeline: New pipeline
@@ -278,6 +285,7 @@ en:
           '
         title: Frequently asked questions
       pipelines:
+        new_pipeline: New pipeline
         title: Public pipelines
       features:
         subtitle_1:
@@ -297,6 +305,7 @@ en:
         title_3: Format it
         title_4: Send it
       intro:
+        new_pipeline: New pipeline
         title: Your pipelines
         automation: Automation
         get_started: Get started
@@ -605,17 +614,5 @@ en:
       register_with_google: Register with Google
       submit: Register
       title: Register
-    show:
-      confirm: Are you sure you want to delete this account?
-      delete: Delete account
-      edit: Edit profile
-      email: Email
-      emails: Emails
-      none: None
-      not_verified: "(not verified)"
-      phone_numbers: Phone numbers
-      pipelines: Pipelines
-      private: Private
-      verified: "(verified)"
     update:
       notice: User updated

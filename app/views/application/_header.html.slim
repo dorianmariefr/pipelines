@@ -1,5 +1,5 @@
 header.py-10
-  .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8
+  .mx-auto.max-w-7xl.px-4.sm:px-6.xl:px-8
     nav.relative.z-50.flex.justify-between.items-center
       .flex.items-center.gap-2
         = button_link_to root_path, class: "text-xl px-4 py-2" do
@@ -10,10 +10,13 @@ header.py-10
             = t(".title_mobile")
         - if current_user
           .hidden.sm:flex.gap-2.items-center
-            = button_link_to current_user, class: "px-2 py-1" do
+            = button_link_to current_user, class: "px-2 py-1 hidden lg:inline-flex" do
               = heroicon "user"
               = current_user.name
-            = button_link_to [current_user, :pipelines], class: "px-2 py-1" do
+            = button_link_to account_path, class: "px-2 py-1 hidden lg:inline-flex" do
+              = heroicon "cog-6-tooth"
+              = t(".account")
+            = button_link_to [current_user, :pipelines], class: "px-2 py-1 hidden xl:inline-flex" do
               = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
               = t(".your_pipelines")
 
@@ -39,7 +42,7 @@ header.py-10
               = t(".get_started")
 
         div(data-controller="menu")
-          a.md:hidden.relative.z-10.flex.h-12.w-12.items-center.justify-center.-mr-2.p-2(href="#" data-action="menu#toggle")
+          a.xl:hidden.relative.z-10.flex.h-12.w-12.items-center.justify-center.-mr-2.p-2(href="#" data-action="menu#toggle")
             span(data-menu-target="closed")
               = heroicon "bars-3", options: { class: "w-8 h-8" }
               .sr-only= t(".open_menu")
@@ -47,17 +50,20 @@ header.py-10
               = heroicon "x-mark", options: { class: "w-8 h-8" }
               .sr-only= t(".close_menu")
 
-          .md:hidden(hidden data-menu-target="menu")
+          .xl:hidden(hidden data-menu-target="menu")
             a.fixed.inset-0.bg-gray-500/30(href="#" data-action="menu#toggle")
-            .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-lg.shadow
+            .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-xl.shadow
               - if current_user
                 = link_to current_user, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
                   = heroicon "user"
                   = current_user.name
+                = link_to account_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = heroicon "cog-6-tooth"
+                  = t(".account")
                 = link_to [current_user, :pipelines], class: "px-4 py-2 underline inline-flex gap-2 items-center" do
                   = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
                   = t(".your_pipelines")
-                = button_to session_path, method: :delete, class: "button--link px-4 py-2 underline inline-flex gap-2 items-center w-full" do
+                = button_to session_path, method: :delete, class: "button--link !px-4 !py-2 underline inline-flex gap-2 items-center w-full" do
                   = heroicon "arrow-right-on-rectangle"
                   = t(".log_out")
                 = link_to new_pipeline_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do

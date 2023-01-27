@@ -1,40 +1,24 @@
-- if phone_number.persisted?
-  .card
-    .p
-      span.font-bold=> link_to phone_number.formatted_phone_number, phone_number
-      - if phone_number.verified?
-        span.text-green-600=> t(".verified")
-      - else
-        span.text-red-600=> t(".not_verified")
-      - if can?(:destroy, phone_number)
-        = button_to t(".delete"), phone_number, method: :delete, class: "button--link text-red-600", form_class: "inline-block"
+.inline-flex.flex-col.my-4.rounded-lg.border.p-4
+  .mb-2
+    => link_to phone_number.phone_number, phone_number
+    - if phone_number.verified?
+      span.text-green-600=> t(".verified")
+    - else
+      span=> t(".not_verified")
+    - if can?(:destroy, phone_number)
+      = button_to t(".delete"), phone_number, method: :delete, class: "button--link", form_class: "inline-block"
 
-    - if phone_number.not_verified?
-      - if phone_number.sent?
-        .p= t(".verification_code_sent")
+  - if phone_number.not_verified?
+    - if phone_number.sent?
+      .mb-2= t(".verification_code_sent")
 
-        = form_for phone_number do |f|
-          .p(data-controller="code")
-            .flex.gap-2
-              = f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
-              = f.submit t(".submit")
-            .text-red-600(data-code-target="error")
-            = fake_code
-
-        .p= button_to t(".resend_verification_code"), [phone_number, :send_verification]
-      - else
-        .p= button_to t(".send_verification_code"), [phone_number, :send_verification]
-- else
-  div(data-controller="show")
-    p(data-show-target="summary")
-      = link_to t(".add_phone_number"), "#", data: { action: "show#show" }
-    .hidden(data-show-target="details")
       = form_for phone_number do |f|
-        .p(data-controller="phone")
-          = f.hidden_field :phone_number, data: { phone_target: "hidden" }
-          .flex.gap-2
-            div
-              = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }
-            = f.submit t(".add")
-          .text-red-600(data-phone-target="error")
-          = fake_phone_number
+        div(data-controller="code")
+          .p= f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
+          .p= f.submit t(".submit"), class: "button--primary"
+          p.text-red-600(data-code-target="error")
+          p= fake_code
+
+      .p= button_to t(".resend_verification_code"), [phone_number, :send_verification]
+    - else
+      = button_to t(".send_verification_code"), [phone_number, :send_verification], class: "button--primary"

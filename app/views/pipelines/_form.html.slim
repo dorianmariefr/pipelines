@@ -6,10 +6,9 @@
 
   .p
     => f.label :published, t(".published")
-    br
-    => f.label :published, t(".yes"), value: true
+    => f.label :published, t(".yes"), value: true, class: "inline-block"
     => f.radio_button :published, true
-    => f.label :published, t(".no"), value: false
+    => f.label :published, t(".no"), value: false, class: "inline-block"
     => f.radio_button :published, false
     br
     .text-gray-600= t(".published_hint")

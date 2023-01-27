@@ -4,12 +4,6 @@ class UsersController < ApplicationController
   helper_method :password_param
 
   def show
-    @emails =
-      policy_scope(Email).where(user: @user).order(created_at: :asc).to_a
-    @emails << Email.new(user: @user)
-    @phone_numbers =
-      policy_scope(PhoneNumber).where(user: @user).order(created_at: :asc).to_a
-    @phone_numbers << PhoneNumber.new(user: @user)
     @pipelines =
       policy_scope(Pipeline).where(user: @user).order(created_at: :asc)
   end
@@ -25,7 +19,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: t(".notice")
+      redirect_to account_path, notice: t(".notice")
     else
       build_user
       flash.now.alert = @user.alert
@@ -40,7 +34,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       respond_to do |format|
-        format.html { redirect_to user_path(@user), notice: t(".notice") }
+        format.html { redirect_to account_path, notice: t(".notice") }
         format.json { head :no_content }
       end
     else

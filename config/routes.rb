@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   get "auth/:provider/callback", to: "sessions#create"
 
+  resource :account
+
   resources :users do
     resource :password, only: %i[edit update]
     resources :phone_numbers, only: :index

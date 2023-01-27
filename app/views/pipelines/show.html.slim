@@ -5,11 +5,12 @@
       = link_to pipelines_path, title: t(".published") do
         = heroicon "globe-alt"
 
-- if can?(:process_now, @pipeline)
-  = button_to t(".process"), [@pipeline, :process_now]
+.flex.items.center.gap-4
+  - if can?(:process_now, @pipeline)
+    .p= primary_button_link_to t(".process"), [@pipeline, :process_now]
 
-- if current_user
-  .p= button_to t(".duplicate"), [@pipeline, :duplicate]
+  - if current_user
+    .p= button_to t(".duplicate"), [@pipeline, :duplicate]
 
 .flex.gap-4.flex-col
   = render "users/user", user: @pipeline.user, size: :small
@@ -19,21 +20,21 @@
     = render "destinations/destination", destination: destination
 
 - if can? :update, @pipeline
-  p= link_to t(".edit"), [:edit, @pipeline]
+  p= button_link_to t(".edit"), [:edit, @pipeline]
 
 - if can? :destroy, @pipeline
-  .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--link text-red-600"
+  .p= button_link_to t(".delete"), @pipeline, method: :delete, class: "button--red"
 
 - if @items.any?
-  - if can? :destroy_all, @pipeline
-    .p= button_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "text-red-600 button--link"
-
-  .text-center
+  .text-center.mb-4
     = paginate @items
 
   .grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
     - @items.each do |item|
       = render "items/item", item: item
 
-  .text-center
+  .text-center.mb-4
     = paginate @items
+
+  - if can? :destroy_all, @pipeline
+    .p.text-center= button_link_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "button--red"

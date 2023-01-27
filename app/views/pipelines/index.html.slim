@@ -6,11 +6,8 @@
   - else
     = t(".title.published_pipelines")
 
-- if can? :create, Pipeline
-  .p= button_to t(".new"), new_pipeline_path, method: :get
+= primary_button_link_to t(".new"), new_pipeline_path
 
-- if @pipelines.any?
+.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4.mt-8
   - @pipelines.each do |pipeline|
     = render "pipelines/pipeline", pipeline: pipeline
-- else
-  p.text-gray-600.italic= t(".none")

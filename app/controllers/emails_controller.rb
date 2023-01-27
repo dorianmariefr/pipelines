@@ -8,7 +8,7 @@ class EmailsController < ApplicationController
   def send_verification
     @email.send_verification!
 
-    redirect_back_or_to user_path(@email.user), notice: t(".notice")
+    redirect_back_or_to account_path, notice: t(".notice")
   end
 
   def create
@@ -17,14 +17,15 @@ class EmailsController < ApplicationController
     authorize @email
 
     if @email.save
-      redirect_to user_path(@email.user), notice: t(".notice")
+      redirect_to account_path, notice: t(".notice")
     else
-      redirect_to user_path(@email.user), alert: @email.alert
+      redirect_to account_path, alert: @email.alert
     end
   end
 
   def update
     if @email.verify(verification_code_param)
+      session[:user_id] = @email.user.id
       redirect_back fallback_location: root_path, notice: t(".notice")
     else
       flash.now.alert = t(".alert")
@@ -35,7 +36,7 @@ class EmailsController < ApplicationController
   def destroy
     @email.destroy!
 
-    redirect_to user_path(@email.user), notice: t(".notice")
+    redirect_to account_path, notice: t(".notice")
   end
 
   private
