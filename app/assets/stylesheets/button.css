@@ -1,4 +1,6 @@
-[type="submit"] {
+[type="submit"],
+.button {
+  @apply inline-flex items-center gap-2 no-underline;
   @apply px-4 py-2 rounded-lg;
   @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-300;
 }

@@ -17,6 +17,6 @@
       = primary_button_link_to new_user_path, class: "px-4 py-2" do
         => heroicon "pencil-square"
         = t(".get_started")
-      = button_link_to "#video", class: "px-4 py-2" do
+      = link_to ENV["VIDEO_URL"], class: "button" do
         => heroicon "play"
         = t(".watch_video")
