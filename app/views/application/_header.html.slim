@@ -9,12 +9,13 @@ header.py-10
           span.sm:hidden
             = t(".title_mobile")
         - if current_user
-          = button_link_to current_user, class: "px-2 py-1" do
-            = heroicon "user"
-            = current_user.name
-          = button_link_to [current_user, :pipelines], class: "px-2 py-1" do
-            = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
-            = t(".your_pipelines")
+          .hidden.sm:flex.gap-2.items-center
+            = button_link_to current_user, class: "px-2 py-1" do
+              = heroicon "user"
+              = current_user.name
+            = button_link_to [current_user, :pipelines], class: "px-2 py-1" do
+              = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
+              = t(".your_pipelines")
 
       .flex.items-center.gap-2
         .flex.items-center.gap-6
@@ -49,9 +50,23 @@ header.py-10
           .md:hidden(hidden data-menu-target="menu")
             a.fixed.inset-0.bg-gray-500/30(href="#" data-action="menu#toggle")
             .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-lg.shadow
-              = link_to new_session_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                = heroicon "arrow-left-on-rectangle"
-                = t(".log_in")
-              = link_to new_user_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                = heroicon "pencil-square"
-                = t(".get_started")
+              - if current_user
+                = link_to current_user, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = heroicon "user"
+                  = current_user.name
+                = link_to [current_user, :pipelines], class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
+                  = t(".your_pipelines")
+                = button_to session_path, method: :delete, class: "button--link px-4 py-2 underline inline-flex gap-2 items-center w-full" do
+                  = heroicon "arrow-right-on-rectangle"
+                  = t(".log_out")
+                = link_to new_pipeline_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = heroicon "pencil-square"
+                  = t(".new_pipeline")
+              - else
+                = link_to new_session_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = heroicon "arrow-left-on-rectangle"
+                  = t(".log_in")
+                = link_to new_user_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
+                  = heroicon "pencil-square"
+                  = t(".get_started")
