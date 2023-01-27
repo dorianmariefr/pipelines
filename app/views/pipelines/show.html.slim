@@ -7,10 +7,10 @@
 
 .flex.items.center.gap-4
   - if can?(:process_now, @pipeline)
-    .p= primary_button_link_to t(".process"), [@pipeline, :process_now]
+    .p= primary_button_link_to t(".process"), [@pipeline, :process_now], method: :post
 
   - if current_user
-    .p= button_to t(".duplicate"), [@pipeline, :duplicate]
+    .p= button_link_to t(".duplicate"), [@pipeline, :duplicate], method: :post
 
 .flex.gap-4.flex-col
   = render "users/user", user: @pipeline.user, size: :small
