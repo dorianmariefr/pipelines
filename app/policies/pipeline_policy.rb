@@ -8,7 +8,7 @@ class PipelinePolicy < ApplicationPolicy
   end
 
   def create?
-    current_user?
+    true
   end
 
   def process_now?
@@ -28,7 +28,7 @@ class PipelinePolicy < ApplicationPolicy
   end
 
   def duplicate?
-    (current_user? && published?) || owner? || admin?
+    true
   end
 
   class Scope < Scope

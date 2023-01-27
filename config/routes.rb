@@ -62,8 +62,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post "sources/preview" => "sources#preview"
-
   resources :sources
 
   resources :destinations

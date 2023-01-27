@@ -26,7 +26,7 @@ class Source
         ]
       end
 
-      def self.as_json
+      def self.as_json(...)
         {
           keys: keys,
           parameters: {
@@ -35,7 +35,7 @@ class Source
               kind: :string
             }
           }
-        }
+        }.as_json(...)
       end
 
       def self.email_subject_default
@@ -73,11 +73,12 @@ class Source
       end
 
       def fetch
-        url = if subreddit.present?
-          "#{BASE_URL}/r/#{subreddit}/new"
-        else
-          "#{BASE_URL}/new"
-        end
+        url =
+          if subreddit.present?
+            "#{BASE_URL}/r/#{subreddit}/new"
+          else
+            "#{BASE_URL}/new"
+          end
 
         response =
           Rails
@@ -85,7 +86,7 @@ class Source
             .fetch(
               [self.class.name, url, USER_AGENT],
               expires_in: EXPIRES_IN
-            ) { Net::HTTP.get(URI(url), {"User-Agent": USER_AGENT}) }
+            ) { Net::HTTP.get(URI(url), { "User-Agent": USER_AGENT }) }
 
         json = JSON.parse(response, object_class: OpenStruct)
 

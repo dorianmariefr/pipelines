@@ -219,7 +219,7 @@ class Source
         ]
       end
 
-      def self.as_json
+      def self.as_json(...)
         {
           keys: keys,
           parameters: {
@@ -245,49 +245,17 @@ class Source
               options: SITES
             }
           }
-        }
+        }.as_json(...)
       end
 
-      def self.email_subject_default
-        "{title}"
-      end
-
-      def self.email_body_default
-        <<~TEMPLATE
-          {title}
-
-          {url}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def self.email_digest_subject_default
-        "{items.first.title}"
-      end
-
-      def self.email_digest_body_default
-        <<~TEMPLATE
-          {items.each do |item|
-            puts(item.title)
-            puts
-            puts(item.url)
-            puts
-          end
-          nothing}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def as_json
-        self.class.as_json
+      def as_json(...)
+        self.class.as_json(...)
       end
 
       def fetch
         url = "https://api.stackexchange.com"
         url += "/2.3/questions?"
-        url += {order: order, sort: sort, tagged: tagged, site: site}.to_query
+        url += { order: order, sort: sort, tagged: tagged, site: site }.to_query
         response =
           Rails
             .cache

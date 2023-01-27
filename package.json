@@ -18,6 +18,8 @@
     "lint-staged": "*",
     "lodash": "*",
     "prettier": "*",
+    "react": "*",
+    "react-dom": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",
     "tailwindcss": "*",

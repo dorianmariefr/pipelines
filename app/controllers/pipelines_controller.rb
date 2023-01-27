@@ -116,6 +116,7 @@ class PipelinesController < ApplicationController
         :kind,
         :filter_type,
         :key,
+        :transform,
         :operator,
         :value,
         :filter,

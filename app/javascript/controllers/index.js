@@ -10,9 +10,6 @@ application.register("code", CodeController)
 import DestinationController from "./destination_controller"
 application.register("destination", DestinationController)
 
-import DestinationsController from "./destinations_controller"
-application.register("destinations", DestinationsController)
-
 import EmailController from "./email_controller"
 application.register("email", EmailController)
 
@@ -34,11 +31,11 @@ application.register("phone", PhoneController)
 import PhoneNumbersController from "./phone_numbers_controller"
 application.register("phone-numbers", PhoneNumbersController)
 
+import PipelineFormController from "./pipeline_form_controller"
+application.register("pipeline-form", PipelineFormController)
+
 import ShowController from "./show_controller"
 application.register("show", ShowController)
 
 import SourceController from "./source_controller"
 application.register("source", SourceController)
-
-import SourcesController from "./sources_controller"
-application.register("sources", SourcesController)

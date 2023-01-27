@@ -11,8 +11,8 @@ class Source
 
       def self.keys
         %w[
-          id
           title
+          id
           host
           domain
           protocol
@@ -31,46 +31,12 @@ class Source
         ]
       end
 
-      def self.as_json
-        {keys: keys}
+      def self.as_json(...)
+        {keys: keys}.as_json(...)
       end
 
-      def self.email_subject_default
-        "{title}"
-      end
-
-      def self.email_body_default
-        <<~TEMPLATE
-          {url}
-
-          {comments_url}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def self.email_digest_subject_default
-        "{items.first.title}"
-      end
-
-      def self.email_digest_body_default
-        <<~TEMPLATE
-          {items.each do |item|
-            puts(item.title)
-            puts
-            puts(item.url)
-            puts
-            puts(item.comments_url)
-            puts
-          end
-          nothing}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def as_json
-        self.class.as_json
+      def as_json(...)
+        self.class.as_json(...)
       end
 
       def fetch

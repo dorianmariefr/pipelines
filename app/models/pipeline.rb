@@ -9,6 +9,7 @@ class Pipeline < ApplicationRecord
   has_many :destinations, dependent: :destroy
   has_many :items, through: :sources
 
+  accepts_nested_attributes_for :user
   accepts_nested_attributes_for :sources, allow_destroy: true
   accepts_nested_attributes_for :destinations, allow_destroy: true
 
@@ -30,7 +31,9 @@ class Pipeline < ApplicationRecord
 
     destinations.each do |destination|
       source_results.each do |source_result|
-        destination_results << destination.send_now(source_result.saved_items)
+        if source_result.saved_items.any?
+          destination_results << destination.send_now(source_result.saved_items)
+        end
       end
     end
 
@@ -45,7 +48,9 @@ class Pipeline < ApplicationRecord
 
     destinations.instant.each do |destination|
       source_results.each do |source_result|
-        destination.send_later(source_result.saved_items)
+        if source_result.saved_items.any?
+          destination.send_later(source_result.saved_items)
+        end
       end
     end
   end
@@ -58,13 +63,21 @@ class Pipeline < ApplicationRecord
     pipeline
   end
 
-  def as_json
+  def as_json(...)
     {
       id: id,
       slug: slug,
       name: name,
-      url: Rails.application.routes.url_helpers.pipeline_url(self)
-    }
+      isPublished: published?,
+      sources: sources.as_json(...),
+      destinations: destinations.as_json(...),
+      url:
+        (
+          if persisted?
+            Rails.application.routes.url_helpers.pipeline_url(self)
+          end
+        )
+    }.as_json(...)
   end
 
   def to_s

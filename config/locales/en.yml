@@ -182,26 +182,83 @@ en:
     item:
       delete: Delete
   js:
+    destination:
+      kind: Where does the information goes?
+    parameter:
+      subject: Subject of the email
+      body_format: Format of the body of the email
+      body: Body of the email
+      result_type: Result type
+      query: Query
+      limit: Limit
+      subreddit: Subreddit
+      tagged: Tags
+      sort: Sort
+      order: Order
+      site: Site
+    filter:
+      downcase: Downcase
+      transform: Transform
+      value: Value
+      filter: Filter
+      operator: Operator
+      key: Key
+      none: None
+      simple: Simple
+      code: Code
+      filter_type: Filter type
+      "<": is less than
+      "<=": is less than or equal to
+      "==": equals
+      ">": is greater than
+      ">=": is greater than or equal to
+      include?: includes
+    source:
+      remove: Remove
+      kind: Where does the information come from?
+      hacker_news:
+        newest: Hacker News - New Stories
+        news: Hacker News - Frontpage Stories
+      reddit:
+        new: Reddit - /new
+      stack_exchange:
+        questions: Stack Exchange - Questions
+      twitter:
+        search: Twitter - Search
+    hint:
+      name: "What's the purpose of this pipeline?"
+      published: "Making this pipeline public will make your profile public"
+      result_type: "The tab you would choose on Twitter search"
+      query: "The query you would input in the Twitter search bar"
+      limit: "The number of tweets to be fetched each time the pipeline is processed"
+      subreddit: "The name of the subreddit you are fetching information from"
+      tagged: "A semicolon (;) separated list of tags (leave empty to match all)"
+      sort: "The sorting criteria for the questions"
+      order: "Either ascending or descending order"
+      site: "The Stack Exchange site to fetch questions from"
+      filter_type: "Either no filter (everything goes), a simple filter, or a complex Code filter (a programming language)"
+      key: "Which data point interest you?"
+      operator: "What operation are you going to do on that data point"
+      value: "What is the value you are going to compare with?"
+      filter: "See templatelang.com for documentation"
+      transform: "Either leave the value intact, or downcase it"
+      subject: "What's the subject of the email you will receive?"
+      body_format: "Either plain text (unformatted) or HTML (formatted)"
+      body: "The content of the email you will receive"
+    fake:
+      fake: e.g. {{value}}
+    pipeline_form:
+      add_destination: Add destination
+      patch: Update pipeline
+      post: Create pipeline
+      add_source: Add source
+      pipeline_name: Name of the pipeline
+      pipeline_published: Is the pipeline public?
+      "yes": "Yes"
+      "no": "No"
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
-    destination:
-      body: Body
-      body_format: Body format
-      body_format_hint_html: Either text or HTML
-      body_hint_html: The body of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>
-      day_of_month: Day of month
-      day_of_month_hint_html:
-        If you choose 29, 30, or 31 you will not receive it
-        each month
-      day_of_week: Day of week
-      day_of_week_hint_html: Which day do you prefer to receive your emails?
-      email: Email
-      hour: Hour
-      hour_hint_html: The hour you will receive your emails, in your timezone
-      not_verified: " (not verified)"
-      subject: Subject
-      subject_hint_html: The subject of the email, using Template, see <a href="https://templatelang.com">templatelang.com</a>
     email:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -216,27 +273,6 @@ en:
       must_be_present: Must be present
       too_long: Too long
       too_short: Too short
-    source:
-      limit: Limit
-      limit_hint_html:
-        How many tweets are going to be fetched each time the pipeline
-        is processed
-      order: Order
-      order_hint_html: Either descendant or ascendant from the sort criteria
-      query: Query
-      query_hint_html: The search query as you would enter on Twitter
-      result_type: Result type
-      result_type_hint_html: I recommend recent if you want to process all the tweets
-      site: Site
-      site_hint_html: Any of the Stack Exchanges sites including Stack Overflow
-      sort: Sort
-      sort_hint_html: How the questions are going to be sorted?
-      subreddit: Subreddit
-      subreddit_hint_html: e.g. ruby, rails, pics, etc.
-      tagged: Tags
-      tagged_hint_html:
-        A list of tags separated by a semicolon (;) (maximum of 5
-        tags)
   layouts:
     application:
       title: pipelines.plumbing
@@ -421,6 +457,12 @@ en:
       alert: Wrong verification code
       notice: Phone number verified
   pipelines:
+    preview:
+      pipeline_name: Name of the pipeline
+      user_name: Your name
+      user_email: Your email
+      user_password: Your password
+      user_phone_number: Your phone number
     create:
       notice: Pipeline created
     destroy:
@@ -430,18 +472,6 @@ en:
     edit:
       submit: Update pipeline
       title: Edit pipeline
-    form:
-      add_destination: Add destination
-      add_source: Add source
-      destinations: Destinations
-      name: Name
-      "no": "No"
-      published: Public?
-      published_hint:
-        This will make the pipeline visible publicly as well as your
-        public account information
-      sources: Sources
-      "yes": "Yes"
     index:
       new: New pipeline
       none: None

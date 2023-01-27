@@ -24,17 +24,16 @@ class Destination < ApplicationRecord
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
   scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: { in: ["Email"] }
+  validates :destinable_type, inclusion: {in: ["Email"]}
   validates :destinable, presence: true
   validate :verified_destinable
   validate :own_destinable
 
-  def self.kinds_options
-    KINDS.map { |kind, _| [I18n.t("destinations.model.kinds.#{kind}"), kind] }
-  end
-
   def self.as_json(...)
-    KINDS.map { |kind, subclass| [kind, subclass.constantize.as_json] }.to_h
+    KINDS
+      .map { |kind, subclass| [kind, subclass.constantize.as_json] }
+      .to_h
+      .as_json(...)
   end
 
   def parameters_attributes=(*args)
@@ -89,6 +88,17 @@ class Destination < ApplicationRecord
     else
       raise NotImplementedError
     end
+  end
+
+  def as_json(...)
+    {
+      id: id,
+      kind: kind,
+      destinable: destinable.as_json(...),
+      destinable_id: destinable_id,
+      destinable_type: destinable_type,
+      parameters: parameters.as_json(...)
+    }.as_json(...)
   end
 
   private

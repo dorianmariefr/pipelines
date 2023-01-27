@@ -34,9 +34,9 @@ class Source
 
       def self.keys
         %w[
+          text
           id
           url
-          text
           created_at
           quote?
           retweets
@@ -62,7 +62,7 @@ class Source
         ]
       end
 
-      def self.as_json
+      def self.as_json(...)
         {
           keys: keys,
           parameters: {
@@ -83,43 +83,11 @@ class Source
               options: Current.pro? ? LIMITS_PRO : LIMITS_FREE
             }
           }
-        }
+        }.as_json(...)
       end
 
-      def self.email_subject_default
-        "{text}"
-      end
-
-      def self.email_body_default
-        <<~TEMPLATE
-          {url}
-
-          {user_url}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def self.email_digest_subject_default
-        "{items.first.text}"
-      end
-
-      def self.email_digest_body_default
-        <<~TEMPLATE
-          {items.each do |item|
-            puts(item.text)
-            puts
-            puts(item.url)
-            puts
-          end
-          nothing}
-
-          {pipeline.url}
-        TEMPLATE
-      end
-
-      def as_json
-        self.class.as_json
+      def as_json(...)
+        self.class.as_json(...)
       end
 
       def fetch

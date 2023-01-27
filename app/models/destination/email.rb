@@ -16,18 +16,25 @@ class Destination
     end
 
     def self.subject_parameter
-      {default: Source.email_subject_defaults, kind: :string, template: true}
+      {default: "{item.summary}", kind: :string, template: true}
     end
 
     def self.body_format_parameter
-      {default: "text", kind: :select, options: BODY_FORMATS}
+      {default: "html", kind: :select, options: BODY_FORMATS}
     end
 
     def self.body_parameter
-      {default: Source.email_body_defaults, kind: :text, template: true}
+      {
+        default: {
+          text: "{item.to_text}",
+          html: "{item.to_html}"
+        },
+        kind: :text,
+        template: true
+      }
     end
 
-    def self.as_json
+    def self.as_json(...)
       {
         destinable_type: destinable_type,
         destinable_label: destinable_label,
@@ -36,7 +43,7 @@ class Destination
           body_format: body_format_parameter,
           body: body_parameter
         }
-      }
+      }.as_json(...)
     end
 
     def send_now(items)

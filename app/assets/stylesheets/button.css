@@ -1,4 +1,5 @@
 [type="submit"],
+button,
 .button {
   @apply inline-flex items-center gap-2 no-underline;
   @apply px-4 py-2 rounded-lg;

@@ -1,42 +1,7 @@
-= form_for pipeline do |f|
-  .p
-    = f.label :name, t(".name")
-    = f.text_field :name, autocomplete: :off, data: { lpignore: "true", form_type: "other" }
-    = fake_pipeline_name
-
-  .p
-    => f.label :published, t(".published")
-    => f.label :published, t(".yes"), value: true, class: "inline-block"
-    => f.radio_button :published, true
-    => f.label :published, t(".no"), value: false, class: "inline-block"
-    => f.radio_button :published, false
-    br
-    .text-gray-600= t(".published_hint")
-
-  h3= t(".sources")
-
-  div(data-controller="sources")
-    template(data-sources-target="template")
-      = f.fields_for :sources, Source.new, child_index: 'TEMPLATE_RECORD' do |source_f|
-        = render "sources/form", f: source_f
-
-    = f.fields_for :sources do |source_f|
-      = render "sources/form", f: source_f
-
-    div(data-sources-target="add")
-      = link_to t(".add_source"), "#", data: { action: "sources#add" }
-
-  h3= t(".destinations")
-
-  div(data-controller="destinations")
-    template(data-destinations-target="template")
-      = f.fields_for :destinations, Destination.new, child_index: 'TEMPLATE_RECORD' do |destination_f|
-        = render "destinations/form", f: destination_f
-
-    = f.fields_for :destinations do |destination_f|
-      = render "destinations/form", f: destination_f
-
-    div(data-destinations-target="add")
-      = link_to t(".add_destination"), "#", data: { action: "destinations#add" }
-
-  p= f.submit submit, class: "button--primary"
+div(
+  data-controller="pipeline-form"
+  data-pipeline-form-pipeline-value="#{@pipeline.to_json}"
+  data-pipeline-form-sources-value="#{Source.to_json}"
+  data-pipeline-form-destinations-value="#{Destination.to_json}"
+  data-pipeline-form-fakes-value="#{pipeline_fakes.to_json}"
+  )

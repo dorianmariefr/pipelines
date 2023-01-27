@@ -3,10 +3,6 @@ class SourcePolicy < ApplicationPolicy
     can?(:update, pipeline)
   end
 
-  def preview?
-    true
-  end
-
   class Scope < Scope
     def resolve
       admin? ? scope.all : scope.joins(:pipeline).merge(policy_scope(Pipeline))

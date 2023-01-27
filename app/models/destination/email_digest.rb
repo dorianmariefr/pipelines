@@ -3,19 +3,31 @@ class Destination
     HOURS = (0..23).map { |hour| [hour.to_s, "#{hour}:00"] }
 
     def self.subject_parameter
-      {
-        default: Source.email_digest_subject_defaults,
-        kind: :string,
-        template: true
-      }
+      {default: "{items.first.summary}", kind: :string, template: true}
     end
 
     def self.body_parameter
-      {
-        default: Source.email_digest_body_defaults,
-        kind: :text,
-        template: true
-      }
+      {default: {text: <<~TEXT, html: <<~HTML}, kind: :text, template: true}
+        {items.each do |item|
+          puts(item.to_text)
+          puts
+          puts("⎯" * 80)
+          puts
+        end
+        nothing}
+
+        {pipeline.url}
+      TEXT
+        {items.each do |item|
+          puts(item.to_html)
+          puts
+          puts("<br><br>")
+          puts
+        end
+        nothing}
+
+        {pipeline.url}
+      HTML
     end
 
     def self.hour_parameter

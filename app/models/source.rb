@@ -24,6 +24,7 @@ class Source < ApplicationRecord
   GREATER_THAN_OR_EQUALS = ">="
   LESS_THAN = "<"
   LESS_THAN_OR_EQUALS = "<="
+  DOWNCASE = "downcase"
 
   FILTER_TYPES = [NONE, SIMPLE, CODE]
   OPERATORS = [
@@ -34,6 +35,7 @@ class Source < ApplicationRecord
     LESS_THAN,
     LESS_THAN_OR_EQUALS
   ]
+  TRANSFORMS = [NONE, DOWNCASE]
 
   belongs_to :pipeline
 
@@ -44,60 +46,26 @@ class Source < ApplicationRecord
 
   delegate :as_json, to: :subclass
 
-  def self.each_kind(&block)
-    KINDS.flat_map do |first_kind, first_kind_value|
-      first_kind_value.map do |second_kind, second_kind_value|
-        block.call(first_kind, second_kind, second_kind_value)
-      end
-    end
-  end
-
-  def self.kinds_options
-    each_kind do |first, second|
-      [I18n.t("sources.model.kinds.#{first}.#{second}"), "#{first}/#{second}"]
-    end
-  end
-
-  def self.filter_types_options
-    FILTER_TYPES.map do |filter_type|
-      [I18n.t("sources.model.filter_types.#{filter_type}"), filter_type]
-    end
-  end
-
-  def self.operators_options
-    OPERATORS.map do |operator|
-      [I18n.t("sources.model.operators.#{operator}"), operator]
-    end
-  end
-
   def self.as_json(...)
-    each_kind do |first, second, subclass|
-      ["#{first}/#{second}", subclass.constantize.as_json]
-    end.to_h
-  end
-
-  def self.email_subject_defaults
-    each_kind do |first, second, subclass|
-      ["#{first}/#{second}", subclass.constantize.email_subject_default]
-    end.to_h
-  end
-
-  def self.email_body_defaults
-    each_kind do |first, second, subclass|
-      ["#{first}/#{second}", subclass.constantize.email_body_default]
-    end.to_h
-  end
-
-  def self.email_digest_subject_defaults
-    each_kind do |first, second, subclass|
-      ["#{first}/#{second}", subclass.constantize.email_digest_subject_default]
-    end.to_h
-  end
-
-  def self.email_digest_body_defaults
-    each_kind do |first, second, subclass|
-      ["#{first}/#{second}", subclass.constantize.email_digest_body_default]
-    end.to_h
+    {
+      transforms: TRANSFORMS,
+      operators: OPERATORS,
+      filterTypes: FILTER_TYPES,
+      kinds: KINDS,
+      subclasses:
+        KINDS
+          .map do |first_kind, first_value|
+            [
+              first_kind,
+              first_value
+                .map do |second_kind, subclass|
+                  [second_kind, subclass.constantize.as_json(...)]
+                end
+                .to_h
+            ]
+          end
+          .to_h
+    }.as_json(...)
   end
 
   def parameters_attributes=(*args)
@@ -186,33 +154,26 @@ class Source < ApplicationRecord
     elsif code?
       filter.present? ? item.match(filter) : true
     elsif simple_filter.present?
+      v = item.as_json[key].to_s
+      v = v.downcase if transform == DOWNCASE
       if includes?
-        item.as_json[key].to_s.include?(value.to_s)
+        v.to_s.include?(value.to_s)
       elsif equals?
-        item.as_json[key].to_s == value.to_s
+        v.to_s == value.to_s
       elsif greater_than?
-        item.as_json[key].to_f > value.to_f
+        v.to_f > value.to_f
       elsif greater_than_or_equals?
-        item.as_json[key].to_f >= value.to_f
+        v.to_f >= value.to_f
       elsif less_than?
-        item.as_json[key].to_f < value.to_f
+        v.to_f < value.to_f
       elsif less_than_or_equals?
-        item.as_json[key].to_f <= value.to_f
+        v.to_f <= value.to_f
       else
         raise NotImplementedError
       end
     else
       true
     end
-  end
-
-  def preview
-    subclass
-      .fetch
-      .map do |item|
-        items.build(external_id: item.external_id, extras: item.extras)
-      end
-      .select { |item| match(item) }
   end
 
   def fetch
@@ -236,5 +197,22 @@ class Source < ApplicationRecord
   else
     update!(error: nil, backtrace: nil)
     result
+  end
+
+  def as_json(...)
+    {
+      id: id,
+      transform: transform,
+      firstKind: first_kind,
+      secondKind: second_kind,
+      kind: kind,
+      key: key,
+      operator: operator,
+      filterType: filter_type,
+      value: value,
+      subclass: subclass.as_json(...),
+      parameters: parameters.as_json(...),
+      items: items.as_json(...)
+    }.as_json(...)
   end
 end
