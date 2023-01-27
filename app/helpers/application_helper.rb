@@ -80,28 +80,30 @@ module ApplicationHelper
   end
 
   def primary_button_link_to(text_or_href, href = nil, **options, &block)
+    method = options.fetch(:method, :get)
     text = block ? capture(&block) : text_or_href
     href = text_or_href if href.nil?
-    content_tag(
-      :a,
+    button_to(
       text,
-      href: href,
+      href,
+      method: method,
       class:
-        "inline-flex items-center gap-2 rounded-lg text-white h-fit no-underline " \
-          "bg-green-600 hover:bg-green-700 focus:bg-green-800 #{options[:class]}"
+        "inline-flex text-black items-center gap-2 rounded-lg text-white h-fit " \
+          "no-underline button--primary #{options[:class]}"
     )
   end
 
   def button_link_to(text_or_href, href = nil, **options, &block)
+    method = options.fetch(:method, :get)
     text = block ? capture(&block) : text_or_href
     href = text_or_href if href.nil?
-    content_tag(
-      :a,
+    button_to(
       text,
-      href: href,
+      href,
+      method: method,
       class:
-        "inline-flex items-center gap-2 rounded-lg h-fit no-underline " \
-          "bg-gray-100 hover:bg-gray-200 focus:bg-gray-300 #{options[:class]}"
+        "inline-flex text-black items-center gap-2 rounded-lg h-fit no-underline " +
+          options[:class].to_s
     )
   end
 end

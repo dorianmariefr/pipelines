@@ -1,13 +1,19 @@
-.mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8.pt-20.pb-16.text-center.lg:pt-32
-  h1.mx-auto.max-w-4xl.text-5xl.sm:text-7xl
-    => t(".automation")
-    span.text-green-600= t(".made_simple")
-  p.mx-auto.mt-6.max-w-2xl.text-lg
-    = t(".subtitle")
-  .mt-10.flex.justify-center.gap-x-6
-    = primary_button_link_to new_user_path, class: "px-4 py-2" do
-      => heroicon "pencil-square"
-      = t(".get_started")
-    = button_link_to "#video", class: "px-4 py-2" do
-      => heroicon "play"
-      = t(".watch_video")
+- if current_user
+  .mx-auto.max-w-7xl
+    .text-xl.text-center.mb-2= t(".title")
+    .grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
+      = render current_user.pipelines
+- else
+  .mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8.pt-20.pb-16.text-center.lg:pt-32
+    h1.mx-auto.max-w-4xl.text-5xl.sm:text-7xl
+      => t(".automation")
+      span.text-green-600= t(".made_simple")
+    p.mx-auto.mt-6.max-w-2xl.text-lg
+      = t(".subtitle")
+    .mt-10.flex.justify-center.gap-x-6
+      = primary_button_link_to new_user_path, class: "px-4 py-2" do
+        => heroicon "pencil-square"
+        = t(".get_started")
+      = button_link_to "#video", class: "px-4 py-2" do
+        => heroicon "play"
+        = t(".watch_video")

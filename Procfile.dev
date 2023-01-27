@@ -1,5 +1,5 @@
 web: OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES bundle exec rails server -p 3000
-jobs: bundle exec sidekiq -q high -q default -q low
+jobs: bundle exec sidekiq -q high -q default -q low -c 10
 js: yarn build --watch
 css: bundle exec rails tailwindcss:watch
 dev: cloudflared tunnel --config .cloudflared.yml --loglevel error run

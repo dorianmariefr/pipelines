@@ -91,6 +91,9 @@ en:
       terms: Terms and conditions
       privacy: Privacy prolicy
     header:
+      your_pipelines: Your pipelines
+      log_out: Log out
+      new_pipeline: New pipeline
       close_menu: Close menu
       get_started: Get started
       log_in: Log in
@@ -274,8 +277,9 @@ en:
 
           '
         title: Frequently asked questions
+      pipelines:
+        title: Public pipelines
       features:
-        subtitle: Create your pipelines or duplicate existing ones
         subtitle_1:
           Fetch Twitter's tweets, Reddit's posts and comments, Stack Overflow's
           questions and answers, and Hacker News's posts and comments
@@ -288,15 +292,12 @@ en:
         subtitle_4:
           Send it through email, email digests (hourly, daily, weekly, monhtly),
           slack, RSS, JSON, webhooks, etc.
-        title: Everything you need to automate
         title_1: Fetch it
         title_2: Filter it
         title_3: Format it
         title_4: Send it
       intro:
-        amazing_people:
-          "Those amazing people use pipelines.plumbing and have a public
-          profile:"
+        title: Your pipelines
         automation: Automation
         get_started: Get started
         made_simple: made simple
@@ -315,7 +316,6 @@ en:
           - Custom Twitter
           - Custom Reddit
           - Custom Stack Exchange
-        get_started: Get started
         hobby: Hobby
         custom_text: Contact me
         hobby_text: Get started
@@ -339,26 +339,6 @@ en:
           will work well for you
         title_html: Simple pricing <span class="text-green-600">for everyone</span>
         pro_text: Subscribe
-      testimonials:
-        quote_1:
-          The integration Hacker News works great! I can now receive ruby relevant
-          news directly in my inbox. And they're curated by the community instead
-          of in a newsletter with ads. Simple and effective! ⚡
-        quote_2:
-          Thank you for sharing it. That is an excellent product! I like the
-          email I get for hacker news!
-        quote_3: I like the idea a lot
-        quote_4: that's a cool thing that you built!
-        quote_5: "The idea sounds great \U0001F60A"
-        quote_6: Sounds interesting
-        subtitle: Let's see what our users think
-        title: Loved by our users
-        user_1: Flavio Wuensche
-        user_2: Lucian Ghinda
-        user_3: Celsio on Rails
-        user_4: Collin
-        user_5: Stella Miranda
-        user_6: Drew Bragg
       title: pipelines.plumbing
     privacy:
       title: Privacy Policy

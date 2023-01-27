@@ -1,5 +1,5 @@
 ProcessPipelinesJob:
-  cron: "* * * * *"
+  cron: "*/5 * * * *"
   class: ProcessPipelinesJob
   queue: low
 

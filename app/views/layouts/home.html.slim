@@ -10,7 +10,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "tailwind", "data-turbo-track": "reload", as: :style
     = javascript_include_tag "application", defer: true
-  body.flex.h-full.flex-col(data-controller="time-zone")
+  body.flex.h-full.flex-col
     javascript:
       window.constants = {}
       window.constants.EMAIL_REGEXP = #{raw email_regexp.to_json};
@@ -22,6 +22,10 @@ html
       window.translations = #{raw t("js").to_json};
 
     = render "header"
+
+    .max-w-7xl.mx-auto
+      p.text-green-600= notice
+      p.text-red-600= alert
 
     = yield
 
