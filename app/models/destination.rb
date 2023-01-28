@@ -1,7 +1,9 @@
 class Destination < ApplicationRecord
+  attr_accessor :destinable_email
+
   KINDS = {
     email: "Destination::Email",
-    hourly_email_digest: "Destination::DailyEmailDigest",
+    hourly_email_digest: "Destination::HourlyEmailDigest",
     daily_email_digest: "Destination::DailyEmailDigest",
     weekly_email_digest: "Destination::WeeklyEmailDigest",
     monthly_email_digest: "Destination::MonthlyEmailDigest"
@@ -26,14 +28,17 @@ class Destination < ApplicationRecord
 
   validates :destinable_type, inclusion: {in: ["Email"]}
   validates :destinable, presence: true
-  validate :verified_destinable
   validate :own_destinable
 
   def self.as_json(...)
-    KINDS
-      .map { |kind, subclass| [kind, subclass.constantize.as_json] }
-      .to_h
-      .as_json(...)
+    {
+      kinds: KINDS,
+      subclasses:
+        KINDS
+          .map { |kind, subclass| [kind, subclass.constantize.as_json] }
+          .to_h
+          .as_json(...)
+    }
   end
 
   def parameters_attributes=(*args)
@@ -80,7 +85,7 @@ class Destination < ApplicationRecord
 
   def duplicate_for(user)
     if destinable_type == "Email"
-      destinable = user.emails.verified.first
+      destinable = user.emails.first
       destination = Destination.new(destinable: destinable, kind: kind)
       destination.parameters =
         parameters.map { |parameter| parameter.duplicate_for(user) }
@@ -95,7 +100,7 @@ class Destination < ApplicationRecord
       id: id,
       kind: kind,
       destinable: destinable.as_json(...),
-      destinable_id: destinable_id,
+      destinable_id: destinable_id || "",
       destinable_type: destinable_type,
       parameters: parameters.as_json(...)
     }.as_json(...)
@@ -106,12 +111,6 @@ class Destination < ApplicationRecord
   def own_destinable
     if destinable && destinable.user != pipeline.user
       errors.add(:destinable, I18n.t("errors.not_own"))
-    end
-  end
-
-  def verified_destinable
-    if destinable && !destinable.verified?
-      errors.add(:destinable, I18n.t("errors.not_verified"))
     end
   end
 end

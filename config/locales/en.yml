@@ -183,8 +183,16 @@ en:
       delete: Delete
   js:
     destination:
+      remove: Remove
+      destinable_email: Email
       kind: Where does the information goes?
+      daily_email_digest: Daily email digest
+      email: Email
+      hourly_email_digest: Hourly email digest
+      monthly_email_digest: Monthly email digest
+      weekly_email_digest: Weekly email digest
     parameter:
+      hour: Hour
       subject: Subject of the email
       body_format: Format of the body of the email
       body: Body of the email
@@ -196,6 +204,8 @@ en:
       sort: Sort
       order: Order
       site: Site
+      day_of_week: Day of week
+      day_of_month: Day of month
     filter:
       downcase: Downcase
       transform: Transform
@@ -226,6 +236,7 @@ en:
       twitter:
         search: Twitter - Search
     hint:
+      destinable_email: "Which email is the information going to be sent to?"
       name: "What's the purpose of this pipeline?"
       published: "Making this pipeline public will make your profile public"
       result_type: "The tab you would choose on Twitter search"
@@ -245,9 +256,20 @@ en:
       subject: "What's the subject of the email you will receive?"
       body_format: "Either plain text (unformatted) or HTML (formatted)"
       body: "The content of the email you will receive"
+      hour: "What hour in your timezone would you like to receive the emails?"
+      day_of_week: "Day of week you will receive the emails every week when there are items"
+      day_of_month: "Day of month you will receive the emails every month when there are items"
+      user_name: 'Your choice of how you want to be named, I recommend "{first_name} {last_name}"'
+      user_password: "Your password, better use a random password, I recommend Dashlane for password managment"
+      user_email: "The email you will receive your information on"
     fake:
       fake: e.g. {{value}}
     pipeline_form:
+      user_name: Your name
+      user_password: Your password
+      user_email: Your email
+      remove: Remove
+      add_email: Add email
       add_destination: Add destination
       patch: Update pipeline
       post: Create pipeline
@@ -428,9 +450,6 @@ en:
       notice: Phone number deleted
     edit:
       title: Verify your phone number
-    form:
-      phone_number: Phone Number
-      remove: Remove
     phone_number:
       add: Add
       add_phone_number: Add phone number
@@ -470,7 +489,6 @@ en:
     duplicate:
       notice: You have successfully duplicated this pipeline
     edit:
-      submit: Update pipeline
       title: Edit pipeline
     index:
       new: New pipeline
@@ -480,7 +498,6 @@ en:
         user_pipelines: "%{name}'s pipelines"
         your_pipelines: Your pipelines
     new:
-      submit: Create pipeline
       title: New pipeline
     process_now:
       alert: There was an error processing your pipeline
@@ -578,17 +595,6 @@ en:
       alert: Email not found
       notice: Password reset email sent
   sources:
-    form:
-      filter: Filter
-      filter_hint_html: You can use Code to filter your items, see <a href="https://templatelang.com">templatelang.com</a>
-      filter_type: Filter type
-      filter_type_hint: Either a simple filter or a complex Code filter
-      key: Key
-      kind: Kind
-      kind_hint: Where does the items come from?
-      operator: Operator
-      remove: Remove
-      value: Value
     hacker_news:
       newest:
         comments:

@@ -1,7 +1,9 @@
 div(
   data-controller="pipeline-form"
-  data-pipeline-form-pipeline-value="#{@pipeline.to_json}"
+  data-pipeline-form-pipeline-value="#{pipeline.to_json}"
   data-pipeline-form-sources-value="#{Source.to_json}"
   data-pipeline-form-destinations-value="#{Destination.to_json}"
+  data-pipeline-form-user-value="#{(user || fake_user).to_json}"
   data-pipeline-form-fakes-value="#{pipeline_fakes.to_json}"
+  data-pipeline-form-password-value="#{password_param}"
   )

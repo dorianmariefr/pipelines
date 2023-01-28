@@ -94,4 +94,14 @@ class User < ApplicationRecord
   def published?
     pipelines.any?(&:published?)
   end
+
+  def as_json(...)
+    {
+      id: id,
+      name: name,
+      password: "",
+      emails: emails.as_json(...),
+      phone_numbers: phone_numbers.as_json(...)
+    }.as_json(...)
+  end
 end

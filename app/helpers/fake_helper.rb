@@ -19,12 +19,28 @@ module FakeHelper
     gray(eg(Email.generate_verification_code))
   end
 
+  def fake_user_names
+    (1..3)
+      .map { Faker::Name.name }
+      .to_sentence(last_word_connector: t("application.fake.or"))
+  end
+
+  def fake_user_emails
+    (1..3)
+      .map { Faker::Internet.email }
+      .to_sentence(last_word_connector: t("application.fake.or"))
+  end
+
+  def fake_user_passwords
+    (1..3)
+      .map { Faker::Internet.password }
+      .to_sentence(last_word_connector: t("application.fake.or"))
+  end
+
   def fake_pipeline_name
-    [
-      Faker::Hobby.activity,
-      Faker::Hobby.activity,
-      Faker::Hobby.activity
-    ].to_sentence(last_word_connector: t("application.fake.or"))
+    (1..3)
+      .map { Faker::Hobby.activity }
+      .to_sentence(last_word_connector: t("application.fake.or"))
   end
 
   def fake_subreddits
@@ -150,6 +166,13 @@ module FakeHelper
       .to_sentence(last_word_connector: t("application.fake.or"))
   end
 
+  def fake_user
+    user = User.new
+    user.emails.build
+    user.phone_numbers.build
+    user
+  end
+
   def pipeline_fakes
     {
       transform: fake_transforms,
@@ -169,7 +192,11 @@ module FakeHelper
       body: fake_bodies,
       hour: fake_hours,
       day_of_week: fake_days_of_week,
-      day_of_month: fake_days_of_month
+      day_of_month: fake_days_of_month,
+      user_name: fake_user_names,
+      user_password: fake_user_passwords,
+      user_email: fake_user_emails,
+      destinable_email: fake_user_emails
     }
   end
 

@@ -6,25 +6,26 @@
   p
     button(type="submit")= t(".log_in_with_facebook")
 
-h3= t(".log_in_with_email")
+.test-email-login
+  h3= t(".log_in_with_email")
 
-= form_for :session, url: session_path do |f|
-  .p(data-controller="email")
-    = f.label :email, t(".email")
-    = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }, value: email_param
-    .text-red-600(data-email-target="error")
-    = fake_email
+  = form_for :session, url: session_path do |f|
+    .p(data-controller="email")
+      = f.label :email, t(".email")
+      = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }, value: email_param
+      .text-red-600(data-email-target="error")
+      = fake_email
 
-  .p(data-controller="password")
-    = f.label :password, t(".password")
-    .flex.gap-2.items-center
-      = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
-      = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
-      = icon_link t(".hide_password"), "eye-slash", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
-    .text-red-600(data-password-target="error")
-    = fake_password
+    .p(data-controller="password")
+      = f.label :password, t(".password")
+      .flex.gap-2.items-center
+        = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
+        = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
+        = icon_link t(".hide_password"), "eye-slash", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+      .text-red-600(data-password-target="error")
+      = fake_password
 
-  p= f.submit t(".submit"), class: "button--primary"
+    p= f.submit t(".submit"), class: "button--primary"
 
 h3= t(".log_in_with_phone_number")
 

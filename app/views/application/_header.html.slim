@@ -9,14 +9,14 @@ header.py-10
           span.sm:hidden
             = t(".title_mobile")
         - if current_user
-          .hidden.sm:flex.gap-2.items-center
-            = button_link_to current_user, class: "px-2 py-1 hidden lg:inline-flex" do
+          .hidden.xl:flex.gap-2.items-center
+            = button_link_to current_user, class: "px-2 py-1" do
               = heroicon "user"
               = current_user.name
-            = button_link_to account_path, class: "px-2 py-1 hidden lg:inline-flex" do
+            = button_link_to account_path, class: "px-2 py-1" do
               = heroicon "cog-6-tooth"
               = t(".account")
-            = button_link_to [current_user, :pipelines], class: "px-2 py-1 hidden xl:inline-flex" do
+            = button_link_to [current_user, :pipelines], class: "px-2 py-1" do
               = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
               = t(".your_pipelines")
 

@@ -28,7 +28,8 @@ export default ({
     }
   }
 
-  const bodyFormat = values.find((key) => key == "body_format")?.value || "html"
+  const bodyFormat =
+    values.find((value) => value.key == "body_format")?.value || "html"
 
   return (
     <>

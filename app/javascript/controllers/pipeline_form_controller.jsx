@@ -8,7 +8,9 @@ export default class extends Controller {
     pipeline: Object,
     sources: Object,
     destinations: Object,
+    user: Object,
     fakes: Object,
+    password: String,
   }
 
   connect() {
@@ -18,6 +20,8 @@ export default class extends Controller {
         pipeline={this.pipelineValue}
         sources={this.sourcesValue}
         destinations={this.destinationsValue}
+        user={this.userValue}
+        password={this.passwordValue}
         fakes={this.fakesValue}
       />
     )

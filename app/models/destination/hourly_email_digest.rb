@@ -5,7 +5,7 @@ class Destination
         destinable_type: destinable_type,
         destinable_label: destinable_label,
         parameters: {
-          subject: subject_paramater,
+          subject: subject_parameter,
           body_format: body_format_parameter,
           body: body_parameter
         }

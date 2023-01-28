@@ -2,6 +2,7 @@ class PipelinesController < ApplicationController
   before_action :load_user, only: :index
   before_action :load_pipeline,
     only: %i[show edit update destroy process_now duplicate]
+  helper_method :password_param
 
   def index
     authorize Pipeline
@@ -49,36 +50,50 @@ class PipelinesController < ApplicationController
 
   def new
     @pipeline = authorize Pipeline.new
-    build_source
-    build_destination
+    build_pipeline
   end
 
   def create
-    @pipeline = Pipeline.new(pipeline_params)
-    @pipeline.user = current_user
-    authorize @pipeline
+    @pipeline = authorize Pipeline.new(pipeline_params)
 
-    if @pipeline.save
-      redirect_to pipeline_path(@pipeline), notice: t(".notice")
+    @user = current_user || User.new(user_params)
+
+    if @user.save
+      session[:user_id] = @user.id
+      @pipeline.user = @user
+      @pipeline.destinations.each do |destination|
+        destination.destinable_id =
+          @user
+            .emails
+            .find_by_normalized_email(destination.destinable_email)
+            &.id
+      end
+
+      if @pipeline.save
+        redirect_to pipeline_path(@pipeline), notice: t(".notice")
+      else
+        build_user
+        build_pipeline
+        flash.now.alert = @pipeline.alert
+        render :new, status: :unprocessable_entity
+      end
     else
-      build_source
-      build_destination
-      flash.now.alert = @pipeline.alert
+      build_user
+      build_pipeline
+      flash.now.alert = @user.alert
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    build_source
-    build_destination
+    build_pipeline
   end
 
   def update
     if @pipeline.update(pipeline_params)
       redirect_to pipeline_path(@pipeline), notice: t(".notice")
     else
-      build_source
-      build_destination
+      build_pipeline
       flash.now.alert = @pipeline.alert
       render :edit, status: :unprocessable_entity
     end
@@ -107,6 +122,15 @@ class PipelinesController < ApplicationController
       )
   end
 
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :password,
+      emails_attributes: [:email],
+      phone_numbers_attributes: [:phone_number]
+    )
+  end
+
   def pipeline_params
     params.require(:pipeline).permit(
       :name,
@@ -127,6 +151,7 @@ class PipelinesController < ApplicationController
         :id,
         :kind,
         :destinable_type,
+        :destinable_email,
         :destinable_id,
         :_destroy,
         parameters_attributes: %i[key value]
@@ -134,11 +159,17 @@ class PipelinesController < ApplicationController
     )
   end
 
-  def build_source
-    @pipeline.sources.build if @pipeline.sources.none?
+  def password_param
+    params.dig(:user, :password)
   end
 
-  def build_destination
+  def build_pipeline
+    @pipeline.sources.build if @pipeline.sources.none?
     @pipeline.destinations.build if @pipeline.destinations.none?
+  end
+
+  def build_user
+    @user.emails.build if @user.emails.none?
+    @user.phone_numbers.build if @user.phone_numbers.none?
   end
 end
