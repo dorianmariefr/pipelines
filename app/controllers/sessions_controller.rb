@@ -13,36 +13,37 @@ class SessionsController < ApplicationController
 
   def create
     if auth
-      email_param = auth.dig("info", "email")
       email = Email.find_by_normalized_email(email_param)
 
       if email
         user = email.user
       else
-        user =
-          User.create!(
-            name: auth.dig("info", "name"),
-            password: SecureRandom.hex
-          )
-
+        user = User.create!(name: name_param, password: new_password_param)
         user.emails.create!(email: email_param, verified: true)
       end
+
       session[:user_id] = user.id
+
       redirect_to root_path, notice: t(".notice")
     elsif @user&.authenticate(password_param)
       session[:user_id] = @user.id
+
       redirect_to root_path, notice: t(".notice")
     elsif @user
       flash.now.alert = t(".wrong_password")
+
       render :new, status: :unprocessable_entity
     elsif email_param.present?
       flash.now.alert = t(".wrong_email")
+
       render :new, status: :unprocessable_entity
     elsif phone_number_param.present?
       flash.now.alert = t(".wrong_phone_number")
+
       render :new, status: :unprocessable_entity
     else
       flash.now.alert = t(".must_be_present")
+
       render :new, status: :unprocessable_entity
     end
   end
@@ -71,7 +72,11 @@ class SessionsController < ApplicationController
   end
 
   def email_param
-    session_params[:email]
+    auth ? auth.dig("info", "email") : session_params[:email]
+  end
+
+  def name_param
+    auth.dig("info", "name")
   end
 
   def phone_number_param
@@ -80,6 +85,10 @@ class SessionsController < ApplicationController
 
   def password_param
     session_params[:password]
+  end
+
+  def new_password_param
+    SecureRandom.hex
   end
 
   def load_email

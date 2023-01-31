@@ -1,14 +1,12 @@
 class PipelinesController < ApplicationController
   before_action :load_user, only: :index
   before_action :load_pipeline,
-    only: %i[show edit update destroy process_now duplicate]
+                only: %i[show edit update destroy process_now duplicate]
   helper_method :password_param
 
   def index
     authorize Pipeline
-
     @pipelines = policy_scope(Pipeline).order(created_at: :asc)
-
     @pipelines = (@user ? @pipelines.where(user: @user) : @pipelines.published)
   end
 
@@ -29,7 +27,10 @@ class PipelinesController < ApplicationController
     pipeline_result = @pipeline.process_now
 
     if pipeline_result.errors?
-      redirect_back(fallback_location: @pipeline, alert: t(".alert"))
+      redirect_back(
+        fallback_location: @pipeline,
+        alert: t(".alert", result: pipeline_result.to_s)
+      )
     else
       redirect_back(
         fallback_location: @pipeline,
@@ -50,37 +51,21 @@ class PipelinesController < ApplicationController
 
   def new
     @pipeline = authorize Pipeline.new
+    @pipeline.user = current_user || User.new
     build_pipeline
   end
 
   def create
     @pipeline = authorize Pipeline.new(pipeline_params)
+    @pipeline.user = current_user if current_user
 
-    @user = current_user || User.new(user_params)
+    if @pipeline.save
+      session[:user_id] = @pipeline.user.id
 
-    if @user.save
-      session[:user_id] = @user.id
-      @pipeline.user = @user
-      @pipeline.destinations.each do |destination|
-        destination.destinable_id =
-          @user
-            .emails
-            .find_by_normalized_email(destination.destinable_email)
-            &.id
-      end
-
-      if @pipeline.save
-        redirect_to pipeline_path(@pipeline), notice: t(".notice")
-      else
-        build_user
-        build_pipeline
-        flash.now.alert = @pipeline.alert
-        render :new, status: :unprocessable_entity
-      end
+      redirect_to pipeline_path(@pipeline), notice: t(".notice")
     else
-      build_user
       build_pipeline
-      flash.now.alert = @user.alert
+      flash.now.alert = @pipeline.alert
       render :new, status: :unprocessable_entity
     end
   end
@@ -108,9 +93,8 @@ class PipelinesController < ApplicationController
   private
 
   def load_user
-    @user = policy_scope(User).friendly.find(params[:user_id]) if params[
-      :user_id
-    ]
+    return if params[:user_id].blank?
+    @user = policy_scope(User).friendly.find(params[:user_id])
   end
 
   def load_pipeline
@@ -122,19 +106,19 @@ class PipelinesController < ApplicationController
       )
   end
 
-  def user_params
-    params.require(:user).permit(
-      :name,
-      :password,
-      emails_attributes: [:email],
-      phone_numbers_attributes: [:phone_number]
-    )
-  end
-
   def pipeline_params
     params.require(:pipeline).permit(
       :name,
       :published,
+      user_attributes: [
+        :avatar,
+        :name,
+        :locale,
+        :time_zone,
+        :password,
+        emails_attributes: [:email],
+        phone_numbers_attributes: [:phone_number]
+      ],
       sources_attributes: [
         :id,
         :kind,
@@ -160,16 +144,13 @@ class PipelinesController < ApplicationController
   end
 
   def password_param
-    params.dig(:user, :password)
+    params.dig(:pipeline, :user_attributes, :password)
   end
 
   def build_pipeline
     @pipeline.sources.build if @pipeline.sources.none?
     @pipeline.destinations.build if @pipeline.destinations.none?
-  end
-
-  def build_user
-    @user.emails.build if @user.emails.none?
-    @user.phone_numbers.build if @user.phone_numbers.none?
+    @pipeline.user.emails.build if @pipeline.user.emails.none?
+    @pipeline.user.phone_numbers.build if @pipeline.user.phone_numbers.none?
   end
 end

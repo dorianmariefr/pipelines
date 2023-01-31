@@ -23,7 +23,10 @@ class Source
             selftext_html: data.selftext_html,
             views: data.view_count,
             url: data.url,
-            id: data.id
+            id: data.id,
+            summary: summary,
+            to_text: to_text,
+            to_html: to_html
           }
         end
 
@@ -32,6 +35,29 @@ class Source
         attr_accessor :listing
 
         delegate :data, to: :listing
+
+        def summary
+          data.title
+        end
+
+        def to_text
+          <<~TEXT
+            #{data.title}
+
+            #{data.url}
+          TEXT
+        end
+
+        def to_html
+          ApplicationController.render(
+            partial: "reddit/listing",
+            layout: "",
+            locals: {
+              title: data.title,
+              url: data.url
+            }
+          )
+        end
       end
     end
   end

@@ -9,36 +9,6 @@ class Source
         @source = source
       end
 
-      def self.keys
-        %w[
-          title
-          id
-          host
-          domain
-          protocol
-          domain_with_path
-          domain_url
-          path
-          href
-          url
-          keywords
-          score
-          age
-          comments_count
-          comments_url
-          user_id
-          user_url
-        ]
-      end
-
-      def self.as_json(...)
-        {keys: keys}.as_json(...)
-      end
-
-      def as_json(...)
-        self.class.as_json(...)
-      end
-
       def fetch
         response =
           Rails

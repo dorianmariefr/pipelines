@@ -33,7 +33,13 @@ class PipelinePolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      admin? ? scope.all : scope.published.or(scope.where(user: current_user))
+      if admin?
+        scope.all
+      elsif current_user?
+        scope.published.or(scope.where(user: current_user))
+      else
+        scope.published
+      end
     end
   end
 

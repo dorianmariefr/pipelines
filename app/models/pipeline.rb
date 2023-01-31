@@ -15,16 +15,6 @@ class Pipeline < ApplicationRecord
 
   scope :published, -> { where(published: true) }
 
-  def self.find_by_id_or_slug!(id_or_slug)
-    where(id: id_or_slug).or(where(slug: id_or_slug)).first!
-  end
-
-  before_save do
-    sources.each do |source|
-      source.parameters = [] if source.as_json[:parameters].nil?
-    end
-  end
-
   def process_now
     source_results = sources.map(&:fetch)
     destination_results = []
@@ -61,26 +51,5 @@ class Pipeline < ApplicationRecord
     pipeline.destinations =
       destinations.map { |destination| destination.duplicate_for(user) }
     pipeline
-  end
-
-  def as_json(...)
-    {
-      id: id,
-      slug: slug,
-      name: name,
-      isPublished: published?,
-      sources: sources.as_json(...),
-      destinations: destinations.as_json(...),
-      url:
-        (
-          if persisted?
-            Rails.application.routes.url_helpers.pipeline_url(self)
-          end
-        )
-    }.as_json(...)
-  end
-
-  def to_s
-    name.presence || id
   end
 end

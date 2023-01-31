@@ -1,7 +1,7 @@
 class SendToDestinationJob < ApplicationJob
   queue_as :default
 
-  def perform(destination:, item: nil, items: nil) # TODO: remove item
+  def perform(destination:, items:)
     destination.send_now(items)
   end
 end

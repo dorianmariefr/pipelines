@@ -3,15 +3,15 @@ class Email < ApplicationRecord
   VERIFICATION_CODE_LENGTH = 6
   SIGNED_ID_PURPOSE = :email_verification
   SIGNED_ID_EXPIRES_IN = 30.minutes
+  # This regular expression matches a string containing only 6 digits,
+  # with any amount of whitespace before and after each digit, and nothing else.
   CODE_REGEXP = /^(?:\s*[0-9]\s*){6}$/
 
   belongs_to :user
 
-  has_many :destination, as: :destinable, dependent: :destroy
-
   scope :verified, -> { where(verified: true) }
 
-  validates :email, presence: true, format: {with: REGEXP}
+  validates :email, presence: true, format: { with: REGEXP }
   validates :normalized_email, uniqueness: true
 
   before_validation { self.normalized_email = EmailNormalizer.normalize(email) }
@@ -73,13 +73,5 @@ class Email < ApplicationRecord
     else
       false
     end
-  end
-
-  def to_s
-    email
-  end
-
-  def as_json(...)
-    {id: id, email: email, isVerified: verified?}.as_json(...)
   end
 end

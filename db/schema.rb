@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_074453) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_170000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,7 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_074453) do
     t.string "destinable_type", default: "Email", null: false
     t.bigint "destinable_id", null: false
     t.text "error"
-    t.text "backtrace"
     t.index %w[destinable_type destinable_id],
             name: "index_destinations_on_destinable"
     t.index ["pipeline_id"], name: "index_destinations_on_pipeline_id"
@@ -167,12 +166,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_074453) do
     t.index ["user_id"], name: "index_pipelines_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sources", force: :cascade do |t|
     t.bigint "pipeline_id", null: false
     t.string "kind", default: "twitter/search", null: false
@@ -180,7 +173,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_074453) do
     t.datetime "updated_at", null: false
     t.string "filter", default: "", null: false
     t.text "error"
-    t.text "backtrace"
     t.string "key"
     t.string "operator", default: "include?"
     t.string "value"

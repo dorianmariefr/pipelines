@@ -72,8 +72,4 @@ class PhoneNumber < ApplicationRecord
   rescue MessageBird::ErrorException
     false
   end
-
-  def as_json(...)
-    {id: id, phone_number: phone_number, isVerified: verified?}.as_json(...)
-  end
 end

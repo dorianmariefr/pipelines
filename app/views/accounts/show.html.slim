@@ -1,9 +1,8 @@
-.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
-  - @emails.each do |email|
-    = render "emails/email", email: email, url: email_path(email)
-.grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
-  - @phone_numbers.each do |phone_number|
-    = render "phone_numbers/phone_number", phone_number: phone_number
+- @emails.each do |email|
+  = render "emails/email", email: email, url: email_path(email)
 
-.p= button_link_to t(".edit"), [:edit, @user]
-.p= button_link_to t(".delete"), @user, method: :delete, class: "button--red", data: { turbo_confirm: t(".confirm") }
+- @phone_numbers.each do |phone_number|
+  = render "phone_numbers/phone_number", phone_number: phone_number
+
+.p= link_to t(".edit"), [:edit, @user], class: "button"
+.p= button_to t(".delete"), @user, method: :delete, class: "button--red", data: { turbo_confirm: t(".confirm") }

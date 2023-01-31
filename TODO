@@ -1,11 +1,6 @@
-### Current
-
-- Email formatting
-- Twitter full text
-- LinkedIn integration maybe
-
 ### Integrations
 
+- LinkedIn cc: tyro
 - GitHub cc: prabin
 - Mastodon cc: seb
 - Telegram cc: seb
@@ -16,3 +11,4 @@
 - Lobsters
 - Zapier
 - IFTT
+- Pinterest cc: mom

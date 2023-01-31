@@ -1,78 +1,72 @@
-header.py-10
-  .mx-auto.max-w-7xl.px-4.sm:px-6.xl:px-8
-    nav.relative.z-50.flex.justify-between.items-center
-      .flex.items-center.gap-2
-        = button_link_to root_path, class: "text-xl px-4 py-2" do
-          span.hidden.sm:inline-flex.items-center.gap-2
-            = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
-            = t(".title")
-          span.sm:hidden
-            = t(".title_mobile")
+header.container.flex.justify-between.items-center.border-b
+  .flex.items-center.gap-4
+    .hidden.sm:flex
+      = link_to root_path, class: "button" do
+        = heroicon "funnel"
+        = t(".title")
+    .sm:hidden
+      = link_to root_path, class: "button" do
+        = t(".title_mobile")
+    - if current_user
+      .hidden.lg:flex.gap-4.items-center
+        = link_to current_user, class: "button" do
+          span.hidden.xl:block= heroicon "user"
+          = current_user.name
+        = link_to account_path, class: "button" do
+          span.hidden.xl:block= heroicon "cog-6-tooth"
+          = t(".account")
+        = link_to [current_user, :pipelines], class: "button" do
+          span.hidden.xl:block= heroicon "funnel"
+          = t(".your_pipelines")
+
+  .flex.gap-4.items-center
+    - if current_user
+      .hidden.sm:flex.items-center.gap-4
+        = button_to session_path, method: :delete do
+          = heroicon "arrow-right-on-rectangle"
+          = t(".log_out")
+
+        = link_to new_pipeline_path, class: "button--primary" do
+          = heroicon "pencil-square"
+          = t(".new_pipeline")
+    - else
+      .hidden.sm:flex.items-center.gap-4
+        = link_to new_session_path, class: "button" do
+          = heroicon "arrow-left-on-rectangle"
+          = t(".log_in")
+
+        = link_to new_user_path, class: "button--primary" do
+          = heroicon "pencil-square"
+          = t(".get_started")
+
+    details.relative(data-controller="menu")
+      summary.button
+        = heroicon "bars-4"
+        = t(".menu")
+      .absolute.right-0.z-10.origin-top-right.bg-white.border.rounded.p-4.w-max.flex.gap-4.flex-col
+        = link_to root_path, class: "button" do
+          = heroicon "funnel"
+          = t(".title")
         - if current_user
-          .hidden.xl:flex.gap-2.items-center
-            = button_link_to current_user, class: "px-2 py-1" do
-              = heroicon "user"
-              = current_user.name
-            = button_link_to account_path, class: "px-2 py-1" do
-              = heroicon "cog-6-tooth"
-              = t(".account")
-            = button_link_to [current_user, :pipelines], class: "px-2 py-1" do
-              = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
-              = t(".your_pipelines")
-
-      .flex.items-center.gap-2
-        .flex.items-center.gap-6
-          - if current_user
-            .hidden.sm:flex
-              = button_link_to session_path, method: :delete, class: "px-2 py-1" do
-                = heroicon "arrow-right-on-rectangle"
-                = t(".log_out")
-
-            = primary_button_link_to new_pipeline_path, class: "px-4 py-2" do
-              span.hidden.sm:inline-block= heroicon "pencil-square"
-              = t(".new_pipeline")
-          - else
-            .hidden.sm:flex
-              = button_link_to new_session_path, class: "px-2 py-1" do
-                = heroicon "arrow-left-on-rectangle"
-                = t(".log_in")
-
-            = primary_button_link_to new_user_path, class: "px-4 py-2" do
-              span.hidden.sm:inline-block= heroicon "pencil-square"
-              = t(".get_started")
-
-        div(data-controller="menu")
-          a.xl:hidden.relative.z-10.flex.h-12.w-12.items-center.justify-center.-mr-2.p-2(href="#" data-action="menu#toggle")
-            span(data-menu-target="closed")
-              = heroicon "bars-3", options: { class: "w-8 h-8" }
-              .sr-only= t(".open_menu")
-            span(hidden data-menu-target="open")
-              = heroicon "x-mark", options: { class: "w-8 h-8" }
-              .sr-only= t(".close_menu")
-
-          .xl:hidden(hidden data-menu-target="menu")
-            a.fixed.inset-0.bg-gray-500/30(href="#" data-action="menu#toggle")
-            .absolute.inset-x-0.top-full.mt-4.flex.origin-top.flex-col.rounded-xl.bg-white.p-4.text-xl.shadow
-              - if current_user
-                = link_to current_user, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = heroicon "user"
-                  = current_user.name
-                = link_to account_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = heroicon "cog-6-tooth"
-                  = t(".account")
-                = link_to [current_user, :pipelines], class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = image_tag "logo.png", width: 20, height: 20, class: "w-5 h-5"
-                  = t(".your_pipelines")
-                = button_to session_path, method: :delete, class: "button--link !px-4 !py-2 underline inline-flex gap-2 items-center w-full" do
-                  = heroicon "arrow-right-on-rectangle"
-                  = t(".log_out")
-                = link_to new_pipeline_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = heroicon "pencil-square"
-                  = t(".new_pipeline")
-              - else
-                = link_to new_session_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = heroicon "arrow-left-on-rectangle"
-                  = t(".log_in")
-                = link_to new_user_path, class: "px-4 py-2 underline inline-flex gap-2 items-center" do
-                  = heroicon "pencil-square"
-                  = t(".get_started")
+          = link_to current_user, class: "button" do
+            = heroicon "user"
+            = current_user.name
+          = link_to account_path, class: "button" do
+            = heroicon "cog-6-tooth"
+            = t(".account")
+          = link_to [current_user, :pipelines], class: "button" do
+            = heroicon "funnel"
+            = t(".your_pipelines")
+          = button_to session_path, method: :delete, class: "w-full" do
+            = heroicon "arrow-right-on-rectangle"
+            = t(".log_out")
+          = link_to new_pipeline_path, class: "button--primary" do
+            = heroicon "pencil-square"
+            = t(".new_pipeline")
+        - else
+          = link_to new_session_path, class: "button" do
+            = heroicon "arrow-left-on-rectangle"
+            = t(".log_in")
+          = link_to new_user_path, class: "button--primary" do
+            = heroicon "pencil-square"
+            = t(".get_started")

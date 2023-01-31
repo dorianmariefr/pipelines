@@ -23,10 +23,12 @@ class UserPolicy < ApplicationPolicy
     def resolve
       if admin?
         scope.all
-      else
+      elsif current_user?
         scope.published.or(
           scope.left_joins(:pipelines).where(id: current_user).distinct
         )
+      else
+        scope.published
       end
     end
   end

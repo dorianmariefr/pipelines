@@ -1,6 +1,6 @@
 class PhoneNumbersController < ApplicationController
   before_action :load_phone_number,
-    only: %i[show update destroy send_verification]
+                only: %i[show update destroy send_verification]
 
   def show
   end
@@ -8,19 +8,10 @@ class PhoneNumbersController < ApplicationController
   def send_verification
     @phone_number.send_verification!
 
-    redirect_back_or_to user_path(@phone_number.user), notice: t(".notice")
-  end
-
-  def create
-    @phone_number = PhoneNumber.new(phone_number_params)
-    @phone_number.user = current_user
-    authorize @phone_number
-
-    if @phone_number.save
-      redirect_to user_path(@phone_number.user), notice: t(".notice")
-    else
-      redirect_to user_path(@phone_number.user), alert: @phone_number.alert
-    end
+    redirect_back(
+      fallback_location: user_path(@phone_number.user),
+      notice: t(".notice")
+    )
   end
 
   def update
@@ -35,7 +26,7 @@ class PhoneNumbersController < ApplicationController
   def destroy
     @phone_number.destroy!
 
-    redirect_to user_path(@phone_number.user), notice: t(".notice")
+    redirect_to account_path, notice: t(".notice")
   end
 
   private
@@ -47,11 +38,7 @@ class PhoneNumbersController < ApplicationController
       )
   end
 
-  def phone_number_params
-    params.require(:phone_number).permit(:phone_number)
-  end
-
   def verification_code_param
-    params.require(:phone_number).fetch(:verification_code, "")
+    params.dig(:phone_number, :verification_code)
   end
 end

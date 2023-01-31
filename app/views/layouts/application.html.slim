@@ -23,11 +23,10 @@ html
 
     = render "header"
 
-    main.mx-auto.max-w-7xl.px-4.sm:px-6.lg:px-8.w-full.prose
+    .container
       p.text-green-600= notice
       p.text-red-600= alert
-      h1= title
+      h1= title unless current_page?(root_path)
       = yield
 
-    hr.my-8
     = render "footer"

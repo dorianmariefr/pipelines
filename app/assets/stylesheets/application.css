@@ -1,0 +1,48 @@
+.container {
+  @apply mx-auto p-4 max-w-7xl;
+}
+
+.grids {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.button,
+button,
+[type="submit"] {
+  @apply inline-flex items-center gap-2;
+  @apply px-4 py-2 rounded;
+  @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-300;
+}
+
+.button--primary {
+  @apply inline-flex items-center gap-2;
+  @apply px-4 py-2 rounded;
+  @apply text-white;
+  @apply bg-green-600 hover:bg-green-700 focus:bg-green-800;
+}
+
+.button--red {
+  @apply inline-flex items-center gap-2;
+  @apply px-4 py-2 rounded;
+  @apply text-white;
+  @apply bg-red-600 hover:bg-red-700 focus:bg-red-800;
+}
+
+.button--link {
+  @apply inline-flex items-center gap-2;
+  @apply underline p-0;
+  @apply bg-transparent hover:bg-transparent focus:bg-transparent;
+}
+
+p,
+.p {
+  @apply mb-4;
+}
+
+h1 {
+  @apply text-4xl mb-4;
+}
+
+.card {
+  @apply border-l pl-4 my-4 border-black;
+}

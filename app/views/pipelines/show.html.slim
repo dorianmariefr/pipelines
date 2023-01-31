@@ -7,10 +7,10 @@
 
 .flex.items.center.gap-4
   - if can?(:process_now, @pipeline)
-    .p= primary_button_link_to t(".process"), [@pipeline, :process_now], method: :post
+    .p= button_to t(".process"), [@pipeline, :process_now], method: :post, class: "button--primary"
 
   - if current_user
-    .p= button_link_to t(".duplicate"), [@pipeline, :duplicate], method: :post
+    .p= button_to t(".duplicate"), [@pipeline, :duplicate], method: :post
 
 .flex.gap-4.flex-col
   = render "users/user", user: @pipeline.user, size: :small
@@ -20,10 +20,10 @@
     = render "destinations/destination", destination: destination
 
 - if can? :update, @pipeline
-  p= button_link_to t(".edit"), [:edit, @pipeline]
+  p= link_to t(".edit"), [:edit, @pipeline], class: "button"
 
 - if can? :destroy, @pipeline
-  .p= button_link_to t(".delete"), @pipeline, method: :delete, class: "button--red"
+  .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--red"
 
 - if @items.any?
   .text-center.mb-4
@@ -37,4 +37,4 @@
     = paginate @items
 
   - if can? :destroy_all, @pipeline
-    .p.text-center= button_link_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "button--red"
+    .p.text-center= button_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "button--red"

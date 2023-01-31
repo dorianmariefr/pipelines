@@ -9,27 +9,7 @@ class AdminOnlyConstraint
 end
 
 Rails.application.routes.draw do
-  constraints(AdminOnlyConstraint.new) do
-    namespace :admin do
-      mount Sidekiq::Web => "/sidekiq"
-
-      resources :users do
-        post "impersonate"
-
-        resources :pipelines, only: :index
-      end
-
-      resources :emails do
-        post :send_verification
-      end
-
-      resources :phone_numbers do
-        post :send_verification
-      end
-
-      resources :pipelines
-    end
-  end
+  constraints(AdminOnlyConstraint.new) { mount Sidekiq::Web => "/sidekiq" }
 
   resource :session do
     post "reset"

@@ -10,11 +10,6 @@ class ItemsController < ApplicationController
         .eager_load(:source)
         .order(created_at: :desc)
         .page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.rss { render layout: false }
-    end
   end
 
   def destroy_all
@@ -34,7 +29,7 @@ class ItemsController < ApplicationController
   private
 
   def load_pipeline
-    @pipeline = policy_scope(Pipeline).find_by_id_or_slug!(params[:pipeline_id])
+    @pipeline = policy_scope(Pipeline).friendly.find(params[:pipeline_id])
   end
 
   def load_item

@@ -29,7 +29,10 @@ class Source
             comments_count: comments_count,
             comments_url: comments_url,
             user_id: user_id,
-            user_url: user_url
+            user_url: user_url,
+            summary: title,
+            to_text: to_text,
+            to_html: to_html
           }
         end
 

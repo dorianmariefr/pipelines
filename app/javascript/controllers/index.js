@@ -7,17 +7,11 @@ import { application } from "./application"
 import CodeController from "./code_controller"
 application.register("code", CodeController)
 
-import DestinationController from "./destination_controller"
-application.register("destination", DestinationController)
-
 import EmailController from "./email_controller"
 application.register("email", EmailController)
 
 import EmailsController from "./emails_controller"
 application.register("emails", EmailsController)
-
-import MenuController from "./menu_controller"
-application.register("menu", MenuController)
 
 import NameController from "./name_controller"
 application.register("name", NameController)
@@ -31,11 +25,5 @@ application.register("phone", PhoneController)
 import PhoneNumbersController from "./phone_numbers_controller"
 application.register("phone-numbers", PhoneNumbersController)
 
-import PipelineFormController from "./pipeline_form_controller"
-application.register("pipeline-form", PipelineFormController)
-
 import ShowController from "./show_controller"
 application.register("show", ShowController)
-
-import SourceController from "./source_controller"
-application.register("source", SourceController)

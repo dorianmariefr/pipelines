@@ -46,31 +46,9 @@ class Source < ApplicationRecord
 
   delegate :as_json, to: :subclass
 
-  def self.as_json(...)
-    {
-      transforms: TRANSFORMS,
-      operators: OPERATORS,
-      filterTypes: FILTER_TYPES,
-      kinds: KINDS,
-      subclasses:
-        KINDS
-          .map do |first_kind, first_value|
-            [
-              first_kind,
-              first_value
-                .map do |second_kind, subclass|
-                  [second_kind, subclass.constantize.as_json(...)]
-                end
-                .to_h
-            ]
-          end
-          .to_h
-    }.as_json(...)
-  end
-
-  def parameters_attributes=(*args)
+  def parameters_attributes=(parameters)
     self.parameters = []
-    super(*args)
+    super(parameters) if parameters
   end
 
   def first_kind
@@ -197,22 +175,5 @@ class Source < ApplicationRecord
   else
     update!(error: nil, backtrace: nil)
     result
-  end
-
-  def as_json(...)
-    {
-      id: id,
-      transform: transform,
-      firstKind: first_kind,
-      secondKind: second_kind,
-      kind: kind,
-      key: key,
-      operator: operator,
-      filterType: filter_type,
-      value: value,
-      subclass: subclass.as_json(...),
-      parameters: parameters.as_json(...),
-      items: items.as_json(...)
-    }.as_json(...)
   end
 end

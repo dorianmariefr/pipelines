@@ -6,87 +6,6 @@ en:
       confirm: Are you sure you want to delete this account?
       delete: Delete account
       edit: Edit profile
-  admin:
-    emails:
-      create:
-        notice: Email created
-      destroy:
-        notice: Email deleted
-      email:
-        add: Add
-        add_email: Add email
-        delete: Delete
-        not_verified: Not verified
-        resend_verification_code: Resend verification code
-        send_verification_code: Send verification code
-        submit: Verify
-        verification_code: Verification code
-        verification_code_sent: Verification code sent
-        verified: Verified
-        verified?: Verified?
-      send_verification:
-        notice: Verification code sent
-      update:
-        notice: Email updated
-    phone_numbers:
-      create:
-        notice: Phone number created
-      destroy:
-        notice: Phone number deleted
-      phone_number:
-        add: Add
-        add_phone_number: Add phone number
-        delete: Delete
-        not_verified: Not verified
-        resend_verification_code: Resend verification code
-        send_verification_code: Send verification code
-        submit: Verify
-        verification_code: Verification code
-        verification_code_sent: Verification code sent
-        verified: Verified
-        verified?: Verified?
-      send_verification:
-        notice: Verification code sent
-      update:
-        notice: Phone number updated
-    users:
-      create:
-        notice: User created
-      destroy:
-        notice: User deleted
-      edit:
-        submit: Update user
-        title: "[Admin] Edit user"
-      form:
-        add_email: Add email
-        add_phone_number: Add phone number
-        avatar: Avatar
-        hide_password: Hide password
-        name: Name
-        password: Password
-        show_password: Show password
-      impersonate:
-        notice: You impersonated this user
-      index:
-        new: New user
-        title: "[Admin] Users"
-      new:
-        submit: Create user
-        title: "[Admin] New user"
-      show:
-        confirm: Are you sure you want to delete this account?
-        delete: Delete account
-        edit: Edit profile
-        emails: Emails
-        impersonate: Impersonate
-        none: None
-        phone_numbers: Phone numbers
-        pipelines: Pipelines
-        title: "[Admin] %{name}"
-      update:
-        notice: User updated
-      user:
-        published: "(public)"
   application:
     fake:
       eg: e.g. %{string}
@@ -101,26 +20,17 @@ en:
       your_pipelines: Your pipelines
       log_out: Log out
       new_pipeline: New pipeline
-      close_menu: Close menu
       get_started: Get started
       log_in: Log in
-      open_menu: Open menu
       title: pipelines.plumbing
       title_mobile: pipelines
+      menu: Menu
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
   destinations:
     destination:
       private: "private:"
-    form:
-      destinable_hint:
-        On which verified email address do you want to receive the
-        items?
-      email: Email
-      kind: Kind
-      kind_hint: In what kind of way you want to receive your items?
-      remove: Remove
     model:
       kinds:
         daily_email_digest: Daily email digest
@@ -134,8 +44,6 @@ en:
     verification_email:
       subject: Verify your email (%{verification_code})
   emails:
-    create:
-      notice: Email created
     destroy:
       notice: Email deleted
     edit:
@@ -156,21 +64,11 @@ en:
       remove: Remove
     send_verification:
       notice: Verification code sent
-    show:
-      delete: Delete
-      not_verified: Not verified
-      resend_verification_code: Resend verification code
-      send_verification_code: Send verification code
-      submit: Verify
-      title: Verify your email
-      verification_code: Verification code
-      verified: Verified
     update:
       alert: Wrong verification code
       notice: Email verified
   errors:
     not_own: Not your own
-    not_verified: Not verified
   items:
     destroy:
       notice: Item deleted
@@ -182,102 +80,6 @@ en:
     item:
       delete: Delete
   js:
-    destination:
-      remove: Remove
-      destinable_email: Email
-      kind: Where does the information goes?
-      daily_email_digest: Daily email digest
-      email: Email
-      hourly_email_digest: Hourly email digest
-      monthly_email_digest: Monthly email digest
-      weekly_email_digest: Weekly email digest
-    parameter:
-      hour: Hour
-      subject: Subject of the email
-      body_format: Format of the body of the email
-      body: Body of the email
-      result_type: Result type
-      query: Query
-      limit: Limit
-      subreddit: Subreddit
-      tagged: Tags
-      sort: Sort
-      order: Order
-      site: Site
-      day_of_week: Day of week
-      day_of_month: Day of month
-    filter:
-      downcase: Downcase
-      transform: Transform
-      value: Value
-      filter: Filter
-      operator: Operator
-      key: Key
-      none: None
-      simple: Simple
-      code: Code
-      filter_type: Filter type
-      "<": is less than
-      "<=": is less than or equal to
-      "==": equals
-      ">": is greater than
-      ">=": is greater than or equal to
-      include?: includes
-    source:
-      remove: Remove
-      kind: Where does the information come from?
-      hacker_news:
-        newest: Hacker News - New Stories
-        news: Hacker News - Frontpage Stories
-      reddit:
-        new: Reddit - /new
-      stack_exchange:
-        questions: Stack Exchange - Questions
-      twitter:
-        search: Twitter - Search
-    hint:
-      destinable_email: "Which email is the information going to be sent to?"
-      name: "What's the purpose of this pipeline?"
-      published: "Making this pipeline public will make your profile public"
-      result_type: "The tab you would choose on Twitter search"
-      query: "The query you would input in the Twitter search bar"
-      limit: "The number of tweets to be fetched each time the pipeline is processed"
-      subreddit: "The name of the subreddit you are fetching information from"
-      tagged: "A semicolon (;) separated list of tags (leave empty to match all)"
-      sort: "The sorting criteria for the questions"
-      order: "Either ascending or descending order"
-      site: "The Stack Exchange site to fetch questions from"
-      filter_type: "Either no filter (everything goes), a simple filter, or a complex Code filter (a programming language)"
-      key: "Which data point interest you?"
-      operator: "What operation are you going to do on that data point"
-      value: "What is the value you are going to compare with?"
-      filter: "See templatelang.com for documentation"
-      transform: "Either leave the value intact, or downcase it"
-      subject: "What's the subject of the email you will receive?"
-      body_format: "Either plain text (unformatted) or HTML (formatted)"
-      body: "The content of the email you will receive"
-      hour: "What hour in your timezone would you like to receive the emails?"
-      day_of_week: "Day of week you will receive the emails every week when there are items"
-      day_of_month: "Day of month you will receive the emails every month when there are items"
-      user_name: 'Your choice of how you want to be named, I recommend "{first_name} {last_name}"'
-      user_password: "Your password, better use a random password, I recommend Dashlane for password managment"
-      user_email: "The email you will receive your information on"
-    fake:
-      fake: e.g. {{value}}
-    pipeline_form:
-      user_name: Your name
-      user_password: Your password
-      user_email: Your email
-      remove: Remove
-      add_email: Add email
-      add_destination: Add destination
-      patch: Update pipeline
-      post: Create pipeline
-      add_source: Add source
-      pipeline_name: Name of the pipeline
-      pipeline_published: Is the pipeline public?
-      "yes": "Yes"
-      "no": "No"
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -411,31 +213,6 @@ en:
       title: Privacy Policy
     terms:
       title: Terms and Conditions
-  parameters:
-    body: Body
-    body_format: Body format
-    day_of_month: Day of Month
-    day_of_week: Day of Week
-    friday: Friday
-    hour: Hour
-    html: HTML
-    limit: Limit
-    limit_disabled: "%{limit} (Pro)"
-    monday: Monday
-    order: Order
-    query: Query
-    result_type: Result type
-    saturday: Saturday
-    site: Site
-    sort: Sort
-    subject: Subject
-    subreddit: Subreddit
-    sunday: Sunday
-    tagged: Tags
-    text: Text
-    thursday: Thursday
-    tuesday: Tuesday
-    wednesday: Wednesday
   passwords:
     edit:
       hide_password: Hide password
@@ -444,8 +221,9 @@ en:
       submit: Reset password
       title: Reset your password
   phone_numbers:
-    create:
-      notice: Phone number created
+    form:
+      phone_number: Phone number
+      remove: Remove
     destroy:
       notice: Phone number deleted
     edit:
@@ -463,25 +241,10 @@ en:
       verified: Verified
     send_verification:
       notice: Verification code sent
-    show:
-      delete: Delete
-      not_verified: Not verified
-      resend_verification_code: Resend verification code
-      send_verification_code: Send verification code
-      submit: Verify
-      title: Verify your phone number
-      verification_code: Verification code
-      verified: Verified
     update:
       alert: Wrong verification code
       notice: Phone number verified
   pipelines:
-    preview:
-      pipeline_name: Name of the pipeline
-      user_name: Your name
-      user_email: Your email
-      user_password: Your password
-      user_phone_number: Your phone number
     create:
       notice: Pipeline created
     destroy:

@@ -20,8 +20,12 @@
       = f.label :password, t(".password")
       .flex.gap-2.items-center
         = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
-        = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
-        = icon_link t(".hide_password"), "eye-slash", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+        = link_to "#", data: { password_target: "show", action: "password#show" } do
+          = heroicon "eye"
+          .sr-only= t(".show_password")
+        = link_to "#", data: { password_target: "hide", action: "password#hide" } do
+          = heroicon "eye-slash"
+          .sr-only= t(".hide_password")
       .text-red-600(data-password-target="error")
       = fake_password
 
@@ -42,8 +46,12 @@ h3= t(".log_in_with_phone_number")
     = f.label :password, t(".password")
     .flex.gap-2.items-center
       = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
-      = icon_link t(".show_password"), "eye", "#", data: { password_target: "show", action: "password#show" }
-      = icon_link t(".hide_password"), "eye-slash", "#", data: { password_target: "hide", action: "password#hide" }, class: "hidden"
+      = link_to "#", data: { password_target: "show", action: "password#show" } do
+        = heroicon "eye"
+        .sr-only= t(".show_password")
+      = link_to "#", data: { password_target: "hide", action: "password#hide" } do
+        = heroicon "eye-slash"
+        .sr-only= t(".hide_password")
     .text-red-600(data-password-target="error")
     = fake_password
 

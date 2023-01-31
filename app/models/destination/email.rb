@@ -1,49 +1,7 @@
 class Destination
   class Email
-    BODY_FORMATS =
-      %w[text html].map { |body_format| [body_format, body_format] }
-
     def initialize(destination)
       @destination = destination
-    end
-
-    def self.destinable_type
-      :Email
-    end
-
-    def self.destinable_label
-      :email
-    end
-
-    def self.subject_parameter
-      {default: "{item.summary}", kind: :string, template: true}
-    end
-
-    def self.body_format_parameter
-      {default: "html", kind: :select, options: BODY_FORMATS}
-    end
-
-    def self.body_parameter
-      {
-        default: {
-          text: "{item.to_text}",
-          html: "{item.to_html}"
-        },
-        kind: :text,
-        template: true
-      }
-    end
-
-    def self.as_json(...)
-      {
-        destinable_type: destinable_type,
-        destinable_label: destinable_label,
-        parameters: {
-          subject: subject_parameter,
-          body_format: body_format_parameter,
-          body: body_parameter
-        }
-      }.as_json(...)
     end
 
     def send_now(items)
@@ -70,18 +28,18 @@ class Destination
 
     attr_reader :destination
 
-    delegate :destinable, :params, :pipeline, to: :destination
+    delegate :params, to: :destination
 
     def subject(item)
-      Template.render(params[:subject], ruby: item.as_json)
+      Template.render(params[:subject], ruby: { item: item.as_json })
     end
 
     def body(item)
-      Template.render(params[:body], ruby: item.as_json)
+      Template.render(params[:body], ruby: { item: item.as_json })
     end
 
     def to
-      destinable.email
+      params[:to]
     end
 
     def body_format

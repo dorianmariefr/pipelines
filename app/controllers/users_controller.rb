@@ -33,21 +33,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      respond_to do |format|
-        format.html { redirect_to account_path, notice: t(".notice") }
-        format.json { head :no_content }
-      end
+      redirect_to account_path, notice: t(".notice")
     else
-      respond_to do |format|
-        format.html do
-          build_user
-          flash.now.alert = @user.alert
-          render :edit, status: :unprocessable_entity
-        end
-        format.json do
-          render json: {error: @user.alert}, status: :unprocessable_entity
-        end
-      end
+      build_user
+      flash.now.alert = @user.alert
+      render :edit, status: :unprocessable_entity
     end
   end
 

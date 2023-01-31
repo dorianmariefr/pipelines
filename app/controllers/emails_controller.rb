@@ -11,18 +11,6 @@ class EmailsController < ApplicationController
     redirect_back_or_to account_path, notice: t(".notice")
   end
 
-  def create
-    @email = Email.new(email_params)
-    @email.user = current_user
-    authorize @email
-
-    if @email.save
-      redirect_to account_path, notice: t(".notice")
-    else
-      redirect_to account_path, alert: @email.alert
-    end
-  end
-
   def update
     if @email.verify(verification_code_param)
       session[:user_id] = @email.user.id
@@ -49,11 +37,7 @@ class EmailsController < ApplicationController
       authorize policy_scope(Email).find(params[:id] || params[:email_id])
   end
 
-  def email_params
-    params.require(:email).permit(:email)
-  end
-
   def verification_code_param
-    params.require(:email)[:verification_code]
+    params.dig(:email, :verification_code)
   end
 end

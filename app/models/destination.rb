@@ -2,11 +2,11 @@ class Destination < ApplicationRecord
   attr_accessor :destinable_email
 
   KINDS = {
-    email: "Destination::Email",
     hourly_email_digest: "Destination::HourlyEmailDigest",
     daily_email_digest: "Destination::DailyEmailDigest",
     weekly_email_digest: "Destination::WeeklyEmailDigest",
-    monthly_email_digest: "Destination::MonthlyEmailDigest"
+    monthly_email_digest: "Destination::MonthlyEmailDigest",
+    email: "Destination::Email"
   }
 
   belongs_to :pipeline
@@ -19,31 +19,16 @@ class Destination < ApplicationRecord
 
   accepts_nested_attributes_for :parameters
 
-  scope :email, -> { where(kind: :email) }
   scope :hourly_email_digest, -> { where(kind: :hourly_email_digest) }
   scope :daily_email_digest, -> { where(kind: :daily_email_digest) }
   scope :weekly_email_digest, -> { where(kind: :weekly_email_digest) }
   scope :monthly_email_digest, -> { where(kind: :monthly_email_digest) }
+  scope :email, -> { where(kind: :email) }
   scope :instant, -> { email }
 
-  validates :destinable_type, inclusion: {in: ["Email"]}
-  validates :destinable, presence: true
-  validate :own_destinable
-
-  def self.as_json(...)
-    {
-      kinds: KINDS,
-      subclasses:
-        KINDS
-          .map { |kind, subclass| [kind, subclass.constantize.as_json] }
-          .to_h
-          .as_json(...)
-    }
-  end
-
-  def parameters_attributes=(*args)
+  def parameters_attributes=(parameters)
     self.parameters = []
-    super(*args)
+    super(parameters) if parameters
   end
 
   def name
@@ -54,26 +39,19 @@ class Destination < ApplicationRecord
     KINDS.dig(kind.to_sym).constantize.new(self)
   end
 
-  def send_now(items = nil)
+  def send_now(items = [])
     subclass.send_now(items)
   rescue => e
-    update!(
-      error: "#{e.class}: #{e.message}",
-      backtrace: e.backtrace.grep(/#{Rails.root}/).join("\n")
-    )
+    update!(error: "#{e.class}: #{e.message}")
     Destination::Result.new(error: e.message)
   else
-    update!(error: nil, backtrace: nil)
-    Destination::Result.new(sent_items: items || subclass.items)
+    update!(error: nil) if items.any? || subclass.items.any?
+    Destination::Result.new(sent_items: items.presence || subclass.items)
   end
 
-  def send_later(items = nil)
+  def send_later(items = [])
     SendToDestinationJob.perform_later(destination: self, items: items)
-    Destination::Result.new(sent_items: items || subclass.items)
-  end
-
-  def to
-    destinable.email
+    Destination::Result.new(sent_items: items.presence || subclass.items)
   end
 
   def params
@@ -84,33 +62,13 @@ class Destination < ApplicationRecord
   end
 
   def duplicate_for(user)
-    if destinable_type == "Email"
-      destinable = user.emails.first
-      destination = Destination.new(destinable: destinable, kind: kind)
-      destination.parameters =
-        parameters.map { |parameter| parameter.duplicate_for(user) }
-      destination
-    else
-      raise NotImplementedError
-    end
+    destination = Destination.new(kind: kind)
+    destination.parameters =
+      parameters.map { |parameter| parameter.duplicate_for(user) }
+    destination
   end
 
   def as_json(...)
-    {
-      id: id,
-      kind: kind,
-      destinable: destinable.as_json(...),
-      destinable_id: destinable_id || "",
-      destinable_type: destinable_type,
-      parameters: parameters.as_json(...)
-    }.as_json(...)
-  end
-
-  private
-
-  def own_destinable
-    if destinable && destinable.user != pipeline.user
-      errors.add(:destinable, I18n.t("errors.not_own"))
-    end
+    { id: id, kind: kind, parameters: parameters.as_json(...) }.as_json(...)
   end
 end

@@ -22,20 +22,11 @@ class User < ApplicationRecord
   has_many :phone_numbers, dependent: :destroy
   has_many :pipelines, dependent: :destroy
 
-  accepts_nested_attributes_for(
-    :emails,
-    allow_destroy: true,
-    reject_if: lambda { |attributes| attributes[:email].blank? }
-  )
-
-  accepts_nested_attributes_for(
-    :phone_numbers,
-    allow_destroy: true,
-    reject_if: lambda { |attributes| attributes[:phone_number].blank? }
-  )
+  accepts_nested_attributes_for :emails, allow_destroy: true
+  accepts_nested_attributes_for :phone_numbers, allow_destroy: true
 
   scope :published,
-    -> { left_joins(:pipelines).merge(Pipeline.published).distinct }
+        -> { left_joins(:pipelines).merge(Pipeline.published).distinct }
 
   validates :name, presence: true
 
@@ -83,25 +74,7 @@ class User < ApplicationRecord
     )
   end
 
-  def emails_json
-    emails
-      .map do |email|
-        {id: email.id, email: email.email, verified: email.verified?}
-      end
-      .to_json
-  end
-
   def published?
     pipelines.any?(&:published?)
-  end
-
-  def as_json(...)
-    {
-      id: id,
-      name: name,
-      password: "",
-      emails: emails.as_json(...),
-      phone_numbers: phone_numbers.as_json(...)
-    }.as_json(...)
   end
 end

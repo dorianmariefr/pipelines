@@ -1,6 +1,6 @@
-.inline-flex.flex-col.my-4.rounded-lg.border.p-4
-  .mb-2
-    => link_to phone_number.phone_number, phone_number
+.card
+  .p
+    => link_to phone_number.phone_number, phone_number, class: "font-bold"
     - if phone_number.verified?
       span.text-green-600=> t(".verified")
     - else
@@ -10,15 +10,15 @@
 
   - if phone_number.not_verified?
     - if phone_number.sent?
-      .mb-2= t(".verification_code_sent")
+      p= t(".verification_code_sent")
 
       = form_for phone_number do |f|
         div(data-controller="code")
           .p= f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
-          .p= f.submit t(".submit"), class: "button--primary"
+          .p= f.submit t(".submit")
           p.text-red-600(data-code-target="error")
           p= fake_code
 
-      .p= button_to t(".resend_verification_code"), [phone_number, :send_verification]
+      = button_to t(".resend_verification_code"), [phone_number, :send_verification], class: "button--link"
     - else
       = button_to t(".send_verification_code"), [phone_number, :send_verification], class: "button--primary"

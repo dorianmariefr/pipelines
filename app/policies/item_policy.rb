@@ -1,6 +1,6 @@
 class ItemPolicy < ApplicationPolicy
   def destroy_all?
-    true
+    can?(:destroy, pipeline)
   end
 
   def destroy?

@@ -21,7 +21,13 @@ class PhoneNumberPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.where(user: policy_scope(User))
+      if admin?
+        scope.all
+      elsif current_user?
+        scope.where(user: current_user)
+      else
+        scope.none
+      end
     end
   end
 

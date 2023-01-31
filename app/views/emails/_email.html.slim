@@ -1,6 +1,6 @@
-.inline-flex.flex-col.rounded-lg.border.p-4.my-4
-  .mb-2
-    => link_to email.email, email
+.card
+  .p
+    => link_to email.email, email, class: "font-bold"
     - if email.verified?
       span.text-green-600=> t(".verified")
     - else
@@ -10,15 +10,15 @@
 
   - if email.not_verified?
     - if email.verification_code.present?
-      .mb-2= t(".verification_code_sent")
+      p= t(".verification_code_sent")
 
       = form_for email, url: url do |f|
         div(data-controller="code")
           .p= f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
-          .p= f.submit t(".submit"), class: "button--primary"
+          .p= f.submit t(".submit")
           p.text-red-600(data-code-target="error")
           p= fake_code
 
-      .p= button_to t(".resend_verification_code"), [email, :send_verification]
+      = button_to t(".resend_verification_code"), [email, :send_verification], class: "button--link"
     - else
       = button_to t(".send_verification_code"), [email, :send_verification], class: "button--primary"

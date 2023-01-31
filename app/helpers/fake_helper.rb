@@ -20,98 +20,54 @@ module FakeHelper
   end
 
   def fake_user_names
-    (1..3)
-      .map { Faker::Name.name }
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Name.name })))
   end
 
   def fake_user_emails
-    (1..3)
-      .map { Faker::Internet.email }
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Internet.email })))
   end
 
   def fake_user_passwords
-    (1..3)
-      .map { Faker::Internet.password }
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Internet.password })))
   end
 
   def fake_pipeline_name
-    (1..3)
-      .map { Faker::Hobby.activity }
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
+  end
+
+  def subreddits
+    File.read(Rails.root.join("lib", "data", "subreddits.txt")).split
   end
 
   def fake_subreddits
-    File
-      .read(Rails.root.join("lib", "data", "subreddits.txt"))
-      .split
-      .sample(10)
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence(subreddits.sample(3))))
+  end
+
+  def tags
+    File.read(Rails.root.join("lib", "data", "tags.txt")).split
   end
 
   def fake_tags
-    File
-      .read(Rails.root.join("lib", "data", "tags.txt"))
-      .split
-      .sample(10)
-      .to_sentence(last_word_connector: t("application.fake.or"))
-  end
-
-  def fake_result_types
-    %w[mixed popular recent].shuffle.to_sentence(
-      last_word_connector: t("application.fake.or")
-    )
+    gray(eg(or_sentence(tags.sample(3))))
   end
 
   def fake_query
-    (1..10)
-      .map { Faker::Hobby.activity }
-      .to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
   end
 
-  def fake_limits
-    [1, 5, 10, 20].to_sentence(last_word_connector: t("application.fake.or"))
-  end
-
-  def fake_filter_types
-    Source::FILTER_TYPES.shuffle.to_sentence(
-      last_word_connector: t("application.fake.or")
-    )
+  def keys
+    File.read(Rails.root.join("lib", "data", "keys.txt")).split
   end
 
   def fake_keys
-    File
-      .read(Rails.root.join("lib", "data", "keys.txt"))
-      .split
-      .sample(10)
-      .to_sentence(last_word_connector: t("application.fake.or"))
-  end
-
-  def fake_operators
-    Source::OPERATORS.shuffle.to_sentence(
-      last_word_connector: t("application.fake.or")
-    )
-  end
-
-  def fake_transforms
-    Source::TRANSFORMS.shuffle.to_sentence(
-      last_word_connector: t("application.fake.or")
-    )
+    gray(eg(or_sentence(keys.sample(3))))
   end
 
   def fake_values
-    [
-      1000,
-      20,
-      Faker::Hobby.activity,
-      Faker::Hobby.activity,
-      Faker::Hobby.activity
-    ].shuffle.to_sentence(last_word_connector: t("application.fake.or"))
+    gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
   end
 
-  def fake_filters
+  def filters
     [
       'title.include?("Ruby")',
       'title.downcase.include?("react")',
@@ -120,84 +76,39 @@ module FakeHelper
       "retweets > 100",
       "likes > 50",
       "followers >= 1000"
-    ].shuffle.to_sentence(last_word_connector: t("application.fake.or"))
+    ]
   end
 
-  def fake_subjects
+  def fake_filters
+    gray(eg(or_sentence(filters.shuffle)))
+  end
+
+  def subjects
     [
       "{item.summary}",
       "{items.first.summary}",
       "{item.user_name}: {item.text}",
       "Summary of tweets",
       "New tweet"
-    ].shuffle.to_sentence(last_word_connector: t("application.fake.or"))
+    ]
   end
 
-  def fake_body_formats
-    %w[text html].shuffle.join(t("application.fake.or"))
+  def fake_subjects
+    gray(eg(or_sentence(subjects.shuffle)))
   end
 
-  def fake_bodies
+  def bodies
     %w[
       {item.to_text}
       {item.to_html}
       {items.first.to_text}
       {items.first.to_html}
-    ].shuffle.to_sentence(last_word_connector: t("application.fake.or"))
+      {pipeline.url}
+    ]
   end
 
-  def fake_hours
-    (0..23)
-      .map { |hour| "#{hour}:00" }
-      .sample(3)
-      .to_sentence(last_word_connector: t("application.fake.or"))
-  end
-
-  def fake_days_of_week
-    Date::DAYNAMES.shuffle.to_sentence(
-      last_word_connector: t("application.fake.or")
-    )
-  end
-
-  def fake_days_of_month
-    (1..31)
-      .to_a
-      .sample(5)
-      .to_sentence(last_word_connector: t("application.fake.or"))
-  end
-
-  def fake_user
-    user = User.new
-    user.emails.build
-    user.phone_numbers.build
-    user
-  end
-
-  def pipeline_fakes
-    {
-      transform: fake_transforms,
-      name: fake_pipeline_name,
-      subreddit: fake_subreddits,
-      tagged: fake_tags,
-      result_type: fake_result_types,
-      query: fake_query,
-      limit: fake_limits,
-      filter_type: fake_filter_types,
-      key: fake_keys,
-      operator: fake_operators,
-      value: fake_values,
-      filter: fake_filters,
-      subject: fake_subjects,
-      body_format: fake_body_formats,
-      body: fake_bodies,
-      hour: fake_hours,
-      day_of_week: fake_days_of_week,
-      day_of_month: fake_days_of_month,
-      user_name: fake_user_names,
-      user_password: fake_user_passwords,
-      user_email: fake_user_emails,
-      destinable_email: fake_user_emails
-    }
+  def fake_bodies
+    gray(eg(or_sentence(bodies.shuffle)))
   end
 
   def eg(string)
@@ -206,5 +117,9 @@ module FakeHelper
 
   def gray(string)
     content_tag(:div, string, class: "text-gray-600")
+  end
+
+  def or_sentence(array)
+    array.to_sentence(last_word_connector: t("application.fake.or"))
   end
 end
