@@ -1,23 +1,23 @@
 - content_for(:title) do
   .flex.items-center.gap-2
-    = @pipeline.to_s
+    = @pipeline.name.presence || @pipeline.id
     - if @pipeline.published?
       = link_to pipelines_path, title: t(".published") do
         = heroicon "globe-alt"
 
-.flex.items.center.gap-4
+.flex.gap-4
   - if can?(:process_now, @pipeline)
     .p= button_to t(".process"), [@pipeline, :process_now], method: :post, class: "button--primary"
 
   - if current_user
     .p= button_to t(".duplicate"), [@pipeline, :duplicate], method: :post
 
-.flex.gap-4.flex-col
-  = render "users/user", user: @pipeline.user, size: :small
-  - @sources.each do |source|
-    = render "sources/source", source: source
-  - @destinations.each do |destination|
-    = render "destinations/destination", destination: destination
+= render "users/user", user: @pipeline.user, size: :small
+
+- @sources.each do |source|
+  = render "sources/source", source: source
+- @destinations.each do |destination|
+  = render "destinations/destination", destination: destination
 
 - if can? :update, @pipeline
   p= link_to t(".edit"), [:edit, @pipeline], class: "button"

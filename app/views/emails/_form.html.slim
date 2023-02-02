@@ -1,7 +1,7 @@
 .email-js.card
   = f.hidden_field :_destroy
 
-  = render "shared/field", f: f, name: :email, scope: :email, autocomplete: :email, data_form_type: :email, fake: fake_email, type: :email
+  = render "shared/field", f: f, name: :email, scope: :email, autocomplete: :email, data_form_type: :email, fake: fake_emails, type: :email
 
   .p(data-emails-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600 underline", data: { action: "emails#remove" }

@@ -18,12 +18,12 @@ class Source < ApplicationRecord
   NONE = "none"
   SIMPLE = "simple"
   CODE = "code"
-  INCLUDES = "include?"
-  EQUALS = "=="
-  GREATER_THAN = ">"
-  GREATER_THAN_OR_EQUALS = ">="
-  LESS_THAN = "<"
-  LESS_THAN_OR_EQUALS = "<="
+  INCLUDES = "includes"
+  EQUALS = "equals"
+  GREATER_THAN = "greater_than"
+  GREATER_THAN_OR_EQUALS = "greater_than_or_equals"
+  LESS_THAN = "less_than"
+  LESS_THAN_OR_EQUALS = "less_than_or_equals"
   DOWNCASE = "downcase"
 
   FILTER_TYPES = [NONE, SIMPLE, CODE]
@@ -46,9 +46,9 @@ class Source < ApplicationRecord
 
   delegate :as_json, to: :subclass
 
-  def parameters_attributes=(parameters)
+  def parameters_attributes=(...)
     self.parameters = []
-    super(parameters) if parameters
+    super(...)
   end
 
   def first_kind

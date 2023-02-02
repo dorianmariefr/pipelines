@@ -7,6 +7,12 @@ import { application } from "./application"
 import CodeController from "./code_controller"
 application.register("code", CodeController)
 
+import DestinationController from "./destination_controller"
+application.register("destination", DestinationController)
+
+import DestinationsController from "./destinations_controller"
+application.register("destinations", DestinationsController)
+
 import EmailController from "./email_controller"
 application.register("email", EmailController)
 

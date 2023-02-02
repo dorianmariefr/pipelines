@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["add", "template", "remove"]
   static values = {
-    selector: { type: String, default: ".source-js" },
+    selector: { type: String, default: ".destination-js" },
     destroySelector: { type: String, default: "input[name*='_destroy']" },
   }
 

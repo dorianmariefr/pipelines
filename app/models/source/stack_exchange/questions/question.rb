@@ -12,6 +12,7 @@ class Source
 
         def extras
           {
+            summary: summary,
             title: question.title,
             url: question.link,
             tags: question.tags,
@@ -30,7 +31,6 @@ class Source
             creation_date: question.creation_date,
             question_id: question.question_id,
             content_license: question.content_license,
-            summary: summary,
             to_text: to_text,
             to_html: to_html
           }

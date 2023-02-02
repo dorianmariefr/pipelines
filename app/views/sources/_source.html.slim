@@ -1,15 +1,10 @@
-= link_to source, class: "w-96 inline-flex flex-col m-4 p-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden grayscale hover:filter-none" do
-  .mb-2
-    => source.name
-    ' →
+.card
+  => link_to source.name, source, class: "underline"
 
   = render source.parameters
 
-  - if source.simple?
-    - if source.simple_filter.present?
-      .text-gray-600.text-sm.mb-2= source.simple_filter
-  - elsif source.filter.present?
-    .text-gray-600.text-sm.mb-2= source.filter
-
-  - if can?(:update, source) && source.error?
-    .text-red-600.text-sm.mb-2= source.error
+  - if source.none?
+  - elsif source.simple?
+    .text-sm= source.simple_filter
+  - elsif source.code?
+    .text-sm= source.filter

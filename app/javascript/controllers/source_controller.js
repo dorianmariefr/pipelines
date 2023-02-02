@@ -1,18 +1,59 @@
 import { Controller } from "@hotwired/stimulus"
 
-export default class extends Controller {
-  static targets = ["simpleFilterType", "codeFilterType"]
+const SIMPLE = "simple"
+const CODE = "code"
+const HIDDEN = "hidden"
 
-  chooseFilterType(event) {
-    if (event.target.value === "simple") {
-      this.simpleFilterTypeTarget.classList.remove("hidden")
-      this.codeFilterTypeTarget.classList.add("hidden")
-    } else if (event.target.value === "code") {
-      this.simpleFilterTypeTarget.classList.add("hidden")
-      this.codeFilterTypeTarget.classList.remove("hidden")
+export default class extends Controller {
+  static targets = [
+    "kind",
+    "template",
+    "output",
+    "filterTypeTemplate",
+    "filterTypeOutput",
+    "filterType",
+    "simpleFilterType",
+    "codeFilterType",
+  ]
+
+  connect() {
+    this.chooseKind()
+  }
+
+  chooseKind() {
+    const value = this.kindTargets.find((element) => element.checked)?.value
+
+    const template = this.templateTargets.find(
+      (template) => template.dataset.kind === value
+    )
+
+    this.outputTarget.innerHTML = template?.innerHTML || ""
+
+    const filterTypeTemplate = this.filterTypeTemplateTargets.find(
+      (template) => {
+        return template.dataset.kind === value
+      }
+    )
+
+    this.filterTypeOutputTarget.innerHTML = filterTypeTemplate?.innerHTML || ""
+
+    this.chooseFilterType()
+  }
+
+  chooseFilterType() {
+    const value = this.filterTypeTargets.find(
+      (element) => element.checked
+    )?.value
+
+    if (value === SIMPLE) {
+      this.simpleFilterTypeTarget.classList.remove(HIDDEN)
+      this.codeFilterTypeTarget.classList.add(HIDDEN)
+    } else if (value === CODE) {
+      this.simpleFilterTypeTarget.classList.add(HIDDEN)
+      this.codeFilterTypeTarget.classList.remove(HIDDEN)
     } else {
-      this.simpleFilterTypeTarget.classList.add("hidden")
-      this.codeFilterTypeTarget.classList.add("hidden")
+      this.simpleFilterTypeTarget.classList.add(HIDDEN)
+      this.codeFilterTypeTarget.classList.add(HIDDEN)
     }
   }
 }

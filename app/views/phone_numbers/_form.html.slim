@@ -1,7 +1,7 @@
 .phone-number-js.card
   = f.hidden_field :_destroy
 
-  = render "shared/field", f: f, name: :phone_number, scope: :phone_number, type: :phone, autocomplete: "tel-national", data_form_type: "tel-national", fake: fake_phone_number
+  = render "shared/field", f: f, name: :phone_number, scope: :phone_number, type: :phone, autocomplete: "tel-national", data_form_type: "tel-national", fake: fake_phone_numbers
 
   .p(data-phone-numbers-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600 underline", data: { action: "phone-numbers#remove" }

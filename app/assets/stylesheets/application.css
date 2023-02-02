@@ -79,3 +79,7 @@ textarea,
 select {
   @apply border border-black p-2 rounded min-w-[20rem];
 }
+
+textarea {
+  @apply min-h-[10rem];
+}

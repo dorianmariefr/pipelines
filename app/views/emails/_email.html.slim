@@ -17,7 +17,7 @@
           .p= f.text_field :verification_code, data: { code_target: "input" }, value: params[:verification_code]
           .p= f.submit t(".submit")
           p.text-red-600(data-code-target="error")
-          p= fake_code
+          p= fake_codes
 
       = button_to t(".resend_verification_code"), [email, :send_verification], class: "button--link"
     - else

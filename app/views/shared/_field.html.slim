@@ -10,17 +10,19 @@
 - required = local_assigns.fetch(:required, false)
 - options = local_assigns.fetch(:options, [])
 - datas = local_assigns.fetch(:data, {})
-- if options.first && !options.first.is_a?(Array)
+- translation_name = local_assigns.fetch(:translation_name, name)
+- if options&.first && !options.first.is_a?(Array)
   - options = options.map { |value| [value, value] }
 
 .p
-  = f.label label_name, t(".#{scope}.#{name}.label")
+  = f.label label_name, t(".#{scope}.#{translation_name}.label")
 
   - if type.string?
     div(data-controller="name")
       = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
       .text-red-600(data-name-target="error")
-
+  - elsif type.text?
+    = f.text_area name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
   - elsif type.email?
     div(data-controller="email")
       = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, email_target: "input", **datas }, value: value, required: required
@@ -53,13 +55,13 @@
       => f.label name, t(".yes_no.no"), value: false, class: "inline-block"
 
   - elsif type.list?
-    - options.each do |(text, value)|
+    - options.each do |option_text, option_value, option_disabled = false|
       div
-        => f.radio_button name, value, data: datas
-        => f.label name, text, value: value, class: "inline-block"
+        => f.radio_button name, option_value, data: datas, checked: value.to_s == option_value.to_s, disabled: option_disabled
+        => f.label name, option_text, value: option_value, class: "inline-block #{option_disabled ? "text-gray-600" : ""}"
 
   - elsif type.select?
-    = f.select name, options, data: datas
+    = f.select name, options.map { |option| option + [{ selected: value.to_s == option[1].to_s }] }, data: datas
 
-  .text-gray-600.text-sm= t(".#{scope}.#{name}.hint")
+  .prose.text-gray-600.text-sm= t(".#{scope}.#{translation_name}.hint_html")
   .text-gray-600.text-sm= fake

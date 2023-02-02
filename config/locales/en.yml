@@ -1,58 +1,123 @@
 ---
 en:
+  parameters:
+    result_types:
+      recent: Recent
+      mixed: Mixed
+      popular: Popular
+    days_of_week:
+      monday: Monday
+      tuesday: Tuesday
+      wednesday: Wednesday
+      thursday: Thursday
+      friday: Friday
+      saturday: Saturday
+      sunday: Sunday
+    body_formats:
+      text: Text
+      html: HTML
   shared:
     field:
       yes_no:
         "yes": "Yes"
         "no": "No"
+      parameter:
+        query:
+          label: Query
+          hint_html: As entered in Twitter search field
+        result_type:
+          label: Result type
+          hint_html: The tab you would choose on Twitter search
+        limit:
+          label: Limit
+          hint_html: The number of tweets fetched each time
+        subreddit:
+          label: Subreddit
+          hint_html: The name of the subreddit in the url
+        site:
+          label: Site
+          hint_html: The domain of the Stack Exchange site
+        tagged:
+          label: Tags
+          hint_html: A list of tags separated by semicolons (;) (5 tags maximum)
+        sort:
+          label: Sort
+          hint_html: The sorting criteria
+        order:
+          label: Order
+          hint_html: How the sorting criteria is going to be sorted
+        subject:
+          label: Subject
+          hint_html: The title of the email in Template programming languge, see <a href="https://templatelang.com">templatelang.com</a>
+        body_format:
+          label: Body format
+          hint_html: Either plain text (text) or rich text (HTML)
+        body:
+          label: Body
+          hint_html: The content of the email in Template programming language, see <a href="https://templatelang.com">templatelang.com</a>
+        to:
+          label: To
+          hint_html: The email address you want to send to
+        hour:
+          label: Hour
+          hint_html: The hour of the day in your timezone that you will receive the emails
+        day_of_week:
+          label: Day of week
+          hint_html: The day of the week you will receive the emails
+        day_of_month:
+          label: Day of month
+          hint_html: The day of the month you will receive the emails
       password:
         show_password: Show password
         hide_password: Hide password
       email:
         email:
           label: Your email
-          hint: The email you will receive updates on
+          hint_html: The email you will receive updates on
       phone_number:
         phone_number:
           label: Your phone number
-          hint: The phone number you will receive updates on
+          hint_html: The phone number you will receive updates on
       pipeline:
         name:
           label: Name of the pipeline
-          hint: Which will be used when displayed
+          hint_html: Which will be used when displayed
         published:
           label: Is this pipeline public?
-          hint: Your profile will be public as well if you create a public pipeline
+          hint_html: Your profile will be public as well if you create a public pipeline
       user:
         name:
           label: Your name
-          hint: Preferably first name and last name
+          hint_html: Preferably first name and last name
         password:
           label: Your password
-          hint: Preferably a generated one that you can keep in your password manager
+          hint_html: Preferably a generated one that you can keep in your password manager
       source:
         kind:
           label: Where does the information come from?
-          hint: Information will be fetched every 5 minutes
+          hint_html: Information will be fetched every 5 minutes
         filter_type:
           label: Which parts of the information is relevant to you?
-          hint: You don't need to specify a filter
+          hint_html: You don't need to specify a filter
         key:
           label: Key
-          hint: The field you will operate the filter on
+          hint_html: The field you will operate the filter on
         transform:
           label: Transform
-          hint: Do you want the key be transformed?
+          hint_html: Do you want the key be transformed?
         operator:
           label: Operator
-          hint: What kind of operation do you want to do on the key?
+          hint_html: What kind of operation do you want to do on the key?
         value:
           label: Value
-          hint: What value are we comparing against?
+          hint_html: What value are we comparing against?
+        filter:
+          label: Filter
+          hint_html: With the Code programming language, see <a href="https://templatelang.com">templatelang.com</a>
       destination:
         kind:
           label: Where does the information goes?
-          hint: How you will receive the information
+          hint_html: How you will receive the information
   accounts:
     show:
       title: Account
@@ -414,12 +479,12 @@ en:
         twitter:
           search: Twitter - Search
       operators:
-        "<": is less than
-        "<=": is less than or equal to
-        "==": equals
-        ">": is greater than
-        ">=": is greater than or equal to
-        include?: includes
+        less_than: is less than
+        less_than_or_equals: is less than or equal to
+        equals: equals
+        greater_than: is greater than
+        greater_than_or_equals: is greater than or equal to
+        includes: includes
   users:
     create:
       notice: User created, you are now logged in

@@ -1,0 +1,8 @@
+.hidden(data-source-target="simpleFilterType")
+  = render "shared/field", f: f, name: :key, scope: :source, type: :select, options: source_key_options(subclass), fake: fake_keys
+  = render "shared/field", f: f, name: :transform, scope: :source, type: :list, options: source_transform_options
+  = render "shared/field", f: f, name: :operator, scope: :source, type: :list, options: source_operator_options
+  = render "shared/field", f: f, name: :value, scope: :source, fake: fake_values
+
+.hidden(data-source-target="codeFilterType")
+  = render "shared/field", f: f, name: :filter, scope: :source, fake: fake_filters

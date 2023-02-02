@@ -1,9 +1,5 @@
-.text-sm.mb-2
-  = parameter.translated_key
+.text-sm
+  = parameter.key
   ' :
+  = parameter.value
 
-  - if parameter.value.lines.one?
-    code= parameter.translated_value
-
-  - if parameter.value.lines.many?
-    pre.text-sm.my-2= parameter.translated_value

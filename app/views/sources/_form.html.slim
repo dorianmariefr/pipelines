@@ -1,18 +1,24 @@
 .source-js.card(data-controller="source")
   = f.hidden_field :_destroy
+  = f.hidden_field :id
 
-  = render "shared/field", f: f, name: :kind, scope: :source, type: :list, options: source_kind_options
+  = render "shared/field", f: f, name: :kind, scope: :source, type: :list, options: source_kind_options, data: { action: "source#chooseKind", source_target: "kind" }
 
-  = render "shared/field", f: f, name: :filter_type, scope: :source, type: :list, options: filter_type_options, data: { action: "source#chooseFilterType" }
+  - Source::KINDS.each do |first_kind, first_value|
+    - first_value.each do |second_kind, subclass|
+      template(data-source-target="template" data-kind="#{first_kind}/#{second_kind}")
+        = render "parameters/form", f: f, subclass: subclass.constantize
 
-  div(data-source-target="simpleFilterType")
-    = render "shared/field", f: f, name: :key, scope: :source, type: :select, options: source_key_options(Source::Twitter::Search)
-    = render "shared/field", f: f, name: :transform, scope: :source, type: :list, options: source_transform_options
-    = render "shared/field", f: f, name: :operator, scope: :source, type: :list, options: source_operator_options
-    = render "shared/field", f: f, name: :value, scope: :source
+  div(data-source-target="output")
 
-  div(data-source-target="codeFilterType")
-    h1 code
+  = render "shared/field", f: f, name: :filter_type, scope: :source, type: :list, options: filter_type_options, data: { action: "source#chooseFilterType", source_target: "filterType" }
+
+  - Source::KINDS.each do |first_kind, first_value|
+    - first_value.each do |second_kind, subclass|
+      template(data-source-target="filterTypeTemplate" data-kind="#{first_kind}/#{second_kind}")
+        = render "sources/filter_types", f: f, subclass: subclass.constantize
+
+  div(data-source-target="filterTypeOutput")
 
   .p(data-sources-target="remove")
     = link_to t(".remove"), "#", class: "text-red-600 underline", data: { action: "sources#remove" }

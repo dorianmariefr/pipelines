@@ -12,6 +12,7 @@ class Source
 
         def extras
           {
+            summary: summary,
             title: data.title,
             kind: listing.kind,
             subreddit: data.subreddit,
@@ -24,7 +25,6 @@ class Source
             views: data.view_count,
             url: data.url,
             id: data.id,
-            summary: summary,
             to_text: to_text,
             to_html: to_html
           }

@@ -99,7 +99,7 @@ class PipelinesController < ApplicationController
   def load_pipeline
     @pipeline =
       authorize(
-        policy_scope(Pipeline).find_by_id_or_slug!(
+        policy_scope(Pipeline).friendly.find(
           params[:id].presence || params[:pipeline_id]
         )
       )

@@ -3,7 +3,7 @@
 - persisted = user.persisted?
 
 = form_for user do |f|
-  = render "shared/field", f: f, name: :name, scope: :user, required: true, autocomplete: :name, fake: fake_name
+  = render "shared/field", f: f, name: :name, scope: :user, required: true, autocomplete: :name, fake: fake_user_names
 
   div(data-controller="emails")
     template(data-emails-target="template")
@@ -27,6 +27,6 @@
     p(data-phone-numbers-target="add")
       = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }, class: "underline"
 
-  = render "shared/field", f: f, name: :password, scope: :user, fake: fake_password, type: :password, autocomplete: persisted ? "current-password" : "new-password", data_form_type: "password"
+  = render "shared/field", f: f, name: :password, scope: :user, fake: fake_passwords, type: :password, autocomplete: "new-password", data_form_type: "password,new"
 
   p= f.submit submit, class: "button--primary"

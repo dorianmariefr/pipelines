@@ -3,8 +3,41 @@ class Source
     class Search
       EXPIRES_IN = 1.minute
 
+      RESULT_TYPE_DEFAULT = "recent"
+      RESULT_TYPE_OPTIONS =
+        %w[recent popular mixed].map do |result_type|
+          [I18n.t("parameters.result_types.#{result_type}"), result_type]
+        end
+      LIMIT_DEFAULT_FREE = 5
+      LIMIT_DEFAULT_PRO = 20
+
+      LIMIT_OPTIONS_FREE = [["5", "5", false], ["20 (Pro)", "20", true]]
+      LIMIT_OPTIONS_PRO = [%w[5 5], ["20 (Pro)", "20"]]
+
       def initialize(source)
         @source = source
+      end
+
+      def self.fake_queries
+        (1..3).map { Faker::Hobby.activity }
+      end
+
+      def self.parameters_for(user)
+        [
+          { name: :query, type: :string, required: true, fakes: fake_queries },
+          {
+            name: :result_type,
+            type: :list,
+            default: RESULT_TYPE_DEFAULT,
+            options: RESULT_TYPE_OPTIONS
+          },
+          {
+            name: :limit,
+            type: :list,
+            default: user&.pro? ? LIMIT_DEFAULT_PRO : LIMIT_DEFAULT_FREE,
+            options: user&.pro? ? LIMIT_OPTIONS_PRO : LIMIT_OPTIONS_FREE
+          }
+        ]
       end
 
       def self.keys

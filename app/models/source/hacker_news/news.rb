@@ -5,6 +5,35 @@ class Source
       TARGET_URL = BASE_URL
       EXPIRES_IN = 1.minute
 
+      def self.parameters_for(_user)
+        []
+      end
+
+      def self.keys
+        %w[
+          summary
+          id
+          title
+          host
+          domain
+          protocol
+          domain_with_path
+          domain_url
+          path
+          href
+          url
+          keywords
+          score
+          age
+          comments_count
+          comments_url
+          user_id
+          user_url
+          to_text
+          to_html
+        ]
+      end
+
       def initialize(source)
         @source = source
       end

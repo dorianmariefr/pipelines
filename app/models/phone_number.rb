@@ -5,8 +5,6 @@ class PhoneNumber < ApplicationRecord
 
   belongs_to :user
 
-  has_many :destination, as: :destinable, dependent: :destroy
-
   scope :verified, -> { where(verified: true) }
 
   validates :phone_number, presence: true, phone: true

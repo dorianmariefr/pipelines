@@ -1,6 +1,4 @@
 class Destination < ApplicationRecord
-  attr_accessor :destinable_email
-
   KINDS = {
     hourly_email_digest: "Destination::HourlyEmailDigest",
     daily_email_digest: "Destination::DailyEmailDigest",
@@ -10,7 +8,6 @@ class Destination < ApplicationRecord
   }
 
   belongs_to :pipeline
-  belongs_to :destinable, polymorphic: true
   has_one :user, through: :pipeline
   has_many :sources, through: :pipeline
   has_many :items, through: :sources
@@ -26,9 +23,9 @@ class Destination < ApplicationRecord
   scope :email, -> { where(kind: :email) }
   scope :instant, -> { email }
 
-  def parameters_attributes=(parameters)
+  def parameters_attributes=(...)
     self.parameters = []
-    super(parameters) if parameters
+    super(...)
   end
 
   def name
@@ -69,6 +66,6 @@ class Destination < ApplicationRecord
   end
 
   def as_json(...)
-    { id: id, kind: kind, parameters: parameters.as_json(...) }.as_json(...)
+    {id: id, kind: kind, parameters: parameters.as_json(...)}.as_json(...)
   end
 end

@@ -22,7 +22,7 @@ export default class extends Controller {
   }
 
   input() {
-    if (this.inputTarget.value.trim()) {
+    if (this.inputTarget.value.trim() || !this.inputTarget.required) {
       this.validationValue = { valid: true }
     } else {
       this.validationValue = { valid: false, message: t("must_be_present") }

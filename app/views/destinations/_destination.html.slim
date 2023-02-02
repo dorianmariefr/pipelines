@@ -1,14 +1,3 @@
-= link_to destination, class: "w-96 inline-flex flex-col m-4 p-4 rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden grayscale hover:filter-none" do
-  .mb-2
-    ' →
-    => destination.name
-
+.card
+  = link_to destination.name, destination, class: "underline"
   = render destination.parameters
-
-  - if can?(:update, destination)
-    .text-sm.text-gray-600.mb-2
-      b=> t(".private")
-      = destination.destinable
-
-  - if can?(:update, destination) && destination.error?
-    .text-red-600.text-sm.mb-2= destination.error
