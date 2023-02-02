@@ -1,9 +1,55 @@
-= render "pages/home/intro"
-hr.my-8
-= render "pages/home/pipelines", pipelines: @pipelines
-hr.my-8
-= render "pages/home/features"
-hr.my-8
-= render "pages/home/pricing"
-hr.my-8
-= render "pages/home/faq"
+h1
+  => t(".automation")
+  span.text-green-600= t(".made_simple")
+
+p
+  = t(".subtitle")
+
+p.flex.flex-col.sm:flex-row.gap-4
+  - if current_user
+    => link_to new_pipeline_path, class: "button--primary" do
+      => heroicon "funnel"
+      = t(".new_pipeline")
+  - else
+    => link_to new_user_path, class: "button--primary" do
+      => heroicon "pencil-square"
+      = t(".get_started")
+    => link_to new_pipeline_path, class: "button" do
+      => heroicon "funnel"
+      = t(".new_pipeline")
+  = link_to ENV["VIDEO_URL"], class: "button" do
+    => heroicon "play"
+    = t(".watch_video")
+
+hr.mb-4
+
+- if current_user
+  h2= t(".your_pipelines")
+
+  .grids= render @your_pipelines
+
+  hr.mb-4
+
+h2= t(".public_pipelines")
+
+.grids= render @published_pipelines
+
+hr.mb-4
+
+h2= t(".features")
+
+.grids
+  - (1..4).each do |i|
+    .card
+      h3= t(".feature_#{i}_title")
+      p= t(".feature_#{i}_subtitle")
+
+hr.mb-4
+
+h2= t(".frequently_asked_questions")
+
+.grids
+  - (1..9).each do |i|
+    .card
+      h4= t(".faq_#{i}_question")
+      p.prose= t(".faq_#{i}_answer_html")

@@ -1,0 +1,7 @@
+.destination-js.card(data-controller="destination")
+  = f.hidden_field :_destroy
+
+  = render "shared/field", f: f, name: :kind, scope: :destination, type: :list, options: destination_kind_options
+
+  .p(data-destinations-target="remove")
+    = link_to t(".remove"), "#", class: "text-red-600 underline", data: { action: "destinations#remove" }

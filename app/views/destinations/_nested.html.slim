@@ -1,0 +1,10 @@
+div(data-controller="destinations")
+  template(data-destinations-target="template")
+    = f.fields_for :destinations, Source.new, child_index: 'TEMPLATE_RECORD' do |destination_f|
+      = render "destinations/form", f: destination_f
+
+  = f.fields_for :destinations do |destination_f|
+    = render "destinations/form", f: destination_f
+
+  p(data-destinations-target="add")
+    = link_to t(".add_destination"), "#", data: { action: "destinations#add" }, class: "underline"

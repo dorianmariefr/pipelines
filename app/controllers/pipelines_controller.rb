@@ -1,7 +1,7 @@
 class PipelinesController < ApplicationController
   before_action :load_user, only: :index
   before_action :load_pipeline,
-                only: %i[show edit update destroy process_now duplicate]
+    only: %i[show edit update destroy process_now duplicate]
   helper_method :password_param
 
   def index
@@ -51,7 +51,6 @@ class PipelinesController < ApplicationController
 
   def new
     @pipeline = authorize Pipeline.new
-    @pipeline.user = current_user || User.new
     build_pipeline
   end
 
@@ -134,9 +133,6 @@ class PipelinesController < ApplicationController
       destinations_attributes: [
         :id,
         :kind,
-        :destinable_type,
-        :destinable_email,
-        :destinable_id,
         :_destroy,
         parameters_attributes: %i[key value]
       ]
@@ -150,6 +146,8 @@ class PipelinesController < ApplicationController
   def build_pipeline
     @pipeline.sources.build if @pipeline.sources.none?
     @pipeline.destinations.build if @pipeline.destinations.none?
+    @pipeline.user = current_user || User.new
+    return if current_user
     @pipeline.user.emails.build if @pipeline.user.emails.none?
     @pipeline.user.phone_numbers.build if @pipeline.user.phone_numbers.none?
   end

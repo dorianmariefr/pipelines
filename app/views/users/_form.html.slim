@@ -1,12 +1,9 @@
 - user = local_assigns.fetch(:user)
 - submit = local_assigns.fetch(:submit)
+- persisted = user.persisted?
 
 = form_for user do |f|
-  .p(data-controller="name")
-    = f.label :name, t(".name")
-    = f.text_field :name, autocomplete: :name, required: true, data: { name_target: "input" }
-    .text-red-600(data-name-target="error")
-    = fake_name
+  = render "shared/field", f: f, name: :name, scope: :user, required: true, autocomplete: :name, fake: fake_name
 
   div(data-controller="emails")
     template(data-emails-target="template")
@@ -17,7 +14,7 @@
       = render "emails/form", f: email_f
 
     p(data-emails-target="add")
-      = link_to t(".add_email"), "#", data: { action: "emails#add" }
+      = link_to t(".add_email"), "#", data: { action: "emails#add" }, class: "underline"
 
   div(data-controller="phone-numbers")
     template(data-phone-numbers-target="template")
@@ -28,19 +25,8 @@
       = render "phone_numbers/form", f: phone_number_f
 
     p(data-phone-numbers-target="add")
-      = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }
+      = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }, class: "underline"
 
-  .p(data-controller="password")
-    = f.label :password, t(".password")
-    .flex.gap-2.items-center
-      = f.password_field :password, autocomplete: "new-password", required: true, data: { password_target: "input" }, value: password_param
-      = link_to "#", data: { password_target: "show", action: "password#show" } do
-        = heroicon "eye"
-        .sr-only= t(".show_password")
-      = link_to "#", data: { password_target: "hide", action: "password#hide" } do
-        = heroicon "eye-slash"
-        .sr-only= t(".hide_password")
-    .text-red-600(data-password-target="error")
-    = fake_password
+  = render "shared/field", f: f, name: :password, scope: :user, fake: fake_password, type: :password, autocomplete: persisted ? "current-password" : "new-password", data_form_type: "password"
 
   p= f.submit submit, class: "button--primary"

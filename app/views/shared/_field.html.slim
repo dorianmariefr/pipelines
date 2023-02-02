@@ -1,0 +1,65 @@
+- f = local_assigns.fetch(:f)
+- name = local_assigns.fetch(:name)
+- scope = local_assigns.fetch(:scope)
+- type = local_assigns.fetch(:type, :string).to_s.inquiry
+- fake = local_assigns.fetch(:fake, "")
+- autocomplete = local_assigns.fetch(:autocomplete, "off")
+- data_form_type = local_assigns.fetch(:data_form_type, "other")
+- value = local_assigns.fetch(:value) { f.object.public_send(name) }
+- label_name = type.phone? ? "#{name}_national" : name
+- required = local_assigns.fetch(:required, false)
+- options = local_assigns.fetch(:options, [])
+- datas = local_assigns.fetch(:data, {})
+- if options.first && !options.first.is_a?(Array)
+  - options = options.map { |value| [value, value] }
+
+.p
+  = f.label label_name, t(".#{scope}.#{name}.label")
+
+  - if type.string?
+    div(data-controller="name")
+      = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
+      .text-red-600(data-name-target="error")
+
+  - elsif type.email?
+    div(data-controller="email")
+      = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, email_target: "input", **datas }, value: value, required: required
+      .text-red-600(data-email-target="error")
+
+  - elsif type.password?
+    div(data-controller="password")
+      .flex.gap-2.items-center
+        = f.password_field name, autocomplete: autocomplete, data: { form_type: data_form_type, password_target: "input", **datas }, value: value, required: required
+        = link_to "#", data: { password_target: "show", action: "password#show" } do
+          = heroicon "eye"
+          .sr-only= t(".password.show_password")
+        = link_to "#", data: { password_target: "hide", action: "password#hide" } do
+          = heroicon "eye-slash"
+          .sr-only= t(".password.hide_password")
+      .text-red-600(data-password-target="error")
+
+  - elsif type.phone?
+    div(data-controller="phone")
+      = f.hidden_field name, data: { phone_target: "hidden" }
+      = telephone_field_tag "#{name}_national", "", autocomplete: autocomplete, data: { phone_target: "input", form_type: data_form_type, **datas }, value: value, required: required
+      .text-red-600(data-phone-target="error")
+
+  - elsif type.yes_no?
+    div
+      => f.radio_button name, true, data: datas
+      => f.label name, t(".yes_no.yes"), value: true, class: "inline-block"
+    div
+      => f.radio_button name, false, data: datas
+      => f.label name, t(".yes_no.no"), value: false, class: "inline-block"
+
+  - elsif type.list?
+    - options.each do |(text, value)|
+      div
+        => f.radio_button name, value, data: datas
+        => f.label name, text, value: value, class: "inline-block"
+
+  - elsif type.select?
+    = f.select name, options, data: datas
+
+  .text-gray-600.text-sm= t(".#{scope}.#{name}.hint")
+  .text-gray-600.text-sm= fake

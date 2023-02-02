@@ -1,9 +1,13 @@
-div(
-  data-controller="pipeline-form"
-  data-pipeline-form-pipeline-value="#{pipeline.to_json}"
-  data-pipeline-form-sources-value="#{Source.to_json}"
-  data-pipeline-form-destinations-value="#{Destination.to_json}"
-  data-pipeline-form-user-value="#{(user || fake_user).to_json}"
-  data-pipeline-form-fakes-value="#{pipeline_fakes.to_json}"
-  data-pipeline-form-password-value="#{password_param}"
-  )
+= form_for pipeline, data: { form_type: current_user ? "other" : "register" } do |f|
+  - unless current_user
+    = f.fields_for :user do |user_f|
+      = render "shared/field", f: user_f, name: :name, scope: :user, fake: fake_name, autocomplete: "name", data_form_type: "name"
+      = render "emails/nested", f: user_f
+      = render "phone_numbers/nested", f: user_f
+      = render "shared/field", f: user_f, name: :password, scope: :user, fake: fake_password, type: :password, autocomplete: "new-password", data_form_type: "password,new"
+
+  = render "shared/field", f: f, name: :name, scope: :pipeline, fake: fake_pipeline_name
+  = render "shared/field", f: f, name: :published, scope: :pipeline, type: :yes_no
+  = render "sources/nested", f: f
+  = render "destinations/nested", f: f
+  = f.submit submit, class: "button--primary"

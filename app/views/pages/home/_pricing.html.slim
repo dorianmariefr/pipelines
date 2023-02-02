@@ -1,4 +1,0 @@
-.grid.grid-cols-1.sm:grid-cols-3.gap-4.max-w-7xl.mx-auto
-  = render "pages/home/pricing/price", price: hobby_price, title: t(".hobby"), url: new_user_url, features: t(".hobby_features"), text: t(".hobby_text")
-  = render "pages/home/pricing/price", price: pro_price, title: t(".pro"), url: ENV["STRIPE_PRODUCT_URL"], features: t(".pro_features"), text: t(".pro_text")
-  = render "pages/home/pricing/price", price: custom_price, title: t(".custom"), url: "mailto:dorian@pipelines.plumbing", features: t(".custom_features"), text: t(".custom_text")

@@ -1,0 +1,10 @@
+div(data-controller="phone-numbers")
+  template(data-phone-numbers-target="template")
+    = f.fields_for :phone_numbers, PhoneNumber.new, child_index: 'TEMPLATE_RECORD' do |phone_number_f|
+      = render "phone_numbers/form", f: phone_number_f
+
+  = f.fields_for :phone_numbers do |phone_number_f|
+    = render "phone_numbers/form", f: phone_number_f
+
+  p(data-phone-numbers-target="add")
+    = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }, class: "underline"

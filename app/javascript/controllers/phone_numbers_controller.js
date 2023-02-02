@@ -5,7 +5,6 @@ export default class extends Controller {
   static values = {
     selector: { type: String, default: ".phone-number-js" },
     destroySelector: { type: String, default: "input[name*='_destroy']" },
-    minimum: { type: Number, default: 1 },
   }
 
   add(event) {

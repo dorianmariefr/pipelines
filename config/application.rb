@@ -12,7 +12,7 @@ module Pipelines
     config.i18n.available_locales = [:en]
     config.action_mailer.default_url_options = {
       host: ENV.fetch("HOST", "localhost:3000"),
-      prtocol: ENV.fetch("PROTOCOL", "http")
+      protocol: ENV.fetch("PROTOCOL", "http")
     }
     config.assets.css_compressor = nil
     config.active_job.queue_adapter = :sidekiq

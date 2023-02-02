@@ -43,7 +43,7 @@ header.container.flex.justify-between.items-center.border-b
       summary.button
         = heroicon "bars-4"
         = t(".menu")
-      .absolute.right-0.z-10.origin-top-right.bg-white.border.rounded.p-4.w-max.flex.gap-4.flex-col
+      .absolute.right-0.z-10.origin-top-right.bg-white.shadow-lg.border.rounded.p-4.w-max.flex.gap-4.flex-col
         = link_to root_path, class: "button" do
           = heroicon "funnel"
           = t(".title")
@@ -61,12 +61,15 @@ header.container.flex.justify-between.items-center.border-b
             = heroicon "arrow-right-on-rectangle"
             = t(".log_out")
           = link_to new_pipeline_path, class: "button--primary" do
-            = heroicon "pencil-square"
+            = heroicon "funnel"
             = t(".new_pipeline")
         - else
           = link_to new_session_path, class: "button" do
             = heroicon "arrow-left-on-rectangle"
             = t(".log_in")
+          = link_to new_pipeline_path, class: "button" do
+            = heroicon "funnel"
+            = t(".new_pipeline")
           = link_to new_user_path, class: "button--primary" do
             = heroicon "pencil-square"
             = t(".get_started")

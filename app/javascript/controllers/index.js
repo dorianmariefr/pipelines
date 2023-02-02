@@ -27,3 +27,9 @@ application.register("phone-numbers", PhoneNumbersController)
 
 import ShowController from "./show_controller"
 application.register("show", ShowController)
+
+import SourceController from "./source_controller"
+application.register("source", SourceController)
+
+import SourcesController from "./sources_controller"
+application.register("sources", SourcesController)

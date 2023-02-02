@@ -1,19 +1,16 @@
-= link_to pipeline, class: "inline-flex flex-col rounded-lg border hover:border-green-600 focus:border-blue-600 no-underline overflow-hidden p-4" do
-  .text-sm.mb-2
-    - if pipeline.user.avatar.attached?
-      => image_tag pipeline.user.avatar, class: "w-5 h-5 m-0 inline-block rounded", width: 20, height: 20
-    = pipeline.user.name
-  .mb-2= pipeline.to_s
-  - pipeline.sources.group_by(&:name).each do |name, sources|
-    .text-gray-600.text-sm.mb-2
+.card
+  h4= link_to pipeline.name.presence || pipeline.id, pipeline, class: "underline"
+
+  .p.text-gray-600
+    - pipeline.sources.group_by(&:name).each do |name, sources|
       => name
       - if sources.size > 1
         ' x #{sources.size}
-      ' →
 
-  - pipeline.destinations.group_by(&:name).each do |name, destinations|
-    .text-gray-600.text-sm.mb-2
-      ' →
+    - if pipeline.destinations.any?
+      => t(".to")
+
+    - pipeline.destinations.group_by(&:name).each do |name, destinations|
       => name
       - if destinations.size > 1
         ' x #{destinations.size}

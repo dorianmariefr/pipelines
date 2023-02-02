@@ -63,4 +63,44 @@ module ApplicationHelper
   def admin?
     current_user&.admin?
   end
+
+  def source_kind_options
+    Source::KINDS
+      .flat_map do |first_kind, first_value|
+        first_value.map do |second_kind, _|
+          [
+            t("sources.model.kinds.#{first_kind}.#{second_kind}"),
+            "#{first_kind}/#{second_kind}"
+          ]
+        end
+      end
+  end
+
+  def destination_kind_options
+    Destination::KINDS.map do |kind, _|
+      [t("destinations.model.kinds.#{kind}"), kind]
+    end
+  end
+
+  def filter_type_options
+    Source::FILTER_TYPES.map do |filter_type|
+      [t("sources.model.filter_types.#{filter_type}"), filter_type]
+    end
+  end
+
+  def source_key_options(subclass)
+    subclass.keys.map { |key| [key, key] }
+  end
+
+  def source_transform_options
+    Source::TRANSFORMS.map do |transform|
+      [t("sources.model.transforms.#{transform}"), transform]
+    end
+  end
+
+  def source_operator_options
+    Source::OPERATORS.map do |operator|
+      [t("sources.model.operators.#{operator}"), operator]
+    end
+  end
 end
