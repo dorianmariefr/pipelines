@@ -40,13 +40,8 @@ class PipelinesController < ApplicationController
   end
 
   def duplicate
-    @new_pipeline = @pipeline.duplicate_for(current_user)
-
-    if @new_pipeline.save
-      redirect_to @new_pipeline, notice: t(".notice")
-    else
-      redirect_back(fallback_location: @pipeline, alert: @new_pipeline.alert)
-    end
+    @pipeline = @pipeline.duplicate_for(current_user)
+    build_pipeline
   end
 
   def new
@@ -146,7 +141,7 @@ class PipelinesController < ApplicationController
   def build_pipeline
     @pipeline.sources.build if @pipeline.sources.none?
     @pipeline.destinations.build if @pipeline.destinations.none?
-    @pipeline.user = current_user || User.new
+    @pipeline.user = @pipeline.user || current_user || User.new
     return if current_user
     @pipeline.user.emails.build if @pipeline.user.emails.none?
     @pipeline.user.phone_numbers.build if @pipeline.user.phone_numbers.none?

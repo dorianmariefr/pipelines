@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :pipelines do
     post :process_now
-    post :duplicate
+    get :duplicate
 
     resources :items, only: :index do
       delete :destroy_all, on: :collection

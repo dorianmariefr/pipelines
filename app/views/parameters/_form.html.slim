@@ -1,4 +1,4 @@
 - subclass.parameters_for(current_user).each do |parameter|
   = f.fields_for :parameters, [Parameter.new] do |parameter_f|
     = parameter_f.hidden_field :key, value: parameter[:name]
-    = render "shared/field", f: parameter_f, type: parameter[:type], options: parameter[:options], scope: :parameter, name: :value, translation_name: parameter[:name], required: parameter[:required], value: f.object.params[parameter[:name]] || parameter[:default], fake: parameter[:fakes].present? ? gray(eg(or_sentence(parameter[:fakes]))) : nil
+    = render "shared/field", f: parameter_f, type: parameter[:type], options: parameter[:options], scope: :parameter, name: :value, translation_name: parameter[:name], required: parameter[:required], value: f.object.params[parameter[:name]] || parameter[:default], fake: parameter[:fakes].present? ? gray(eg(or_sentence(parameter[:fakes]))) : nil, autocomplete: parameter[:autocomplete], data_form_type: parameter[:data_form_type]

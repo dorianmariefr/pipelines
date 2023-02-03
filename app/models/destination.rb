@@ -1,4 +1,16 @@
 class Destination < ApplicationRecord
+  class NotVerifiedEmail < StandardError
+    def message
+      I18n.t("errors.not_verified_email")
+    end
+  end
+
+  class NotOwnEmail < StandardError
+    def message
+      I18n.t("errors.not_own_email")
+    end
+  end
+
   KINDS = {
     hourly_email_digest: "Destination::HourlyEmailDigest",
     daily_email_digest: "Destination::DailyEmailDigest",
@@ -37,11 +49,13 @@ class Destination < ApplicationRecord
   end
 
   def send_now(items = [])
+    check_if_verified_own_email!
     subclass.send_now(items)
     Destination::Result.new(sent_items: items.presence || subclass.items)
   end
 
   def send_later(items = [])
+    check_if_verified_own_email!
     SendToDestinationJob.perform_later(destination: self, items: items)
     Destination::Result.new(sent_items: items.presence || subclass.items)
   end
@@ -58,6 +72,18 @@ class Destination < ApplicationRecord
     destination.parameters =
       parameters.map { |parameter| parameter.duplicate_for(user) }
     destination
+  end
+
+  def check_if_verified_own_email!
+    if (email = user.emails.find_by_normalized_email(params[:to]))
+      if email.verified?
+        nil
+      else
+        raise NotVerifiedEmail
+      end
+    else
+      raise NotOwnEmail
+    end
   end
 
   def as_json(...)

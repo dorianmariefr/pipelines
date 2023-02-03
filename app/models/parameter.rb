@@ -5,7 +5,7 @@ class Parameter < ApplicationRecord
 
   def duplicate_for(user)
     if key == TO
-      Parameter.new(key: key, value: user.emails.first.email)
+      Parameter.new(key: key, value: user&.emails&.first&.email)
     else
       Parameter.new(key: key, value: value)
     end

@@ -73,7 +73,9 @@ class Destination
             end
           ),
         fakes: fake_tos,
-        required: true
+        required: true,
+        autocomplete: :email,
+        data_form_type: :email
       }
     end
 

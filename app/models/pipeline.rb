@@ -16,10 +16,12 @@ class Pipeline < ApplicationRecord
   scope :published, -> { where(published: true) }
 
   def process_now
-    source_results = sources.map(&:fetch)
+    source_results = []
     destination_results = []
 
-    Pipeline.transaction do
+    ApplicationRecord.transaction do
+      source_results = sources.map(&:fetch)
+
       destinations.each do |destination|
         source_results.each do |source_result|
           if source_result.saved_items.any?
@@ -46,9 +48,9 @@ class Pipeline < ApplicationRecord
   end
 
   def process_later
-    source_results = sources.map(&:fetch)
+    ApplicationRecord.transaction do
+      source_results = sources.map(&:fetch)
 
-    Pipeline.transaction do
       destinations.instant.each do |destination|
         source_results.each do |source_result|
           if source_result.saved_items.any?
@@ -64,7 +66,7 @@ class Pipeline < ApplicationRecord
   end
 
   def duplicate_for(user)
-    pipeline = Pipeline.new(name: name, published: false, user: user)
+    pipeline = Pipeline.new(name: name, published: published?, user: user)
     pipeline.sources = sources.map { |source| source.duplicate_for(user) }
     pipeline.destinations =
       destinations.map { |destination| destination.duplicate_for(user) }

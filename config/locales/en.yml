@@ -172,6 +172,8 @@ en:
     verification_email:
       subject: Verify your email (%{verification_code})
   emails:
+    show:
+      title: Verify your email
     nested:
       add_email: Add email
     destroy:
@@ -198,7 +200,8 @@ en:
       alert: Wrong verification code
       notice: Email verified
   errors:
-    not_own: Not your own
+    not_verified_email: You didn't verify this email address
+    not_own_email: You didn't add this email address to the list of your email addresses
   items:
     hacker_news:
       news:
@@ -344,6 +347,8 @@ en:
       submit: Reset password
       title: Reset your password
   phone_numbers:
+    show:
+      title: Verify your phone number
     nested:
       add_phone_number: Add phone number
     form:
@@ -377,7 +382,8 @@ en:
     destroy:
       notice: Pipeline deleted
     duplicate:
-      notice: You have successfully duplicated this pipeline
+      title: Duplicate pipeline
+      submit: Create pipeline
     edit:
       title: Edit pipeline
       submit: Update pipeline

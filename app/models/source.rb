@@ -72,6 +72,8 @@ class Source < ApplicationRecord
       )
 
     source.items = items.map { |item| item.duplicate_for(user) }
+    source.parameters =
+      parameters.map { |parameter| parameter.duplicate_for(user) }
     source
   end
 
