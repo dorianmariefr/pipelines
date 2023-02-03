@@ -30,7 +30,9 @@ hr.mb-4
 
   hr.mb-4
 
-h2= t(".public_pipelines")
+h2.flex.items-center.gap-2
+  = t(".public_pipelines")
+  = heroicon "globe-alt"
 
 .grids= render @published_pipelines
 

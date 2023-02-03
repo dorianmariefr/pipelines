@@ -1,5 +1,0 @@
-app/views/users/_form.html.slim
-app/views/users/_user.html.slim
-app/views/users/edit.html.slim
-app/views/users/new.html.slim
-app/views/users/show.html.slim

@@ -1,5 +1,7 @@
 .card
-  h4= link_to pipeline.name.presence || pipeline.id, pipeline
+  h4.flex.gap-2.items-center
+    = link_to pipeline.name.presence || pipeline.id, pipeline
+    = heroicon "globe-alt" if pipeline.published?
 
   .p.text-gray-600
     - pipeline.sources.group_by(&:name).each do |name, sources|

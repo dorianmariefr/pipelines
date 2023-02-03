@@ -1,9 +1,12 @@
 ### Later
 
-- Ruby on Rails pipelines
+- downcase on filter description
 - Duplicate pipeline
 - video
 - inline video
+- item belong to pipeline and are unique by pipeline
+- verify email of destination
+- sentry
 
 ### Integrations
 
