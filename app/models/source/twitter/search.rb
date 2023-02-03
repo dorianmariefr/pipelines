@@ -2,6 +2,7 @@ class Source
   class Twitter
     class Search
       EXPIRES_IN = 1.minute
+      TWEET_MODE = :extended
 
       RESULT_TYPE_DEFAULT = "recent"
       RESULT_TYPE_OPTIONS =
@@ -24,7 +25,7 @@ class Source
 
       def self.parameters_for(user)
         [
-          { name: :query, type: :string, required: true, fakes: fake_queries },
+          {name: :query, type: :string, required: true, fakes: fake_queries},
           {
             name: :result_type,
             type: :list,
@@ -81,7 +82,7 @@ class Source
             expires_in: EXPIRES_IN
           ) do
             client
-              .search(query, result_type: result_type)
+              .search(query, result_type: result_type, tweet_mode: TWEET_MODE)
               .take(limit.to_i)
               .map { |tweet| Tweet.new(tweet) }
           end

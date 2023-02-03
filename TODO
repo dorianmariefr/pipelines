@@ -3,9 +3,9 @@
 - Duplicate pipeline
 - video
 - inline video
-- item belong to pipeline and are unique by pipeline
 - verify email of destination
 - sentry
+- item belong to pipeline and are unique by pipeline
 
 ### Integrations
 

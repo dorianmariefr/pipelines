@@ -14,10 +14,10 @@ class Source
 
         def extras(render: true)
           {
-            summary: tweet.text,
+            summary: tweet.full_text,
             id: tweet.id.to_s,
             url: url,
-            text: tweet.text,
+            text: tweet.full_text,
             created_at: tweet.created_at,
             quote?: tweet.quoted_status?,
             retweets: tweet.retweet_count,
