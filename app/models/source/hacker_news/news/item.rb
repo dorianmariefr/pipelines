@@ -13,6 +13,7 @@ class Source
 
         def extras
           {
+            summary: title,
             id: external_id,
             title: title,
             host: host,
@@ -26,13 +27,10 @@ class Source
             keywords: keywords,
             score: score,
             age: age,
-            comments_count: comments_count,
+            comments: comments,
             comments_url: comments_url,
             user_id: user_id,
-            user_url: user_url,
-            summary: title,
-            to_text: to_text,
-            to_html: to_html
+            user_url: user_url
           }
         end
 
@@ -104,7 +102,7 @@ class Source
           subtext.at_css(".age").attribute("title")
         end
 
-        def comments_count
+        def comments
           subtext.at_css(".subline > a:last-child")&.text&.to_i
         end
 

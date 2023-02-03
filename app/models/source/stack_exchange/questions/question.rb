@@ -12,8 +12,8 @@ class Source
 
         def extras
           {
-            summary: summary,
-            title: question.title,
+            summary: title,
+            title: title,
             url: question.link,
             tags: question.tags,
             owner_account_id: owner.account_id,
@@ -30,9 +30,7 @@ class Source
             last_activity_date: question.last_activity_date,
             creation_date: question.creation_date,
             question_id: question.question_id,
-            content_license: question.content_license,
-            to_text: to_text,
-            to_html: to_html
+            content_license: question.content_license
           }
         end
 
@@ -42,27 +40,8 @@ class Source
 
         delegate :owner, to: :question
 
-        def summary
-          question.title
-        end
-
-        def to_text
-          <<~TEXT
-            #{question.title}
-
-            #{question.link}
-          TEXT
-        end
-
-        def to_html
-          ApplicationController.render(
-            partial: "stack_exchange/question",
-            layout: "",
-            locals: {
-              title: question.title,
-              url: question.link
-            }
-          )
+        def title
+          HTMLEntities.new.decode(question.title)
         end
       end
     end

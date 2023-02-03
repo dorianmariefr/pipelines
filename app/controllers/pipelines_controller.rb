@@ -26,7 +26,7 @@ class PipelinesController < ApplicationController
   def process_now
     pipeline_result = @pipeline.process_now
 
-    if pipeline_result.errors?
+    if pipeline_result.error?
       redirect_back(
         fallback_location: @pipeline,
         alert: t(".alert", result: pipeline_result.to_s)

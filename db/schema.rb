@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_02_191050) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_102456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,7 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_191050) do
     t.string "kind", default: "daily_email_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "error"
     t.index ["pipeline_id"], name: "index_destinations_on_pipeline_id"
   end
 
@@ -158,6 +157,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_191050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.text "error"
+    t.text "backtrace"
     t.index ["slug"], name: "index_pipelines_on_slug", unique: true
     t.index ["user_id"], name: "index_pipelines_on_user_id"
   end
@@ -168,7 +169,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_191050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "filter", default: "", null: false
-    t.text "error"
     t.string "key"
     t.string "operator", default: "includes"
     t.string "value"

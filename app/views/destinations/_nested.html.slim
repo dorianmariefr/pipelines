@@ -7,4 +7,4 @@ div(data-controller="destinations")
     = render "destinations/form", f: destination_f
 
   p(data-destinations-target="add")
-    = link_to t(".add_destination"), "#", data: { action: "destinations#add" }, class: "underline"
+    = link_to t(".add_destination"), "#", data: { action: "destinations#add" }

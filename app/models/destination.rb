@@ -38,11 +38,6 @@ class Destination < ApplicationRecord
 
   def send_now(items = [])
     subclass.send_now(items)
-  rescue => e
-    update!(error: "#{e.class}: #{e.message}")
-    Destination::Result.new(error: e.message)
-  else
-    update!(error: nil) if items.any? || subclass.items.any?
     Destination::Result.new(sent_items: items.presence || subclass.items)
   end
 

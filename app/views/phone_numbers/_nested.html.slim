@@ -7,4 +7,4 @@ div(data-controller="phone-numbers")
     = render "phone_numbers/form", f: phone_number_f
 
   p(data-phone-numbers-target="add")
-    = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }, class: "underline"
+    = link_to t(".add_phone_number"), "#", data: { action: "phone-numbers#add" }

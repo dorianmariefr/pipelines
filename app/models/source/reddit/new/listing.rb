@@ -12,11 +12,15 @@ class Source
 
         def extras
           {
-            summary: summary,
+            summary: data.title,
             title: data.title,
             kind: listing.kind,
             subreddit: data.subreddit,
+            subreddit_url: subreddit_url,
+            comments_url: comments_url,
+            permalink: data.permalink,
             subreddit_type: data.subreddit_type,
+            comments: data.num_comments,
             ups: data.ups,
             downs: data.downs,
             score: data.score,
@@ -24,9 +28,7 @@ class Source
             selftext_html: data.selftext_html,
             views: data.view_count,
             url: data.url,
-            id: data.id,
-            to_text: to_text,
-            to_html: to_html
+            id: data.id
           }
         end
 
@@ -36,27 +38,12 @@ class Source
 
         delegate :data, to: :listing
 
-        def summary
-          data.title
+        def subreddit_url
+          "#{BASE_URL}/r/#{data.subreddit}"
         end
 
-        def to_text
-          <<~TEXT
-            #{data.title}
-
-            #{data.url}
-          TEXT
-        end
-
-        def to_html
-          ApplicationController.render(
-            partial: "reddit/listing",
-            layout: "",
-            locals: {
-              title: data.title,
-              url: data.url
-            }
-          )
+        def comments_url
+          "#{BASE_URL}#{data.permalink}"
         end
       end
     end

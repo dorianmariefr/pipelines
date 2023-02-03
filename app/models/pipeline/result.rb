@@ -40,35 +40,13 @@ class Pipeline
       I18n.t("pipelines.result.sent_items", count: sent_items.size)
     end
 
-    def errors?
-      errors.any?
-    end
-
-    def source_errors
-      source_results
-        .map(&:error)
-        .compact
-        .map do |source_error|
-          I18n.t("pipelines.result.source_error", error: source_error)
-        end
-    end
-
-    def destination_errors
-      destination_results
-        .map(&:error)
-        .compact
-        .map do |destination_error|
-          I18n.t("pipelines.result.destination_error", error: destination_error)
-        end
-    end
-
-    def errors
-      [error, source_errors, destination_errors].flatten.compact
+    def error?
+      error.present?
     end
 
     def to_s
-      if errors?
-        errors.to_sentence
+      if error?
+        error
       else
         [
           new_items_to_s,

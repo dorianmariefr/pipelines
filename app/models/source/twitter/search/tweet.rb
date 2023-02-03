@@ -12,8 +12,9 @@ class Source
           tweet.id.to_s
         end
 
-        def extras
+        def extras(render: true)
           {
+            summary: tweet.text,
             id: tweet.id.to_s,
             url: url,
             text: tweet.text,
@@ -39,10 +40,7 @@ class Source
             user_tweets: user.statuses_count,
             user_background_image_url:
               user.profile_background_image_url_https.to_s,
-            user_image_url: user.profile_image_url_https.to_s,
-            summary: summary,
-            to_text: to_text,
-            to_html: to_html
+            user_image_url: user.profile_image_url_https.to_s
           }
         end
 
@@ -66,29 +64,6 @@ class Source
 
         def user_url
           "#{BASE_URL}/#{user.screen_name}"
-        end
-
-        def summary
-          tweet.text
-        end
-
-        def to_text
-          <<~TEXT
-            #{tweet.text}
-
-            #{url}
-          TEXT
-        end
-
-        def to_html
-          ApplicationController.render(
-            partial: "twitter/tweet",
-            layout: "",
-            locals: {
-              title: tweet.text,
-              url: url
-            }
-          )
         end
       end
     end

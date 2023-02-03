@@ -29,8 +29,6 @@ class Source
           comments_url
           user_id
           user_url
-          to_text
-          to_html
         ]
       end
 

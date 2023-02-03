@@ -1,0 +1,6 @@
+.card
+  ' ↑
+  => item.score
+  => link_to item.title, item.url
+  => link_to "r/#{item.subreddit}", item.subreddit_url
+  => link_to t(".comments", count: item.comments), item.comments_url

@@ -5,10 +5,10 @@ footer.container.border-t
       = t(".title")
 
   p
-    => link_to t(".terms"), terms_path, class: "underline"
+    => link_to t(".terms"), terms_path
 
   p
-    => link_to t(".privacy"), privacy_path, class: "underline"
+    => link_to t(".privacy"), privacy_path
 
   p
     = t(".copyright", year: Date.current.year)

@@ -7,4 +7,4 @@ div(data-controller="sources")
     = render "sources/form", f: source_f
 
   p(data-sources-target="add")
-    = link_to t(".add_source"), "#", data: { action: "sources#add" }, class: "underline"
+    = link_to t(".add_source"), "#", data: { action: "sources#add" }

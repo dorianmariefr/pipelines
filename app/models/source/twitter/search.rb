@@ -68,8 +68,6 @@ class Source
           user_tweets
           user_background_image_url
           user_image_url
-          to_text
-          to_html
         ]
       end
 

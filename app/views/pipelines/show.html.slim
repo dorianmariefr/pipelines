@@ -12,6 +12,10 @@
   - if current_user
     .p= button_to t(".duplicate"), [@pipeline, :duplicate], method: :post
 
+- if can?(:process_now, @pipeline) && @pipeline.error.present?
+  p.text-red-600= @pipeline.error
+  = simple_format @pipeline.backtrace
+
 = render "users/user", user: @pipeline.user, size: :small
 
 - @sources.each do |source|
@@ -29,9 +33,8 @@
   .text-center.mb-4
     = paginate @items
 
-  .grid.grid-cols-1.sm:grid-cols-2.lg:grid-cols-3.gap-4
-    - @items.each do |item|
-      = render "items/item", item: item
+  - @items.each do |item|
+    = render "items/item", item: item
 
   .text-center.mb-4
     = paginate @items

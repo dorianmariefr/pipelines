@@ -1,10 +1,3 @@
-app/views/destinations/_destination.html.slim
-app/views/email_mailer/html_email.html.slim
-app/views/email_mailer/rich_email.html.slim
-app/views/email_mailer/verification_email.html.slim
-app/views/emails/_email.html.slim
-app/views/emails/_form.html.slim
-app/views/emails/show.html.slim
 app/views/items/_item.html.slim
 app/views/items/index.html.slim
 app/views/items/index.rss.builder

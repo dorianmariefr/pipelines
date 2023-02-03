@@ -17,6 +17,10 @@ class Source
           .split
           .map { |site| [site, site] }
 
+      def initialize(source)
+        @source = source
+      end
+
       def self.tags
         File.read(Rails.root.join("lib", "data", "tags.txt")).split
       end
@@ -55,8 +59,6 @@ class Source
           creation_date
           question_id
           content_license
-          to_text
-          to_html
         ]
       end
 

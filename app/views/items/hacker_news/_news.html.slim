@@ -1,0 +1,5 @@
+.card
+  => t(".points", count: item.score)
+  => link_to item.title, item.url
+  => link_to item.user_id, item.user_url
+  => link_to t(".comments", count: item.comments), item.comments_url

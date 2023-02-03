@@ -1,5 +1,5 @@
 .card
-  h4= link_to pipeline.name.presence || pipeline.id, pipeline, class: "underline"
+  h4= link_to pipeline.name.presence || pipeline.id, pipeline
 
   .p.text-gray-600
     - pipeline.sources.group_by(&:name).each do |name, sources|

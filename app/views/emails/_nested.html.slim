@@ -7,4 +7,4 @@ div(data-controller="emails")
     = render "emails/form", f: email_f
 
   p(data-emails-target="add")
-    = link_to t(".add_email"), "#", data: { action: "emails#add" }, class: "underline"
+    = link_to t(".add_email"), "#", data: { action: "emails#add" }

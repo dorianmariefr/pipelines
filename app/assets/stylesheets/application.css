@@ -10,14 +10,14 @@
 button,
 [type="submit"] {
   @apply inline-flex items-center gap-2;
-  @apply px-4 py-2 rounded;
+  @apply px-4 py-2 rounded no-underline;
   @apply bg-gray-100 hover:bg-gray-200 focus:bg-gray-300;
   @apply hover:cursor-pointer;
 }
 
 .button--primary {
   @apply inline-flex items-center gap-2;
-  @apply px-4 py-2 rounded;
+  @apply px-4 py-2 rounded no-underline;
   @apply text-white;
   @apply bg-green-600 hover:bg-green-700 focus:bg-green-800;
   @apply hover:cursor-pointer;
@@ -25,7 +25,7 @@ button,
 
 .button--red {
   @apply inline-flex items-center gap-2;
-  @apply px-4 py-2 rounded;
+  @apply px-4 py-2 rounded no-underline;
   @apply text-white;
   @apply bg-red-600 hover:bg-red-700 focus:bg-red-800;
   @apply hover:cursor-pointer;
@@ -63,10 +63,6 @@ h4 {
   @apply border-l pl-4 my-4 border-black;
 }
 
-.prose a {
-  @apply underline;
-}
-
 label {
   @apply block;
 }
@@ -82,4 +78,8 @@ select {
 
 textarea {
   @apply min-h-[10rem];
+}
+
+a {
+  @apply underline;
 }

@@ -194,6 +194,42 @@ en:
   errors:
     not_own: Not your own
   items:
+    hacker_news:
+      news:
+        comments:
+          zero: 0 comments
+          one: 1 comment
+          other: "%{count} comments"
+        points:
+          zero: 0 points
+          one: 1 point
+          other: "%{count} points"
+    stack_exchange:
+      questions:
+        answers:
+          zero: 0 answers
+          one: 1 answer
+          other: "%{count} answers"
+        views:
+          zero: 0 views
+          one: 1 view
+          other: "%{count} views"
+    reddit:
+      new:
+        comments:
+          zero: 0 comments
+          one: 1 comment
+          other: "%{count} comments"
+    twitter:
+      search:
+        retweets:
+          zero: 0 retweets
+          one: 1 retweet
+          other: "%{count} retweets"
+        likes:
+          zero: 0 likes
+          one: 1 like
+          other: "%{count} likes"
     destroy:
       notice: Item deleted
     destroy_all:
@@ -350,10 +386,9 @@ en:
       title: New pipeline
       submit: Create pipeline
     process_now:
-      alert: There was an error processing your pipeline
+      alert: There was an error processing your pipeline (%{result})
       notice: Your pipeline has been processed (%{result})
     result:
-      destination_error: "Destination error: %{error}"
       matched_items:
         one: 1 matched item
         other: "%{count} matched items"
@@ -370,7 +405,6 @@ en:
         one: 1 sent item
         other: "%{count} sent items"
         zero: 0 sent items
-      source_error: "Source error: %{error}"
     show:
       by: By
       delete: Delete pipeline

@@ -2,7 +2,7 @@ class Destination
   class EmailDigest < Email
     SUBJECT_DEFAULT = "{items.first.summary}"
     BODY_DEFAULT = <<~HTML
-      {puts(items.map(&:to_html))}
+      {items.each { |item| puts(item.to_html) } nothing}
 
       <a href="{pipeline.url}">{pipeline.url}</a>
     HTML

@@ -1,10 +1,9 @@
 class Destination
   class Result
-    attr_reader :sent_items, :error
+    attr_reader :sent_items
 
-    def initialize(sent_items: [], error: nil)
+    def initialize(sent_items: [])
       @sent_items = sent_items
-      @error = error
     end
   end
 end

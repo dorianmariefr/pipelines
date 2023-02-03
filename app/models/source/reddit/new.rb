@@ -36,8 +36,6 @@ class Source
           views
           url
           id
-          to_text
-          to_html
         ]
       end
 

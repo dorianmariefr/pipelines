@@ -166,14 +166,6 @@ class Source < ApplicationRecord
       end
     result.matched_items = result.new_items.select { |item| match(item) }
     result.saved_items = result.matched_items.select(&:save)
-  rescue => e
-    update!(
-      error: "#{e.class}: #{e.message}",
-      backtrace: e.backtrace.grep(/#{Rails.root}/).join("\n")
-    )
-    Source::Result.new(error: e.message)
-  else
-    update!(error: nil, backtrace: nil)
     result
   end
 end
