@@ -28,7 +28,9 @@
   p= link_to t(".edit"), [:edit, @pipeline], class: "button"
 
 - if can? :destroy, @pipeline
-  .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--red"
+  .p= button_to t(".delete"), @pipeline, method: :delete, class: "button--red", data: { turbo_confirm: t(".confirm") }
+
+p= link_to t(".rss"), pipeline_path(@pipeline, format: :rss), class: "button"
 
 - if @items.any?
   .text-center.mb-4

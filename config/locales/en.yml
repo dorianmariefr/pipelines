@@ -412,6 +412,8 @@ en:
         other: "%{count} sent items"
         zero: 0 sent items
     show:
+      confirm: Are you sure you want to delete this pipeline?
+      rss: RSS feed
       by: By
       delete: Delete pipeline
       delete_all_items: Delete all items

@@ -39,6 +39,34 @@ class Item < ApplicationRecord
     Struct.new(*extras.symbolize_keys.keys).new(*extras.values)
   end
 
+  def rss_title
+    summary
+  end
+
+  def rss_description
+    to_html
+  end
+
+  def rss_pub_date
+    created_at.to_formatted_s(:rfc822)
+  end
+
+  def rss_link
+    url
+  end
+
+  def rss_guid
+    id
+  end
+
+  def summary
+    to_struct.summary
+  end
+
+  def url
+    to_struct.url
+  end
+
   def as_json(...)
     {
       **extras,
