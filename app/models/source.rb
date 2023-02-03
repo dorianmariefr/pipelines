@@ -60,7 +60,17 @@ class Source < ApplicationRecord
   end
 
   def duplicate_for(user)
-    source = Source.new(kind: kind, filter: filter)
+    source =
+      Source.new(
+        kind: kind,
+        filter_type: filter_type,
+        key: key,
+        transform: transform,
+        operator: operator,
+        value: value,
+        filter: filter
+      )
+
     source.items = items.map { |item| item.duplicate_for(user) }
     source
   end
@@ -82,6 +92,11 @@ class Source < ApplicationRecord
 
   def translated_operator
     I18n.t("sources.model.operators.#{operator}")
+  end
+
+  def translated_transform
+    return if transform == NONE
+    I18n.t("sources.model.transforms.#{transform}")
   end
 
   def none?
@@ -123,7 +138,7 @@ class Source < ApplicationRecord
   def simple_filter
     return if key.blank? || operator.blank? || value.blank?
 
-    "#{key} #{translated_operator} #{value}"
+    [key, translated_transform, translated_operator, value].compact.join(" ")
   end
 
   def match(item)
