@@ -51,8 +51,6 @@ class Destination
 
     private
 
-    delegate :pipeline, to: :destination
-
     def as_json(...)
       {items: items, pipeline: pipeline}.as_json(...)
     end

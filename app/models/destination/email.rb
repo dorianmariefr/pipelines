@@ -110,14 +110,20 @@ class Destination
 
     attr_reader :destination
 
-    delegate :params, to: :destination
+    delegate :params, :pipeline, to: :destination
 
     def subject(item)
-      Template.render(params[:subject], ruby: {item: item.as_json})
+      Template.render(
+        params[:subject],
+        ruby: {item: item, pipeline: pipeline}.as_json
+      )
     end
 
     def body(item)
-      Template.render(params[:body], ruby: {item: item.as_json})
+      Template.render(
+        params[:body],
+        ruby: {item: item, pipeline: pipeline}.as_json
+      )
     end
 
     def to
