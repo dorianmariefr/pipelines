@@ -92,6 +92,12 @@ en:
         password:
           label: Your password
           hint_html: Preferably a generated one that you can keep in your password manager
+        time_zone:
+          label: Time zone
+          hint_html: What's the time zone you are in currently?
+        avatar:
+          label: Avatar
+          hint_html: An image to show yourself to other users if your profile is public
       source:
         kind:
           label: Where does the information come from?

@@ -65,15 +65,14 @@ module ApplicationHelper
   end
 
   def source_kind_options
-    Source::KINDS
-      .flat_map do |first_kind, first_value|
-        first_value.map do |second_kind, _|
-          [
-            t("sources.model.kinds.#{first_kind}.#{second_kind}"),
-            "#{first_kind}/#{second_kind}"
-          ]
-        end
+    Source::KINDS.flat_map do |first_kind, first_value|
+      first_value.map do |second_kind, _|
+        [
+          t("sources.model.kinds.#{first_kind}.#{second_kind}"),
+          "#{first_kind}/#{second_kind}"
+        ]
       end
+    end
   end
 
   def destination_kind_options
@@ -102,5 +101,12 @@ module ApplicationHelper
     Source::OPERATORS.map do |operator|
       [t("sources.model.operators.#{operator}"), operator]
     end
+  end
+
+  def time_zone_options
+    ActiveSupport::TimeZone
+      .all
+      .sort_by(&:name)
+      .map { |time_zone| [time_zone.name, time_zone.name] }
   end
 end

@@ -4,6 +4,8 @@
       = render "shared/field", f: user_f, name: :name, scope: :user, fake: fake_user_names, autocomplete: "name", data_form_type: "name"
       = render "emails/nested", f: user_f
       = render "phone_numbers/nested", f: user_f
+      = render "shared/field", f: user_f, name: :time_zone, scope: :user, fake: fake_time_zones, type: :time_zone, options: time_zone_options
+      = render "shared/field", f: user_f, name: :avatar, scope: :user, type: :file
       = render "shared/field", f: user_f, name: :password, scope: :user, fake: fake_passwords, type: :password, autocomplete: "new-password", data_form_type: "password,new"
 
   = render "shared/field", f: f, name: :name, scope: :pipeline, fake: fake_pipeline_names

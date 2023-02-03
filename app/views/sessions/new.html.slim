@@ -10,60 +10,20 @@
   h3= t(".log_in_with_email")
 
   = form_for :session, url: session_path do |f|
-    .p(data-controller="email")
-      = f.label :email, t(".email")
-      = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }, value: email_param
-      .text-red-600(data-email-target="error")
-      = fake_emails
-
-    .p(data-controller="password")
-      = f.label :password, t(".password")
-      .flex.gap-2.items-center
-        = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
-        = link_to "#", data: { password_target: "show", action: "password#show" } do
-          = heroicon "eye"
-          .sr-only= t(".show_password")
-        = link_to "#", data: { password_target: "hide", action: "password#hide" } do
-          = heroicon "eye-slash"
-          .sr-only= t(".hide_password")
-      .text-red-600(data-password-target="error")
-      = fake_passwords
-
+    = render "shared/field", f: f, name: :email, scope: :email, type: :email, fake: fake_emails, value: email_param, autocomplete: "email", data_form_type: "email"
+    = render "shared/field", f: f, name: :password, scope: :user, type: :password, fake: fake_passwords, value: password_param, autocomplete: "current-password", data_form_type: "password"
     p= f.submit t(".submit"), class: "button--primary"
 
 h3= t(".log_in_with_phone_number")
 
 = form_for :session, url: session_path do |f|
-  .p(data-controller="phone")
-    = f.hidden_field :phone_number, data: { phone_target: "hidden" }, value: phone_number_param
-    = label_tag :phone_number_national, t(".phone_number")
-    div
-      = telephone_field_tag :phone_number_national, "", required: true, autocomplete: "tel-national", data: { phone_target: "input" }, value: params[:phone_number_national]
-    .text-red-600(data-phone-target="error")
-    = fake_phone_numbers
-
-  .p(data-controller="password")
-    = f.label :password, t(".password")
-    .flex.gap-2.items-center
-      = f.password_field :password, autocomplete: "current-password", required: true, data: { password_target: "input" }, value: password_param
-      = link_to "#", data: { password_target: "show", action: "password#show" } do
-        = heroicon "eye"
-        .sr-only= t(".show_password")
-      = link_to "#", data: { password_target: "hide", action: "password#hide" } do
-        = heroicon "eye-slash"
-        .sr-only= t(".hide_password")
-    .text-red-600(data-password-target="error")
-    = fake_passwords
-
+  = render "shared/field", f: f, name: :phone_number, scope: :phone_number, type: :phone, fake: fake_phone_numbers, value: phone_number_param, autocomplete: "tel-national", data_form_type: "tel-national"
+  = render "shared/field", f: f, name: :password, scope: :user, type: :password, fake: fake_passwords, value: password_param, autocomplete: "current-password", data_form_type: "password"
   p= f.submit t(".submit"), class: "button--primary"
 
 h3= t(".forgot_your_password")
 
 = form_for :session, url: reset_session_path do |f|
-  .p(data-controller="email")
-    = f.label :email, t(".email")
-    = f.email_field :email, autocomplete: :email, required: true, data: { email_target: "input" }, value: email_param
-    .text-red-600(data-email-target="error")
-    = fake_emails
+  = render "shared/field", f: f, name: :email, scope: :email, type: :email, fake: fake_emails, value: email_param, autocomplete: "email", data_form_type: "email"
 
   p= f.submit t(".send_password_reset")

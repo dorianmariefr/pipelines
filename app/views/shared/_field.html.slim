@@ -61,7 +61,12 @@
         => f.label name, option_text, value: option_value, class: "inline-block #{option_disabled ? "text-gray-600" : ""}"
 
   - elsif type.select?
-    = f.select name, options.map { |option| option + [{ selected: value.to_s == option[1].to_s }] }, data: datas
+    = f.select name, options.map { |option| option + [{ selected: value.to_s == option[1].to_s }] }, {}, data: datas
 
+  - elsif type.time_zone?
+    = f.select name, options.map { |option| option + [{ selected: value.to_s == option[1].to_s }] }, {}, data: { controller: "time-zone", **datas }
+
+  - elsif type.file?
+    = f.file_field name
   .prose.text-gray-600.text-sm= t(".#{scope}.#{translation_name}.hint_html")
   .text-gray-600.text-sm= fake

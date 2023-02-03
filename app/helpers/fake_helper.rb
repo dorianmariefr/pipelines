@@ -41,6 +41,10 @@ module FakeHelper
     gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
   end
 
+  def fake_time_zones
+    gray(eg(or_sentence(ActiveSupport::TimeZone.all.map(&:name).sample(3))))
+  end
+
   def filters
     [
       'title.include?("Ruby")',
