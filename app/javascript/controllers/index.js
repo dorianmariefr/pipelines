@@ -42,3 +42,6 @@ application.register("sources", SourcesController)
 
 import TimeZoneController from "./time_zone_controller"
 application.register("time-zone", TimeZoneController)
+
+import VideoController from "./video_controller"
+application.register("video", VideoController)

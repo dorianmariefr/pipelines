@@ -4,24 +4,28 @@ h1
 
 p
   = t(".subtitle")
-
-p.flex.flex-col.sm:flex-row.gap-4
-  - if current_user
-    => link_to new_pipeline_path, class: "button--primary" do
-      => heroicon "funnel"
-      = t(".new_pipeline")
-  - else
-    => link_to new_user_path, class: "button--primary" do
-      => heroicon "pencil-square"
-      = t(".get_started")
-    => link_to new_pipeline_path, class: "button" do
-      => heroicon "funnel"
-      = t(".new_pipeline")
-  = link_to ENV["VIDEO_URL"], class: "button" do
-    => heroicon "play"
-    = t(".watch_video")
+div(data-controller="video")
+  p.flex.flex-col.sm:flex-row.gap-4
+    - if current_user
+      => link_to new_pipeline_path, class: "button--primary" do
+        => heroicon "funnel"
+        = t(".new_pipeline")
+    - else
+      => link_to new_user_path, class: "button--primary" do
+        => heroicon "pencil-square"
+        = t(".get_started")
+      => link_to new_pipeline_path, class: "button" do
+        => heroicon "funnel"
+        = t(".new_pipeline")
+    = link_to "https://www.youtube.com/embed/7e3ILAcPWkY?rel=0", class: "button", data: { action: "video#open" } do
+      => heroicon "play"
+      = t(".watch_video")
+  a.absolute.inset-0.h-full.w-full.flex.items-center.justify-center.hidden.bg-black/20(data-video-target="modal" data-action="video#close")
+    .absolute.top-5.right-5.bg-white.rounded-full.shadow-xl= heroicon "x-mark", options: { class: "h-10 w-10" }
+    iframe.shadow-xl.w-full.m-4.aspect-video(loading="lazy" src="https://www.youtube.com/embed/7e3ILAcPWkY?rel=0" allowfullscren)
 
 hr.mb-4
+
 
 - if current_user
   h2= t(".your_pipelines")
