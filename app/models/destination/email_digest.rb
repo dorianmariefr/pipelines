@@ -28,6 +28,8 @@ class Destination
     end
 
     def send_now(items)
+      return if items.none?
+
       if body_format.html?
         EmailMailer
           .with(to: to, subject: subject, body: body)
