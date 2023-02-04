@@ -1,7 +1,7 @@
 .card
-  .mb-4.flex.gap-4.items-center
+  .mb-4.flex
     div=> image_tag item.user_image_url, alt: item.user_name, width: 60, height: 60, class: "w-15 h-15 inline-block rounded-full"
-    div
+    .px-4.py-2
       div=> link_to item.user_name, item.user_url
       div= link_to "@#{item.user_handle}", item.user_url
   .prose= simple_format(auto_link(item.text))
