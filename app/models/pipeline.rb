@@ -21,14 +21,11 @@ class Pipeline < ApplicationRecord
 
     ApplicationRecord.transaction do
       source_results = sources.map(&:fetch)
+      saved_items = source_results.map(&:saved_items).flatten
 
-      destinations.each do |destination|
-        source_results.each do |source_result|
-          if source_result.saved_items.any?
-            destination_results << destination.send_now(
-              source_result.saved_items
-            )
-          end
+      if saved_items.any?
+        destinations.each do |destination|
+          destination_results << destination.send_now(saved_items)
         end
       end
 
@@ -50,12 +47,11 @@ class Pipeline < ApplicationRecord
   def process_later
     ApplicationRecord.transaction do
       source_results = sources.map(&:fetch)
+      saved_items = source_results.map(&:saved_items).flatten
 
-      destinations.instant.each do |destination|
-        source_results.each do |source_result|
-          if source_result.saved_items.any?
-            destination.send_later(source_result.saved_items)
-          end
+      if saved_items.any?
+        destinations.instant.each do |destination|
+          destination_results << destination.send_now(saved_items)
         end
       end
 
