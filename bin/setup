@@ -3,4 +3,4 @@
 set -e
 
 bundle install
-rake db:setup
+rake db:create db:schema:load
