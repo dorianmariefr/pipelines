@@ -7,7 +7,8 @@ class Source < ApplicationRecord
       questions: "Source::StackExchange::Questions"
     },
     twitter: {
-      search: "Source::Twitter::Search"
+      search: "Source::Twitter::Search",
+      search_scraper: "Source::Twitter::SearchScraper"
     },
     hacker_news: {
       news: "Source::HackerNews::News",
@@ -43,6 +44,11 @@ class Source < ApplicationRecord
   has_many :items, dependent: :destroy
 
   accepts_nested_attributes_for :parameters
+
+  scope :twitter, -> { where("kind like ?", "twitter/%") }
+  scope :reddit, -> { where("kind like ?", "reddit/%") }
+  scope :stack_exchange, -> { where("kind like ?", "stack_exchange/%") }
+  scope :hacker_news, -> { where("kind like ?", "hacker_news/%") }
 
   delegate :as_json, to: :subclass
 

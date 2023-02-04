@@ -1,11 +1,12 @@
 class Source
   class Twitter
-    class Search
+    class SearchScraper
       class Tweet
         BASE_URL = "https://twitter.com"
 
-        def initialize(tweet)
+        def initialize(tweet, users:)
           @tweet = tweet
+          @users = users
         end
 
         def external_id
@@ -54,9 +55,11 @@ class Source
 
         private
 
-        attr_reader :tweet
+        attr_reader :tweet, :users
 
-        delegate :user, to: :tweet
+        def user
+          users[tweet.user_id.to_s]
+        end
 
         def url
           "#{BASE_URL}/#{user.screen_name}/status/#{tweet.id}"

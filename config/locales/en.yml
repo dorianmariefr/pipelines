@@ -526,6 +526,7 @@ en:
           questions: Stack Exchange - Questions
         twitter:
           search: Twitter - Search
+          search_scraper: Twitter - Search (Scraper)
       operators:
         less_than: is less than
         less_than_or_equals: is less than or equal to
