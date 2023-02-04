@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+bundle install
+bundle exec rails test:prepare db:create db:schema:load

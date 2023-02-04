@@ -16,7 +16,7 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
   config.assets.quiet = true
   config.cache_classes = false
-  config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") }
+  config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL")}
   config.consider_all_requests_local = true
   config.eager_load = false
   config.hosts << "dev.pipelines.plumbing"

@@ -1,6 +1,6 @@
 class Sms
   ORIGINATOR = ENV.fetch("MESSAGE_BIRD_ORIGINATOR", "Dorian")
-  ACCESS_KEY = ENV.fetch("MESSAGE_BIRD_ACCESS_KEY")
+  ACCESS_KEY = ENV.fetch("MESSAGE_BIRD_ACCESS_KEY", nil)
   VERIFY_TYPE = "flash"
 
   attr_reader :phone_number
