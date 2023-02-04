@@ -1,14 +1,18 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider(
-    :google_oauth2,
-    Rails.application.credentials.google[:client_id],
-    Rails.application.credentials.google[:client_secret],
-    name: :google
-  )
+  if Rails.application.credentials.google
+    provider(
+      :google_oauth2,
+      Rails.application.credentials.google.client_id,
+      Rails.application.credentials.google.client_secret,
+      name: :google
+    )
+  end
 
-  provider(
-    :facebook,
-    Rails.application.credentials.facebook[:app_id],
-    Rails.application.credentials.facebook[:app_secret]
-  )
+  if Rails.application.credentials.facebook
+    provider(
+      :facebook,
+      Rails.application.credentials.facebook.app_id,
+      Rails.application.credentials.facebook.app_secret
+    )
+  end
 end

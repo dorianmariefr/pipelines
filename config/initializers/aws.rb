@@ -1,4 +1,4 @@
-if Rails.env.production?
+if Rails.application.credentials.aws
   Aws::Rails.add_action_mailer_delivery_method(
     :ses,
     credentials:
