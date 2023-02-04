@@ -22,4 +22,6 @@ jobs:
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v3
+      - name: Setup Pipelines
+        run: bin/setup
       - run: bundle exec rspec
