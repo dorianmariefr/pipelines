@@ -8,10 +8,6 @@ jobs:
     services:
       postgres:
         image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: postgres
-          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
     steps:
@@ -23,7 +19,9 @@ jobs:
           bundler-cache: true
       - name: Setup Node
         uses: actions/setup-node@v3
-      - run: whoami
-      - name: Setup Pipelines
-        run: bin/setup
-      - run: bundle exec rspec
+      - name: Setup application and run tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/pipelines_test
+        run: |
+          bin/setup
+          rspec
