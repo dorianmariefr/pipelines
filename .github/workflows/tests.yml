@@ -8,11 +8,6 @@ jobs:
     services:
       postgres:
         image: postgres:14.6
-        env:
-          POSTGRES_USER: pipelines
-          POSTGRES_DB: pipelines_test
-          POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
