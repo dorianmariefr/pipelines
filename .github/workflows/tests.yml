@@ -8,6 +8,9 @@ jobs:
     services:
       postgres:
         image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
@@ -31,7 +34,7 @@ jobs:
         uses: actions/setup-node@v3
       - name: Setup application and run tests
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/pipelines_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/pipelines_test
         run: |
           bin/setup
           rspec
