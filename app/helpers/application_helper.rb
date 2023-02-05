@@ -28,6 +28,10 @@ module ApplicationHelper
     json_regexp(Email::CODE_REGEXP)
   end
 
+  def mastodon_identifier_regexp
+    json_regexp(Account::MASTODON_IDENTIFIER_REGEXP)
+  end
+
   def initial_country
     en? ? "US" : "FR"
   end
@@ -81,6 +85,10 @@ module ApplicationHelper
     end
   end
 
+  def account_kind_options
+    Account::KINDS.map { |kind, _| [t("accounts.model.kinds.#{kind}"), kind] }
+  end
+
   def filter_type_options
     Source::FILTER_TYPES.map do |filter_type|
       [t("sources.model.filter_types.#{filter_type}"), filter_type]
@@ -108,5 +116,9 @@ module ApplicationHelper
       .all
       .sort_by(&:name)
       .map { |time_zone| [time_zone.name, time_zone.name] }
+  end
+
+  def account_scope_options
+    Account::SCOPES.map { |scope| [scope, scope] }
   end
 end

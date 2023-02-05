@@ -1,5 +1,31 @@
 ---
 en:
+  accounts:
+    model:
+      kinds:
+        mastodon: Mastodon
+    index:
+      title: Accounts
+      new_account: New account
+    new:
+      title: New account
+      submit: Create account
+    edit:
+      title: Edit account
+      submit: Update account
+    create:
+      notice: Account created
+    update:
+      notice: Account updated
+    destroy:
+      notice: Account deleted
+    show:
+      edit: Edit account
+      delete: Delete account
+      authorize: Authorize
+      authorized: Authorized
+    callback:
+      notice: Account authorized
   parameters:
     result_types:
       recent: Recent
@@ -21,7 +47,20 @@ en:
       yes_no:
         "yes": "Yes"
         "no": "No"
+      account:
+        kind:
+          label: Kind
+          hint_html: Which platform are you adding an account for
+        external_id:
+          label: Address
+          hint_html: Full identifier, including username and server
+        scope:
+          label: Scope
+          hint_html: Do you want to authorize read, or read and write access?
       parameter:
+        identifier:
+          label: Identifier
+          hint_html: Your full Mastodon identifier with username and server
         query:
           label: Query
           hint_html: As entered in Twitter search field
@@ -124,12 +163,6 @@ en:
         kind:
           label: Where does the information goes?
           hint_html: How you will receive the information
-  accounts:
-    show:
-      title: Account
-      confirm: Are you sure you want to delete this account?
-      delete: Delete account
-      edit: Edit profile
   application:
     fake:
       eg: e.g. %{string}
@@ -140,7 +173,7 @@ en:
       terms: Terms and conditions
       privacy: Privacy prolicy
     header:
-      account: Account
+      accounts: Accounts
       your_pipelines: Your pipelines
       log_out: Log out
       new_pipeline: New pipeline
@@ -202,7 +235,25 @@ en:
   errors:
     not_verified_email: You didn't verify this email address
     not_own_email: You didn't add this email address to the list of your email addresses
+    account_not_found: You didn't create an account with this identifier
+    account_not_authorized: You didn't authorize an account with this identifier
   items:
+    mastodon:
+      home:
+        boosted: boosted
+      status:
+        replies:
+          zero: 0 replies
+          one: 1 reply
+          other: "%{count} replies"
+        reblogs:
+          zero: 0 reblogs
+          one: 1 reblog
+          other: "%{count} reblogs"
+        favourites:
+          zero: 0 favourites
+          one: 1 favourite
+          other: "%{count} favourites"
     hacker_news:
       news:
         comments:
@@ -249,6 +300,9 @@ en:
     item:
       delete: Delete
   js:
+    mastodon_address:
+      must_be_present: Must be present
+      must_be_valid: Must be valid
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
@@ -527,6 +581,8 @@ en:
         twitter:
           search: Twitter - Search
           search_scraper: Twitter - Search (Scraper)
+        mastodon:
+          home: Mastodon - Home
       operators:
         less_than: is less than
         less_than_or_equals: is less than or equal to
@@ -535,6 +591,12 @@ en:
         greater_than_or_equals: is greater than or equal to
         includes: includes
   users:
+    show:
+      new_account: New account
+      private: Private
+      confirm: Are you sure you want to delete this account?
+      delete: Delete account
+      edit: Edit profile
     create:
       notice: User created, you are now logged in
     destroy:

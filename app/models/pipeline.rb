@@ -7,7 +7,7 @@ class Pipeline < ApplicationRecord
 
   has_many :sources, dependent: :destroy
   has_many :destinations, dependent: :destroy
-  has_many :items, through: :sources
+  has_many :items, dependent: :destroy
 
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :sources, allow_destroy: true

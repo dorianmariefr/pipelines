@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
   get "auth/:provider/callback", to: "sessions#create"
 
-  resource :account
+  resources :accounts do
+    get "mastodon/callback" => "accounts#callback", :on => :collection
+    get "authorize" => "accounts#redirect_authorize"
+  end
 
   resources :users do
     resource :password, only: %i[edit update]

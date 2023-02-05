@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   helper_method :password_param
 
   def show
+    @emails = policy_scope(Email).where(user: @user).order(created_at: :asc)
+    @accounts = policy_scope(Account).where(user: @user).order(created_at: :asc)
+    @phone_numbers =
+      policy_scope(PhoneNumber).where(user: @user).order(created_at: :asc)
     @pipelines =
       policy_scope(Pipeline).where(user: @user).order(created_at: :asc)
   end

@@ -1,0 +1,5 @@
+= form_for account do |f|
+  = render "shared/field", f: f, name: :kind, scope: :account, type: :list, options: account_kind_options
+  = render "shared/field", f: f, name: :external_id, scope: :account, type: :mastodon_identifier, required: true, fake: fake_mastodon_identifiers
+  = render "shared/field", f: f, name: :scope, scope: :account, type: :list, options: account_scope_options
+  p= f.submit submit

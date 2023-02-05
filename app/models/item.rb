@@ -38,7 +38,7 @@ class Item < ApplicationRecord
   end
 
   def to_struct
-    Struct.new(*extras.symbolize_keys.keys).new(*extras.values)
+    JSON.parse(extras.to_json, object_class: OpenStruct)
   end
 
   def rss_title

@@ -60,6 +60,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:account_id] = nil
     redirect_to root_path, notice: t(".notice")
   end
 

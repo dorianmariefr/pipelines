@@ -1,0 +1,10 @@
+.card
+  - if item.reblog
+    p
+      => image_tag item.account.avatar, alt: item.account.display_name, width: 20, height: 20, class: "w-5 h-5 inline-block rounded-full"
+      => link_to item.account.display_name, item.account.url
+      => link_to "@#{item.account.username}", item.account.url
+      = t(".boosted")
+    = render "items/mastodon/status", status: item.reblog
+  - else
+    = render "items/mastodon/status", status: item

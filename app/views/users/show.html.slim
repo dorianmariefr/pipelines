@@ -1,4 +1,21 @@
 - content_for(:title, @user.name)
 
+- if can?(:update, @user)
+  .card
+    p.font-bold= t(".private")
+
+    - @emails.each do |email|
+      = render "emails/email", email: email, url: email_path(email)
+
+    - @phone_numbers.each do |phone_number|
+      = render "phone_numbers/phone_number", phone_number: phone_number
+
+    - @accounts.each do |account|
+      = render "accounts/account", account: account
+
+    .p= link_to t(".new_account"), new_account_path, class: "button--primary"
+    .p= link_to t(".edit"), [:edit, @user], class: "button"
+    .p= button_to t(".delete"), @user, method: :delete, class: "button--red", data: { turbo_confirm: t(".confirm") }
+
 - @pipelines.each do |pipeline|
   = render "pipelines/pipeline", pipeline: pipeline

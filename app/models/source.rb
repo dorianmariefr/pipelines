@@ -1,5 +1,8 @@
 class Source < ApplicationRecord
   KINDS = {
+    mastodon: {
+      home: "Source::Mastodon::Home"
+    },
     reddit: {
       new: "Source::Reddit::New"
     },
@@ -39,18 +42,17 @@ class Source < ApplicationRecord
   TRANSFORMS = [NONE, DOWNCASE]
 
   belongs_to :pipeline
-
+  has_one :user, through: :pipeline
   has_many :parameters, as: :parameterizable, dependent: :destroy
   has_many :items, dependent: :destroy
 
   accepts_nested_attributes_for :parameters
 
+  scope :mastodon, -> { where("kind like ?", "mastodon/%") }
   scope :twitter, -> { where("kind like ?", "twitter/%") }
   scope :reddit, -> { where("kind like ?", "reddit/%") }
   scope :stack_exchange, -> { where("kind like ?", "stack_exchange/%") }
   scope :hacker_news, -> { where("kind like ?", "hacker_news/%") }
-
-  delegate :as_json, to: :subclass
 
   def parameters_attributes=(...)
     self.parameters = []

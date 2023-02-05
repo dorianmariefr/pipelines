@@ -1,0 +1,12 @@
+.mb-4.flex
+  div=> image_tag status.account.avatar, alt: status.account.display_name, width: 60, height: 60, class: "w-15 h-15 inline-block rounded-full"
+  .px-4.py-2
+    div=> link_to status.account.display_name, status.account.url
+    div= link_to "@#{status.account.username}", status.account.url
+= sanitize status.content
+p
+  => t(".replies", count: status.replies_count)
+  => t(".reblogs", count: status.reblogs_count)
+  = t(".favourites", count: status.favourites_count)
+p
+  => link_to Time.zone.parse(status.created_at).to_formatted_s(:long), status.url

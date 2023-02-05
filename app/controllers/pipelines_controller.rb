@@ -1,4 +1,6 @@
 class PipelinesController < ApplicationController
+  MAX_ERROR_SIZE = 280
+
   before_action :load_user, only: :index
   before_action :load_pipeline,
     only: %i[show edit update destroy process_now duplicate]
@@ -29,7 +31,8 @@ class PipelinesController < ApplicationController
     if pipeline_result.error?
       redirect_back(
         fallback_location: @pipeline,
-        alert: t(".alert", result: pipeline_result.to_s)
+        alert:
+          t(".alert", result: pipeline_result.to_s.truncate(MAX_ERROR_SIZE))
       )
     else
       redirect_back(

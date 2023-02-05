@@ -12,9 +12,9 @@ header.container.flex.justify-between.items-center.border-b
         = link_to current_user, class: "button" do
           span.hidden.xl:block= heroicon "user"
           = current_user.name
-        = link_to account_path, class: "button" do
+        = link_to accounts_path, class: "button" do
           span.hidden.xl:block= heroicon "cog-6-tooth"
-          = t(".account")
+          = t(".accounts")
         = link_to [current_user, :pipelines], class: "button" do
           span.hidden.xl:block= heroicon "funnel"
           = t(".your_pipelines")
@@ -51,9 +51,9 @@ header.container.flex.justify-between.items-center.border-b
           = link_to current_user, class: "button" do
             = heroicon "user"
             = current_user.name
-          = link_to account_path, class: "button" do
+          = link_to accounts_path, class: "button" do
             = heroicon "cog-6-tooth"
-            = t(".account")
+            = t(".accounts")
           = link_to [current_user, :pipelines], class: "button" do
             = heroicon "funnel"
             = t(".your_pipelines")

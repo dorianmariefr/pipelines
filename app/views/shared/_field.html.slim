@@ -21,6 +21,12 @@
     div(data-controller="name")
       = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
       .text-red-600(data-name-target="error")
+
+  - elsif type.mastodon_identifier?
+    div(data-controller="mastodon-identifier")
+      = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, mastodon_identifier_target: "input", **datas }, value: value, required: required
+      .text-red-600(data-mastodon-identifier-target="error")
+
   - elsif type.text?
     = f.text_area name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
   - elsif type.email?
@@ -68,5 +74,5 @@
 
   - elsif type.file?
     = f.file_field name
-  .prose.text-gray-600.text-sm= t(".#{scope}.#{translation_name}.hint_html")
+  .text-gray-600.text-sm= t(".#{scope}.#{translation_name}.hint_html")
   .text-gray-600.text-sm= fake

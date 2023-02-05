@@ -19,6 +19,9 @@ application.register("email", EmailController)
 import EmailsController from "./emails_controller"
 application.register("emails", EmailsController)
 
+import MastodonIdentifierController from "./mastodon_identifier_controller"
+application.register("mastodon-identifier", MastodonIdentifierController)
+
 import NameController from "./name_controller"
 application.register("name", NameController)
 

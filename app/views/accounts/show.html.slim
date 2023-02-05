@@ -1,8 +1,11 @@
-- @emails.each do |email|
-  = render "emails/email", email: email, url: email_path(email)
+- content_for(:title) do
+  span.font-bold=> @account.translated_kind
+  = @account.external_id
 
-- @phone_numbers.each do |phone_number|
-  = render "phone_numbers/phone_number", phone_number: phone_number
+- if @account.authorized?
+  p.text-green-600= t(".authorized")
+- else
+  p= link_to t(".authorize"), [@account, :authorize], class: "button--primary"
 
-.p= link_to t(".edit"), [:edit, @user], class: "button"
-.p= button_to t(".delete"), @user, method: :delete, class: "button--red", data: { turbo_confirm: t(".confirm") }
+.p= link_to t(".edit"), [:edit, @account], class: "button"
+.p= button_to t(".delete"), @account, method: :delete, class: "button--red"

@@ -1,0 +1,4 @@
+.p= link_to t(".new_account"), new_account_path, class: "button--primary"
+
+- @accounts.each do |account|
+  = render "accounts/account", account: account

@@ -37,6 +37,18 @@ module FakeHelper
     gray(eg(or_sentence(keys.sample(3))))
   end
 
+  def mastodon_domains
+    File.read(Rails.root.join("lib", "data", "mastodon", "domains.txt")).split
+  end
+
+  def mastodon_identifiers
+    mastodon_domains.map { |domain| "@#{Faker::Internet.username}@#{domain}" }
+  end
+
+  def fake_mastodon_identifiers
+    gray(eg(or_sentence(mastodon_identifiers.sample(3))))
+  end
+
   def fake_values
     gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
   end
