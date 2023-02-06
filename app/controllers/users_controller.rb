@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to account_path, notice: t(".notice")
+      redirect_to user_path(@user), notice: t(".notice")
     else
       build_user
       flash.now.alert = @user.alert
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to account_path, notice: t(".notice")
+      redirect_to user_path(@user), notice: t(".notice")
     else
       build_user
       flash.now.alert = @user.alert

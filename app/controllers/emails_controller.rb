@@ -8,7 +8,7 @@ class EmailsController < ApplicationController
   def send_verification
     @email.send_verification!
 
-    redirect_back_or_to account_path, notice: t(".notice")
+    redirect_back_or_to user_path(@email.user), notice: t(".notice")
   end
 
   def update
@@ -24,7 +24,7 @@ class EmailsController < ApplicationController
   def destroy
     @email.destroy!
 
-    redirect_to account_path, notice: t(".notice")
+    redirect_to user_path(@email.user), notice: t(".notice")
   end
 
   private

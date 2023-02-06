@@ -1,6 +1,6 @@
 class PhoneNumbersController < ApplicationController
   before_action :load_phone_number,
-                only: %i[show update destroy send_verification]
+    only: %i[show update destroy send_verification]
 
   def show
   end
@@ -26,7 +26,7 @@ class PhoneNumbersController < ApplicationController
   def destroy
     @phone_number.destroy!
 
-    redirect_to account_path, notice: t(".notice")
+    redirect_to user_path(@phone_number.user), notice: t(".notice")
   end
 
   private
