@@ -7,11 +7,13 @@ class Source
       COOKIE_SPLIT_FIRST_PART = 'document.cookie = decodeURIComponent("gt='
       COOKIE_SPLIT_SECOND_PART = ";"
       SCRIPT_REGEXP =
-        %r{https://abs\.twimg\.com/responsive-web/client-web-legacy/main\.[^.]+\.js}
+        %r{https://abs\.twimg\.com/responsive-web/[^/]+/main\.[^.]+\.js}
       TWEET_MODE = :extended
       SCRIPT_EXPIRES_IN = 1.day
       AUTHORIZATION_BEARER_REGEXP = /"(AAAAAAAAAAAAAAA[a-zA-Z0-9%]+)"/
       SEARCH_API_URL = "https://api.twitter.com/2/search/adaptive.json"
+      USER_AGENT =
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
 
       RECENT = "recent"
       RESULT_TYPE_DEFAULT = "recent"
@@ -89,7 +91,17 @@ class Source
             .fetch(
               [self.class.name, SEARCH_URL],
               expires_in: SEARCH_EXPIRES_IN
-            ) { Net::HTTP.get(URI(SEARCH_URL)) }
+            ) do
+              uri = URI(SEARCH_URL)
+              request = Net::HTTP::Get.new(uri)
+              request["User-Agent"] = USER_AGENT
+              response =
+                Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+                  http.request(request)
+                end
+              response.body
+            end
+
         script_url = search_page.scan(SCRIPT_REGEXP).first
 
         script_page =
@@ -103,7 +115,7 @@ class Source
         guest_token = search_page.split(COOKIE_SPLIT_FIRST_PART).last
         guest_token = guest_token.split(COOKIE_SPLIT_SECOND_PART).first
         authorization_bearer =
-          script_page.scan(AUTHORIZATION_BEARER_REGEXP).first.first
+          script_page.scan(AUTHORIZATION_BEARER_REGEXP).first.last
 
         query_params = {
           q: query,
@@ -124,6 +136,7 @@ class Source
               request = Net::HTTP::Get.new(uri)
               request["X-Guest-Token"] = guest_token
               request["Authorization"] = "Bearer #{authorization_bearer}"
+              request["User-Agent"] = USER_AGENT
               response =
                 Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
                   http.request(request)
