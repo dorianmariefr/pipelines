@@ -45,10 +45,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sources
-
-  resources :destinations
-
   resources :items
 
   resources :posts do
