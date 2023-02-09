@@ -29,68 +29,237 @@ fr:
     update:
       notice: Compte mis à jour
   application:
-    fake: {}
-    footer: {}
-    header: {}
-  attributes: {}
+    fake:
+      eg: e.g. %{string}
+      or: " ou "
+    footer:
+      copyright: "© %{year} Dorian Marié. Tous les droits sont réservés."
+      privacy: Politique de confidentialité
+      terms: Termes et conditions
+      title: pipelines.plumbing
+    header:
+      accounts: Comptes
+      get_started: Commencer
+      log_in: Se connecter
+      log_out: Se déconnecter
+      menu: Menu
+      new_pipeline: Nouveau pipeline
+      title: pipelines.plumbing
+      title_mobile: pipelines
+      your_pipelines: Vos pipelines
+  attributes:
+    normalized_email: E-mail
+    normalized_phone_number: Numéro de téléphone
   destinations:
-    destination: {}
-    form: {}
+    destination:
+      private: "privé:"
+    form:
+      remove: Retirer
     model:
-      kinds: {}
-    nested: {}
+      kinds:
+        daily_email_digest: Resumé quotidien par e-mail
+        email: E-mail
+        hourly_email_digest: Résumé horaire par e-mail
+        monthly_email_digest: Résumé mensuel par e-mail
+        weekly_email_digest: Résumé hebdomadaire par e-mail
+    nested:
+      add_destination: Ajouter une destination
   email_mailer:
-    password_reset_email: {}
-    verification_email: {}
+    password_reset_email:
+      subject: Réinitialiser ton mot de passe
+    verification_email:
+      subject: Vérifier ton adresse e-mail (%{verification_code})
   emails:
-    destroy: {}
-    edit: {}
-    email: {}
-    form: {}
-    nested: {}
-    send_verification: {}
-    show: {}
-    update: {}
-  errors: {}
+    destroy:
+      notice: E-mail supprimé
+    edit:
+      title: Vérifier ton e-mail
+    email:
+      add: Ajouter
+      add_email: Ajouter un e-mail
+      delete: Supprimer
+      not_verified: non vérifié
+      resend_verification_code: Renvoyer le code de vérification
+      send_verification_code: Envoyer le code de vérification
+      submit: Vérifier
+      verification_code: Le code de vérification
+      verification_code_sent: Code de verification envoyé
+      verified: Vérifié
+    form:
+      email: E-mail
+      remove: Retirer
+    nested:
+      add_email: Ajouter un e-mail
+    send_verification:
+      notice: Code de verification envoyé
+    show:
+      title: Vérifiez ton e-mail
+    update:
+      alert: Mauvais code de vérification
+      notice: Email verifié
+  errors:
+    account_not_authorized: Tu n'as pas autorisé un compte avec cet identifiant
+    account_not_found: Tu n'as pas créé de compte avec cet identifiant
+    not_own_email:
+      Tu n'as pas ajouté cette adresse e-mail à la liste de tes adresses
+      e-mail
+    not_verified_email: Tu n'as pas vérifié cette adresse e-mail
   items:
-    destroy: {}
-    destroy_all: {}
+    destroy_all:
+      notice: Tous les éléments de ce pipeline ont été supprimés
     hacker_news:
       news:
-        comments: {}
-        points: {}
-    index: {}
-    item: {}
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
+        points:
+          one: 1 point
+          other: "%{count} points"
+          zero: 0 points
     mastodon:
-      home: {}
+      home:
+        boosted: boosté
       status:
-        favourites: {}
-        reblogs: {}
-        replies: {}
+        favourites:
+          one: 1 favori
+          other: "%{count} favoris"
+          zero: 0 favoris
+        reblogs:
+          one: 1 reblog
+          other: "%{count} reblogs"
+          zero: 0 reblogs
+        replies:
+          one: 1 réponse
+          other: "%{count} réponses"
+          zero: 0 réponses
     reddit:
       new:
-        comments: {}
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
     stack_exchange:
       questions:
-        answers: {}
-        views: {}
+        answers:
+          one: 1 réponse
+          other: "%{count} réponses"
+          zero: 0 réponses
+        views:
+          one: 1 vue
+          other: "%{count} vues"
+          zero: 0 vues
     twitter:
       search:
-        likes: {}
-        retweets: {}
+        likes:
+          one: 1 aime
+          other: "%{count} aimes"
+          zero: 0 aime
+        retweets:
+          one: 1 retweet
+          other: "%{count} retweets"
+          zero: 0 retweets
   js:
-    code: {}
-    email: {}
-    mastodon_identifier: {}
-    name: {}
-    phone: {}
-    twitter_identifier: {}
+    code:
+      must_be_present: Doit être présent
+      must_be_valid: Doit être valide
+    email:
+      must_be_present: Doit être présent
+      must_be_valid: Doit être valide
+    mastodon_identifier:
+      must_be_present: Doit être présent
+      must_be_valid: Doit être valide
+    name:
+      must_be_present: Doit être présent
+    phone:
+      invalid_country_code: Code pays invalide
+      invalid_length: Longueur invalide
+      invalid_phone_number: Numéro de téléphone invalide
+      is_possible: Est possible
+      is_possible_local_only: Est possible localement uniquement
+      must_be_present: Doit être présent
+      too_long: Trop long
+      too_short: Trop court
+    twitter_identifier:
+      must_be_present: Doit être présent
+      must_be_valid: Doit être valide
   layouts:
-    application: {}
+    application:
+      title: pipelines.plumbing
   pages:
-    home: {}
-    privacy: {}
-    terms: {}
+    home:
+      automation: L'automatisation
+      faq_1_answer_html:
+        C'est beaucoup plus puissant à cause des langages de programmation
+        et des filtres.
+      faq_1_question: Alors c'est comme Zapier/IFTT ?
+      faq_2_answer_html:
+        C'est beaucoup plus puissant car tu peux personnaliser les
+        e-mails et obtenir exactement ce dont tu as besoin quand tu le souhaites.
+      faq_2_question: Alors c'est comme Mailbrew/Briefcake ?
+      faq_3_answer_html:
+        Oui, tout est sur GitHub sous la licence MIT sur <a href="https://github.com/pipelines-plumbing">github.com/pipelines-plumbing</a>
+        .
+      faq_3_question: Est-ce open-source ?
+      faq_4_answer_html:
+        Il a été créé avec Ruby, Ruby on Rails, JavaScript, Stimulus,
+        HTML, Slim, CSS, Tailwind, Sidekiq, SQL, Git, GitHub, Heroku, etc.
+      faq_4_question: Avec quoi le site a-t-il été créé ?
+      faq_5_answer_html:
+        Tu peux en faire une newsletter, tu peux également en faire
+        un service d'alerte, ou avec des flux RSS, tu peux choisir de lire à ton rythme.
+      faq_5_question: Est-ce un bulletin d'information ?
+      faq_6_answer_html:
+        Pas de problème, tu peux réserver du temps sur mon calendly
+        <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
+        ou m'envoyer un mail à <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>.
+      faq_6_question: je ne comprends pas/j'ai besoin d'aide
+      faq_7_answer_html:
+        Pour rester au courant de ce qui se passe sur Internet, en
+        fonction de tes centres d'intérêt.
+      faq_7_question: Pourquoi ai-je besoin de ça ?
+      faq_8_answer_html:
+        Tu peux le demander et ça viendra, mais si tu veux la priorité
+        il vaut mieux souscrire à Pro ou Custom.
+      faq_8_question: Puis-je avoir {feature} / {integration} / {source} / {destination} ?
+      faq_9_answer_html:
+        Oui bien sûr, j'adorerais te rencontrer et discuter sur <a
+        href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
+        .
+      faq_9_question: Êtes-vous prêt à me rencontrer ?
+      feature_1_subtitle:
+        Récupéres les tweets de Twitter, les publications et commentaires
+        de Reddit, les questions et réponses de Stack Overflow et les publications
+        et commentaires de Hacker News
+      feature_1_title: Cherche-le
+      feature_2_subtitle:
+        Soit pas de filtre (tout passe), filtre simple ou filtres
+        complexes avec Code, un langage de programmation
+      feature_2_title: Filtre-le
+      feature_3_subtitle:
+        Objet de ton e-mail, contenu de l'e-mail, titre du flux
+        RSS, etc. tout peut être formaté avec Template, un langage de programmation
+      feature_3_title: Formate-le
+      feature_4_subtitle:
+        Envoie-le par e-mail, résumés par e-mail (horaires, quotidiens,
+        hebdomadaires, mensuels), Slack, RSS, JSON, webhooks, etc.
+      feature_4_title: Envoie-le
+      features: Caractéristiques
+      frequently_asked_questions: Questions fréquemment posées
+      get_started: Commencer
+      made_simple: devenue simple
+      new_pipeline: Nouveau pipeline
+      public_pipelines: Pipelines publiques
+      subtitle:
+        Récupérer des informations sur Internet, les filtrer, les formater
+        et les envoyer
+      title: pipelines.plumbing
+      watch_video: Regarder la vidéo
+      your_pipelines: Tes pipelines
+    privacy:
+      title: Politique de Confidentialité
+    terms:
+      title: Termes et Conditions
   parameters:
     body_formats:
       html: HTML
@@ -108,48 +277,123 @@ fr:
       popular: Populaire
       recent: Récent
   passwords:
-    edit: {}
+    edit:
+      hide_password: Masquer le mot de passe
+      password: Mot de passe
+      show_password: Montrer le mot de passe
+      submit: Réinitialiser le mot de passe
+      title: Réinitialiser ton mot de passe
   phone_numbers:
-    destroy: {}
-    edit: {}
-    form: {}
-    nested: {}
-    phone_number: {}
-    send_verification: {}
-    show: {}
-    update: {}
+    destroy:
+      notice: Numéro de téléphone supprimé
+    edit:
+      title: Vérifier ton numéro de téléphone
+    form:
+      phone_number: Numéro de téléphone
+      remove: Retirer
+    nested:
+      add_phone_number: Ajouter un numéro de téléphone
+    phone_number:
+      add: Ajouter
+      add_phone_number: Ajouter un numéro de téléphone
+      delete: Supprimer
+      not_verified: non vérifié
+      resend_verification_code: Renvoyer le code de vérification
+      send_verification_code: Envoyer le code de vérification
+      submit: Vérifier
+      verification_code: Le code de vérification
+      verification_code_sent: Code de verification envoyé
+      verified: Vérifié
+    send_verification:
+      notice: Code de verification envoyé
+    show:
+      title: Vérifier ton numéro de téléphone
+    update:
+      alert: Mauvais code de vérification
+      notice: Numéro de téléphone vérifié
   pipelines:
-    create: {}
-    destroy: {}
-    duplicate: {}
-    edit: {}
+    create:
+      notice: Pipeline créé
+    destroy:
+      notice: Pipeline supprimé
+    duplicate:
+      submit: Créer un pipeline
+      title: Dupliquer ce pipeline
+    edit:
+      submit: Mettre à jour ce pipeline
+      title: Modifier ce pipeline
     index:
-      title: {}
-    new: {}
-    pipeline: {}
-    process_now: {}
+      new: Nouveau pipeline
+      none: Aucun
+      title:
+        published_pipelines: Pipelines publiques
+        user_pipelines: Pipelines de %{name}
+        your_pipelines: Vos pipelines
+    new:
+      submit: Créer un pipeline
+      title: Nouveau pipeline
+    pipeline:
+      to: pour
+    process_now:
+      alert: Une erreur s'est produite lors du traitement de votre pipeline (%{result})
+      notice: Votre pipeline a été traité (%{result})
     result:
-      matched_items: {}
-      new_items: {}
-      saved_items: {}
-      sent_items: {}
-    show: {}
-    update: {}
-  posts:
-    create: {}
-    destroy: {}
-    edit: {}
-    form: {}
-    index: {}
-    new: {}
-    send_later: {}
-    show: {}
-    update: {}
+      matched_items:
+        one: 1 élément correspondant
+        other: "%{count} éléments correspondants"
+        zero: 0 éléments correspondants
+      new_items:
+        one: 1 nouvel élément
+        other: "%{count} nouveaux éléments"
+        zero: 0 nouveaux éléments
+      saved_items:
+        one: 1 élément enregistré
+        other: "%{count} éléments enregistrés"
+        zero: 0 éléments enregistrés
+      sent_items:
+        one: 1 élément envoyé
+        other: "%{count} éléments envoyés"
+        zero: 0 éléments envoyés
+    show:
+      confirm: Voulez-vous vraiment supprimer ce pipeline ?
+      delete: Supprimer ce pipeline
+      delete_all_items: Supprimer tous les éléments
+      destinations: Destinations
+      duplicate: Dupliquer
+      edit: Modifier ce pipeline
+      or: ou
+      process: Traiter
+      rss: Flux RSS
+      rss_feed: Flux RSS
+      sources: Sources
+    update:
+      notice: Pipeline mis à jour
   sessions:
-    create: {}
-    destroy: {}
-    new: {}
-    reset: {}
+    create:
+      must_be_present: L'e-mail ou le numéro de téléphone doit être présent
+      notice: Tu es maintenant connecté
+      wrong_email: Mauvaise adresse mail
+      wrong_password: Mauvais mot de passe
+      wrong_phone_number: Mauvais numéro de téléphone
+    destroy:
+      notice: Tu es maintenant déconnecté
+    new:
+      email: E-mail
+      forgot_your_password: Mot de passe oublié ?
+      hide_password: Masquer le mot de passe
+      log_in_with_email: Se connecter avec ton e-mail
+      log_in_with_facebook: Se connecter avec Facebook
+      log_in_with_google: Se connecter avec Google
+      log_in_with_phone_number: Se connecter avec ton numéro de téléphone
+      password: Mot de passe
+      phone_number: Numéro de téléphone
+      send_password_reset: Envoyer la réinitialisation du mot de passe
+      show_password: Montrer le mot de passe
+      submit: Connexion
+      title: Connexion
+    reset:
+      alert: Email non trouvé
+      notice: E-mail de réinitialisation du mot de passe envoyé
   shared:
     field:
       account:
@@ -157,84 +401,221 @@ fr:
           hint_html: La platforme sur laquelle tu ajoutes un compte
           label: Type
       destination:
-        kind: {}
+        kind:
+          hint_html: Comment tu receveras les informations
+          label: Où va l'information ?
       email:
-        body: {}
-        body_format: {}
-        email: {}
-        subject: {}
-        to: {}
+        body:
+          hint_html:
+            Le contenu de l'e-mail en langage de programmation Template,
+            voir <a href="https://templatelang.com">templatelang.com</a>
+          label: Contenu
+        body_format:
+          hint_html: Texte brut (texte) ou texte enrichi (HTML)
+          label: Format du contenu
+        email:
+          hint_html: L'e-mail sur lequel tu recevras des mises à jour
+          label: Ton e-mail
+        subject:
+          hint_html:
+            Le titre de l'e-mail en langage de programmation Template, voir
+            <a href="https://templatelang.com">templatelang.com</a>
+          label: Sujet
+        to:
+          hint_html: L'adresse e-mail à laquelle tu souhaites envoyer
+          label: Pour
       email_digest:
-        hour: {}
+        hour:
+          hint_html:
+            L'heure de la journée dans ton fuseau horaire à laquelle tu recevras
+            les e-mails
+          label: Heure
       mastodon:
         external_id:
+          hint_html: Identifiant complet, y compris le nom d'utilisateur et le serveur
           label: Adresse
-        identifier: {}
-        scope: {}
+        identifier:
+          hint_html: Ton identifiant Mastodon complet avec nom d'utilisateur et serveur
+          label: Identifiant
+        scope:
+          hint_html: L'accès que pipelines.plumbing aura sur ton compte Mastodon
+          label: Scope
       monthly_email_digest:
-        day_of_month: {}
-      password: {}
+        day_of_month:
+          hint_html: Le jour du mois où tu recevras les emails
+          label: Jour du mois
+      password:
+        hide_password: Masquer le mot de passe
+        show_password: Montrer le mot de passe
       phone_number:
-        phone_number: {}
+        phone_number:
+          hint_html: Le numéro de téléphone sur lequel tu recevras des mises à jour
+          label: Ton numéro de téléphone
       pipeline:
-        name: {}
-        published: {}
+        name:
+          hint_html: Le nom du pipeline qui sera utilisé lors de l'affichage
+          label: Nom du pipeline
+        published:
+          hint_html: Ton profil sera également public si tu crées un pipeline public
+          label: Ce pipeline est-il public ?
       reddit:
-        subreddit: {}
+        subreddit:
+          hint_html: Le nom du subreddit dans l'url
+          label: Subreddit
       source:
-        filter: {}
-        filter_type: {}
-        key: {}
-        kind: {}
-        operator: {}
-        transform: {}
-        value: {}
+        filter:
+          hint_html: Avec le langage de programmation Code, voir <a href="https://templatelang.com">templatelang.com</a>
+          label: Filtre
+        filter_type:
+          hint_html: Tu n'as pas forcément besoin de spécifier un filtre
+          label: Quelles parties de l'information te concerne ?
+        key:
+          hint_html: Le champ sur lequel tu vas opérer le filtre
+          label: Clé
+        kind:
+          hint_html: Les informations seront récupérées toutes les 5 minutes
+          label: D'où vient l'information?
+        operator:
+          hint_html: Quel type d'opération veux-tu faire sur la clé ?
+          label: Opérateur
+        transform:
+          hint_html: Voulez-vous que la clé soit transformée?
+          label: Transformation
+        value:
+          hint_html: À quelle valeur comparons-nous ?
+          label: Valeur
       stack_exchange:
-        order: {}
-        site: {}
-        sort: {}
-        tagged: {}
+        order:
+          hint_html: Comment le critère de tri va être trié
+          label: Ordre
+        site:
+          hint_html: Le domaine du site Stack Exchange
+          label: Site
+        sort:
+          hint_html: Le critère de tri
+          label: Tri
+        tagged:
+          hint_html:
+            Une liste de tags séparées par des points-virgules (;) (5 tags
+            maximum)
+          label: Tags
       twitter:
-        external_id: {}
-        identifier: {}
-        limit: {}
-        query: {}
-        result_type: {}
-        scope: {}
+        external_id:
+          hint_html: Ton nom d'utilisateur Twitter, le mien est @dorianmariefr
+          label: Nom d'utilisateur
+        identifier:
+          hint_html:
+            Ton nom d'utilisateur Twitter complet avec un arobase (@), le
+            mien est @dorianmariefr
+          label: Identifiant
+        limit:
+          hint_html: Le nombre de tweets récupérés à chaque fois
+          label: Limite
+        query:
+          hint_html: Tel que saisi dans le champ de recherche Twitter
+          label: Requête
+        result_type:
+          hint_html: L'onglet que tu choisirais sur la recherche Twitter
+          label: Type de résultat
+        scope:
+          hint_html: L'accès pipelines.plumbing aura sur ton compte Twitter
+          label: Scope
       user:
-        avatar: {}
-        name: {}
-        password: {}
-        time_zone: {}
+        avatar:
+          hint_html:
+            Une image pour te montrer aux autres utilisateurs si ton profil
+            est public
+          label: Avatar
+        name:
+          hint_html: Nom et prénom de préférence
+          label: Ton nom
+        password:
+          hint_html:
+            De préférence un généré que tu pourras conserver dans ton gestionnaire
+            de mots de passe
+          label: Ton mot de passe
+        time_zone:
+          hint_html: Le fuseau horaire dans lequel tu te trouves actuellement
+          label: Fuseau horaire
       weekly_email_digest:
-        day_of_week: {}
+        day_of_week:
+          hint_html: Le jour de la semaine où tu recevras les emails
+          label: Jour de la semaine
       yes_no:
         "no": Non
         "yes": Oui
   sources:
-    form: {}
+    form:
+      remove: Retirer
     hacker_news:
       newest:
-        comments: {}
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
       news:
-        comments: {}
+        comments:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: 0 commentaires
     model:
-      filter_types: {}
+      filter_types:
+        code: Code
+        none: Aucun
+        simple: Simple
       kinds:
-        hacker_news: {}
-        mastodon: {}
-        reddit: {}
-        stack_exchange: {}
-        twitter: {}
-      operators: {}
-      transforms: {}
-    nested: {}
+        hacker_news:
+          newest: Hacker News - Nouvelles histoires
+          news: Hacker News - Histoires de la première page
+        mastodon:
+          home: Mastodon - Accueil
+        reddit:
+          new: Reddit - Nouveaux articles
+        stack_exchange:
+          questions: Stack Exchange - Questions
+        twitter:
+          home: Twitter - Acceuil
+          search: Twitter - Recherche
+          search_scraper: Twitter - Recherche (Scraper)
+      operators:
+        equals: égal à
+        greater_than: est supérieur à
+        greater_than_or_equals: est supérieur ou égal à
+        includes: comprend
+        less_than: est inférieur à
+        less_than_or_equals: est inférieur ou égal à
+      transforms:
+        downcase: Bas de casse
+        none: Aucune
+    nested:
+      add_source: Ajouter une source
   users:
-    create: {}
-    destroy: {}
-    edit: {}
-    form: {}
-    index: {}
-    new: {}
-    show: {}
-    update: {}
+    create:
+      notice: Utilisateur créé, tu es maintenant connecté
+    destroy:
+      notice: Utilisateur supprimé
+    edit:
+      submit: Mettre à jour ce profil
+      title: Modifier ce profil
+    form:
+      add_email: Ajouter un e-mail
+      add_phone_number: Ajouter un numéro de téléphone
+      hide_password: Masquer le mot de passe
+      name: Nom
+      password: Mot de passe
+      show_password: Montrer le mot de passe
+    index:
+      title: Utilisateurs
+    new:
+      register_with_facebook: S'inscrire avec Facebook
+      register_with_google: S'inscrire avec Google
+      submit: S'inscrire
+      title: Inscription
+    show:
+      confirm: Veux-tu vraiment supprimer ce compte ?
+      delete: Supprimer ce compte
+      edit: Modifier ce profil
+      new_account: Nouveau compte
+      private: Privé
+    update:
+      notice: Utilisateur mis à jour

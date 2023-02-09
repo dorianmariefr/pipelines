@@ -9,8 +9,7 @@
   - if can?(:process_now, @pipeline)
     .p= button_to t(".process"), [@pipeline, :process_now], method: :post, class: "button--primary"
 
-  - if can?(:duplicate, @pipeline)
-    .p= link_to t(".duplicate"), [@pipeline, :duplicate], class: "button"
+  .p= link_to t(".duplicate"), [@pipeline, :duplicate], class: "button"
 
 - if can?(:process_now, @pipeline) && @pipeline.error.present?
   p.text-red-600= @pipeline.error

@@ -1,214 +1,60 @@
 ---
 en:
   accounts:
+    callback:
+      notice: Account authorized
+    create:
+      notice: Account created
+    destroy:
+      notice: Account deleted
+    edit:
+      submit: Update account
+      title: Edit account
+    index:
+      new_account: New account
+      title: Accounts
     model:
       kinds:
         mastodon: Mastodon
         twitter: Twitter
-    index:
-      title: Accounts
-      new_account: New account
     new:
-      title: New account
       submit: Create account
-    edit:
-      title: Edit account
-      submit: Update account
-    create:
-      notice: Account created
-    update:
-      notice: Account updated
-    destroy:
-      notice: Account deleted
+      title: New account
     show:
-      edit: Edit account
-      delete: Delete account
       authorize: Authorize
       authorized: Authorized
+      delete: Delete account
+      edit: Edit account
       scope: Scope
-    callback:
-      notice: Account authorized
-  parameters:
-    result_types:
-      recent: Recent
-      mixed: Mixed
-      popular: Popular
-    days_of_week:
-      monday: Monday
-      tuesday: Tuesday
-      wednesday: Wednesday
-      thursday: Thursday
-      friday: Friday
-      saturday: Saturday
-      sunday: Sunday
-    body_formats:
-      text: Text
-      html: HTML
-  shared:
-    field:
-      yes_no:
-        "yes": "Yes"
-        "no": "No"
-      account:
-        kind:
-          label: Kind
-          hint_html: The platform you are adding an account for
-      mastodon:
-        external_id:
-          label: Address
-          hint_html: Full identifier, including username and server
-        scope:
-          label: Scope
-          hint_html: The access pipelines.plumbing will have on your Mastodon account
-        identifier:
-          label: Identifier
-          hint_html: Your full Mastodon identifier with username and server
-      twitter:
-        external_id:
-          label: Username
-          hint_html: Your Twitter username, mine is @dorianmariefr
-        scope:
-          label: Scope
-          hint_html: The access pipelines.plumbing will have on your Twitter account
-        identifier:
-          label: Identifier
-          hint_html: Your full Twitter username with an at sign (@), mine is @dorianmariefr
-        query:
-          label: Query
-          hint_html: As entered in Twitter search field
-        result_type:
-          label: Result type
-          hint_html: The tab you would choose on Twitter search
-        limit:
-          label: Limit
-          hint_html: The number of tweets fetched each time
-      reddit:
-        subreddit:
-          label: Subreddit
-          hint_html: The name of the subreddit in the url
-      stack_exchange:
-        site:
-          label: Site
-          hint_html: The domain of the Stack Exchange site
-        tagged:
-          label: Tags
-          hint_html: A list of tags separated by semicolons (;) (5 tags maximum)
-        sort:
-          label: Sort
-          hint_html: The sorting criteria
-        order:
-          label: Order
-          hint_html: How the sorting criteria is going to be sorted
-      email:
-        email:
-          label: Your email
-          hint_html: The email you will receive updates on
-        subject:
-          label: Subject
-          hint_html: The title of the email in Template programming languge, see <a href="https://templatelang.com">templatelang.com</a>
-        body_format:
-          label: Body format
-          hint_html: Either plain text (text) or rich text (HTML)
-        body:
-          label: Body
-          hint_html: The content of the email in Template programming language, see <a href="https://templatelang.com">templatelang.com</a>
-        to:
-          label: To
-          hint_html: The email address you want to send to
-      email_digest:
-        hour:
-          label: Hour
-          hint_html: The hour of the day in your timezone that you will receive the emails
-      weekly_email_digest:
-        day_of_week:
-          label: Day of week
-          hint_html: The day of the week you will receive the emails
-      monthly_email_digest:
-        day_of_month:
-          label: Day of month
-          hint_html: The day of the month you will receive the emails
-      password:
-        show_password: Show password
-        hide_password: Hide password
-      phone_number:
-        phone_number:
-          label: Your phone number
-          hint_html: The phone number you will receive updates on
-      pipeline:
-        name:
-          label: Name of the pipeline
-          hint_html: The name of the pipeline which will be used when displayed
-        published:
-          label: Is this pipeline public?
-          hint_html: Your profile will be public as well if you create a public pipeline
-      user:
-        name:
-          label: Your name
-          hint_html: Preferably first name and last name
-        password:
-          label: Your password
-          hint_html: Preferably a generated one that you can keep in your password manager
-        time_zone:
-          label: Time zone
-          hint_html: The time zone you are currently in
-        avatar:
-          label: Avatar
-          hint_html: An image to show yourself to other users if your profile is public
-      source:
-        kind:
-          label: Where does the information come from?
-          hint_html: Information will be fetched every 5 minutes
-        filter_type:
-          label: Which parts of the information is relevant to you?
-          hint_html: You don't need to specify a filter
-        key:
-          label: Key
-          hint_html: The field you will operate the filter on
-        transform:
-          label: Transform
-          hint_html: Do you want the key be transformed?
-        operator:
-          label: Operator
-          hint_html: What kind of operation do you want to do on the key?
-        value:
-          label: Value
-          hint_html: What value are we comparing against?
-        filter:
-          label: Filter
-          hint_html: With the Code programming language, see <a href="https://templatelang.com">templatelang.com</a>
-      destination:
-        kind:
-          label: Where does the information goes?
-          hint_html: How you will receive the information
+    update:
+      notice: Account updated
   application:
     fake:
       eg: e.g. %{string}
       or: " or "
     footer:
-      title: pipelines.plumbing
-      copyright: © %{year} Dorian Marié. All rights reserved.
-      terms: Terms and conditions
+      copyright: "© %{year} Dorian Marié. All rights reserved."
       privacy: Privacy prolicy
+      terms: Terms and conditions
+      title: pipelines.plumbing
     header:
       accounts: Accounts
-      your_pipelines: Your pipelines
-      log_out: Log out
-      new_pipeline: New pipeline
       get_started: Get started
       log_in: Log in
+      log_out: Log out
+      menu: Menu
+      new_pipeline: New pipeline
       title: pipelines.plumbing
       title_mobile: pipelines
-      menu: Menu
+      your_pipelines: Your pipelines
   attributes:
     normalized_email: Email
     normalized_phone_number: Phone number
   destinations:
-    nested:
-      add_destination: Add destination
-    form:
-      remove: Remove
     destination:
       private: "private:"
+    form:
+      remove: Remove
     model:
       kinds:
         daily_email_digest: Daily email digest
@@ -216,16 +62,14 @@ en:
         hourly_email_digest: Hourly email digest
         monthly_email_digest: Monthly email digest
         weekly_email_digest: Weekly email digest
+    nested:
+      add_destination: Add destination
   email_mailer:
     password_reset_email:
       subject: Reset your password
     verification_email:
       subject: Verify your email (%{verification_code})
   emails:
-    show:
-      title: Verify your email
-    nested:
-      add_email: Add email
     destroy:
       notice: Email deleted
     edit:
@@ -244,89 +88,83 @@ en:
     form:
       email: Email
       remove: Remove
+    nested:
+      add_email: Add email
     send_verification:
       notice: Verification code sent
+    show:
+      title: Verify your email
     update:
       alert: Wrong verification code
       notice: Email verified
   errors:
-    not_verified_email: You didn't verify this email address
-    not_own_email: You didn't add this email address to the list of your email addresses
-    account_not_found: You didn't create an account with this identifier
     account_not_authorized: You didn't authorize an account with this identifier
+    account_not_found: You didn't create an account with this identifier
+    not_own_email: You didn't add this email address to the list of your email addresses
+    not_verified_email: You didn't verify this email address
   items:
+    destroy_all:
+      notice: All items of this pipeline have been deleted
+    hacker_news:
+      news:
+        comments:
+          one: 1 comment
+          other: "%{count} comments"
+          zero: 0 comments
+        points:
+          one: 1 point
+          other: "%{count} points"
+          zero: 0 points
     mastodon:
       home:
         boosted: boosted
       status:
-        replies:
-          zero: 0 replies
-          one: 1 reply
-          other: "%{count} replies"
-        reblogs:
-          zero: 0 reblogs
-          one: 1 reblog
-          other: "%{count} reblogs"
         favourites:
-          zero: 0 favourites
           one: 1 favourite
           other: "%{count} favourites"
-    hacker_news:
-      news:
-        comments:
-          zero: 0 comments
-          one: 1 comment
-          other: "%{count} comments"
-        points:
-          zero: 0 points
-          one: 1 point
-          other: "%{count} points"
-    stack_exchange:
-      questions:
-        answers:
-          zero: 0 answers
-          one: 1 answer
-          other: "%{count} answers"
-        views:
-          zero: 0 views
-          one: 1 view
-          other: "%{count} views"
+          zero: 0 favourites
+        reblogs:
+          one: 1 reblog
+          other: "%{count} reblogs"
+          zero: 0 reblogs
+        replies:
+          one: 1 reply
+          other: "%{count} replies"
+          zero: 0 replies
     reddit:
       new:
         comments:
-          zero: 0 comments
           one: 1 comment
           other: "%{count} comments"
+          zero: 0 comments
+    stack_exchange:
+      questions:
+        answers:
+          one: 1 answer
+          other: "%{count} answers"
+          zero: 0 answers
+        views:
+          one: 1 view
+          other: "%{count} views"
+          zero: 0 views
     twitter:
       search:
-        retweets:
-          zero: 0 retweets
-          one: 1 retweet
-          other: "%{count} retweets"
         likes:
-          zero: 0 likes
           one: 1 like
           other: "%{count} likes"
-    destroy:
-      notice: Item deleted
-    destroy_all:
-      notice: All items of this pipeline have been deleted
-    index:
-      no_items: No items
-      title: "%{name}'s items"
-    item:
-      delete: Delete
+          zero: 0 likes
+        retweets:
+          one: 1 retweet
+          other: "%{count} retweets"
+          zero: 0 retweets
   js:
-    twitter_identifier:
-      must_be_present: Must be present
-      must_be_valid: Must be valid
-    mastodon_identifier:
-      must_be_present: Must be present
-      must_be_valid: Must be valid
     code:
       must_be_present: Must be present
       must_be_valid: Must be valid
     email:
+      must_be_present: Must be present
+      must_be_valid: Must be valid
+    mastodon_identifier:
       must_be_present: Must be present
       must_be_valid: Must be valid
     name:
@@ -340,79 +178,98 @@ en:
       must_be_present: Must be present
       too_long: Too long
       too_short: Too short
+    twitter_identifier:
+      must_be_present: Must be present
+      must_be_valid: Must be valid
   layouts:
     application:
       title: pipelines.plumbing
   pages:
     home:
-      features: Features
-      frequently_asked_questions: Frequently asked questions
-      new_pipeline: New pipeline
-      your_pipelines: Your pipelines
       automation: Automation
-      get_started: Get started
-      made_simple: made simple
-      subtitle:
-        Fetch information from the Internet, filter it, format it and send
-        it
-      watch_video: Watch video
-      public_pipelines: Public pipelines
-      feature_1_title: Fetch it
-      feature_1_subtitle:
-        Fetch Twitter's tweets, Reddit's posts and comments, Stack Overflow's
-        questions and answers, and Hacker News's posts and comments
-      feature_2_title: Filter it
-      feature_2_subtitle:
-        Either no filter (everything goes), simple filter or complex filters
-        with Code, a programming language
-      feature_3_title: Format it
-      feature_3_subtitle:
-        Subject of your email, body of the email, RSS feed title, etc.
-        all can be formatted with Template, a programming language
-      feature_4_title: Send it
-      feature_4_subtitle:
-        Send it through email, email digests (hourly, daily, weekly, monhtly),
-        slack, RSS, JSON, webhooks, etc.
       faq_1_answer_html:
         It's much more powerful because of the programming languages
         and the filters.
+      faq_1_question: So it's like Zapier/IFTT?
       faq_2_answer_html:
         It's much more powerful because you can personalize the emails
         and get exactly what you need when you want.
+      faq_2_question: So it's like Mailbrew/Briefcake?
       faq_3_answer_html:
         'Yes, it''s all on GitHub under the MIT license at <a href="https://github.com/pipelines-plumbing">github.com/pipelines-plumbing</a>.
 
         '
+      faq_3_question: Is it open-source?
       faq_4_answer_html:
         It was created with Ruby, Ruby on Rails, JavaScript, Stimulus,
         HTML, Slim, CSS, Tailwind, Sidekiq, SQL, Git, GitHub, Heroku, etc.
+      faq_4_question: What was the site created with?
       faq_5_answer_html:
         You can make it into a newsletter, also you can make it into
         an alert service, or with RSS feeds you can choose to read on your own time.
+      faq_5_question: Is it a newsletter?
       faq_6_answer_html:
         No problem, you can book time on my calendly <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>
         or send me an email at <a href="mailto:dorian@pipelines.plumbing">dorian@pipelines.plumbing</a>.
+      faq_6_question: I don't understand/I need help
       faq_7_answer_html:
-        To stay up to date with what's going on on the internet, based
-        on your interests.
+        To stay up to date with what's going on on the internet,
+        based on your interests.
+      faq_7_question: Why do I need that?
       faq_8_answer_html:
         You can request it and it will come, but if you want priority
         it's better to subscribe to Pro or Custom.
-      faq_9_answer_html: Yes of course, I would love to meet and discuss <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>.
-      faq_1_question: So it's like Zapier/IFTT?
-      faq_2_question: So it's like Mailbrew/Briefcake?
-      faq_3_question: Is it open-source?
-      faq_4_question: What was the site created with?
-      faq_5_question: Is it a newsletter?
-      faq_6_question: I don't understand/I need help
-      faq_7_question: Why do I need that?
       faq_8_question: Can I have {feature} / {integration} / {source} / {destination}?
+      faq_9_answer_html: Yes of course, I would love to meet and discuss <a href="https://calendly.com/dorianmariefr/30-minutes">calendly.com/dorianmariefr/30-minutes</a>.
       faq_9_question: Are you down to meet?
+      feature_1_subtitle:
+        Fetch Twitter's tweets, Reddit's posts and comments, Stack
+        Overflow's questions and answers, and Hacker News's posts and comments
+      feature_1_title: Fetch it
+      feature_2_subtitle:
+        Either no filter (everything goes), simple filter or complex
+        filters with Code, a programming language
+      feature_2_title: Filter it
+      feature_3_subtitle:
+        Subject of your email, body of the email, RSS feed title,
+        etc. all can be formatted with Template, a programming language
+      feature_3_title: Format it
+      feature_4_subtitle:
+        Send it through email, email digests (hourly, daily, weekly,
+        monhtly), slack, RSS, JSON, webhooks, etc.
+      feature_4_title: Send it
+      features: Features
+      frequently_asked_questions: Frequently asked questions
+      get_started: Get started
+      made_simple: made simple
+      new_pipeline: New pipeline
+      public_pipelines: Public pipelines
+      subtitle:
+        Fetch information from the Internet, filter it, format it and send
+        it
       title: pipelines.plumbing
+      watch_video: Watch video
+      your_pipelines: Your pipelines
     privacy:
       title: Privacy Policy
     terms:
       title: Terms and Conditions
+  parameters:
+    body_formats:
+      html: HTML
+      text: Text
+    days_of_week:
+      friday: Friday
+      monday: Monday
+      saturday: Saturday
+      sunday: Sunday
+      thursday: Thursday
+      tuesday: Tuesday
+      wednesday: Wednesday
+    result_types:
+      mixed: Mixed
+      popular: Popular
+      recent: Recent
   passwords:
     edit:
       hide_password: Hide password
@@ -421,17 +278,15 @@ en:
       submit: Reset password
       title: Reset your password
   phone_numbers:
-    show:
-      title: Verify your phone number
-    nested:
-      add_phone_number: Add phone number
-    form:
-      phone_number: Phone number
-      remove: Remove
     destroy:
       notice: Phone number deleted
     edit:
       title: Verify your phone number
+    form:
+      phone_number: Phone number
+      remove: Remove
+    nested:
+      add_phone_number: Add phone number
     phone_number:
       add: Add
       add_phone_number: Add phone number
@@ -445,22 +300,22 @@ en:
       verified: Verified
     send_verification:
       notice: Verification code sent
+    show:
+      title: Verify your phone number
     update:
       alert: Wrong verification code
       notice: Phone number verified
   pipelines:
-    pipeline:
-      to: to
     create:
       notice: Pipeline created
     destroy:
       notice: Pipeline deleted
     duplicate:
-      title: Duplicate pipeline
       submit: Create pipeline
+      title: Duplicate pipeline
     edit:
-      title: Edit pipeline
       submit: Update pipeline
+      title: Edit pipeline
     index:
       new: New pipeline
       none: None
@@ -469,8 +324,10 @@ en:
         user_pipelines: "%{name}'s pipelines"
         your_pipelines: Your pipelines
     new:
-      title: New pipeline
       submit: Create pipeline
+      title: New pipeline
+    pipeline:
+      to: to
     process_now:
       alert: There was an error processing your pipeline (%{result})
       notice: Your pipeline has been processed (%{result})
@@ -493,53 +350,18 @@ en:
         zero: 0 sent items
     show:
       confirm: Are you sure you want to delete this pipeline?
-      rss: RSS feed
-      by: By
       delete: Delete pipeline
       delete_all_items: Delete all items
       destinations: Destinations
       duplicate: Duplicate
       edit: Edit pipeline
-      items: Items
-      log_in_to_duplicate: Log in to duplicate
-      no_destinations: No destinations
-      no_items: No items
-      no_sources: No sources
-      not_published: Not public
       or: or
       process: Process
-      published: Public
-      register_to_duplicate: Register to duplicate
+      rss: RSS feed
       rss_feed: RSS feed
       sources: Sources
     update:
       notice: Pipeline updated
-  posts:
-    create:
-      notice: Post created and sent
-    destroy:
-      notice: Post deleted
-    edit:
-      submit: Update post
-      title: Edit post
-    form:
-      description: Description
-      title: Title
-    index:
-      new: New post
-      title: Posts
-    new:
-      submit: Create post
-      title: New post
-    send_later:
-      notice: Post sent
-    show:
-      delete: Delete post
-      edit: Edit post
-      send: Send
-      title: Post
-    update:
-      notice: Post updated
   sessions:
     create:
       must_be_present: Email or phone number must be present
@@ -566,9 +388,151 @@ en:
     reset:
       alert: Email not found
       notice: Password reset email sent
+  shared:
+    field:
+      account:
+        kind:
+          hint_html: The platform you are adding an account for
+          label: Kind
+      destination:
+        kind:
+          hint_html: How you will receive the information
+          label: Where does the information goes?
+      email:
+        body:
+          hint_html:
+            The content of the email in Template programming language, see
+            <a href="https://templatelang.com">templatelang.com</a>
+          label: Body
+        body_format:
+          hint_html: Either plain text (text) or rich text (HTML)
+          label: Body format
+        email:
+          hint_html: The email you will receive updates on
+          label: Your email
+        subject:
+          hint_html:
+            The title of the email in Template programming languge, see <a
+            href="https://templatelang.com">templatelang.com</a>
+          label: Subject
+        to:
+          hint_html: The email address you want to send to
+          label: To
+      email_digest:
+        hour:
+          hint_html:
+            The hour of the day in your timezone that you will receive the
+            emails
+          label: Hour
+      mastodon:
+        external_id:
+          hint_html: Full identifier, including username and server
+          label: Address
+        identifier:
+          hint_html: Your full Mastodon identifier with username and server
+          label: Identifier
+        scope:
+          hint_html: The access pipelines.plumbing will have on your Mastodon account
+          label: Scope
+      monthly_email_digest:
+        day_of_month:
+          hint_html: The day of the month you will receive the emails
+          label: Day of month
+      password:
+        hide_password: Hide password
+        show_password: Show password
+      phone_number:
+        phone_number:
+          hint_html: The phone number you will receive updates on
+          label: Your phone number
+      pipeline:
+        name:
+          hint_html: The name of the pipeline which will be used when displayed
+          label: Name of the pipeline
+        published:
+          hint_html: Your profile will be public as well if you create a public pipeline
+          label: Is this pipeline public?
+      reddit:
+        subreddit:
+          hint_html: The name of the subreddit in the url
+          label: Subreddit
+      source:
+        filter:
+          hint_html: With the Code programming language, see <a href="https://templatelang.com">templatelang.com</a>
+          label: Filter
+        filter_type:
+          hint_html: You don't need to specify a filter
+          label: Which parts of the information is relevant to you?
+        key:
+          hint_html: The field you will operate the filter on
+          label: Key
+        kind:
+          hint_html: Information will be fetched every 5 minutes
+          label: Where does the information come from?
+        operator:
+          hint_html: What kind of operation do you want to do on the key?
+          label: Operator
+        transform:
+          hint_html: Do you want the key be transformed?
+          label: Transform
+        value:
+          hint_html: What value are we comparing against?
+          label: Value
+      stack_exchange:
+        order:
+          hint_html: How the sorting criteria is going to be sorted
+          label: Order
+        site:
+          hint_html: The domain of the Stack Exchange site
+          label: Site
+        sort:
+          hint_html: The sorting criteria
+          label: Sort
+        tagged:
+          hint_html: A list of tags separated by semicolons (;) (5 tags maximum)
+          label: Tags
+      twitter:
+        external_id:
+          hint_html: Your Twitter username, mine is @dorianmariefr
+          label: Username
+        identifier:
+          hint_html: Your full Twitter username with an at sign (@), mine is @dorianmariefr
+          label: Identifier
+        limit:
+          hint_html: The number of tweets fetched each time
+          label: Limit
+        query:
+          hint_html: As entered in Twitter search field
+          label: Query
+        result_type:
+          hint_html: The tab you would choose on Twitter search
+          label: Result type
+        scope:
+          hint_html: The access pipelines.plumbing will have on your Twitter account
+          label: Scope
+      user:
+        avatar:
+          hint_html: An image to show yourself to other users if your profile is public
+          label: Avatar
+        name:
+          hint_html: Preferably first name and last name
+          label: Your name
+        password:
+          hint_html:
+            Preferably a generated one that you can keep in your password
+            manager
+          label: Your password
+        time_zone:
+          hint_html: The time zone you are currently in
+          label: Time zone
+      weekly_email_digest:
+        day_of_week:
+          hint_html: The day of the week you will receive the emails
+          label: Day of week
+      yes_no:
+        "no": "No"
+        "yes": "Yes"
   sources:
-    nested:
-      add_source: Add source
     form:
       remove: Remove
     hacker_news:
@@ -583,9 +547,6 @@ en:
           other: "%{count} comments"
           zero: 0 comments
     model:
-      transforms:
-        none: none
-        downcase: downcase
       filter_types:
         code: Code
         none: None
@@ -594,6 +555,8 @@ en:
         hacker_news:
           newest: Hacker News - New Stories
           news: Hacker News - Frontpage Stories
+        mastodon:
+          home: Mastodon - Home
         reddit:
           new: Reddit - /new
         stack_exchange:
@@ -602,22 +565,19 @@ en:
           home: Twitter - Home
           search: Twitter - Search
           search_scraper: Twitter - Search (Scraper)
-        mastodon:
-          home: Mastodon - Home
       operators:
-        less_than: is less than
-        less_than_or_equals: is less than or equal to
         equals: equals
         greater_than: is greater than
         greater_than_or_equals: is greater than or equal to
         includes: includes
+        less_than: is less than
+        less_than_or_equals: is less than or equal to
+      transforms:
+        downcase: downcase
+        none: none
+    nested:
+      add_source: Add source
   users:
-    show:
-      new_account: New account
-      private: Private
-      confirm: Are you sure you want to delete this account?
-      delete: Delete account
-      edit: Edit profile
     create:
       notice: User created, you are now logged in
     destroy:
@@ -639,5 +599,11 @@ en:
       register_with_google: Register with Google
       submit: Register
       title: Register
+    show:
+      confirm: Are you sure you want to delete this account?
+      delete: Delete account
+      edit: Edit profile
+      new_account: New account
+      private: Private
     update:
       notice: User updated

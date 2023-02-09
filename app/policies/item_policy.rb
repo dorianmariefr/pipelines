@@ -3,10 +3,6 @@ class ItemPolicy < ApplicationPolicy
     can?(:destroy, pipeline)
   end
 
-  def destroy?
-    can?(:destroy, pipeline)
-  end
-
   class Scope < Scope
     def resolve
       admin? ? scope.all : scope.joins(:pipeline).merge(policy_scope(Pipeline))
