@@ -68,7 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    aes_key_wrap (1.1.0)
     ast (2.4.2)
+    attr_required (1.0.1)
     aws-eventstream (1.2.0)
     aws-partitions (1.705.0)
     aws-record (2.10.1)
@@ -111,6 +113,7 @@ GEM
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
+    bindata (2.4.15)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     brakeman (5.4.0)
@@ -153,6 +156,8 @@ GEM
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -185,6 +190,7 @@ GEM
       ffi-compiler (>= 1.0, < 2.0)
     http_accept_language (2.1.1)
     http_parser.rb (0.6.0)
+    httpclient (2.8.3)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -195,6 +201,12 @@ GEM
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.6.3)
+    json-jwt (1.16.3)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
     jwt (2.3.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -321,6 +333,12 @@ GEM
     raabro (1.4.0)
     racc (1.6.2)
     rack (2.2.6.2)
+    rack-oauth2 (1.21.3)
+      activesupport
+      attr_required
+      httpclient
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
     rack-protection (3.0.5)
       rack
     rack-test (2.0.2)
@@ -476,6 +494,8 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
+    twitter_oauth2 (0.5.1)
+      rack-oauth2 (~> 1.19)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -522,7 +542,6 @@ DEPENDENCIES
   messagebird-rest
   money-rails
   normailize
-  oauth2
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
@@ -555,6 +574,7 @@ DEPENDENCIES
   template-ruby
   turbo-rails
   twitter
+  twitter_oauth2
   webdrivers
 
 RUBY VERSION

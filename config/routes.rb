@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :accounts do
     get "mastodon/callback" => "accounts#callback", :on => :collection
+    get "twitter/callback" => "accounts#callback", :on => :collection
     get "authorize" => "accounts#redirect_authorize"
   end
 
