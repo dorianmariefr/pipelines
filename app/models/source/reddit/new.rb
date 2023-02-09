@@ -18,7 +18,14 @@ class Source
       end
 
       def self.parameters_for(_user)
-        [{ name: :subreddit, type: :string, fakes: fake_subreddits }]
+        [
+          {
+            name: :subreddit,
+            type: :string,
+            fakes: fake_subreddits,
+            scope: :reddit
+          }
+        ]
       end
 
       def self.keys
@@ -53,7 +60,7 @@ class Source
             .fetch(
               [self.class.name, url, USER_AGENT],
               expires_in: EXPIRES_IN
-            ) { Net::HTTP.get(URI(url), { "User-Agent": USER_AGENT }) }
+            ) { Net::HTTP.get(URI(url), {"User-Agent": USER_AGENT}) }
 
         json = JSON.parse(response, object_class: OpenStruct)
 

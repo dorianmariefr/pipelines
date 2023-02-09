@@ -10,6 +10,7 @@ class Source < ApplicationRecord
       questions: "Source::StackExchange::Questions"
     },
     twitter: {
+      home: "Source::Twitter::Home",
       search: "Source::Twitter::Search",
       search_scraper: "Source::Twitter::SearchScraper"
     },

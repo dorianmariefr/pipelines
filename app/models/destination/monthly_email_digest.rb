@@ -8,7 +8,8 @@ class Destination
         name: :day_of_month,
         type: :select,
         default: DEFAULT_DAY_OF_MONTH,
-        options: DAYS_OF_MONTH
+        options: DAYS_OF_MONTH,
+        scope: :monthly_email_digest
       }
     end
 

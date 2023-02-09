@@ -33,12 +33,22 @@ class Source
         mastodon_addresses.sample(3)
       end
 
+      def self.default_mastodon_identifier_for(user)
+        return unless user
+        account =
+          user.accounts.mastodon.authorized.first ||
+          user.accounts.mastodon.first
+        account&.external_id
+      end
+
       def self.parameters_for(user)
         [
           {
             name: :identifier,
             type: :mastodon_identifier,
-            default: user ? user.accounts.mastodon.first&.external_id : nil
+            default: default_mastodon_identifier_for(user),
+            required: true,
+            scope: :mastodon
           }
         ]
       end

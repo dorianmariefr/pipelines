@@ -20,7 +20,8 @@ class Destination
         name: :day_of_week,
         type: :list,
         default: DEFAULT_DAY_OF_WEEK,
-        options: DAYS_OF_WEEK
+        options: DAYS_OF_WEEK,
+        scope: :weekly_email_digest
       }
     end
 

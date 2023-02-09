@@ -15,16 +15,29 @@ class Destination
         name: :subject,
         type: :string,
         default: SUBJECT_DEFAULT,
-        fakes: fake_subjects
+        fakes: fake_subjects,
+        scope: :email
       }
     end
 
     def self.body_parameter
-      {name: :body, type: :text, default: BODY_DEFAULT, fakes: fake_bodies}
+      {
+        name: :body,
+        type: :text,
+        default: BODY_DEFAULT,
+        fakes: fake_bodies,
+        scope: :email
+      }
     end
 
     def self.hour_parameter
-      {name: :hour, type: :select, default: HOUR_DEFAULT, options: HOURS}
+      {
+        name: :hour,
+        type: :select,
+        default: HOUR_DEFAULT,
+        options: HOURS,
+        scope: :email_digest
+      }
     end
 
     def send_now(items)
@@ -54,7 +67,7 @@ class Destination
     private
 
     def as_json(...)
-      {items: items, pipeline: pipeline}.as_json(...)
+      {items: items.order(created_at: :desc), pipeline: pipeline}.as_json(...)
     end
   end
 end

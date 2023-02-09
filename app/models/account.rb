@@ -20,6 +20,7 @@ class Account < ApplicationRecord
 
   scope :mastodon, -> { where(kind: MASTODON) }
   scope :twitter, -> { where(kind: TWITTER) }
+  scope :authorized, -> { where("extras->>'access_token' IS NOT NULL") }
 
   validates :kind, inclusion: {in: KINDS}
   validates :external_id, presence: true
@@ -30,6 +31,14 @@ class Account < ApplicationRecord
 
   def access_token
     extras["access_token"]
+  end
+
+  def access_token_secret
+    if twitter?
+      extras["access_token_secret"]
+    else
+      raise NotImplementedError
+    end
   end
 
   def translated_kind

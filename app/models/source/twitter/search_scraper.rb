@@ -37,18 +37,26 @@ class Source
 
       def self.parameters_for(user)
         [
-          {name: :query, type: :string, required: true, fakes: fake_queries},
+          {
+            name: :query,
+            type: :string,
+            required: true,
+            fakes: fake_queries,
+            scope: :twitter
+          },
           {
             name: :result_type,
             type: :list,
             default: RESULT_TYPE_DEFAULT,
-            options: RESULT_TYPE_OPTIONS
+            options: RESULT_TYPE_OPTIONS,
+            scope: :twitter
           },
           {
             name: :limit,
             type: :list,
             default: user&.pro? ? LIMIT_DEFAULT_PRO : LIMIT_DEFAULT_FREE,
-            options: user&.pro? ? LIMIT_OPTIONS_PRO : LIMIT_OPTIONS_FREE
+            options: user&.pro? ? LIMIT_OPTIONS_PRO : LIMIT_OPTIONS_FREE,
+            scope: :twitter
           }
         ]
       end

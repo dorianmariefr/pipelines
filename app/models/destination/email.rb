@@ -45,7 +45,8 @@ class Destination
         name: :subject,
         type: :string,
         default: SUBJECT_DEFAULT,
-        fakes: fake_subjects
+        fakes: fake_subjects,
+        scope: :email
       }
     end
 
@@ -54,28 +55,37 @@ class Destination
         name: :body_format,
         type: :list,
         default: BODY_FORMAT_DEFAULT,
-        options: BODY_FORMATS
+        options: BODY_FORMATS,
+        scope: :email
       }
     end
 
     def self.body_parameter
-      {name: :body, type: :text, default: BODY_DEFAULT, fakes: fake_bodies}
+      {
+        name: :body,
+        type: :text,
+        default: BODY_DEFAULT,
+        fakes: fake_bodies,
+        scope: :email
+      }
+    end
+
+    def self.default_to_for(user)
+      return unless user
+      email = user.emails.find(&:verified?) || user.emails.first
+      email&.email
     end
 
     def self.to_parameter_for(user)
       {
         name: :to,
         type: :email,
-        default:
-          (
-            if user
-              user.emails.verified.first&.email || user.emails.first&.email
-            end
-          ),
+        default: default_to_for(user),
         fakes: fake_tos,
         required: true,
         autocomplete: :email,
-        data_form_type: :email
+        data_form_type: :email,
+        scope: :email
       }
     end
 

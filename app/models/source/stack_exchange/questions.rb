@@ -31,10 +31,33 @@ class Source
 
       def self.parameters_for(_user)
         [
-          { name: :site, type: :select, default: DEFAULT_SITE, options: SITES },
-          { name: :tagged, type: :string, fakes: fake_tags },
-          { name: :sort, type: :list, default: DEFAULT_SORT, options: SORTS },
-          { name: :order, type: :list, default: DEFAULT_ORDER, options: ORDERS }
+          {
+            name: :site,
+            type: :select,
+            default: DEFAULT_SITE,
+            options: SITES,
+            scope: :stack_exchange
+          },
+          {
+            name: :tagged,
+            type: :string,
+            fakes: fake_tags,
+            scope: :stack_exchange
+          },
+          {
+            name: :sort,
+            type: :list,
+            default: DEFAULT_SORT,
+            options: SORTS,
+            scope: :stack_exchange
+          },
+          {
+            name: :order,
+            type: :list,
+            default: DEFAULT_ORDER,
+            options: ORDERS,
+            scope: :stack_exchange
+          }
         ]
       end
 
@@ -65,7 +88,7 @@ class Source
       def fetch
         url = "https://api.stackexchange.com"
         url += "/2.3/questions?"
-        url += { order: order, sort: sort, tagged: tagged, site: site }.to_query
+        url += {order: order, sort: sort, tagged: tagged, site: site}.to_query
         response =
           Rails
             .cache
