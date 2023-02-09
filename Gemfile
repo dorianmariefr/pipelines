@@ -10,6 +10,7 @@ gem "bootsnap", require: false
 gem "brakeman"
 gem "capybara"
 gem "dotenv-rails"
+gem "easy_translate"
 gem "factory_bot_rails"
 gem "faker"
 gem "friendly_id"

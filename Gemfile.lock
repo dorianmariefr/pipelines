@@ -139,6 +139,9 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    easy_translate (0.5.1)
+      thread
+      thread_safe
     equalizer (0.0.11)
     erubi (1.12.0)
     et-orbi (1.2.7)
@@ -464,6 +467,7 @@ GEM
       zeitwerk (~> 2)
     temple (0.8.2)
     thor (1.2.1)
+    thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -515,6 +519,7 @@ DEPENDENCIES
   brakeman
   capybara
   dotenv-rails
+  easy_translate
   factory_bot_rails
   faker
   friendly_id

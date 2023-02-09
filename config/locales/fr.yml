@@ -1,2 +1,240 @@
 ---
 fr:
+  accounts:
+    callback:
+      notice: Compte autorisé
+    create:
+      notice: Compte créé
+    destroy:
+      notice: Compte supprimé
+    edit:
+      submit: Mettre à jour ce compte
+      title: Modifier ce compte
+    index:
+      new_account: Nouveau compte
+      title: Comptes
+    model:
+      kinds:
+        mastodon: Mastodon
+        twitter: Twitter
+    new:
+      submit: Créer un compte
+      title: Nouveau compte
+    show:
+      authorize: Autoriser
+      authorized: Autorisé
+      delete: Supprimer ce compte
+      edit: Modifier ce compte
+      scope: Scope
+    update:
+      notice: Compte mis à jour
+  application:
+    fake: {}
+    footer: {}
+    header: {}
+  attributes: {}
+  destinations:
+    destination: {}
+    form: {}
+    model:
+      kinds: {}
+    nested: {}
+  email_mailer:
+    password_reset_email: {}
+    verification_email: {}
+  emails:
+    destroy: {}
+    edit: {}
+    email: {}
+    form: {}
+    nested: {}
+    send_verification: {}
+    show: {}
+    update: {}
+  errors: {}
+  items:
+    destroy: {}
+    destroy_all: {}
+    hacker_news:
+      news:
+        comments: {}
+        points: {}
+    index: {}
+    item: {}
+    mastodon:
+      home: {}
+      status:
+        favourites: {}
+        reblogs: {}
+        replies: {}
+    reddit:
+      new:
+        comments: {}
+    stack_exchange:
+      questions:
+        answers: {}
+        views: {}
+    twitter:
+      search:
+        likes: {}
+        retweets: {}
+  js:
+    code: {}
+    email: {}
+    mastodon_identifier: {}
+    name: {}
+    phone: {}
+    twitter_identifier: {}
+  layouts:
+    application: {}
+  pages:
+    home: {}
+    privacy: {}
+    terms: {}
+  parameters:
+    body_formats:
+      html: HTML
+      text: Texte
+    days_of_week:
+      friday: Vendredi
+      monday: Lundi
+      saturday: Samedi
+      sunday: Dimanche
+      thursday: Jeudi
+      tuesday: Mardi
+      wednesday: Mercredi
+    result_types:
+      mixed: Mixe
+      popular: Populaire
+      recent: Récent
+  passwords:
+    edit: {}
+  phone_numbers:
+    destroy: {}
+    edit: {}
+    form: {}
+    nested: {}
+    phone_number: {}
+    send_verification: {}
+    show: {}
+    update: {}
+  pipelines:
+    create: {}
+    destroy: {}
+    duplicate: {}
+    edit: {}
+    index:
+      title: {}
+    new: {}
+    pipeline: {}
+    process_now: {}
+    result:
+      matched_items: {}
+      new_items: {}
+      saved_items: {}
+      sent_items: {}
+    show: {}
+    update: {}
+  posts:
+    create: {}
+    destroy: {}
+    edit: {}
+    form: {}
+    index: {}
+    new: {}
+    send_later: {}
+    show: {}
+    update: {}
+  sessions:
+    create: {}
+    destroy: {}
+    new: {}
+    reset: {}
+  shared:
+    field:
+      account:
+        kind:
+          hint_html: La platforme sur laquelle tu ajoutes un compte
+          label: Type
+      destination:
+        kind: {}
+      email:
+        body: {}
+        body_format: {}
+        email: {}
+        subject: {}
+        to: {}
+      email_digest:
+        hour: {}
+      mastodon:
+        external_id:
+          label: Adresse
+        identifier: {}
+        scope: {}
+      monthly_email_digest:
+        day_of_month: {}
+      password: {}
+      phone_number:
+        phone_number: {}
+      pipeline:
+        name: {}
+        published: {}
+      reddit:
+        subreddit: {}
+      source:
+        filter: {}
+        filter_type: {}
+        key: {}
+        kind: {}
+        operator: {}
+        transform: {}
+        value: {}
+      stack_exchange:
+        order: {}
+        site: {}
+        sort: {}
+        tagged: {}
+      twitter:
+        external_id: {}
+        identifier: {}
+        limit: {}
+        query: {}
+        result_type: {}
+        scope: {}
+      user:
+        avatar: {}
+        name: {}
+        password: {}
+        time_zone: {}
+      weekly_email_digest:
+        day_of_week: {}
+      yes_no:
+        "no": Non
+        "yes": Oui
+  sources:
+    form: {}
+    hacker_news:
+      newest:
+        comments: {}
+      news:
+        comments: {}
+    model:
+      filter_types: {}
+      kinds:
+        hacker_news: {}
+        mastodon: {}
+        reddit: {}
+        stack_exchange: {}
+        twitter: {}
+      operators: {}
+      transforms: {}
+    nested: {}
+  users:
+    create: {}
+    destroy: {}
+    edit: {}
+    form: {}
+    index: {}
+    new: {}
+    show: {}
+    update: {}

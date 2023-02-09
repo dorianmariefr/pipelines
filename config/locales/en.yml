@@ -52,14 +52,14 @@ en:
       account:
         kind:
           label: Kind
-          hint_html: Which platform are you adding an account for?
+          hint_html: The platform you are adding an account for
       mastodon:
         external_id:
           label: Address
           hint_html: Full identifier, including username and server
         scope:
           label: Scope
-          hint_html: Do you want to authorize read, or read and write access?
+          hint_html: The access pipelines.plumbing will have on your Mastodon account
         identifier:
           label: Identifier
           hint_html: Your full Mastodon identifier with username and server
@@ -69,7 +69,7 @@ en:
           hint_html: Your Twitter username, mine is @dorianmariefr
         scope:
           label: Scope
-          hint_html: What do you want to authorize?
+          hint_html: The access pipelines.plumbing will have on your Twitter account
         identifier:
           label: Identifier
           hint_html: Your full Twitter username with an at sign (@), mine is @dorianmariefr
@@ -137,7 +137,7 @@ en:
       pipeline:
         name:
           label: Name of the pipeline
-          hint_html: Which will be used when displayed
+          hint_html: The name of the pipeline which will be used when displayed
         published:
           label: Is this pipeline public?
           hint_html: Your profile will be public as well if you create a public pipeline
@@ -150,7 +150,7 @@ en:
           hint_html: Preferably a generated one that you can keep in your password manager
         time_zone:
           label: Time zone
-          hint_html: What's the time zone you are in currently?
+          hint_html: The time zone you are currently in
         avatar:
           label: Avatar
           hint_html: An image to show yourself to other users if your profile is public
