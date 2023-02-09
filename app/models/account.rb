@@ -30,6 +30,8 @@ class Account < ApplicationRecord
   ]
   # e.g. @dorianmariefr
   TWITTER_IDENTIFIER_REGEXP = /\A@(\w){1,15}\z/
+  TWITTER_DOMAIN = "twitter.com"
+  PROTOCOL = "https"
 
   KINDS = [MASTODON, TWITTER]
 
@@ -69,12 +71,33 @@ class Account < ApplicationRecord
     end
   end
 
-  def domain
+  def client
     if mastodon?
-      external_id.split("@").third
+      nil
+    elsif twitter?
+      @client ||=
+        TwitterOAuth2::Client.new(
+          identifier: credentials.client_id,
+          secret: credentials.client_secret,
+          redirect_uri: redirect_uri
+        )
     else
       raise NotImplementedError
     end
+  end
+
+  def domain
+    if mastodon?
+      external_id.split("@").third
+    elsif twitter?
+      TWITTER_DOMAIN
+    else
+      raise NotImplementedError
+    end
+  end
+
+  def domain_with_protocol
+    "#{PROTOCOL}://#{domain}"
   end
 
   def application
@@ -87,17 +110,44 @@ class Account < ApplicationRecord
     end
   end
 
+  def redirect_uri
+    if mastodon?
+      Rails.application.routes.url_helpers.mastodon_callback_accounts_url
+    elsif twitter?
+      Rails.application.routes.url_helpers.twitter_callback_accounts_url
+    else
+      raise NotImplementedError
+    end
+  end
+
+  def root_url
+    Rails.application.routes.url_helpers.root_url
+  end
+
+  def credentials
+    if mastodon?
+      Rails.application.credentials.mastodon
+    elsif twitter?
+      Rails.application.credentials.twitter
+    else
+      raise NotImplementedError
+    end
+  end
+
   def authorize_url
     if mastodon?
       query = {
         client_id: application.client_id,
-        redirect_uri:
-          Rails.application.routes.url_helpers.mastodon_callback_accounts_url,
+        redirect_uri: redirect_uri,
         response_type: :code,
         scope: scope
       }.to_query
 
       "https://#{domain}/oauth/authorize?#{query}"
+    elsif twitter?
+      uri = client.authorization_uri(scope: scope.split)
+      update!(extras: {code_verifier: client.code_verifier})
+      uri
     else
       raise NotImplementedError
     end
@@ -115,14 +165,13 @@ class Account < ApplicationRecord
 
   def create_application!
     if mastodon?
-      uri = URI.parse("https://#{domain}/api/v1/apps")
+      uri = URI.parse("#{domain_with_protocol}/api/v1/apps")
       request = Net::HTTP::Post.new(uri)
       request.body = {
-        client_name: Rails.application.credentials.mastodon.client_name,
-        redirect_uris:
-          Rails.application.routes.url_helpers.mastodon_callback_accounts_url,
-        website: Rails.application.routes.url_helpers.root_url,
-        scopes: "read write push admin:read admin:write"
+        client_name: credentials.mastodon.client_name,
+        redirect_uris: redirect_uri,
+        website: root_url,
+        scopes: MASTODON_SCOPES.join(" ")
       }.to_query
 
       response =
@@ -147,22 +196,26 @@ class Account < ApplicationRecord
 
   def callback(code)
     if mastodon?
-      uri = URI.parse("https://#{domain}/oauth/token")
+      uri = URI.parse("#{domain_with_protocol}/oauth/token")
       request = Net::HTTP::Post.new(uri)
       request.body = {
         grant_type: :authorization_code,
         scope: scope,
-        redirect_uri:
-          Rails.application.routes.url_helpers.mastodon_callback_accounts_url,
+        redirect_uri: redirect_uri,
         client_id: application.client_id,
         client_secret: application.client_secret,
         code: code
       }.to_query
+
       response =
         Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
           http.request(request)
         end
+
       update!(extras: JSON.parse(response.body))
+    elsif twitter?
+      client.authorization_code = code
+      update!(extras: client.access_token!(extras["code_verifier"]))
     else
       raise NotImplementedError
     end

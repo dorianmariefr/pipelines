@@ -11,5 +11,7 @@ p
   b=> t(".scope")
   = @account.scope
 
+= @account.extras
+
 .p= link_to t(".edit"), [:edit, @account], class: "button"
 .p= button_to t(".delete"), @account, method: :delete, class: "button--red"
