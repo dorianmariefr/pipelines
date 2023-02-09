@@ -4,6 +4,7 @@ en:
     model:
       kinds:
         mastodon: Mastodon
+        twitter: Twitter
     index:
       title: Accounts
       new_account: New account
@@ -24,6 +25,7 @@ en:
       delete: Delete account
       authorize: Authorize
       authorized: Authorized
+      scope: Scope
     callback:
       notice: Account authorized
   parameters:
@@ -50,7 +52,15 @@ en:
       account:
         kind:
           label: Kind
-          hint_html: Which platform are you adding an account for
+          hint_html: Which platform are you adding an account for?
+      twitter:
+        external_id:
+          label: Username
+          hint_html: Your Twitter username, mine is @dorianmariefr
+        scope:
+          label: Scope
+          hint_html: What do you want to authorize?
+      mastodon:
         external_id:
           label: Address
           hint_html: Full identifier, including username and server
@@ -300,7 +310,10 @@ en:
     item:
       delete: Delete
   js:
-    mastodon_address:
+    twitter_identifier:
+      must_be_present: Must be present
+      must_be_valid: Must be valid
+    mastodon_identifier:
       must_be_present: Must be present
       must_be_valid: Must be valid
     code:

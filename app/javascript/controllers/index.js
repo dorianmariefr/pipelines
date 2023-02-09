@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AccountController from "./account_controller"
+application.register("account", AccountController)
+
 import CodeController from "./code_controller"
 application.register("code", CodeController)
 
@@ -45,6 +48,9 @@ application.register("sources", SourcesController)
 
 import TimeZoneController from "./time_zone_controller"
 application.register("time-zone", TimeZoneController)
+
+import TwitterIdentifierController from "./twitter_identifier_controller"
+application.register("twitter-identifier", TwitterIdentifierController)
 
 import VideoController from "./video_controller"
 application.register("video", VideoController)

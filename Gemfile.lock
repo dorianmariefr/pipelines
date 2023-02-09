@@ -522,6 +522,7 @@ DEPENDENCIES
   messagebird-rest
   money-rails
   normailize
+  oauth2
   omniauth
   omniauth-facebook
   omniauth-google-oauth2

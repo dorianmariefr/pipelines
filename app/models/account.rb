@@ -1,20 +1,45 @@
 class Account < ApplicationRecord
+  MASTODON = "mastodon"
+  DEFAULT_MASTODON_SCOPES = ["read"]
+  MASTODON_SCOPES = %w[read write follow push admin:read admin:write]
   # e.g. @dorianmariefr@ruby.social
   MASTODON_IDENTIFIER_REGEXP =
     /\A@?\b([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\z/
-  MASTODON = "mastodon"
 
-  SCOPES = ["read", "read write"]
+  TWITTER = "twitter"
+  DEFAULT_TWITTER_SCOPES = %w[tweet.read offline.access]
+  TWITTER_SCOPES = %w[
+    tweet.read
+    tweet.write
+    tweet.moderate.write
+    users.read
+    follows.read
+    follows.write
+    offline.access
+    space.read
+    mute.read
+    mute.write
+    like.read
+    like.write
+    list.read
+    list.write
+    block.read
+    block.write
+    bookmark.read
+    bookmark.write
+  ]
+  # e.g. @dorianmariefr
+  TWITTER_IDENTIFIER_REGEXP = /\A@(\w){1,15}\z/
 
-  KINDS = [MASTODON]
+  KINDS = [MASTODON, TWITTER]
 
   belongs_to :user
 
   scope :mastodon, -> { where(kind: MASTODON) }
+  scope :twitter, -> { where(kind: TWITTER) }
 
   validates :kind, inclusion: {in: KINDS}
   validates :external_id, presence: true
-  validates :scope, inclusion: {in: SCOPES}
 
   def authorized?
     !!access_token
@@ -32,6 +57,18 @@ class Account < ApplicationRecord
     kind == MASTODON
   end
 
+  def twitter?
+    kind == TWITTER
+  end
+
+  def scope=(scope)
+    if scope.is_a?(Array)
+      self.scope = scope.join(" ")
+    else
+      super
+    end
+  end
+
   def domain
     if mastodon?
       external_id.split("@").third
@@ -43,6 +80,8 @@ class Account < ApplicationRecord
   def application
     if mastodon?
       Application.find_by(kind: MASTODON, domain: domain)
+    elsif twitter?
+      nil
     else
       raise NotImplementedError
     end
@@ -67,6 +106,8 @@ class Account < ApplicationRecord
   def application!
     if mastodon?
       application || create_application!
+    elsif twitter?
+      nil
     else
       raise NotImplementedError
     end
@@ -97,6 +138,8 @@ class Account < ApplicationRecord
         client_id: json.client_id,
         client_secret: json.client_secret
       )
+    elsif twitter?
+      nil
     else
       raise NotImplementedError
     end

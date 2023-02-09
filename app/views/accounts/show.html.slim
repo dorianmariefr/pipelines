@@ -7,5 +7,9 @@
 - else
   p= link_to t(".authorize"), [@account, :authorize], class: "button--primary"
 
+p
+  b=> t(".scope")
+  = @account.scope
+
 .p= link_to t(".edit"), [:edit, @account], class: "button"
 .p= button_to t(".delete"), @account, method: :delete, class: "button--red"

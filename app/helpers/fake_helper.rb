@@ -49,6 +49,12 @@ module FakeHelper
     gray(eg(or_sentence(mastodon_identifiers.sample(3))))
   end
 
+  def fake_twitter_identifiers
+    gray(
+      eg(or_sentence((1..3).map { |domain| "@#{Faker::Internet.username}" }))
+    )
+  end
+
   def fake_values
     gray(eg(or_sentence((1..3).map { Faker::Hobby.activity })))
   end

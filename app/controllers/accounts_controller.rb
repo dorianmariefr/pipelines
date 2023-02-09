@@ -75,6 +75,6 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:kind, :external_id, :scope)
+    params.require(:account).permit(:kind, :external_id, scope: [])
   end
 end
