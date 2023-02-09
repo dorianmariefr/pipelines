@@ -8,7 +8,7 @@
 
     template(data-account-target="template" data-kind="twitter")
       = render "shared/field", f: f, name: :external_id, scope: :twitter, type: :twitter_identifier, required: true, fake: fake_twitter_identifiers
-      = render "shared/field", f: f, name: :scope, scope: :twitter, type: :check_boxes, options: twitter_account_scope_options, values: f.object.persisted? ? f.object.scope.split : Account::DEFAULT_TWITTER_SCOPES
+      = render "shared/field", f: f, name: :scope, scope: :twitter, type: :list, options: twitter_account_scope_options, values: f.object.persisted? ? f.object.scope.split : Account::DEFAULT_TWITTER_SCOPES
 
     div(data-account-target="output")
 
