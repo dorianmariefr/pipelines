@@ -13,6 +13,7 @@
 - translation_name = local_assigns.fetch(:translation_name, name)
 - if options&.first && !options.first.is_a?(Array)
   - options = options.map { |value| [value, value] }
+- values = local_assigns.fetch(:values, [])
 
 .p
   = f.label label_name, t(".#{scope}.#{translation_name}.label")
@@ -26,6 +27,11 @@
     div(data-controller="mastodon-identifier")
       = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, mastodon_identifier_target: "input", **datas }, value: value, required: required
       .text-red-600(data-mastodon-identifier-target="error")
+
+  - elsif type.twitter_identifier?
+    div(data-controller="twitter-identifier")
+      = f.text_field name, autocomplete: autocomplete, data: { form_type: data_form_type, twitter_identifier_target: "input", **datas }, value: value, required: required
+      .text-red-600(data-twitter-identifier-target="error")
 
   - elsif type.text?
     = f.text_area name, autocomplete: autocomplete, data: { form_type: data_form_type, name_target: "input", **datas }, value: value, required: required
@@ -74,5 +80,12 @@
 
   - elsif type.file?
     = f.file_field name
+
+  - elsif type.check_boxes?
+    - options.each do |option_text, option_value, option_disabled = false|
+      div
+        => f.check_box name, { data: datas, checked: values.include?(option_value), disabled: option_disabled, multiple: true }, option_value, nil
+        => f.label name, option_text, value: option_value, class: "inline-block #{option_disabled ? "text-gray-600" : ""}"
+
   .text-gray-600.text-sm= t(".#{scope}.#{translation_name}.hint_html")
   .text-gray-600.text-sm= fake

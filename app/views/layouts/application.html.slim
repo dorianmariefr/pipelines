@@ -15,7 +15,8 @@ html
       window.constants = {}
       window.constants.EMAIL_REGEXP = #{raw email_regexp.to_json};
       window.constants.CODE_REGEXP = #{raw code_regexp.to_json};
-      window.constants.MASTODON_IDENTIIFER_REGEXP = #{raw mastodon_identifier_regexp.to_json};
+      window.constants.MASTODON_IDENTIFIER_REGEXP = #{raw mastodon_identifier_regexp.to_json};
+      window.constants.TWITTER_IDENTIFIER_REGEXP = #{raw twitter_identifier_regexp.to_json};
       window.constants.IPINFO_TOKEN = #{raw ENV["IPINFO_TOKEN"].to_json};
       window.currentUser = {}
       window.currentUser.id = #{raw current_user&.id.to_json}

@@ -1,5 +1,15 @@
 = form_for account do |f|
-  = render "shared/field", f: f, name: :kind, scope: :account, type: :list, options: account_kind_options
-  = render "shared/field", f: f, name: :external_id, scope: :account, type: :mastodon_identifier, required: true, fake: fake_mastodon_identifiers
-  = render "shared/field", f: f, name: :scope, scope: :account, type: :list, options: account_scope_options
+  div(data-controller="account")
+    = render "shared/field", f: f, name: :kind, scope: :account, type: :list, options: account_kind_options, data: { account_target: "kind", action: "account#chooseKind" }
+
+    template(data-account-target="template" data-kind="mastodon")
+      = render "shared/field", f: f, name: :external_id, scope: :mastodon, type: :mastodon_identifier, required: true, fake: fake_mastodon_identifiers
+      = render "shared/field", f: f, name: :scope, scope: :mastodon, type: :check_boxes, options: mastodon_account_scope_options, values: f.object.persisted? ? f.object.scope.split : Account::DEFAULT_MASTODON_SCOPES
+
+    template(data-account-target="template" data-kind="twitter")
+      = render "shared/field", f: f, name: :external_id, scope: :twitter, type: :twitter_identifier, required: true, fake: fake_twitter_identifiers
+      = render "shared/field", f: f, name: :scope, scope: :twitter, type: :check_boxes, options: twitter_account_scope_options, values: f.object.persisted? ? f.object.scope.split : Account::DEFAULT_TWITTER_SCOPES
+
+    div(data-account-target="output")
+
   p= f.submit submit

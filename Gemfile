@@ -23,6 +23,7 @@ gem "letter_opener", group: :development
 gem "messagebird-rest", require: "messagebird"
 gem "money-rails"
 gem "normailize"
+gem "oauth2"
 gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"

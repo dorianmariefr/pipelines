@@ -32,6 +32,10 @@ module ApplicationHelper
     json_regexp(Account::MASTODON_IDENTIFIER_REGEXP)
   end
 
+  def twitter_identifier_regexp
+    json_regexp(Account::TWITTER_IDENTIFIER_REGEXP)
+  end
+
   def initial_country
     en? ? "US" : "FR"
   end
@@ -118,7 +122,11 @@ module ApplicationHelper
       .map { |time_zone| [time_zone.name, time_zone.name] }
   end
 
-  def account_scope_options
-    Account::SCOPES.map { |scope| [scope, scope] }
+  def mastodon_account_scope_options
+    Account::MASTODON_SCOPES.map { |scope| [scope, scope] }
+  end
+
+  def twitter_account_scope_options
+    Account::TWITTER_SCOPES.map { |scope| [scope, scope] }
   end
 end

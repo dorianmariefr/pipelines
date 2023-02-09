@@ -1,11 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 import i18n from "../i18n"
 
-const t = i18n.scope("mastodon_identifier")
+const t = i18n.scope("twitter_identifier")
 
 const VALID_CLASSES = ["border-green-600", "focus:outline-green-600"]
 const INVALID_CLASSES = ["border-red-600", "focus:outline-red-600"]
-const REGEXP = RegExp(window.constants.MASTODON_IDENTIFIER_REGEXP)
+const REGEXP = RegExp(window.constants.TWITTER_IDENTIFIER_REGEXP)
 
 export default class extends Controller {
   static targets = ["input", "error"]
@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   input() {
+    console.log(window.constants.TWITTER_IDENTIFIER_REGEXP)
     if (this.inputTarget.value.trim()) {
       if (this.inputTarget.value.match(REGEXP)) {
         this.validationValue = { valid: true }
