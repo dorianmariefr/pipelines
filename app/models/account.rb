@@ -7,27 +7,8 @@ class Account < ApplicationRecord
     /\A@?\b([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\z/
 
   TWITTER = "twitter"
-  DEFAULT_TWITTER_SCOPES = %w[tweet.read offline.access]
-  TWITTER_SCOPES = %w[
-    tweet.read
-    tweet.write
-    tweet.moderate.write
-    users.read
-    follows.read
-    follows.write
-    offline.access
-    space.read
-    mute.read
-    mute.write
-    like.read
-    like.write
-    list.read
-    list.write
-    block.read
-    block.write
-    bookmark.read
-    bookmark.write
-  ]
+  DEFAULT_TWITTER_SCOPES = %w[read]
+  TWITTER_SCOPES = %w[read write]
   # e.g. @dorianmariefr
   TWITTER_IDENTIFIER_REGEXP = /\A@(\w){1,15}\z/
   TWITTER_DOMAIN = "twitter.com"
@@ -68,21 +49,6 @@ class Account < ApplicationRecord
       self.scope = scope.join(" ")
     else
       super
-    end
-  end
-
-  def client
-    if mastodon?
-      nil
-    elsif twitter?
-      @client ||=
-        TwitterOAuth2::Client.new(
-          identifier: credentials.client_id,
-          secret: credentials.client_secret,
-          redirect_uri: redirect_uri
-        )
-    else
-      raise NotImplementedError
     end
   end
 
@@ -134,6 +100,19 @@ class Account < ApplicationRecord
     end
   end
 
+  def consumer
+    if twitter?
+      @consumer ||=
+        OAuth::Consumer.new(
+          credentials.api_key,
+          credentials.api_key_secret,
+          site: domain_with_protocol
+        )
+    else
+      raise NotImplementedError
+    end
+  end
+
   def authorize_url
     if mastodon?
       query = {
@@ -145,9 +124,18 @@ class Account < ApplicationRecord
 
       "https://#{domain}/oauth/authorize?#{query}"
     elsif twitter?
-      uri = client.authorization_uri(scope: scope.split)
-      update!(extras: {code_verifier: client.code_verifier})
-      uri
+      request_token =
+        consumer.get_request_token(
+          {oauth_callback: redirect_uri},
+          x_auth_access_type: scope
+        )
+      update!(
+        extras: {
+          token: request_token.token,
+          secret: request_token.secret
+        }
+      )
+      request_token.authenticate_url
     else
       raise NotImplementedError
     end
@@ -214,8 +202,20 @@ class Account < ApplicationRecord
 
       update!(extras: JSON.parse(response.body))
     elsif twitter?
-      client.authorization_code = code
-      update!(extras: client.access_token!(extras["code_verifier"]))
+      request_token =
+        OAuth::RequestToken.from_hash(
+          consumer,
+          oauth_token: extras["token"],
+          oauth_token_secret: extras["secret"]
+        )
+      access_token = request_token.get_access_token(oauth_verifier: code)
+      update!(external_id: "@#{access_token.params[:screen_name]}")
+      update!(
+        extras: {
+          access_token: access_token.token,
+          access_token_secret: access_token.secret
+        }
+      )
     else
       raise NotImplementedError
     end

@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
   def callback
     authorize Account
     @account = Account.find(session[:account_id])
-    @account.callback(params[:code])
+    @account.callback(params[:oauth_verifier].presence || params[:code])
     redirect_to @account, notice: t(".notice")
   end
 
