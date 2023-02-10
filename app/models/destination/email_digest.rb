@@ -40,7 +40,7 @@ class Destination
       }
     end
 
-    def send_now(items)
+    def send_now(_ = nil)
       return if items.none?
 
       if body_format.html?
