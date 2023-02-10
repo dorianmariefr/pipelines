@@ -124,6 +124,7 @@ class Source
         guest_token = guest_token.split(COOKIE_SPLIT_SECOND_PART).first
         authorization_bearer =
           script_page.scan(AUTHORIZATION_BEARER_REGEXP).first.last
+        authorization_bearer = CGI.unescape(authorization_bearer)
 
         query_params = {
           q: query,
