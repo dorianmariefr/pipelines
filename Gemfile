@@ -6,7 +6,6 @@ gem "aws-sdk-rails"
 gem "aws-sdk-s3", require: false
 gem "aws-sdk-ses"
 gem "bcrypt"
-gem "bootsnap", require: false
 gem "brakeman"
 gem "capybara"
 gem "dotenv-rails"
