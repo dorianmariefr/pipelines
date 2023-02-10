@@ -32,6 +32,8 @@ class Pipeline < ApplicationRecord
       source_results: source_results,
       destination_results: destination_results
     )
+  rescue Source::Error, Destination::Error => e
+    Pipeline::Result.new(error: e.message)
   end
 
   def process_later
@@ -43,6 +45,7 @@ class Pipeline < ApplicationRecord
         destination.send_now(saved_items)
       end
     end
+  rescue Source::Error, Destination::Error
   end
 
   def duplicate_for(user)

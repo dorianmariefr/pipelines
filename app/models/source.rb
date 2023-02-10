@@ -1,4 +1,7 @@
 class Source < ApplicationRecord
+  class Error < StandardError
+  end
+
   KINDS = {
     mastodon: {
       home: "Source::Mastodon::Home"

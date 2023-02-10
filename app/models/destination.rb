@@ -1,11 +1,14 @@
 class Destination < ApplicationRecord
-  class NotVerifiedEmail < StandardError
+  class Error < StandardError
+  end
+
+  class NotVerifiedEmail < Destination::Error
     def message
       I18n.t("errors.not_verified_email")
     end
   end
 
-  class NotOwnEmail < StandardError
+  class NotOwnEmail < Destination::Error
     def message
       I18n.t("errors.not_own_email")
     end
@@ -58,6 +61,7 @@ class Destination < ApplicationRecord
     check_if_verified_own_email!
     SendToDestinationJob.perform_later(destination: self, items: items)
     Destination::Result.new(sent_items: items.presence || subclass.items)
+  rescue Destination::Error
   end
 
   def params

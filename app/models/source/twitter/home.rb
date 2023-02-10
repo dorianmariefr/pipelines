@@ -1,13 +1,13 @@
 class Source
   class Twitter
     class Home
-      class AccountNotAuthorized < StandardError
+      class AccountNotAuthorized < Source::Error
         def message
           I18n.t("errors.account_not_authorized")
         end
       end
 
-      class AccountNotFound < StandardError
+      class AccountNotFound < Source::Error
         def message
           I18n.t("errors.account_not_found")
         end

@@ -113,8 +113,8 @@ class PipelinesController < ApplicationController
         :locale,
         :time_zone,
         :password,
-        emails_attributes: [:email],
-        phone_numbers_attributes: [:phone_number]
+        emails_attributes: %i[_destroy email],
+        phone_numbers_attributes: %i[_destroy phone_number]
       ],
       sources_attributes: [
         :id,
