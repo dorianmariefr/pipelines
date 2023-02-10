@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.0"
+ruby "3.2.1"
 
 gem "aws-sdk-rails"
 gem "aws-sdk-s3", require: false
