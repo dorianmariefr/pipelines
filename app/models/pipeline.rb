@@ -23,21 +23,11 @@ class Pipeline < ApplicationRecord
       source_results = sources.map(&:fetch)
       saved_items = source_results.map(&:saved_items).flatten
 
-      if saved_items.any?
-        destinations.each do |destination|
-          destination_results << destination.send_now(saved_items)
-        end
+      destinations.each do |destination|
+        destination_results << destination.send_now(saved_items)
       end
-
-      update!(error: nil)
     end
-  rescue => e
-    update!(
-      error: "#{e.class}: #{e.message}",
-      backtrace: e.backtrace.grep(/#{Rails.root}/).join("\n")
-    )
-    Pipeline::Result.new(error: error)
-  else
+
     Pipeline::Result.new(
       source_results: source_results,
       destination_results: destination_results
@@ -49,16 +39,10 @@ class Pipeline < ApplicationRecord
       source_results = sources.map(&:fetch)
       saved_items = source_results.map(&:saved_items).flatten
 
-      if saved_items.any?
-        destinations.instant.each do |destination|
-          destination_results << destination.send_now(saved_items)
-        end
+      destinations.instant.each do |destination|
+        destination.send_now(saved_items)
       end
-
-      update!(error: nil)
     end
-  rescue => e
-    update!(error: "#{e.class}: #{e.message}")
   end
 
   def duplicate_for(user)

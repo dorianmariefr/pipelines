@@ -11,10 +11,6 @@
 
   .p= link_to t(".duplicate"), [@pipeline, :duplicate], class: "button"
 
-- if can?(:process_now, @pipeline) && @pipeline.error.present?
-  p.text-red-600= @pipeline.error
-  = simple_format @pipeline.backtrace
-
 = render "users/user", user: @pipeline.user, size: :small
 
 - @sources.each do |source|
