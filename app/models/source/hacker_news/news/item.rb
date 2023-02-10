@@ -60,6 +60,8 @@ class Source
 
         def uri
           URI.parse(url)
+        rescue URI::InvalidURIError
+          URI.parse(CGI.escape(url))
         end
 
         def protocol
