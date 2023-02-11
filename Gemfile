@@ -7,7 +7,6 @@ gem "aws-sdk-s3", require: false
 gem "aws-sdk-ses"
 gem "bcrypt"
 gem "brakeman"
-gem "capybara"
 gem "dotenv-rails"
 gem "easy_translate"
 gem "factory_bot_rails"
@@ -56,4 +55,8 @@ gem "tailwindcss-rails"
 gem "template-ruby"
 gem "turbo-rails"
 gem "twitter"
-gem "webdrivers"
+
+group :test do
+  gem "webdrivers"
+  gem "capybara"
+end
