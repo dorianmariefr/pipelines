@@ -28,14 +28,12 @@
 p= link_to t(".rss"), pipeline_path(@pipeline, format: :rss), class: "button"
 
 - if @items.any?
-  .text-center.mb-4
-    = paginate @items
+  p= paginate @items
 
   - @items.each do |item|
     = render "items/item", item: item
 
-  .text-center.mb-4
-    = paginate @items
+  p= paginate @items
 
   - if can? :destroy_all, @pipeline
     .p.text-center= button_to t(".delete_all_items"), [:destroy_all, @pipeline, :items], method: :delete, class: "button--red"

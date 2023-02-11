@@ -363,6 +363,7 @@ fr:
       edit: Modifier ce pipeline
       or: ou
       process: Traiter
+      published: Public
       rss: Flux RSS
       rss_feed: Flux RSS
       sources: Sources
@@ -619,3 +620,9 @@ fr:
       private: Privé
     update:
       notice: Utilisateur mis à jour
+  views:
+    pagination:
+      first: Premier
+      last: Dernier
+      next: Suivant
+      previous: Précédent

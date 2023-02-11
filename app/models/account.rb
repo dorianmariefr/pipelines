@@ -10,6 +10,7 @@ class Account < ApplicationRecord
   DEFAULT_TWITTER_SCOPES = %w[read]
   TWITTER_SCOPES = %w[read write]
   # e.g. @dorianmariefr
+  TWITTER_IDENTIFIER_REGEXP_RELAXED = /@(\w){1,15}/
   TWITTER_IDENTIFIER_REGEXP = /\A@(\w){1,15}\z/
   TWITTER_DOMAIN = "twitter.com"
   PROTOCOL = "https"

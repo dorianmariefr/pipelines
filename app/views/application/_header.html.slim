@@ -21,11 +21,12 @@ header.container.flex.justify-between.items-center.border-b
 
   .flex.gap-4.items-center
     - if current_user
-      .hidden.sm:flex.items-center.gap-4
+      .hidden.xl:flex
         = button_to session_path, method: :delete do
           = heroicon "arrow-right-on-rectangle"
           = t(".log_out")
 
+      .hidden.sm:flex
         = link_to new_pipeline_path, class: "button--primary" do
           = heroicon "pencil-square"
           = t(".new_pipeline")

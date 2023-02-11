@@ -1,5 +1,11 @@
 ---
 en:
+  views:
+    pagination:
+      next: Next
+      previous: Previous
+      last: Last
+      first: First
   accounts:
     callback:
       notice: Account authorized
@@ -360,6 +366,7 @@ en:
       rss: RSS feed
       rss_feed: RSS feed
       sources: Sources
+      published: Public
     update:
       notice: Pipeline updated
   sessions:

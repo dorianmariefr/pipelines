@@ -129,4 +129,28 @@ module ApplicationHelper
   def twitter_account_scope_options
     Account::TWITTER_SCOPES.map { |scope| [scope, scope] }
   end
+
+  def auto_link_twitter_identifiers(text, **options)
+    text.gsub(Account::TWITTER_IDENTIFIER_REGEXP_RELAXED) do |match|
+      content_tag(
+        :a,
+        match,
+        href: "https://twitter.com/#{match[1..]}",
+        **options
+      )
+    end
+  end
+
+  def twitter_format(text, **options)
+    text = simple_format(text)
+    text = auto_link_twitter_identifiers(text, **options)
+    auto_link(
+      text,
+      html: options,
+      sanitize_options: {
+        tags: ["a"],
+        attributes: %w[href style]
+      }
+    )
+  end
 end
