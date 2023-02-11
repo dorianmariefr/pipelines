@@ -1,12 +1,33 @@
-.mb-4.flex
-  div=> image_tag status.account.avatar, alt: status.account.display_name, width: 60, height: 60, class: "w-15 h-15 inline-block rounded-full"
-  .px-4.py-2
-    div=> link_to status.account.display_name, status.account.url
-    div= link_to "@#{status.account.username}", status.account.url
-= sanitize status.content
-p
-  => t(".replies", count: status.replies_count)
-  => t(".reblogs", count: status.reblogs_count)
-  = t(".favourites", count: status.favourites_count)
-p
-  => link_to Time.zone.parse(status.created_at).to_formatted_s(:long), status.url
+div(style="font-family: sans-serif; border: 1px solid rgb(207, 217, 222); max-width: 550px; min-width: 250px; border-radius: 12px; margin: 0 0 2rem 0; padding: 12px 16px 4px 16px")
+  table(style="margin: 0 0 12px 0;")
+    tr
+      td
+        = link_to status.account.url do
+          = image_tag status.account.avatar, width: 48, height: 48, style: "border-radius: 100%;"
+      td(style="padding: 4px 0;")
+        div(style="margin: 0 4px;")
+          div(style="font-size: 15px; font-weight: 700;")
+            = link_to status.account.display_name, status.account.url, style: "color: rgb(15, 20, 25);"
+          div(style="font-size: 15px; font-weight: 400; line-height: 20px;")
+            = link_to "@#{status.account.username}", status.account.url, style: "color: rgb(83, 100, 113);"
+
+
+  div(style="font-weight: 400; font-size: 20px; line-height: 24px; color: rgb(15, 20, 25)")
+    = sanitize(status.content)
+
+  div(style="margin: 6px 0 12px 0;")
+    = link_to Time.zone.parse(status.created_at).to_formatted_s(:long), status.url, style: "color: rgb(83, 100, 113);"
+
+  div(style="border-top: 1px solid rgb(207, 217, 222); padding: 8px 0;")
+    div(style="display: inline-block; vertical-align: sub")
+      = heroicon "chat-bubble-left", options: { width: 20, height: 20 }
+    div(style="display: inline-block; margin-left: 4px;")
+      = status.replies_count
+    div(style="display: inline-block; margin-left: 4px; vertical-align: sub")
+      = heroicon "arrow-path-rounded-square", options: { width: 20, height: 20 }
+    div(style="display: inline-block; margin-left: 4px;")
+      = status.reblogs_count
+    div(style="display: inline-block; margin-left: 4px; vertical-align: sub")
+      = heroicon "heart", options: { width: 20, height: 20 }
+    div(style="display: inline-block; margin-left: 4px;")
+      = status.favourites_count

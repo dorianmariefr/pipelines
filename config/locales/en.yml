@@ -6,6 +6,7 @@ en:
       previous: Previous
       last: Last
       first: First
+      truncate: …
   accounts:
     callback:
       notice: Account authorized
