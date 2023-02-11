@@ -1,5 +1,15 @@
-.card
-  => t(".points", count: item.score)
-  => link_to item.title, item.url
-  => link_to item.user_id, item.user_url
-  => link_to t(".comments", count: item.comments), item.comments_url
+div(style="background-color: #f6f6ef; padding-bottom: 5px;")
+  div(style="font-size: 10pt;")
+    => link_to "▲", item.url, style: "text-decoration: none; color: #999999;"
+    => link_to item.title, item.url, style: "text-decoration: none; color: black;"
+    - if item.domain_with_path
+      div(style="display: inline-block; color: #828282; font-size: 8pt;")
+        | (
+        = link_to item.domain_with_path, "https://#{item.domain_with_path}", style: "text-decoration: none; color: #828282;"
+        ' )
+  div(style="padding-left: 1rem; color: #828282; font-size: 7pt;")
+    - if item.score
+      => t(".points", count: item.score)
+      ' |
+    - if item.comments
+      => t(".comments", count: item.comments)
