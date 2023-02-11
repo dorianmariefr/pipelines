@@ -1,6 +1,6 @@
-.card
-  ' ↑
+div(style="font-family: sans-serif; margin-bottom: 1rem;")
+  ' ▲
   => item.score
-  => link_to item.title, item.url
+  => link_to item.title, item.url, style: "color: black;"
   => link_to "r/#{item.subreddit}", item.subreddit_url
   => link_to t(".comments", count: item.comments), item.comments_url
