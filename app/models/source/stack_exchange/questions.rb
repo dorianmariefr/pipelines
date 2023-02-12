@@ -98,7 +98,7 @@ class Source
         JSON
           .parse(response, object_class: OpenStruct)
           .items
-          .map { |question| Question.new(question) }
+          &.map { |question| Question.new(question) } || []
       end
 
       private
