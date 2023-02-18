@@ -42,6 +42,7 @@ gem "rails-i18n"
 gem "rails_autolink"
 gem "redis"
 gem "rspec-rails"
+gem "ruby-fann", require: false
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "sidekiq"
@@ -57,6 +58,6 @@ gem "turbo-rails"
 gem "twitter"
 
 group :test do
-  gem "webdrivers"
   gem "capybara"
+  gem "webdrivers"
 end

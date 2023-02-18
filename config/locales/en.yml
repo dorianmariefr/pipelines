@@ -193,6 +193,7 @@ en:
       title: pipelines.plumbing
   pages:
     home:
+      screenshot: Screenshot
       automation: Automation
       faq_1_answer_html:
         It's much more powerful because of the programming languages

@@ -250,6 +250,7 @@ fr:
       made_simple: devenue simple
       new_pipeline: Nouveau pipeline
       public_pipelines: Pipelines publiques
+      screenshot: Capture d'écran
       subtitle:
         Récupérer des informations sur Internet, les filtrer, les formater
         et les envoyer
@@ -626,4 +627,4 @@ fr:
       last: Dernier
       next: Suivant
       previous: Précédent
-      truncate: …
+      truncate: "…"

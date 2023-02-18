@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     resources :pipelines, only: :index
   end
 
+  resources :items
+
   resources :emails do
     post :send_verification
   end

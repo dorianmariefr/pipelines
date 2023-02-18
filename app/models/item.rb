@@ -4,6 +4,8 @@ class Item < ApplicationRecord
 
   validates :external_id, uniqueness: {scope: :pipeline_id}
 
+  scope :twitter, -> { joins(:source).merge(Source.twitter) }
+
   delegate :first_kind, :second_kind, to: :source
 
   before_validation { self.pipeline_id = source&.pipeline_id }

@@ -26,6 +26,16 @@ div(data-controller="video")
 
 hr.mb-4
 
+.relative.mb-4(data-controller="carousel")
+  .relative.h-56.overflow-hidden.rounded-lg.mx-20(class="md:h-[50rem]")
+    - (1..5).each do |i|
+      .hidden.absolute.h-full.w-full.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2(data-carousel-target="slide")
+        = link_to image_url("screenshot-#{i}.png"), class: "block h-full" do
+          = image_tag "screenshot-#{i}.png", alt: t(".screenshot"), class: "h-full m-auto"
+  button.absolute.top-0.left-0.h-full.flex.items-center.justify-center.w-20(data-action="carousel#previous") ←
+  button.absolute.top-0.right-0.h-full.flex.items-center.justify-center.w-20(data-action="carousel#next") →
+
+hr.mb-4
 
 - if current_user
   h2= t(".your_pipelines")
