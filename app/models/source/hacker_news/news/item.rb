@@ -78,6 +78,8 @@ class Source
 
         def domain
           PublicSuffix.parse(host).domain
+        rescue PublicSuffix::DomainNotAllowed
+          host
         end
 
         def domain_with_path
