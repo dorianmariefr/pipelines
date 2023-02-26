@@ -20,7 +20,7 @@ div(data-controller="video")
     = link_to "https://www.youtube.com/embed/7e3ILAcPWkY?rel=0", class: "button", data: { action: "video#open" } do
       => heroicon "play"
       = t(".watch_video")
-  a.absolute.inset-0.h-full.w-full.flex.items-center.justify-center.hidden.bg-black/20(data-video-target="modal" data-action="video#close")
+  a.absolute.inset-0.z-10.h-full.w-full.flex.items-center.justify-center.hidden.bg-black/20(data-video-target="modal" data-action="video#close")
     .absolute.top-5.right-5.bg-white.rounded-full.shadow-xl= heroicon "x-mark", options: { class: "h-10 w-10" }
     iframe.shadow-xl.w-full.m-4.aspect-video(loading="lazy" src="https://www.youtube.com/embed/7e3ILAcPWkY?rel=0" allowfullscren)
 
