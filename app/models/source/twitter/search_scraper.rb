@@ -150,11 +150,11 @@ class Source
                 Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
                   http.request(request)
                 end
-              JSON.parse(response.body, object_class: OpenStruct)
+              JSON.parse(response.body)
             end
 
-        json.globalObjects.tweets.to_h.values.map do |tweet|
-          Tweet.new(tweet, users: json.globalObjects.users)
+        json["globalObjects"]["tweets"].values.map do |tweet|
+          Tweet.new(tweet, users: json["globalObjects"]["users"])
         end
       end
 

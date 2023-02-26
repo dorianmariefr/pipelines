@@ -83,3 +83,7 @@ textarea {
 a {
   @apply underline;
 }
+
+.last-p-no-margin-bottom p:last-child {
+  margin-bottom: 0;
+}

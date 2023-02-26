@@ -130,26 +130,56 @@ module ApplicationHelper
     Account::TWITTER_SCOPES.map { |scope| [scope, scope] }
   end
 
-  def auto_link_twitter_identifiers(text, **options)
-    text.gsub(Account::TWITTER_IDENTIFIER_REGEXP_RELAXED) do |match|
-      content_tag(
-        :a,
-        match,
-        href: "https://twitter.com/#{match[1..]}",
-        **options
-      )
-    end
-  end
+  def twitter_format(item, **options)
+    text = item.full_text
 
-  def twitter_format(text, **options)
+    item.entities.urls.each { |url| text.gsub!(url.url, url.expanded_url) }
+
+    item.entities.user_mentions.each do |mention|
+      text.gsub!(/@#{mention.screen_name}( |$)/) do
+        match = Regexp.last_match
+
+        safe_join(
+          [
+            content_tag(
+              :a,
+              "@#{mention.screen_name}",
+              href: "https://twitter.com/#{mention.screen_name}"
+            ),
+            match[1]
+          ]
+        )
+      end
+    end
+
+    item.entities.hashtags.each do |hashtag|
+      text.gsub!(/##{hashtag.text}( |$)/) do
+        match = Regexp.last_match
+
+        safe_join(
+          [
+            content_tag(
+              :a,
+              "##{hashtag.text}",
+              href: "https://twitter.com/hashtag/#{hashtag.text}"
+            ),
+            match[1]
+          ]
+        )
+      end
+    end
+
+    item.entities.media&.each do |media|
+      text.gsub!(media.url, content_tag(:p, image_tag(media.media_url_https)))
+    end
+
     text = simple_format(text)
-    text = auto_link_twitter_identifiers(text, **options)
     auto_link(
       text,
       html: options,
       sanitize_options: {
-        tags: ["a"],
-        attributes: %w[href style]
+        tags: %w[a p img],
+        attributes: %w[href style src]
       }
     )
   end

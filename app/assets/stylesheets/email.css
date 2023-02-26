@@ -5,3 +5,7 @@ body {
 a {
   color: black;
 }
+
+.last-p-no-margin-bottom p:last-child {
+  margin-bottom: 0;
+}
