@@ -156,6 +156,8 @@ class Source
         json["globalObjects"]["tweets"].values.map do |tweet|
           Tweet.new(tweet, users: json["globalObjects"]["users"])
         end
+      rescue HTTP_ERRORS
+        []
       end
 
       private

@@ -7,5 +7,6 @@ HTTP_ERRORS = [
   Net::HTTPHeaderSyntaxError,
   Net::ProtocolError,
   Timeout::Error,
-  SocketError
+  SocketError,
+  Errno::EPIPE
 ]
