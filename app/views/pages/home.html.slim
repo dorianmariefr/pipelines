@@ -20,20 +20,9 @@ div(data-controller="video")
     = link_to "https://www.youtube.com/embed/7e3ILAcPWkY?rel=0", class: "button", data: { action: "video#open" } do
       => heroicon "play"
       = t(".watch_video")
-  a.absolute.inset-0.z-10.h-full.w-full.flex.items-center.justify-center.hidden.bg-black/20(data-video-target="modal" data-action="video#close")
+  a.absolute.inset-0.h-full.w-full.flex.items-center.justify-center.hidden.bg-black/20(data-video-target="modal" data-action="video#close")
     .absolute.top-5.right-5.bg-white.rounded-full.shadow-xl= heroicon "x-mark", options: { class: "h-10 w-10" }
     iframe.shadow-xl.w-full.m-4.aspect-video(loading="lazy" src="https://www.youtube.com/embed/7e3ILAcPWkY?rel=0" allowfullscren)
-
-hr.mb-4
-
-.relative.mb-4(data-controller="carousel")
-  .relative.h-56.overflow-hidden.rounded-lg.mx-20(class="md:h-[50rem]")
-    - (1..5).each do |i|
-      .hidden.absolute.h-full.w-full.top-1/2.left-1/2.-translate-x-1/2.-translate-y-1/2(data-carousel-target="slide")
-        = link_to image_url("screenshot-#{i}.png"), class: "block h-full" do
-          = image_tag "screenshot-#{i}.png", alt: t(".screenshot"), class: "h-full m-auto"
-  button.absolute.top-0.left-0.h-full.flex.items-center.justify-center.w-20(data-action="carousel#previous") ←
-  button.absolute.top-0.right-0.h-full.flex.items-center.justify-center.w-20(data-action="carousel#next") →
 
 hr.mb-4
 
