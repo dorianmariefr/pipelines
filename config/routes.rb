@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     resources :pipelines, only: :index
   end
 
-  resources :items
+  resources :items do
+    get "twitter" => "items#twitter", :on => :collection
+  end
 
   resources :emails do
     post :send_verification

@@ -110,6 +110,8 @@ en:
     not_own_email: You didn't add this email address to the list of your email addresses
     not_verified_email: You didn't verify this email address
   items:
+    index:
+      title: Items
     destroy_all:
       notice: All items of this pipeline have been deleted
     hacker_news:
@@ -155,6 +157,7 @@ en:
           other: "%{count} views"
           zero: 0 views
     twitter:
+      title: Twitter items
       search:
         likes:
           one: 1 like

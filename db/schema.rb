@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_143840) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_093835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -141,7 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_143840) do
     t.datetime "updated_at", null: false
     t.jsonb "extras", default: {}, null: false
     t.bigint "pipeline_id", null: false
-    t.boolean "spam"
     t.index ["pipeline_id"], name: "index_items_on_pipeline_id"
     t.index %w[source_id external_id],
       name: "index_items_on_source_id_and_external_id",
