@@ -43,6 +43,8 @@ class Source
           reply =
             client.status(tweet["in_reply_to_status_id"], tweet_mode: :extended)
           Source::Twitter::Search::Tweet.new(reply).extras
+        rescue Twitter::Error::Forbidden
+          nil
         end
 
         def url
