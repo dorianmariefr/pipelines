@@ -42,8 +42,11 @@ class Source
           return unless tweet["in_reply_to_status_id"]
           reply =
             client.status(tweet["in_reply_to_status_id"], tweet_mode: :extended)
-          Source::Twitter::Search::Tweet.new(reply).extras
-        rescue ::Twitter::Error::Forbidden
+          Source::Twitter::Search::Tweet.new(
+            reply,
+            include_in_reply_to: false
+          ).extras
+        rescue ::Twitter::Error::Forbidden, ::Twitter::Error::NotFound
           nil
         end
 

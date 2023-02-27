@@ -6,6 +6,10 @@ a {
   color: black;
 }
 
+img {
+  max-width: 100%;
+}
+
 .last-p-no-margin-bottom p:last-child {
   margin-bottom: 0;
 }
