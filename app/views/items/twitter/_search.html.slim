@@ -1,7 +1,9 @@
 - user_url = "https://twitter.com/#{item.user.screen_name}"
+- url = "https://twitter.com/#{item.user.screen_name}/status/#{item.id}"
 
 div(style="font-family: sans-serif; border: 1px solid rgb(207, 217, 222); max-width: 550px; min-width: 250px; border-radius: 12px; margin: 0 0 2rem 0; padding: 12px 16px 4px 16px; overflow-wrap: break-word;")
-  = render "items/twitter/search", item: item.in_reply_to if item.in_reply_to
+  - if item.in_reply_to
+    = render "items/twitter/search", item: item.in_reply_to
   table(style="margin: 0 0 12px 0;")
     tr
       td
@@ -15,8 +17,11 @@ div(style="font-family: sans-serif; border: 1px solid rgb(207, 217, 222); max-wi
             = link_to "@#{item.user.screen_name}",user_url, style: "color: rgb(83, 100, 113);"
 
 
-  div.last-p-no-margin-bottom(style="font-weight: 400; font-size: 20px; line-height: 24px; color: rgb(15, 20, 25)")
-    = twitter_format(item, style: "color: rgb(15, 20, 25)")
+  - if item.retweeted_status
+    = render "items/twitter/search", item: item.retweeted_status
+  - else
+    div.last-p-no-margin-bottom(style="font-weight: 400; font-size: 20px; line-height: 24px; color: rgb(15, 20, 25)")
+      = twitter_format(item, style: "color: rgb(15, 20, 25)")
 
-  div(style="margin: 8px 0 12px 0;")
-    = link_to Time.zone.parse(item.created_at).to_formatted_s(:long), item.url, style: "color: rgb(83, 100, 113);"
+    div(style="margin: 8px 0 12px 0;")
+      = link_to Time.zone.parse(item.created_at).to_formatted_s(:long), url, style: "color: rgb(83, 100, 113);"

@@ -90,7 +90,12 @@ class Source
             expires_in: EXPIRES_IN
           ) do
             client
-              .search(query, result_type: result_type, tweet_mode: TWEET_MODE)
+              .search(
+                query,
+                result_type: result_type,
+                tweet_mode: TWEET_MODE,
+                include_rts: true
+              )
               .take(limit.to_i)
               .map { |tweet| Tweet.new(tweet) }
           end

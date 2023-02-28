@@ -131,7 +131,7 @@ module ApplicationHelper
   end
 
   def twitter_format(item, **options)
-    text = item.full_text
+    text = item.retweeted_status&.full_text || item.full_text
 
     item.entities.urls.each { |url| text.gsub!(url.url, url.expanded_url) }
 
